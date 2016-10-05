@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDarker">#202b6d</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="iron">#CCCCCC</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
