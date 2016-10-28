@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".Welcome.Login" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
