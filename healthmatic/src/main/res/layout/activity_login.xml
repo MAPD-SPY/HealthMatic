@@ -27,7 +27,7 @@
         <EditText
             android:id="@+id/editTextEmail"
             android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/icn_email_login"
+            android:drawableLeft="@mipmap/icn_email_login"
             android:hint="@string/str_hint_EmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -44,7 +44,7 @@
         <EditText
             android:id="@+id/editTextPassword"
             android:inputType="textPassword"
-            android:drawableLeft="@drawable/icn_password_login"
+            android:drawableLeft="@mipmap/icn_password_login"
             android:hint="@string/str_hint_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
