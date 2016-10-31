@@ -10,8 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.spy.healthmatic.MainActivity;
-import com.spy.healthmatic.MainActivity2;
+import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.R;
 
 import butterknife.Bind;
@@ -60,7 +59,9 @@ public class Login extends AppCompatActivity {
                     public void run() {
                         onLoginSuccess();
                         progressDialog.dismiss();
-                        startActivity(new Intent(Login.this, MainActivity2.class));
+                        if("a".equals(editTxtEmail.getText().toString())){
+                            startActivity(new Intent(Login.this, AdminMainActivity.class));
+                        }
                     }
                 }, 3000);
     }
@@ -71,7 +72,7 @@ public class Login extends AppCompatActivity {
         String email = editTxtEmail.getText().toString();
         String password = editTxtPassword.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isEmpty() ) {//|| !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
             editTxtEmail.setError("Enter a valid email");
             valid = false;
         }

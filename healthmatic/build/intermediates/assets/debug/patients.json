@@ -1,0 +1,944 @@
+{
+    "patients": [
+        {
+            "_id": 0,
+            "firstName": "Prashant",
+            "lastName": "Pol",
+            
+            "birthday": "2000-02-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "100"
+        },
+        {
+            "_id": 1,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "101"
+        },      
+        {
+            "_id": 2,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "102"
+        },
+        {
+            "_id": 3,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "103"
+        },
+        {
+            "_id": 4,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "104"
+        },      
+        {
+            "_id": 5,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "105"
+        },         
+        {
+            "_id": 6,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "108"
+        },      
+        {
+            "_id": 7,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "107"
+        },
+        {
+            "_id": 8,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "110"
+        },      
+        {
+            "_id": 9,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "tests": [
+                {
+                    "date": "",
+                    "requestedByName":"",
+                    "type": "", 
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "",
+                    "notes": "", 
+                    "diagnosedByName": ""
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "",
+                    "medicineName": "",
+                    "dosage": "",
+                    "frequency": "",
+                    "duration": "",
+                    "prescribedByName": ""
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "",
+                    "takenByName": "",
+                    "systolic": "",
+                    "diastolic": "",
+                    "heartRate": "",
+                    "temperature": ""
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "111"
+        }
+    ]
+}
