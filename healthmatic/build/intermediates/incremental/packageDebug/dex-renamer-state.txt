@@ -1,0 +1,7 @@
+#Mon Oct 31 15:21:59 EDT 2016
+base.0=/Users/yatin/Codebase/android/project/HealthMatic/healthmatic/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_980bcf8dcc1a42b7b7e1944b3e13365ef08cbf8e
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/Users/yatin/Codebase/android/project/HealthMatic/healthmatic/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0c202b37b90eadbc0e0d22af7ae4f26e615e0a6c/classes.dex
+base.1=/Users/yatin/Codebase/android/project/HealthMatic/healthmatic/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0c202b37b90eadbc0e0d22af7ae4f26e615e0a6c
+file.0=/Users/yatin/Codebase/android/project/HealthMatic/healthmatic/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_980bcf8dcc1a42b7b7e1944b3e13365ef08cbf8e/classes.dex
