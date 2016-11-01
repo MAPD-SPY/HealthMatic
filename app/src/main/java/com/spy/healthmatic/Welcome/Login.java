@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.AdminMainActivity;
+import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 
 import butterknife.Bind;
@@ -61,6 +62,9 @@ public class Login extends AppCompatActivity {
                         progressDialog.dismiss();
                         if("a".equals(editTxtEmail.getText().toString())){
                             startActivity(new Intent(Login.this, AdminMainActivity.class));
+                        }
+                        if("n".equals(editTxtEmail.getText().toString())){
+                            startActivity(new Intent(Login.this, NurseMainActivity.class));
                         }
                     }
                 }, 3000);
