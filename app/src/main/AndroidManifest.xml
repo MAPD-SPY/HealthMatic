@@ -24,7 +24,20 @@
         <activity
             android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Doctor.MainDrActivity"
+            android:label="@string/title_activity_main_dr"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Doctor.PatientDrActivity"
+            android:label="@string/title_activity_patient_dr"
+            android:parentActivityName=".Doctor.MainDrActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
+        </activity>
     </application>
 
 </manifest>

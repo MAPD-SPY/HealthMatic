@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="3dp"
+    card_view:contentPadding="4dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:foreground="?selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp" >
+
+        <ImageView
+            android:id="@+id/ivTestResult"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_menu_camera"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp" />
+
+        <TextView
+            android:id="@+id/tvTestName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ivTestResult"
+            android:layout_alignParentTop="true"
+            tools:text="@string/strCBC"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/tvTestRequestedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:layout_toEndOf="@id/ivTestResult"
+            android:layout_below="@id/tvTestName"
+            android:textSize="14sp"
+            android:text="@string/strDateRequested"
+            />
+
+        <TextView
+            android:id="@+id/tvTestRequestedDateVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_toEndOf="@id/tvTestRequestedDate"
+            android:layout_below="@id/tvTestName"
+            android:textSize="14sp"
+            tools:text="@string/strRxDate"
+            />
+
+        <TextView
+            android:id="@+id/tvTestRequestedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/tvTestRequestedDate"
+            android:layout_alignLeft="@id/tvTestRequestedDate"
+            android:layout_toEndOf="@id/ivTestResult"
+            android:layout_below="@id/tvTestRequestedDate"
+            android:textSize="14sp"
+            android:text="@string/strRequestedBy"
+            />
+
+        <TextView
+            android:id="@+id/tvTestRequestedByName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvTestRequestedBy"
+            android:layout_below="@id/tvTestRequestedDateVal"
+            android:textSize="14sp"
+            tools:text="@string/strMedsDrName"
+            />
+
+        <TextView
+            android:id="@+id/tvTestStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/tvTestRequestedDate"
+            android:layout_alignLeft="@id/tvTestRequestedDate"
+            android:layout_toEndOf="@id/ivTestResult"
+            android:layout_below="@id/tvTestRequestedBy"
+            android:paddingTop="5dp"
+            android:textSize="14sp"
+            android:text="@string/strStatus"
+            />
+
+        <TextView
+            android:id="@+id/tvTestStatusVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tvTestRequestedBy"
+            android:layout_below="@id/tvTestRequestedByName"
+            android:paddingTop="5dp"
+            android:textSize="14sp"
+            tools:text="@string/strOngoing"
+            />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
