@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">HealthMatic</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main2">MainActivity2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="strArrayDetails">
+        <item>@string/strMeds</item>
+        <item>@string/strTests</item>
+        <item>@string/strVitals</item>
+        <item>@string/strNotes</item>
+        <item>@string/strBio</item>
+    </string-array>
+
+    <string name="str_hint_EmailAddress">E-mail address</string>
+    <string name="str_hint_Password">Password</string>
+    <string name="str_btn_Login">Log in</string>
+    <string name="title_activity_main_dr">My Patients</string>
+    <string name="strRoom">Room #:</string>
+    <string name="strPatients">Patients</string>
+    <string name="strDailyRound"> patients to be checked today.</string>
+    <string name="strCheckDone">Checks done</string>
+
+    <string name="strVitals">Vitals</string>
+    <string name="strTests">Tests</string>
+    <string name="strMeds">Meds</string>
+    <string name="strNotes">Notes</string>
+    <string name="title_activity_patient_dr"></string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="txtTemperature">Temperature:</string>
+    <string name="strHeartRate">Heart Rate:</string>
+    <string name="txtBloodPressure">Blood Pressure:</string>
+    <string name="txtRespirationRate">Respiration Rate:</string>
+    <string name="strLastCheckup">Last Checkup:</string>
+    <string name="strAdmissionDate">Admission Date:</string>
+    <string name="strSummary">Summary</string>
+    <string name="strBio">Bio</string>
+    <string name="strShelalaine">Shelalaine Chan</string>
+    <string name="strCondition">Broken ribs</string>
+    <string name="strRoomNumVal">500</string>
+    <string name="strFrequency">Frequency: </string>
+    <string name="strMedsName">Amoxicillin</string>
+    <string name="strDosage">Dosage: </string>
+    <string name="strDuration">Duration: </string>
+    <string name="strPrescribedBy">Prescribed By: </string>
+    <string name="strPrescriptionDate">Prescription Date: </string>
+    <string name="strMedsDrName">Dr. John Smith</string>
+    <string name="strRxDate">Nov 3, 2016, 9:00 AM</string>
+    <string name="strMedsDosage">1 tablespoon</string>
+    <string name="strMedsFrequency">3x daily</string>
+    <string name="strMedsDurationVal">10 days</string>
+    <string name="strCBC">CBC (Complete Blood Count)</string>
+    <string name="strDateRequested">Date Requested:</string>
+    <string name="strRequestedBy">Requested By:</string>
+    <string name="strStatus">Status:</string>
+    <string name="strOngoing">On-going</string>
+
+</resources>
