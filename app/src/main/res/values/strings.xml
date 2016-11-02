@@ -18,5 +18,7 @@
     <string name="str_hint_EmailAddress"> E-mail address</string>
     <string name="str_hint_Password"> Password</string>
     <string name="str_btn_Login">Log in</string>
+    <string name="title_activity_nurse_patient_details">NursePatientDetailsActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

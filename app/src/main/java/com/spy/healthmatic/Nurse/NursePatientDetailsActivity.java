@@ -33,6 +33,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    TextView txtName;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -64,6 +65,8 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        txtName=(TextView)findViewById(R.id.pname);
 
     }
 
@@ -119,8 +122,8 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_nurse_patientdetails, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
@@ -145,18 +148,17 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Patient Details";
                 case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
+                    return "Test Results";
+
             }
             return null;
         }

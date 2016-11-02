@@ -25,9 +25,11 @@
             android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Nurse.NurseMainActivity"></activity>
-
-
+        <activity android:name=".Nurse.NurseMainActivity" />
+        <activity
+            android:name=".Nurse.NursePatientDetailsActivity"
+            android:label="@string/title_activity_nurse_patient_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
