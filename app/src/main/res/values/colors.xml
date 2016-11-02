@@ -9,4 +9,10 @@
     <color name="white">#FFFFFF</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="circlePVRim">#7D8B91</color>
+    <color name="circlePVBar">#2399FF</color>
+    <color name="appBarScrim">#98E0DB</color>
+
+    <color name="patientDrTab">#7D8B91</color>
 </resources>

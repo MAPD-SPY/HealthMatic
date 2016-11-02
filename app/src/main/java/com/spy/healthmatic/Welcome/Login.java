@@ -2,19 +2,25 @@ package com.spy.healthmatic.Welcome;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.spy.healthmatic.Doctor.MainDrActivity;
 import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+/**
+ * Team Name: Team SPY
+ * Created by shelalainechan
+ */
 
 public class Login extends AppCompatActivity {
 
@@ -61,6 +67,9 @@ public class Login extends AppCompatActivity {
                         progressDialog.dismiss();
                         if("a".equals(editTxtEmail.getText().toString())){
                             startActivity(new Intent(Login.this, AdminMainActivity.class));
+                        }else if("d".equals(editTxtEmail.getText().toString())){
+                            startActivity(new Intent(Login.this, MainDrActivity.class));
+
                         }
                     }
                 }, 3000);
