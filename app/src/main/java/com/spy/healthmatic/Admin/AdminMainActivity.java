@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +17,7 @@ import com.spy.healthmatic.Admin.Fragments.DoctorList;
 import com.spy.healthmatic.Admin.Fragments.NurseList;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.StaffList;
+import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.POJO.Doctor;
 import com.spy.healthmatic.POJO.Nurse;
 import com.spy.healthmatic.POJO.Patient;
@@ -129,6 +131,14 @@ public class AdminMainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(Patient patient, int position) {
         Toast.makeText(AdminMainActivity.this, "Patient "+position + " clicked", Toast.LENGTH_SHORT).show();
+//        TODO Form a same POJO class for Patient
+
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("PATIENT_OBJ", patient);
+//
+//        Intent intent = new Intent(this, PatientDrActivity.class);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
     }
 
     @Override
