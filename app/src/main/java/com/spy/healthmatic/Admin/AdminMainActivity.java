@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Admin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,10 +17,11 @@ import com.spy.healthmatic.Admin.Fragments.DoctorList;
 import com.spy.healthmatic.Admin.Fragments.NurseList;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.StaffList;
-import com.spy.healthmatic.POJO.Doctor;
-import com.spy.healthmatic.POJO.Nurse;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Nurse;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.Welcome.SplashScreen;
 
 public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PatientList.OnPatientListFragmentInteractionListener,
@@ -118,7 +120,9 @@ public class AdminMainActivity extends AppCompatActivity
         } else if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_logout) {
-
+            Intent intent = new Intent(this, SplashScreen.class);
+            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

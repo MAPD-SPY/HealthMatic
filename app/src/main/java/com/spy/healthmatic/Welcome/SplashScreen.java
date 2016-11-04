@@ -210,6 +210,7 @@ public class SplashScreen extends AppCompatActivity {
                     //  Launch app intro
                     Intent i = new Intent(SplashScreen.this, Login.class);
                     startActivity(i);
+                    finish();
 
                     //  Make a new preferences editor
                     SharedPreferences.Editor e = getPrefs.edit();

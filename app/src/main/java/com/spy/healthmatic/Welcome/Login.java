@@ -95,10 +95,10 @@ public class Login extends AppCompatActivity {
         return valid;
     }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(false);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        moveTaskToBack(false);
+//    }
 
     private void onLoginSuccess() {
         loginButton.setEnabled(true);

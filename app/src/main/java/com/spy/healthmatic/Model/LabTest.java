@@ -1,4 +1,4 @@
-package com.spy.healthmatic.models;
+package com.spy.healthmatic.Model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
