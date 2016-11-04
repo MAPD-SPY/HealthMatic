@@ -38,6 +38,18 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    public static final String ARG_PAGE = "ARG_PAGE";
+
+//
+//    public static NursePatientDetailsActivity newInstance(int pageNumber) {
+//        Bundle args = new Bundle();
+//        args.putInt(ARG_PAGE, pageNumber);
+//        NursePatientDetailsActivity myFragment = new NursePatientDetailsActivity();
+//
+//        return myFragment;
+//    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+       // mPage = getArguments().getInt(ARG_PAGE);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -66,7 +79,9 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             }
         });
 
-        txtName=(TextView)findViewById(R.id.pname);
+
+
+        //txtName=(TextView)findViewById(R.id.pname);
 
     }
 
@@ -75,6 +90,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_nurse_patient_details, menu);
+
         return true;
     }
 
@@ -102,6 +118,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        int mPage;
 
         public PlaceholderFragment() {
         }
@@ -115,15 +132,32 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+
             return fragment;
         }
 
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            mPage = getArguments().getInt(ARG_PAGE);
+        }
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_nurse_patientdetails, container, false);
 //            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 //            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            if(mPage==1)
+            {
+               View view=inflater.inflate(R.layout.fragment_nurse_patientdetails,container,false);
+
+            }
+            else
+            {
+                //TextView textView = (TextView) view;
+               // textView.setText("Fragment #" + mPage);
+            }
+
             return rootView;
         }
     }
@@ -142,7 +176,10 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+           // mPage=position;
             return PlaceholderFragment.newInstance(position + 1);
+
+
         }
 
         @Override
