@@ -69,7 +69,6 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(Login.this, AdminMainActivity.class));
                         }else if("d".equals(editTxtEmail.getText().toString())){
                             startActivity(new Intent(Login.this, MainDrActivity.class));
-
                         }
                     }
                 }, 3000);
@@ -96,10 +95,10 @@ public class Login extends AppCompatActivity {
         return valid;
     }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(false);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        moveTaskToBack(false);
+//    }
 
     private void onLoginSuccess() {
         loginButton.setEnabled(true);

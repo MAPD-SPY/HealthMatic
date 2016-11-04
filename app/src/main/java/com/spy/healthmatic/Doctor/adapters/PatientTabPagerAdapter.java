@@ -10,7 +10,7 @@ import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.TestsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
-import com.spy.healthmatic.models.Patient;
+import com.spy.healthmatic.Model.Patient;
 
 /**
  * Team Name: Team SPY
