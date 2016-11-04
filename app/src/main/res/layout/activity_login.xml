@@ -30,7 +30,8 @@
             android:drawableLeft="@drawable/ic_person_outline_black_24dp"
             android:hint="@string/str_hint_EmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="n" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -46,6 +47,7 @@
             android:inputType="textPassword"
             android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
             android:hint="@string/str_hint_Password"
+            android:text="n"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

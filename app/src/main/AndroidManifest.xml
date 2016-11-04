@@ -26,7 +26,22 @@
             android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Nurse.NurseMainActivity" />
         <activity
+            android:name=".Nurse.NursePatientDetailsActivity"
+            android:label="@string/title_activity_nurse_patient_details"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Nurse.NurseMainActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Nurse.NurseMainActivity">
+
+
+            </meta-data>
+        </activity>
+
+
+         <activity
             android:name=".Doctor.MainDrActivity"
             android:label="@string/title_activity_main_dr"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -39,6 +54,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
         </activity>
+
         <activity
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:label="@string/strMedication"
@@ -47,7 +63,7 @@
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:label="@string/strLaboratoryTests"
             android:name=".Doctor.AddTestActivity"></activity>
-        <activity android:name=".Admin.AdminAddPatient" />
+         <activity android:name=".Admin.AdminAddPatient" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
         <activity android:name=".LabAgent.LabAgentMainActivity"></activity>
