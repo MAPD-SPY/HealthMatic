@@ -70,9 +70,14 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -96,12 +101,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -190,9 +214,14 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -208,12 +237,22 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
                 }
             ],
             
@@ -293,9 +332,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -311,12 +350,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -387,9 +445,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -413,12 +471,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -507,9 +584,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -533,12 +610,13 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
                 }
             ],
             
@@ -627,9 +705,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -653,12 +731,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -747,9 +844,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -773,12 +870,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -867,9 +983,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -893,12 +1009,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -978,9 +1113,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -1004,12 +1139,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             
@@ -1098,9 +1252,9 @@
 
             "drNotes" : [
                 {
-                    "date": "",
-                    "notes": "", 
-                    "diagnosedByName": ""
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
                 }
             ],
 
@@ -1124,12 +1278,31 @@
             ],
             "vitals":[
                 {
-                    "date": "",
-                    "takenByName": "",
-                    "systolic": "",
-                    "diastolic": "",
-                    "heartRate": "",
-                    "temperature": ""
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
                 }
             ],
             

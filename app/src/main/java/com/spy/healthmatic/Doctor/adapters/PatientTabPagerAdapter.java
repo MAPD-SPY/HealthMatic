@@ -48,10 +48,12 @@ public class PatientTabPagerAdapter extends FragmentPagerAdapter {
 
             case 2:
                 VitalsFragment vitals = new VitalsFragment();
+                vitals.setArguments(bundle);
                 return vitals;
 
             case 3:
                 DrNotesFragment drNotes = new DrNotesFragment();
+                drNotes.setArguments(bundle);
                 return drNotes;
 
             case 4:
@@ -68,4 +70,5 @@ public class PatientTabPagerAdapter extends FragmentPagerAdapter {
         // Show the number total pages.
         return tabCount;
     }
+
 }
