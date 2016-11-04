@@ -32,6 +32,8 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+            <include layout="@layout/patient_overview" />
+
             <android.support.design.widget.TabLayout
                 android:id="@+id/tlPatientsForDoc"
                 android:layout_width="match_parent"
@@ -40,9 +42,6 @@
                 app:tabTextColor="@color/patientDrTab"
                 app:tabMode="fixed"
                 app:tabGravity="fill" />
-
-            <include layout="@layout/patient_overview" />
-
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
@@ -52,4 +51,15 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_prescription_pill"
+        app:fabSize="normal"
+        android:id="@+id/fabAdd"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|right"
+        app:layout_anchor="@id/containerPatientDr"
+        app:layout_anchorGravity="bottom|right|end"/>
 </android.support.design.widget.CoordinatorLayout>

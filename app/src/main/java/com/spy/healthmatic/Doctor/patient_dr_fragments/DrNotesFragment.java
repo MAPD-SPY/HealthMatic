@@ -3,53 +3,39 @@ package com.spy.healthmatic.Doctor.patient_dr_fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.spy.healthmatic.Doctor.adapters.DrNotesAdapter;
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.models.DrNotes;
+import com.spy.healthmatic.models.Patient;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DrNotesFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private DrNotesAdapter drNotesAdapter;
+    private Patient patient;
+    private List<DrNotes> drNotes;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public DrNotesFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VitalsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DrNotesFragment newInstance(String param1, String param2) {
-        DrNotesFragment fragment = new DrNotesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
+            drNotes = patient.getDrNotes();
+            drNotesAdapter = new DrNotesAdapter(getActivity(), drNotes);
         }
     }
 
@@ -58,6 +44,10 @@ public class DrNotesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dr_notes, container, false);
+
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvNotes);
+        recyclerView.setAdapter(drNotesAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 }

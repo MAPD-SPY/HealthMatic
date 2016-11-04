@@ -64,5 +64,17 @@
     <string name="strRequestedBy">Requested By:</string>
     <string name="strStatus">Status:</string>
     <string name="strOngoing">On-going</string>
+    <string name="strSearchLabTestHint">Search laboratory tests</string>
+    <string name="strAdd">Add</string>
+    <string name="strCancel">Cancel</string>
+    <string name="strTestTypeDescription">Determines general health and screens for disorders such as anemia or infections, as well as nutritional status and toxic substance exposure.</string>
+    <string name="strTestTypeCB">CBC (Complete Blood Count)</string>
+    <string name="strMedicine">Medicine</string>
+    <string name="strMedsForm">Form</string>
+    <string name="strNotedBy">Noted By:</string>
+    <string name="strDate">Date:</string>
+    <string name="strMedication">Medication</string>
+    <string name="strLaboratoryTests">Laboratory Tests</string>
+    <string name="strDateTaken">Date Taken:</string>
 
 </resources>

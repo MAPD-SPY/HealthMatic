@@ -38,6 +38,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
         </activity>
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
+            android:label="@string/strMedication"
+            android:name=".Doctor.AddMedsActivity" />
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
+            android:label="@string/strLaboratoryTests"
+            android:name=".Doctor.AddTestActivity"></activity>
     </application>
 
 </manifest>

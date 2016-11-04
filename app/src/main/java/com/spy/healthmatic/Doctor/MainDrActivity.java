@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.models.Patient;
@@ -56,13 +57,15 @@ public class MainDrActivity extends AppCompatActivity {
             }
         });
 
-        patients = new ArrayList<>();
-        patientsAdapter = new PatientsAdapter(this, patients);
+        if (patients == null) {
+            patients = new ArrayList<>();
+            patientsAdapter = new PatientsAdapter(this, patients);
+            getPatientJSONArray();
+        }
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
         recyclerView.setAdapter(patientsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        getPatientJSONArray();
 
         // Setup the circle progress view
         circleProgressView = (CircleProgressView) findViewById(R.id.cpvPatients);
@@ -119,7 +122,9 @@ public class MainDrActivity extends AppCompatActivity {
         JSONArray patientJsonResults;
 
         try {
-            response = new JSONObject(loadJSONFromAsset());
+            // TODO: Remove if check is complete
+            // response = new JSONObject(loadJSONFromAsset());
+            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
             patientJsonResults = response.getJSONArray("patients");
             patients.addAll(Patient.fromJSONArray(patientJsonResults));
             patientsAdapter.notifyDataSetChanged();
