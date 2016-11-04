@@ -57,6 +57,7 @@ public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientLi
                     int position = getAdapterPosition();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("PATIENT_OBJ", patients.get(position));
+                    bundle.putBoolean("isAgent",true);
 
                     Intent intent = new Intent(mContext, PatientDrActivity.class);
                     intent.putExtras(bundle);
