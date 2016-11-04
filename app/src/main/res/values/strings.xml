@@ -22,6 +22,22 @@
         <item>@string/strBio</item>
     </string-array>
 
+    <string-array name="doctors_list">
+        <item>Doctor 1</item>
+        <item>Doctor 2</item>
+        <item>Doctor 3</item>
+        <item>Doctor 4</item>
+        <item>Doctor 5</item>
+    </string-array>
+
+    <string-array name="nurse_list">
+        <item>Doctor 1</item>
+        <item>Doctor 2</item>
+        <item>Doctor 3</item>
+        <item>Doctor 4</item>
+        <item>Doctor 5</item>
+    </string-array>
+
     <string name="str_hint_EmailAddress">E-mail address</string>
     <string name="str_hint_Password">Password</string>
     <string name="str_btn_Login">Log in</string>
