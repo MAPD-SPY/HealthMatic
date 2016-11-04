@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.Prescription;
+import com.spy.healthmatic.Model.Prescription;
 
 import java.util.List;
 

@@ -1,4 +1,7 @@
-package com.spy.healthmatic.models;
+package com.spy.healthmatic.Model;
+
+import android.view.View;
+import android.widget.ArrayAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +30,8 @@ public class Patient extends Person implements Serializable {
     private ArrayList<Prescription> prescriptions;
     private ArrayList<Vitals> vitals;
     private ArrayList<DrNotes> drNotes;
-    private ArrayList<String> nurses;
-    private ArrayList<String> doctors;
+    private ArrayList<Nurse> nurses;
+    private ArrayList<Doctor> doctors;
 
     public Patient(JSONObject jsonObject) throws JSONException {
         super(jsonObject.getString("firstName"),
@@ -196,19 +199,19 @@ public class Patient extends Person implements Serializable {
         this.drNotes = drNotes;
     }
 
-    public ArrayList<String> getNurses() {
+    public ArrayList<Nurse> getNurses() {
         return nurses;
     }
 
-    public void setNurses(ArrayList<String> nurses) {
+    public void setNurses(ArrayList<Nurse> nurses) {
         this.nurses = nurses;
     }
 
-    public ArrayList<String> getDoctors() {
+    public ArrayList<Doctor> getDoctors() {
         return doctors;
     }
 
-    public void setDoctors(ArrayList<String> doctors) {
+    public void setDoctors(ArrayList<Doctor> doctors) {
         this.doctors = doctors;
     }
 }

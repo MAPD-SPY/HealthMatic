@@ -1,4 +1,4 @@
-package com.spy.healthmatic.models;
+package com.spy.healthmatic.Model;
 
 /**
  * Team Name: Team SPY

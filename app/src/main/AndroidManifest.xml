@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Welcome.Login" />
+        <activity android:name=".Welcome.Login"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"

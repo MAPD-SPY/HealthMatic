@@ -1,6 +1,4 @@
-package com.spy.healthmatic.POJO;
-
-import android.provider.ContactsContract;
+package com.spy.healthmatic.Model;
 
 import java.io.Serializable;
 
@@ -8,19 +6,17 @@ import java.io.Serializable;
  * Created by yatin on 28/10/16.
  */
 
-public class Doctor implements Serializable {
+public class Nurse implements Serializable{
     private String name;
     private String gender;
-    private String speciality;
+    private int floor;
 
-    public Doctor(){
+    public Nurse(){}
 
-    }
-
-    public Doctor(String name, String gender, String speciality){
+    public Nurse(String name, String gender, int floor){
         this.name = name;
         this.gender = gender;
-        this.speciality = speciality;
+        this.floor = floor;
     }
 
     public String getName() {
@@ -39,11 +35,11 @@ public class Doctor implements Serializable {
         this.gender = gender;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public int getFloor() {
+        return floor;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 }

@@ -15,7 +15,6 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
-import com.spy.healthmatic.POJO.Patient;
 import com.spy.healthmatic.R;
 
 import butterknife.Bind;
