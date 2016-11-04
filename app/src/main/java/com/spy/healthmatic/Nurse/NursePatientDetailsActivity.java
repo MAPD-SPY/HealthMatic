@@ -89,6 +89,8 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         toolbar.addView(title);
 
 
+
+
     }
 
 
