@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Nurse;
 
+import android.app.ProgressDialog;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class NurseMainActivity extends AppCompatActivity {
     private ArrayList<Patient> patientList = new ArrayList<>();
     private RecyclerView recyclerView;
     private NurseAdapter mAdapter;
+    private ProgressBar progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class NurseMainActivity extends AppCompatActivity {
        //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        progressDialog = (ProgressBar) findViewById(R.id.progress_dialog);
     }
 
     public void onStart(){
@@ -53,6 +57,7 @@ public class NurseMainActivity extends AppCompatActivity {
     }
 
     private void loadRecyclerViewElements(){
+        progressDialog.setVisibility(View.GONE);
         mAdapter = new NurseAdapter(patientList,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
