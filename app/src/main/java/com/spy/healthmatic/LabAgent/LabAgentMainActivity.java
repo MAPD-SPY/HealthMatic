@@ -12,13 +12,15 @@ import android.widget.ProgressBar;
 import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
 import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.LabAgent.Adapters.AgentPatientListAdapter;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import com.spy.healthmatic.R;
 
 public class LabAgentMainActivity extends AppCompatActivity {
 
@@ -46,7 +48,7 @@ public class LabAgentMainActivity extends AppCompatActivity {
 
     public void onStart(){
         super.onStart();
-        patients = GlobalFunctions.getDummyPatients(10);
+        patients = GlobalFunctions.getPatientJSONArray(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

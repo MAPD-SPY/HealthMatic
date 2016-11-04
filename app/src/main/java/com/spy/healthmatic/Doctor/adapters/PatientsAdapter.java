@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.Patient;
+import com.spy.healthmatic.Model.Patient;
 
 import java.util.List;
 
@@ -47,13 +47,12 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                 public void onClick(View v) {
 
                     int position = getAdapterPosition();
-//                    TODO Form a same POJO class for Patient
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
-//
-//                    Intent intent = new Intent(mContext, PatientDrActivity.class);
-//                    intent.putExtras(bundle);
-//                    mContext.startActivity(intent);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
+
+                    Intent intent = new Intent(mContext, PatientDrActivity.class);
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
                 }
             });
         }

@@ -18,10 +18,11 @@ import com.spy.healthmatic.Admin.Fragments.NurseList;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.StaffList;
 import com.spy.healthmatic.Doctor.PatientDrActivity;
-import com.spy.healthmatic.POJO.Doctor;
-import com.spy.healthmatic.POJO.Nurse;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Nurse;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.Welcome.SplashScreen;
 
 public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PatientList.OnPatientListFragmentInteractionListener,
@@ -120,7 +121,9 @@ public class AdminMainActivity extends AppCompatActivity
         } else if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_logout) {
-
+            Intent intent = new Intent(this, SplashScreen.class);
+            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -132,13 +135,12 @@ public class AdminMainActivity extends AppCompatActivity
     public void onListFragmentInteraction(Patient patient, int position) {
         Toast.makeText(AdminMainActivity.this, "Patient "+position + " clicked", Toast.LENGTH_SHORT).show();
 //        TODO Form a same POJO class for Patient
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("PATIENT_OBJ", patient);
 
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("PATIENT_OBJ", patient);
-//
-//        Intent intent = new Intent(this, PatientDrActivity.class);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
+        Intent intent = new Intent(this, PatientDrActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

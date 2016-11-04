@@ -19,7 +19,7 @@ import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
 import com.spy.healthmatic.Admin.AdminAddPatient;
 import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.Global.GlobalFunctions;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class PatientList extends Fragment {
 
     public void onStart(){
         super.onStart();
-        patients = GlobalFunctions.getDummyPatients(10);
+        patients = GlobalFunctions.getPatientJSONArray(getActivity());
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

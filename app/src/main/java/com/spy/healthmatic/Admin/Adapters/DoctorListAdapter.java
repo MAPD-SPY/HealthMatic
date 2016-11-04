@@ -8,9 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.DoctorList;
-import com.spy.healthmatic.Admin.Fragments.PatientList;
-import com.spy.healthmatic.POJO.Doctor;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -35,7 +33,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         public final TextView mPateintConditionView;
         public final TextView mRoomNumberView;
         public final ImageView mPatientGenderIdicator;
-        public Patient patient;
 
         public ViewHolder(View itemView) {
             super(itemView);
