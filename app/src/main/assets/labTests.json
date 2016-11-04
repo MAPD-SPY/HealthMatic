@@ -1,0 +1,116 @@
+{
+    "labTests": [
+        {
+            "name": "Amylase",
+            "description": "Test if you have symptoms of a pancreatic disorder, such as severe abdominal pain, fever, loss of appetite, or nausea."
+        },
+        {
+            "name": "ANA",
+            "description": "This test helps to diagnose lupus and to rule out certain other autoimmune diseases."
+        },
+        {
+            "name": "aPTT (PTT)",
+            "description": "This test is most often ordered to help evaluate your risk of excessive bleeding prior to a surgical procedure, or to monitor heparin anticoagulant therapy."
+        },
+        {
+            "name": "AIC (Hemoglobin A1C or Glycohemoglobin)",
+            "description": "Used to monitor a person’s diabetes and to aid in treatment decisions, this test is usually performed with the first diagnosis and then 2 to 4 times per year."
+        },
+        {
+            "name": "BMP (Basic Metabolic Panel)",
+            "description": "A group of 7-8 tests used as a screening tool to check for conditions like diabetes and kidney disease. You may be asked to fast for 10 to 12 hours prior to test."
+        },
+        {
+            "name": "CBC (Complete Blood Count)",
+            "description": "Determines general health and screens for disorders such as anemia or infections, as well as nutritional status and toxic substance exposure."
+        },
+        {
+            "name": "CMP (Comprehensive Metabolic Panel)",
+            "description": "This group of 14 tests gives information about the kidneys, liver, and electrolyte and acid/base balance, as well as of blood sugar and blood proteins."
+        },
+        {
+            "name": "Electrolytes (Electrolyte Panel)", 
+            "description": "This test can be requested as part of routine exam, if excess or deficit of electrolytes (sodium or potassium) or an acid-base imbalance is suspected."
+        },
+        {
+            "name": "ElectroESR (Sedimentation Rate)", 
+            "description": "Test to determine the cause of inflammation, or to help diagnose and follow the course of joint or muscle pain."
+        },
+        {
+            "name": "Flu Tests", 
+            "description": "Used to determine whether flu-like symptoms are due to influenza A or B, or to other causes."
+        },        
+        {
+            "name": "Glucose", 
+            "description": "Used to identify blood glucose level, and to screen for, diagnose, and monitor diabetes, pre-diabetes, and hypoglycemia."
+        },
+        {
+            "name": "hCG", 
+            "description": "Typically performed to confirm and monitor pregnancy, or if symptoms suggest issues of concern."
+        }, 
+        {
+            "name": "HIV Antibody", 
+            "description": "This test to determine if you are infected with HIV should be performed three to six months after you think you may have been exposed to the virus."
+        },         
+        {
+            "name": "Lipid Profile", 
+            "description": "This group of tests can determine risk of coronary heart disease, and may be a good indicator of whether someone is likely to have a heart attack or stroke, as caused by blockage of blood vessels."
+        },  
+        {
+            "name": "Liver Panel (Liver Function Panel)", 
+            "description": "Also known as liver (hepatic) function tests or LFT, can detect liver damage or disease. Multiple tests may be ordered at the same time, and may be used to detect hepatitis, or diagnose other liver-related conditions."
+        },         
+        {
+            "name": "LFT (Lyme Disease)", 
+            "description": "This test can detect liver damage or disease. Multiple tests may be ordered at the same time, and may be used to detect hepatitis, or diagnose other liver-related conditions."
+        },          
+        {
+            "name": "Microalbumin", 
+            "description": "Performed annually after a diagnosis of diabetes or hypertension to screen for a possible kidney disorder. It can be done using a random, timed, overnight, or 24-hour urine sample."
+        }, 
+        {
+            "name": "Mono", 
+            "description": "This test will help with the diagnosis if there are symptoms of mononucleosis, including fever, sore throat, swollen glands, and fatigue."
+        }, 
+        {
+            "name": "Pap Smear", 
+            "description": "This test should be performed annually for women who are over the age of 18 and/or sexually active, to screen for cervical cancer and certain vaginal or uterine infections. Cells are removed from the cervical area for testing"
+        }, 
+        {
+            "name": "PSA (Prostate Specific Antigen)", 
+            "description": "This test is to screen for and monitor prostate cancer."
+        }, 
+        {
+            "name": "Semen Analysis", 
+            "description": "Used to check how well prescribed blood-thinning medications (anti-coagulants) are working, or to help detect and diagnose a bleeding disorder."
+        }, 
+        {
+            "name": "PT (Protime)", 
+            "description": "Can be used to learn about the health of your reproductive organs, or after a vasectomy to determine if the operation was successful."
+        },
+        {
+            "name": "Stool Culture", 
+            "description": "Used to determine whether pathogenic bacteria is in the gastrointestinal tract."
+        },        
+        {
+            "name": "TSH (Thyroid Stimulating Hormone)", 
+            "description": "This test is performed to screen for and diagnose thyroid disorders, or to monitor treatment of hypothyroidism."
+        }, 
+        {
+            "name": "T4 (Thyroxine)", 
+            "description": "Usually ordered after an abnormal TSH result, this test can diagnose hypothyroidism or hyperthyroidism in adults; or screen for hypothyroidism in newborns."
+        }, 
+        {
+            "name": "Uric Acid", 
+            "description": "Used to detect high levels of uric acid, or to monitor certain chemotherapy or radiation cancer therapies."
+        },        
+         {
+            "name": "Urinalysis", 
+            "description": "Standard test. It may also be done if there are symptoms relating to abdominal pain or blood in the urine."
+        }, 
+        {
+            "name": "Urine Culture", 
+            "description": "This test is done if there is a symptoms of a Urinary Tract Infection (UTI)."
+        }
+    ]
+}

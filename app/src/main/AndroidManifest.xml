@@ -12,7 +12,7 @@
         <activity
             android:name=".Welcome.SplashScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_splash_screen"
+            android:label="@string/app_name"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +55,15 @@
                 android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
         </activity>
 
-        <activity android:name=".Admin.AdminAddPatient" />
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
+            android:label="@string/strMedication"
+            android:name=".Doctor.AddMedsActivity" />
+        <activity
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
+            android:label="@string/strLaboratoryTests"
+            android:name=".Doctor.AddTestActivity"></activity>
+         <activity android:name=".Admin.AdminAddPatient" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
         <activity android:name=".LabAgent.LabAgentMainActivity"></activity>

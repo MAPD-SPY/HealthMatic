@@ -47,10 +47,20 @@ public class Patient extends Person implements Serializable {
         prescriptions = new ArrayList<>();
         this.prescriptions.addAll(fromPrescriptionJSONArray(patientJsonResults));
 
+        // Add all vitals
+        patientJsonResults = jsonObject.getJSONArray("vitals");
+        vitals = new ArrayList<>();
+        this.vitals.addAll(fromVitalsJSONArray(patientJsonResults));
+
         // Add all tests
         patientJsonResults = jsonObject.getJSONArray("tests");
         labTests = new ArrayList<>();
         this.labTests.addAll(fromLabTestJSONArray(patientJsonResults));
+
+        // Add all notes
+        patientJsonResults = jsonObject.getJSONArray("drNotes");
+        drNotes = new ArrayList<>();
+        this.drNotes.addAll(fromDrNotesJSONArray(patientJsonResults));
     }
 
     public static ArrayList<Patient> fromJSONArray(JSONArray jsonArray) {
@@ -79,6 +89,34 @@ public class Patient extends Person implements Serializable {
         }
 
         return prescriptions;
+    }
+
+    public static ArrayList<Vitals> fromVitalsJSONArray(JSONArray jsonArray) {
+        ArrayList<Vitals> vitals = new ArrayList<Vitals>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                vitals.add(new Vitals(jsonArray.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return vitals;
+    }
+
+    public static ArrayList<DrNotes> fromDrNotesJSONArray(JSONArray jsonArray) {
+        ArrayList<DrNotes> drNotes = new ArrayList<DrNotes>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                drNotes.add(new DrNotes(jsonArray.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return drNotes;
     }
 
     public static ArrayList<LabTest> fromLabTestJSONArray(JSONArray jsonArray) {

@@ -16,8 +16,6 @@ import com.spy.healthmatic.Model.Patient;
 
 import java.util.List;
 
-import static com.spy.healthmatic.R.id.ivPatient;
-
 /**
  * Team Name: Team SPY
  * Created by shelalainechan on 2016-10-26.
@@ -36,7 +34,7 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            mivPatient = (ImageView) view.findViewById(ivPatient);
+            mivPatient = (ImageView) view.findViewById(R.id.ivPatient);
             mtvPatientName = (TextView) view.findViewById(R.id.tvPatientName);
             mtvRoomNum = (TextView) view.findViewById(R.id.tvRoomNum);
             mtvPatientCondition = (TextView) view.findViewById(R.id.tvPatientCondition);
@@ -47,7 +45,6 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                 public void onClick(View v) {
 
                     int position = getAdapterPosition();
-
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
 
