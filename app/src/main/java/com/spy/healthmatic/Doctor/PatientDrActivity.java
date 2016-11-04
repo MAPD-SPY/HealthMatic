@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.Patient;
+import com.spy.healthmatic.Model.Patient;
 
 /**
  * Team Name: Team SPY

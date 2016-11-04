@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spy.healthmatic.Doctor.adapters.TestsAdapter;
 import com.spy.healthmatic.Doctor.adapters.VitalsAdapter;
+import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Vitals;
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.LabTest;
-import com.spy.healthmatic.models.Patient;
-import com.spy.healthmatic.models.Vitals;
 
 import java.util.List;
 

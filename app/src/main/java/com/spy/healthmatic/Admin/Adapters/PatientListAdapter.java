@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -57,9 +57,9 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     @Override
     public void onBindViewHolder(PatientListAdapter.ViewHolder holder, final int position) {
         final Patient patient = patients.get(position);
-        holder.mNameView.setText(patient.getName());
+        holder.mNameView.setText(patient.getFirstName());
         holder.mPateintConditionView.setText(patient.getCondition());
-        holder.mRoomNumberView.setText(patient.getRoomNumber());
+        holder.mRoomNumberView.setText(patient.getBloodType());
         if("male".equals(patient.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {

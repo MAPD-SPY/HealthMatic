@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
-import com.spy.healthmatic.models.Patient;
+import com.spy.healthmatic.Model.Patient;
 
 import org.json.JSONArray;
 import org.json.JSONException;

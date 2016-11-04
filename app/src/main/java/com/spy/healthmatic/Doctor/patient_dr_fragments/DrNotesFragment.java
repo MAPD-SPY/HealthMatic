@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.spy.healthmatic.Doctor.adapters.DrNotesAdapter;
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.DrNotes;
-import com.spy.healthmatic.models.Patient;
+import com.spy.healthmatic.Model.DrNotes;
+import com.spy.healthmatic.Model.Patient;
 
 import java.util.List;
 
