@@ -6,6 +6,7 @@
     android:paddingTop="56dp"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
+    android:background="@drawable/shape_gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
