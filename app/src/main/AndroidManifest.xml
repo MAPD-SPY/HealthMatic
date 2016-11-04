@@ -38,6 +38,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
         </activity>
+        <activity android:name=".Admin.AdminAddPatient" />
+        <activity android:name=".Admin.AdminAddDoctor" />
+        <activity android:name=".Admin.AdminAddNurse" />
+        <activity android:name=".LabAgent.LabAgentMainActivity"></activity>
     </application>
 
 </manifest>

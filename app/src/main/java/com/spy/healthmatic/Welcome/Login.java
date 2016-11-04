@@ -69,7 +69,6 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(Login.this, AdminMainActivity.class));
                         }else if("d".equals(editTxtEmail.getText().toString())){
                             startActivity(new Intent(Login.this, MainDrActivity.class));
-
                         }
                     }
                 }, 3000);
