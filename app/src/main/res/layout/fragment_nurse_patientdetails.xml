@@ -9,27 +9,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.spy.healthmatic.Nurse.NursePatientDetailsActivity$PlaceholderFragment">
 
-     <ImageView
-         android:layout_width="300dp"
-         android:layout_height="300dp"
-         android:id="@+id/patientimage"
-         android:layout_gravity="center"
-         />
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/pname"
-            android:text="Patietn 1"
-            android:layout_gravity="center"
-            android:layout_height="31dp"
-            android:textStyle="bold"
-            />
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/condition"
-        android:text="Condtion Normal 1"
-        android:layout_gravity="center"
-        android:layout_height="31dp"
-        android:textStyle="bold"
-        />
-
 </LinearLayout>

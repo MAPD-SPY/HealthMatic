@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Nurse;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,15 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import com.spy.healthmatic.R;
+import com.spy.healthmatic.Doctor.patient_dr_fragments.BioFragment;
+import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
+import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
+import com.spy.healthmatic.Doctor.patient_dr_fragments.TestsFragment;
+import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
+import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
+import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
+ import com.spy.healthmatic.R;
+import com.spy.healthmatic.models.Patient;
 
 public class NursePatientDetailsActivity extends AppCompatActivity {
 
@@ -32,7 +41,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
+      Patient patient;
     TextView txtName;
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -64,24 +73,23 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
        // mPage = getArguments().getInt(ARG_PAGE);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.containerPatientNr);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        Intent intent = getIntent();
+        patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        // Set the title to the name of the patient
 
+//        TextView title = new TextView(this);
+//        String name = getIntent().getStringExtra("PatientName");
+//        title.setText(name);
+//        //title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
+//        toolbar.addView(title);
 
-
-        //txtName=(TextView)findViewById(R.id.pname);
 
     }
 
@@ -109,63 +117,65 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-        int mPage;
+//    /**
+//     * A placeholder fragment containing a simple view.
+//     */
+//    public static class PlaceholderFragment extends Fragment {
+//        /**
+//         * The fragment argument representing the section number for this
+//         * fragment.
+//         */
+//        private static final String ARG_SECTION_NUMBER = "section_number";
+//        int mPage;
+//
+//        public PlaceholderFragment() {
+//        }
+//
+//        /**
+//         * Returns a new instance of this fragment for the given section
+//         * number.
+//         */
+//        public static PlaceholderFragment newInstance(int sectionNumber) {
+//            PlaceholderFragment fragment = new PlaceholderFragment();
+//            Bundle args = new Bundle();
+//            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//            fragment.setArguments(args);
+//
+//            return fragment;
+//        }
+//
+//        @Override
+//        public void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//            mPage = getArguments().getInt(ARG_PAGE);
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                                 Bundle savedInstanceState) {
+//            View rootView = inflater.inflate(R.layout.fragment_nurse_patientdetails, container, false);
+////            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+////            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+//            if(mPage==1)
+//            {
+//               View view=inflater.inflate(R.layout.fragment_nurse_patientdetails,container,false);
+//
+//            }
+//            else
+//            {
+//                //TextView textView = (TextView) view;
+//               // textView.setText("Fragment #" + mPage);
+//            }
+//
+//            return rootView;
+//        }
+//    }
 
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-
-            return fragment;
-        }
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            mPage = getArguments().getInt(ARG_PAGE);
-        }
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_nurse_patientdetails, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            if(mPage==1)
-            {
-               View view=inflater.inflate(R.layout.fragment_nurse_patientdetails,container,false);
-
-            }
-            else
-            {
-                //TextView textView = (TextView) view;
-               // textView.setText("Fragment #" + mPage);
-            }
-
-            return rootView;
-        }
-    }
-
-    /**
+/**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
-     */
+ */
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -177,24 +187,57 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
            // mPage=position;
-            return PlaceholderFragment.newInstance(position + 1);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("PATIENT_OBJ", patient);
 
+            switch (position) {
+                case 0:
+                    MedsFragment meds = new MedsFragment();
+                    meds.setArguments(bundle);
+                    return meds;
 
+                case 1:
+                    TestsFragment tests = new TestsFragment();
+                    tests.setArguments(bundle);
+                    return tests;
+
+                case 2:
+                    VitalsFragment vitals = new VitalsFragment();
+                    return vitals;
+
+                case 3:
+                    DrNotesFragment drNotes = new DrNotesFragment();
+                    return drNotes;
+
+                case 4:
+                    BioFragment bioFragment = new BioFragment();
+                    return bioFragment;
+
+                default:
+                    return null;
+            }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Patient Details";
+                    return "MEDS";
                 case 1:
-                    return "Test Results";
+                    return "TESTS";
+                case 2:
+                    return  "VITALS";
+
+                case 3:
+                    return  "NOTES";
+                case 4:
+                    return  "BIO";
 
             }
             return null;

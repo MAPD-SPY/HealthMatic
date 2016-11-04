@@ -1,8 +1,9 @@
 package com.spy.healthmatic.Global;
 
+
 import com.spy.healthmatic.POJO.Doctor;
 import com.spy.healthmatic.POJO.Nurse;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.models.Patient;
 
 import java.util.ArrayList;
 

@@ -2,6 +2,7 @@ package com.spy.healthmatic.Nurse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
+import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
-import com.spy.healthmatic.POJO.Patient;
-import com.spy.healthmatic.R;
+ import com.spy.healthmatic.R;
+import com.spy.healthmatic.models.Patient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +50,9 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Patient patient = patientList.get(position);
-        holder.mNameView.setText(patient.getName());
+        //holder.mNameView.setText(patient.getName());
         holder.mPateintConditionView.setText(patient.getCondition());
-        holder.mRoomNumberView.setText(patient.getRoomNumber());
+       // holder.mRoomNumberView.setText(patient.getRoomNumber());
         if("male".equals(patient.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {
@@ -60,9 +62,16 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                     Intent intent=new Intent(holder.context,NursePatientDetailsActivity.class);
-                    intent.putExtra("PatientName",patient.getName());
-                    intent.putExtra("Department",patient.getDepartment());
-                holder.context.startActivity(intent);
+                 //   intent.putExtra("PatientName",patient.getName());
+                 //   intent.putExtra("Department",patient.getDepartment());
+
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("PATIENT_OBJ", patientList.get(position));
+
+
+                 intent.putExtras(bundle);
+                 holder.context.startActivity(intent);
             }
         });
     }

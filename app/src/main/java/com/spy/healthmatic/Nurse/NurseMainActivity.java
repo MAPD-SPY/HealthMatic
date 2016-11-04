@@ -19,10 +19,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.spy.healthmatic.POJO.Doctor;
-import com.spy.healthmatic.POJO.Nurse;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Global.GlobalFunctions;
+
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.models.Patient;
 
 public class NurseMainActivity extends AppCompatActivity {
 
@@ -44,39 +44,40 @@ public class NurseMainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-
-        prepareData();
+        patientList = GlobalFunctions.getDummyPatients(10);
+        //prepareData();
 
     }
 
     private void prepareData() {
-        Doctor dd=new Doctor("Doctor1","Male","Heart");
-        ArrayList<Doctor> doctors=new ArrayList<>();
-        doctors.add(dd);
-        Nurse nn=new Nurse();
-        ArrayList<Nurse> nurses=new ArrayList<>();
-        nurses.add(nn);
+//        Doctor dd=new Doctor("Doctor1","Male","Heart");
+//        ArrayList<Doctor> doctors=new ArrayList<>();
+//        doctors.add(dd);
+//        Nurse nn=new Nurse();
+//        ArrayList<Nurse> nurses=new ArrayList<>();
+//        nurses.add(nn);
+//
+//        Patient patient;
 
-        Patient patient;
-
-        for(int i=1;i<10;i++){
-            if(i%2==0) {
-                patient = new Patient("Patient" + i, "Male","2", "Normal", 33333333, "Heart", dd, doctors, nurses);
-                patientList.add(patient);
-                mAdapter.notifyDataSetChanged();
-
-
-            }
-            else
-            {
-                  patient = new Patient("Patient"+i, "Female", "2", "Normal", 33333333, "Neurology",dd, doctors, nurses);
-                  patientList.add(patient);
-                mAdapter.notifyDataSetChanged();
-
-
-
-            }
-        }
+//        for(int i=1;i<10;i++){
+//            if(i%2==0) {
+//                patient = new Patient("Patient" + i, "Male","2", "Normal", 33333333, "Heart", dd, doctors, nurses);
+//
+//                patientList.add(patient);
+//                mAdapter.notifyDataSetChanged();
+//
+//
+//            }
+//            else
+//            {
+//                  patient = new Patient("Patient"+i, "Female", "2", "Normal", 33333333, "Neurology",dd, doctors, nurses);
+//                  patientList.add(patient);
+//                mAdapter.notifyDataSetChanged();
+//
+//
+//
+//            }
+      //  }
 
 
 
