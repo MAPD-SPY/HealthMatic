@@ -47,7 +47,6 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                 public void onClick(View v) {
 
                     int position = getAdapterPosition();
-
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
 
