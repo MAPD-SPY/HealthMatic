@@ -27,7 +27,7 @@
         <EditText
             android:id="@+id/editTextEmail"
             android:inputType="textEmailAddress"
-            android:drawableLeft="@mipmap/ic_launcher"
+            android:drawableLeft="@drawable/ic_person_outline_black_24dp"
             android:hint="@string/str_hint_EmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         <EditText
             android:id="@+id/editTextPassword"
             android:inputType="textPassword"
-            android:drawableLeft="@mipmap/ic_launcher"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
             android:hint="@string/str_hint_Password"
             android:text="n"
             android:layout_width="match_parent"
@@ -55,13 +55,10 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/buttonLogin"
+        style="@style/ButtonStyle"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
-        android:padding="12dp"
         android:text="@string/str_btn_Login"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.AppCompatButton>
+        android:layout_gravity="center"/>
 
 </LinearLayout>

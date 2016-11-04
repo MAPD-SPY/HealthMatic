@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
  import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.Patient;
 
 import java.util.ArrayList;
 import java.util.List;

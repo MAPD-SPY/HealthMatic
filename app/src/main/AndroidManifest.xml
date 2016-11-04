@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Welcome.Login" />
+        <activity android:name=".Welcome.Login"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"
@@ -29,7 +30,15 @@
         <activity
             android:name=".Nurse.NursePatientDetailsActivity"
             android:label="@string/title_activity_nurse_patient_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Nurse.NurseMainActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Nurse.NurseMainActivity">
+
+
+            </meta-data>
+        </activity>
 
 
          <activity
@@ -45,6 +54,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
         </activity>
-     </application>
+
+        <activity android:name=".Admin.AdminAddPatient" />
+        <activity android:name=".Admin.AdminAddDoctor" />
+        <activity android:name=".Admin.AdminAddNurse" />
+        <activity android:name=".LabAgent.LabAgentMainActivity"></activity>
+    </application>
 
 </manifest>

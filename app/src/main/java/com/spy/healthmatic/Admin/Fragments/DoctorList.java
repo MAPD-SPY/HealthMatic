@@ -1,7 +1,7 @@
 package com.spy.healthmatic.Admin.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -14,10 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.Adapters.DoctorListAdapter;
-import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
+import com.spy.healthmatic.Admin.AdminAddDoctor;
 import com.spy.healthmatic.Global.GlobalFunctions;
-import com.spy.healthmatic.POJO.Doctor;
-import com.spy.healthmatic.POJO.Patient;
+import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -93,6 +92,7 @@ public class DoctorList extends Fragment {
     @OnClick(R.id.fab)
     public void addDoctor(){
         Toast.makeText(getActivity(), "Add Doctor clicked", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getActivity(), AdminAddDoctor.class));
     }
 
     @Override

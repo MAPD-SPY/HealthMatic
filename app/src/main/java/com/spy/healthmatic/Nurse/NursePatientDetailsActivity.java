@@ -25,10 +25,10 @@ import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.TestsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
 import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
  import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.Patient;
 
 public class NursePatientDetailsActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nurse_patient_details);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientNr);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -83,12 +83,10 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         // Set the title to the name of the patient
-
-//        TextView title = new TextView(this);
-//        String name = getIntent().getStringExtra("PatientName");
-//        title.setText(name);
-//        //title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
-//        toolbar.addView(title);
+        TextView title = new TextView(this);
+        title.setText(patient.getFirstName() + " " + patient.getLastName());
+        title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
+        toolbar.addView(title);
 
 
     }
