@@ -1,8 +1,5 @@
 package com.spy.healthmatic.Model;
 
-import android.view.View;
-import android.widget.ArrayAdapter;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,30 +38,46 @@ public class Patient extends Person implements Serializable {
         this.condition = jsonObject.getString("condition");
         this.room = jsonObject.getInt("room");
 
-        // Add all prescriptions
         JSONArray patientJsonResults;
-        patientJsonResults = jsonObject.getJSONArray("prescriptions");
-        prescriptions = new ArrayList<>();
-        this.prescriptions.addAll(fromPrescriptionJSONArray(patientJsonResults));
+        try {
+            // Add all prescriptions
+            patientJsonResults = jsonObject.getJSONArray("prescriptions");
+            prescriptions = new ArrayList<>();
+            this.prescriptions.addAll(fromPrescriptionJSONArray(patientJsonResults));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        // Add all vitals
-        patientJsonResults = jsonObject.getJSONArray("vitals");
-        vitals = new ArrayList<>();
-        this.vitals.addAll(fromVitalsJSONArray(patientJsonResults));
+        try {
+            // Add all vitals
+            patientJsonResults = jsonObject.getJSONArray("vitals");
+            vitals = new ArrayList<>();
+            this.vitals.addAll(fromVitalsJSONArray(patientJsonResults));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        // Add all tests
-        patientJsonResults = jsonObject.getJSONArray("tests");
-        labTests = new ArrayList<>();
-        this.labTests.addAll(fromLabTestJSONArray(patientJsonResults));
+        try {
+            // Add all laboratory tests
+            patientJsonResults = jsonObject.getJSONArray("labTests");
+            labTests = new ArrayList<>();
+            this.labTests.addAll(fromLabTestJSONArray(patientJsonResults));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        // Add all notes
-        patientJsonResults = jsonObject.getJSONArray("drNotes");
-        drNotes = new ArrayList<>();
-        this.drNotes.addAll(fromDrNotesJSONArray(patientJsonResults));
+        try {
+            // Add all notes
+            patientJsonResults = jsonObject.getJSONArray("drNotes");
+            drNotes = new ArrayList<>();
+            this.drNotes.addAll(fromDrNotesJSONArray(patientJsonResults));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<Patient> fromJSONArray(JSONArray jsonArray) {
-        ArrayList<Patient> patients = new ArrayList<Patient>();
+        ArrayList<Patient> patients = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
@@ -77,8 +90,8 @@ public class Patient extends Person implements Serializable {
         return patients;
     }
 
-    public static ArrayList<Prescription> fromPrescriptionJSONArray(JSONArray jsonArray) {
-        ArrayList<Prescription> prescriptions = new ArrayList<Prescription>();
+    private static ArrayList<Prescription> fromPrescriptionJSONArray(JSONArray jsonArray) {
+        ArrayList<Prescription> prescriptions = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
@@ -91,8 +104,8 @@ public class Patient extends Person implements Serializable {
         return prescriptions;
     }
 
-    public static ArrayList<Vitals> fromVitalsJSONArray(JSONArray jsonArray) {
-        ArrayList<Vitals> vitals = new ArrayList<Vitals>();
+    private static ArrayList<Vitals> fromVitalsJSONArray(JSONArray jsonArray) {
+        ArrayList<Vitals> vitals = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
@@ -105,8 +118,8 @@ public class Patient extends Person implements Serializable {
         return vitals;
     }
 
-    public static ArrayList<DrNotes> fromDrNotesJSONArray(JSONArray jsonArray) {
-        ArrayList<DrNotes> drNotes = new ArrayList<DrNotes>();
+    private static ArrayList<DrNotes> fromDrNotesJSONArray(JSONArray jsonArray) {
+        ArrayList<DrNotes> drNotes = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
@@ -119,8 +132,8 @@ public class Patient extends Person implements Serializable {
         return drNotes;
     }
 
-    public static ArrayList<LabTest> fromLabTestJSONArray(JSONArray jsonArray) {
-        ArrayList<LabTest> labTests = new ArrayList<LabTest>();
+    private static ArrayList<LabTest> fromLabTestJSONArray(JSONArray jsonArray) {
+        ArrayList<LabTest> labTests = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             try {

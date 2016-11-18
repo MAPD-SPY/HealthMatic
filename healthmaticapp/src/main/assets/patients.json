@@ -38,7 +38,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
@@ -182,7 +182,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labtests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
@@ -309,7 +309,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:05 AM",
                     "requestedByName":"Dr John Smith",
@@ -431,7 +431,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:00 AM",
                     "requestedByName":"Dr John Smith",
@@ -552,7 +552,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
@@ -673,7 +673,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
@@ -812,7 +812,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
@@ -951,7 +951,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
@@ -1090,7 +1090,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:05 AM",
                     "requestedByName":"Dr John Smith",
@@ -1220,7 +1220,7 @@
             ],
             
             "allergies": ["Penicillin"],
-            "tests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
