@@ -10,14 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.spy.healthmatic.Doctor.MainDrActivity;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Admin.AdminMainActivity;
- import com.spy.healthmatic.Nurse.NurseMainActivity;
- import com.spy.healthmatic.LabAgent.LabAgentMainActivity;
- import com.spy.healthmatic.R;
+import com.spy.healthmatic.Doctor.MainDrActivity;
+import com.spy.healthmatic.LabAgent.LabAgentMainActivity;
+import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Nurse.NurseMainActivity;
+import com.spy.healthmatic.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Team Name: Team SPY
@@ -27,6 +37,7 @@ import butterknife.ButterKnife;
 public class Login extends AppCompatActivity {
 
     private static final String TAG = "ActivityLogin";
+    private static ArrayList<Patient> patients;
 
     @Bind(R.id.buttonLogin) Button loginButton;
     @Bind(R.id.editTextEmail) EditText editTxtEmail;
@@ -38,6 +49,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        patients = new ArrayList<Patient>();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +59,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void login() {
+        String url = "http://shelalainechan.com/patients";
 
         Log.d(TAG, "Login");
 
@@ -56,6 +69,36 @@ public class Login extends AppCompatActivity {
         }
 
         loginButton.setEnabled(false);
+
+        // Get the login details
+        String username = editTxtEmail.getText().toString();
+        String password = editTxtPassword.getText().toString();
+
+
+        // Get list of patients for doctors if applicable
+        if (username.equals("d")) {
+            // Create an Asynchronous HTTP instance
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(url, new JsonHttpResponseHandler(){
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    JSONArray patientJsonResults = null;
+
+                    try {
+                        patientJsonResults = response.getJSONArray("patients");
+                        patients.addAll(Patient.fromJSONArray(patientJsonResults));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    super.onFailure(statusCode, headers, throwable, errorResponse);
+                }
+            });
+        }
 
         final ProgressDialog progressDialog = new ProgressDialog(Login.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
@@ -70,7 +113,12 @@ public class Login extends AppCompatActivity {
                         if("a".equals(editTxtEmail.getText().toString())){
                             startActivity(new Intent(Login.this, AdminMainActivity.class));
                         }else if("d".equals(editTxtEmail.getText().toString())){
-                            startActivity(new Intent(Login.this, MainDrActivity.class));
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("PATIENTS_OBJ", patients);
+
+                            Intent intent = new Intent(Login.this, MainDrActivity.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
                         }else if("l".equals(editTxtEmail.getText().toString())){
                             startActivity(new Intent(Login.this, LabAgentMainActivity.class));
                         }
@@ -101,11 +149,6 @@ public class Login extends AppCompatActivity {
 
         return valid;
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        moveTaskToBack(false);
-//    }
 
     private void onLoginSuccess() {
         loginButton.setEnabled(true);

@@ -18,9 +18,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
-import com.spy.healthmatic.R;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
 import org.json.JSONArray;
@@ -39,11 +39,12 @@ import at.grabner.circleprogress.CircleProgressView;
  */
 public class MainDrActivity extends AppCompatActivity {
 
-    private ArrayList<Patient> patients;
+    private static ArrayList<Patient> patients;
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
     private long numOfPatientsChecked = 2;
     private static final int CIRCLE_PROGRESS_VIEW_DELAY = 2000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +63,11 @@ public class MainDrActivity extends AppCompatActivity {
         });
 
         if (patients == null) {
-            patients = new ArrayList<>();
-            patientsAdapter = new PatientsAdapter(this, patients);
-            getPatientJSONArray();
+            // Get a reference of the patient object
+            Intent intent = getIntent();
+            patients = (ArrayList<Patient>) intent.getSerializableExtra("PATIENTS_OBJ");
         }
+        patientsAdapter = new PatientsAdapter(this, patients);
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
         recyclerView.setAdapter(patientsAdapter);
@@ -177,4 +179,5 @@ public class MainDrActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -22,7 +22,7 @@ import java.util.List;
 public class TestsFragment extends Fragment {
     private TestsAdapter testsAdapter;
     private Patient patient;
-    private List<LabTest> labTests;
+    private static List<LabTest> labTests;
 
     public TestsFragment() {
         // Required empty public constructor
@@ -49,5 +49,9 @@ public class TestsFragment extends Fragment {
         recyclerView.setAdapter(testsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
+    }
+
+    public void reloadFragment() {
+        testsAdapter.notifyDataSetChanged();
     }
 }

@@ -9,14 +9,20 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
-import com.spy.healthmatic.R;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Team Name: Team SPY
@@ -25,9 +31,11 @@ import com.spy.healthmatic.Model.Patient;
 
 public class PatientDrActivity extends AppCompatActivity {
 
-    private Patient patient;
+    private ViewPager mViewPager;
+    private static Patient patient;
     private int tabPos;
     private FloatingActionButton fab;
+    private TextView title;
     public static boolean isAgent = false;
 
     @Override
@@ -64,7 +72,7 @@ public class PatientDrActivity extends AppCompatActivity {
                 patient);
 
         // Set up the ViewPager with the sections adapter.
-        final ViewPager mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
+        mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -121,32 +129,17 @@ public class PatientDrActivity extends AppCompatActivity {
                 switch (i) {
                     case 0:
                         intentAddTest = new Intent(PatientDrActivity.this, AddMedsActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;
                     case 1:
                         intentAddTest = new Intent(PatientDrActivity.this, AddTestActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;
 
                 }
-/*
-                String[] testsArray = {"CBC", "Urinalysis", "Urine Culture"};
-                List<String> testsList = Arrays.asList(testsArray);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(PatientDrActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, testsList);
 
-                AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.atvLabTestTypes);
-                autoCompleteTextView.setAdapter(adapter);
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(PatientDrActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.activity_add_test,null);
-                builder.setView(dialogView);
-                final AlertDialog dialog = builder.create();
-                dialog.setTitle("Laboratory Test");
-                dialog.show();
-                */
             }
         });
     }
@@ -179,5 +172,70 @@ public class PatientDrActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        // Create an Asynchronous HTTP instance
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        String url = "http://shelalainechan.com/patients/" + patient.getId();
+//        client.get(url, new JsonHttpResponseHandler(){
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//
+//                try {
+//                    patient = new Patient(response);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                super.onFailure(statusCode, headers, throwable, errorResponse);
+//            }
+//        });
+//    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Create an Asynchronous HTTP instance
+        String url = "http://shelalainechan.com/patients/" + patient.getId();
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new JsonHttpResponseHandler(){
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                JSONArray patientJsonResults = null;
+
+                try {
+                    // Update the patient's records
+                    final Patient patientNew = new Patient(response);
+                    patient.setLabTests(patientNew.getLabTests());
+                    patient.setDrNotes(patientNew.getDrNotes());
+                    patient.setPrescriptions(patientNew.getPrescriptions());
+                    patient.setVitals(patientNew.getVitals());
+                    patient.setDoctors(patientNew.getDoctors());
+                    patient.setNurses(patientNew.getNurses());
+
+                    // Notify adapter of this change
+                    mViewPager.getAdapter().notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
+    }
 
 }
