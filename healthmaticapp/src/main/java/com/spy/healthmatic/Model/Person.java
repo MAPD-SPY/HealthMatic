@@ -20,6 +20,10 @@ public class Person implements Serializable{
     private Contact contact;
     private String maritalStatus;
 
+    public Person() {
+
+    }
+
     public Person(String firstName, String lastName, boolean gender, String birthday,
                   Address address, Contact contact, String maritalStatus) {
         this.firstName = firstName;

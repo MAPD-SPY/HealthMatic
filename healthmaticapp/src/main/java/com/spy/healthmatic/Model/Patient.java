@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class Patient extends Person implements Serializable {
 
+    private String id;
     private int weight;
     private int height;
     private String bloodType;
@@ -30,11 +31,16 @@ public class Patient extends Person implements Serializable {
     private ArrayList<Nurse> nurses;
     private ArrayList<Doctor> doctors;
 
+    public Patient() {
+    }
+
     public Patient(JSONObject jsonObject) throws JSONException {
         super(jsonObject.getString("firstName"),
                 jsonObject.getString("lastName"),
                 jsonObject.getBoolean("gender"),
                 " ", null, null, " ");
+        this.id = jsonObject.getString("_id");
+
         this.condition = jsonObject.getString("condition");
         this.room = jsonObject.getInt("room");
 
@@ -118,20 +124,6 @@ public class Patient extends Person implements Serializable {
         return vitals;
     }
 
-    private static ArrayList<DrNotes> fromDrNotesJSONArray(JSONArray jsonArray) {
-        ArrayList<DrNotes> drNotes = new ArrayList<>();
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                drNotes.add(new DrNotes(jsonArray.getJSONObject(i)));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return drNotes;
-    }
-
     private static ArrayList<LabTest> fromLabTestJSONArray(JSONArray jsonArray) {
         ArrayList<LabTest> labTests = new ArrayList<>();
 
@@ -144,6 +136,20 @@ public class Patient extends Person implements Serializable {
         }
 
         return labTests;
+    }
+
+    private static ArrayList<DrNotes> fromDrNotesJSONArray(JSONArray jsonArray) {
+        ArrayList<DrNotes> drNotes = new ArrayList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                drNotes.add(new DrNotes(jsonArray.getJSONObject(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return drNotes;
     }
 
     public int getWeight() {
@@ -265,4 +271,9 @@ public class Patient extends Person implements Serializable {
     public void setDoctors(ArrayList<Doctor> doctors) {
         this.doctors = doctors;
     }
+
+    public String getId() {
+        return id;
+    }
+
 }
