@@ -3,7 +3,7 @@ package com.spy.healthmatic.Doctor.adapters;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.spy.healthmatic.Doctor.patient_dr_fragments.BioFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
@@ -17,7 +17,7 @@ import com.spy.healthmatic.Model.Patient;
  * Created by shelalainechan on 2016-11-01.
  */
 
-public class PatientTabPagerAdapter extends FragmentPagerAdapter {
+public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
     private Patient patient;
@@ -71,4 +71,8 @@ public class PatientTabPagerAdapter extends FragmentPagerAdapter {
         return tabCount;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }
