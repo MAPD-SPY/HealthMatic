@@ -95,5 +95,6 @@
     <string name="strMedication">Medication</string>
     <string name="strLaboratoryTests">Laboratory Tests</string>
     <string name="strDateTaken">Date Taken:</string>
+    <string name="strDays">days</string>
 
 </resources>
