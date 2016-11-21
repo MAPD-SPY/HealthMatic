@@ -84,23 +84,18 @@ public class PatientDrActivity extends AppCompatActivity {
                 switch(tab.getPosition()) {
                     case 0:
                         fab.setImageResource(R.drawable.ic_prescription_pill);
-                        // fab.show();
                         break;
                     case 1:
                         fab.setImageResource(R.drawable.ic_test);
-                        // fab.show();
                         break;
                     case 2:
                         fab.setImageResource(R.drawable.ic_stethoscope);
-                        // fab.hide();
                         break;
                     case 3:
                         fab.setImageResource(R.drawable.ic_dr_note);
-                        // fab.show();
                         break;
                     case 4:
                         fab.setImageResource(R.drawable.ic_doctor);
-                        // fab.show();
                         break;
                 }
             }
@@ -139,6 +134,11 @@ public class PatientDrActivity extends AppCompatActivity {
                         break;
                     case 2:
                         intentAddTest = new Intent(PatientDrActivity.this, AddVitalsActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        startActivity(intentAddTest);
+                        break;
+                    case 3:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddNotesActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;

@@ -37,7 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Nurse.NurseMainActivity"></meta-data>
+                android:value=".Nurse.NurseMainActivity" />
         </activity>
         <activity
             android:name=".Doctor.MainDrActivity"
@@ -64,7 +64,10 @@
             android:name=".Doctor.AddVitalsActivity"
             android:label="Vitals"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-d        <activity android:name=".Admin.AdminAddPatient" />
+        <activity android:name=".Doctor.AddNotesActivity"
+            android:label="Notes"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Admin.AdminAddPatient" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
         <activity android:name=".LabAgent.LabAgentMainActivity" />

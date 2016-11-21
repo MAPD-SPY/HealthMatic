@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.spy.healthmatic.Doctor.AddMedsActivity">
+    tools:context="com.spy.healthmatic.Doctor.AddVitalsActivity">
 
     <LinearLayout
         android:id="@+id/llRespirationRate"
@@ -36,7 +36,7 @@
             android:maxLength="2"
             android:layout_weight="0.2"
             android:id="@+id/etRespirationRate"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:text="@string/strRRUnit"
@@ -77,19 +77,19 @@
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".2"
+                    android:layout_weight=".3"
                     android:inputType="number"
                     android:ems="10"
                     android:maxLength="3"
                     android:hint="Systolic"
                     android:id="@+id/etSystolic"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:text="@string/strmmHg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".3" />
+                    android:layout_weight=".2" />
             </LinearLayout>
 
             <LinearLayout
@@ -106,14 +106,14 @@
                     android:maxLength="3"
                     android:hint="Diastolic"
                     android:id="@+id/etDiastolic"
-                    android:textSize="14sp"
-                    android:layout_weight=".2" />
+                    android:textSize="16sp"
+                    android:layout_weight=".3" />
 
                 <TextView
                     android:text="@string/strmmHg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".3" />
+                    android:layout_weight=".2" />
             </LinearLayout>
         </LinearLayout>
 
@@ -146,7 +146,7 @@
             android:ems="10"
             android:maxLength="2"
             android:id="@+id/etTemperature"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:text="@string/strC"
@@ -180,7 +180,7 @@
             android:maxLength="3"
             android:id="@+id/etHeartRate"
             android:layout_weight="0.20"
-            android:textSize="14sp"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:text="@string/strBpm"
