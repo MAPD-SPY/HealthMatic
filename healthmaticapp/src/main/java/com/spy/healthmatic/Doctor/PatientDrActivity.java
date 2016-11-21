@@ -137,9 +137,12 @@ public class PatientDrActivity extends AppCompatActivity {
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;
-
+                    case 2:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddVitalsActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        startActivity(intentAddTest);
+                        break;
                 }
-
             }
         });
     }

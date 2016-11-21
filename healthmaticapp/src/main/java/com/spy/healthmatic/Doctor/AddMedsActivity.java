@@ -25,6 +25,10 @@ import cz.msebera.android.httpclient.entity.ByteArrayEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
+/**
+ * Team Name: Team SPY
+ * Created by shelalainechan on 2016-11-20.
+ */
 public class AddMedsActivity extends AppCompatActivity {
 
     private String patientID;
@@ -133,7 +137,7 @@ public class AddMedsActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                        Toast.makeText(getApplicationContext(), "Unable to add selected test", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Unable to add prescription", Toast.LENGTH_LONG).show();
                         finish();
                     }
                 });
