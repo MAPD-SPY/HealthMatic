@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HealthMatic-android.iml" filepath="$PROJECT_DIR$/HealthMatic-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/healthmatic/healthmatic.iml" filepath="$PROJECT_DIR$/healthmatic/healthmatic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/healthmaticapp/healthmaticapp.iml" filepath="$PROJECT_DIR$/healthmaticapp/healthmaticapp.iml" />
     </modules>
   </component>
 </project>

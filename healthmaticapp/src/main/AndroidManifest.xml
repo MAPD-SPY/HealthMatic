@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.spy.healthmatic">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Welcome.SplashScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Welcome.Login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Admin.AdminMainActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Nurse.NurseMainActivity" />
+        <activity
+            android:name=".Nurse.NursePatientDetailsActivity"
+            android:label="@string/title_activity_nurse_patient_details"
+            android:parentActivityName=".Nurse.NurseMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Nurse.NurseMainActivity" />
+        </activity>
+        <activity
+            android:name=".Doctor.MainDrActivity"
+            android:label="@string/title_activity_main_dr"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Doctor.PatientDrActivity"
+            android:label="@string/title_activity_patient_dr"
+            android:parentActivityName=".Doctor.MainDrActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
+        </activity>
+        <activity
+            android:name=".Doctor.AddMedsActivity"
+            android:label="@string/strMedication"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity
+            android:name=".Doctor.AddTestActivity"
+            android:label="@string/strLaboratoryTests"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity
+            android:name=".Doctor.AddVitalsActivity"
+            android:label="Vitals"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Doctor.AddNotesActivity"
+            android:label="Notes"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Admin.AdminAddPatient" />
+        <activity android:name=".Admin.AdminAddDoctor" />
+        <activity android:name=".Admin.AdminAddNurse" />
+        <activity android:name=".LabAgent.LabAgentMainActivity" />
+
+    </application>
+
+</manifest>

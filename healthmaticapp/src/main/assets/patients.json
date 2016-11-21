@@ -1,0 +1,1325 @@
+{
+    "patients": [
+        {
+            "_id": 0,
+            "firstName": "Prashant",
+            "lastName": "Pol",
+            
+            "birthday": "2000-02-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+JSON            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "100"
+        },
+        {
+            "_id": 1,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labtests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "101"
+        },      
+        {
+            "_id": 2,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "102"
+        },
+        {
+            "_id": 3,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "103"
+        },
+        {
+            "_id": 4,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "104"
+        },      
+        {
+            "_id": 5,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "105"
+        },         
+        {
+            "_id": 6,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "108"
+        },      
+        {
+            "_id": 7,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "107"
+        },
+        {
+            "_id": 8,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 2, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "110"
+        },      
+        {
+            "_id": 9,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                }
+            ],
+
+            "drNotes" : [
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "notes": "Pt c/o mild lower abd pain but says otherwise ‘doing well’. ",
+                    "diagnosedByName": "Dr John Smith"
+                }
+            ],
+
+            "prescriptions": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Amoxicillin",
+                    "dosage": "1 tablespoon",
+                    "frequency": "3x daily",
+                    "duration": "10 days",
+                    "prescribedByName": "Dr. John Smith"
+                },
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                },
+                {
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                },
+                {
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "111"
+        }
+    ]
+}
