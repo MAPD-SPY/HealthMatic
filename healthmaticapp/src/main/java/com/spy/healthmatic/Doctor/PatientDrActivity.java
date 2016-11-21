@@ -2,6 +2,7 @@ package com.spy.healthmatic.Doctor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
@@ -25,6 +27,9 @@ public class PatientDrActivity extends AppCompatActivity {
 
     private Patient patient;
 
+    private int tabPos;
+    private FloatingActionButton fab;
+    public static boolean isAgent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class PatientDrActivity extends AppCompatActivity {
         // Get a reference of the patient object
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
+        isAgent = intent.getBooleanExtra("isAgent", false);
 
         // Set the title to the name of the patient
         TextView title = new TextView(this);
@@ -82,30 +88,73 @@ public class PatientDrActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_patient_dr, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        if(isAgent){
+            fab.setVisibility(View.GONE);
         }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        return super.onOptionsItemSelected(item);
-    }
+                Intent intentAddTest;
+                int i = mViewPager.getCurrentItem();
+
+                switch (i) {
+                    case 0:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddMedsActivity.class);
+                        startActivity(intentAddTest);
+                        break;
+                    case 1:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddTestActivity.class);
+                        startActivity(intentAddTest);
+                        break;
+
+                }
+/*
+                String[] testsArray = {"CBC", "Urinalysis", "Urine Culture"};
+                List<String> testsList = Arrays.asList(testsArray);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(PatientDrActivity.this,
+                        android.R.layout.simple_dropdown_item_1line, testsList);
+
+                AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.atvLabTestTypes);
+                autoCompleteTextView.setAdapter(adapter);
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(PatientDrActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.activity_add_test,null);
+                builder.setView(dialogView);
+                final AlertDialog dialog = builder.create();
+                dialog.setTitle("Laboratory Test");
+                dialog.show();
+                */
+            }
+        });
+     }
+
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_patient_dr, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
     /**

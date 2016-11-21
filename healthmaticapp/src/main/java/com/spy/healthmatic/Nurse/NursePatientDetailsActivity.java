@@ -1,6 +1,7 @@
 package com.spy.healthmatic.Nurse;
 
 import android.content.Intent;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -89,9 +90,11 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         toolbar.addView(title);
 
 
-
-
-    }
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsetoolbarPatientDr);
+        collapsingToolbarLayout.setTitle("");
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.transparent));
+     }
 
 
     @Override

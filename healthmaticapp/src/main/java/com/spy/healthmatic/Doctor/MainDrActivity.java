@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Doctor;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -11,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Welcome.SplashScreen;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -146,5 +150,31 @@ public class MainDrActivity extends AppCompatActivity {
 
         TextView textViewPatientNum = (TextView) findViewById(R.id.tvPatientNum);
         textViewPatientNum.setText(Integer.toString(patientsSize) + " ");
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_activity2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_signout) {
+            Intent intent = new Intent(this, SplashScreen.class);
+            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
