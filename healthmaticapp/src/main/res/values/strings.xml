@@ -103,5 +103,8 @@
     <string name="strBpm">bpm</string>
     <string name="strC">°C</string>
     <string name="strmmHg">mmHg</string>
+    <string name="strInfo">Info</string>
+    <string name="strAddress">Address</string>
+    <string name="strContact">Contact</string>
 
 </resources>

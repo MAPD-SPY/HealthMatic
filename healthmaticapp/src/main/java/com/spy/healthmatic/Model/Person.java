@@ -16,16 +16,16 @@ public class Person implements Serializable{
     private String lastName;
     private String birthday;
     private boolean gender;
-    private Address address;
-    private Contact contact;
-    private String maritalStatus;
+    private static Address address;
+    private static Contact contact;
+    private boolean maritalStatus;
 
     public Person() {
 
     }
 
     public Person(String firstName, String lastName, boolean gender, String birthday,
-                  Address address, Contact contact, String maritalStatus) {
+                  Address address, Contact contact, Boolean maritalStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -83,11 +83,11 @@ public class Person implements Serializable{
         this.contact = contact;
     }
 
-    public String getMaritalStatus() {
+    public Boolean getMaritalStatus() {
         return maritalStatus;
     }
 
-    public void setMaritalStatus(String maritalStatus) {
+    public void setMaritalStatus(Boolean maritalStatus) {
         this.maritalStatus = maritalStatus;
     }
 }

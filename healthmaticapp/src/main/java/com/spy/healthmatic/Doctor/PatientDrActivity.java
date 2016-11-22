@@ -31,11 +31,17 @@ import cz.msebera.android.httpclient.Header;
 
 public class PatientDrActivity extends AppCompatActivity {
 
+    private static final int TAB_MEDS = 0;
+    private static final int TAB_TESTS = 1;
+    private static final int TAB_VITALS = 2;
+    private static final int TAB_NOTES = 3;
+    private static final int TAB_BIO = 4;
+
     private ViewPager mViewPager;
     private static Patient patient;
     private int tabPos;
     private FloatingActionButton fab;
-    private TextView title;
+    private TextView title, admissionDate, lastCheckup;
     public static boolean isAgent = false;
 
     @Override
@@ -51,6 +57,12 @@ public class PatientDrActivity extends AppCompatActivity {
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
         isAgent = intent.getBooleanExtra("isAgent", false);
+
+        //
+        admissionDate = (TextView)findViewById(R.id.tvAdmissionDateVal);
+        admissionDate.setText(patient.getAdmissionDate());
+        lastCheckup = (TextView) findViewById(R.id.tvLastCheckVal);
+
 
         // Set the title to the name of the patient
         TextView title = new TextView(this);
@@ -82,19 +94,19 @@ public class PatientDrActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
                 switch(tab.getPosition()) {
-                    case 0:
+                    case TAB_MEDS:
                         fab.setImageResource(R.drawable.ic_prescription_pill);
                         break;
-                    case 1:
+                    case TAB_TESTS:
                         fab.setImageResource(R.drawable.ic_test);
                         break;
-                    case 2:
+                    case TAB_VITALS:
                         fab.setImageResource(R.drawable.ic_stethoscope);
                         break;
-                    case 3:
+                    case TAB_NOTES:
                         fab.setImageResource(R.drawable.ic_dr_note);
                         break;
-                    case 4:
+                    case TAB_BIO:
                         fab.setImageResource(R.drawable.ic_doctor);
                         break;
                 }
@@ -122,25 +134,27 @@ public class PatientDrActivity extends AppCompatActivity {
                 int i = mViewPager.getCurrentItem();
 
                 switch (i) {
-                    case 0:
+                    case TAB_MEDS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddMedsActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;
-                    case 1:
+                    case TAB_TESTS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddTestActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;
-                    case 2:
+                    case TAB_VITALS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddVitalsActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
                         break;
-                    case 3:
+                    case TAB_NOTES:
                         intentAddTest = new Intent(PatientDrActivity.this, AddNotesActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
                         startActivity(intentAddTest);
+                        break;
+                    case TAB_BIO:
                         break;
                 }
             }

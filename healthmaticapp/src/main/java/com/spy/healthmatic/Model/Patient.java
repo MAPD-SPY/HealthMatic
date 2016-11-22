@@ -19,8 +19,8 @@ public class Patient extends Person implements Serializable {
     private int height;
     private String bloodType;
     private String occupation;
-    private long admissionDate;
-    private long dischargedDate;
+    private String admissionDate;
+    private String dischargedDate;
     private String condition;
     private int room;
     private String[] allergies;
@@ -35,12 +35,26 @@ public class Patient extends Person implements Serializable {
     }
 
     public Patient(JSONObject jsonObject) throws JSONException {
+
         super(jsonObject.getString("firstName"),
                 jsonObject.getString("lastName"),
                 jsonObject.getBoolean("gender"),
-                " ", null, null, " ");
+                jsonObject.getString("birthday"),
+                null,
+                null,
+                jsonObject.getBoolean("maritalStatus"));
+
+        // Set the address
+        this.setAddress(newAddress(jsonObject.getJSONObject("address")));
+        // Set the contact info
+        this.setContact(newContact(jsonObject.getJSONObject("contact")));
+
         this.id = jsonObject.getString("_id");
 
+        this.weight = jsonObject.getInt("weight");
+        this.height = jsonObject.getInt("height");
+        this.bloodType = jsonObject.getString("bloodType");
+        this.occupation = jsonObject.getString("occupation");
         this.condition = jsonObject.getString("condition");
         this.room = jsonObject.getInt("room");
 
@@ -94,6 +108,24 @@ public class Patient extends Person implements Serializable {
         }
 
         return patients;
+    }
+
+    private Contact newContact(JSONObject jsonObject) throws JSONException {
+
+        Contact contact= new Contact(jsonObject.getString("phone"),
+                jsonObject.getString("email"),
+                jsonObject.getString("emergencyContactName"),
+                jsonObject.getString("emergencyContactNumber"));
+        return contact;
+    }
+
+    private Address newAddress(JSONObject jsonObject) throws JSONException {
+
+        Address address = new Address(jsonObject.getString("street"),
+                jsonObject.getString("city"),
+                jsonObject.getString("province"),
+                jsonObject.getString("zipCode"));
+        return address;
     }
 
     private static ArrayList<Prescription> fromPrescriptionJSONArray(JSONArray jsonArray) {
@@ -184,19 +216,19 @@ public class Patient extends Person implements Serializable {
         this.occupation = occupation;
     }
 
-    public long getAdmissionDate() {
+    public String getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(long admissionDate) {
+    public void setAdmissionDate(String admissionDate) {
         this.admissionDate = admissionDate;
     }
 
-    public long getDischargedDate() {
+    public String getDischargedDate() {
         return dischargedDate;
     }
 
-    public void setDischargedDate(long dischargedDate) {
+    public void setDischargedDate(String dischargedDate) {
         this.dischargedDate = dischargedDate;
     }
 

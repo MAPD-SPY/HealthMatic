@@ -84,12 +84,6 @@ public class AddTestActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        // Disabled Back press
-        // super.onBackPressed();
-    }
-
     private void getLabTestTypesJSONArray() {
         JSONObject response;
         JSONArray labTestTypesJsonResults;
