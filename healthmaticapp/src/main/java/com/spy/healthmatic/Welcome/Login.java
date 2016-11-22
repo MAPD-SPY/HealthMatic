@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
 
 
         // Get list of patients for doctors if applicable
-        if (username.equals("d")) {
+        if (username.equals("d") || (username.equals("n"))) {
             // Create an Asynchronous HTTP instance
             AsyncHttpClient client = new AsyncHttpClient();
             client.get(url, new JsonHttpResponseHandler(){
@@ -123,7 +123,11 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(Login.this, LabAgentMainActivity.class));
                         }
                         if("n".equals(editTxtEmail.getText().toString())){
-                            startActivity(new Intent(Login.this, NurseMainActivity.class));
+                            Bundle bundle =new Bundle();
+                            bundle.putSerializable("PATIENTS_OBJ",patients);
+                            Intent intent=new Intent(Login.this,NurseMainActivity.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
                         }
                     }
                 }, 3000);

@@ -128,11 +128,9 @@ public class Patient extends Person implements Serializable {
         ArrayList<LabTest> labTests = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                labTests.add(new LabTest(jsonArray.getJSONObject(i)));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
+//                labTests.add(new LabTest(jsonArray.getJSONObject(i)));
+
         }
 
         return labTests;

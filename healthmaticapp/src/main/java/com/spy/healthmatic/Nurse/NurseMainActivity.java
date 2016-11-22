@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
+import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Global.GlobalFunctions;
 
 import com.spy.healthmatic.Model.Patient;
@@ -34,7 +35,7 @@ import com.spy.healthmatic.Welcome.SplashScreen;
 
 public class NurseMainActivity extends AppCompatActivity {
 
-    private ArrayList<Patient> patientList = new ArrayList<>();
+    private ArrayList<Patient> patientList;
     private RecyclerView recyclerView;
     private NurseAdapter mAdapter;
     private ProgressBar progressDialog;
@@ -45,28 +46,19 @@ public class NurseMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nurse_main);
        //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        progressDialog = (ProgressBar) findViewById(R.id.progress_dialog);
-    }
-
-    public void onStart(){
-        super.onStart();
-        patientList = GlobalFunctions.getPatientJSONArray(this);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadRecyclerViewElements();
-            }
-        }, 2000);
-    }
-
-    private void loadRecyclerViewElements(){
-        progressDialog.setVisibility(View.GONE);
+      //  recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        //progressDialog = (ProgressBar) findViewById(R.id.progress_dialog);
+        if (patientList == null) {
+            // Get a reference of the patient object
+            Intent intent = getIntent();
+            patientList = (ArrayList<Patient>) intent.getSerializableExtra("PATIENTS_OBJ");
+        }
         mAdapter = new NurseAdapter(patientList,this);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 

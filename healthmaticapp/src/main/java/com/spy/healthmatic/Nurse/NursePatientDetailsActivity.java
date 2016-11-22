@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,33 +34,13 @@ import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
 
 public class NursePatientDetailsActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
       Patient patient;
     TextView txtName;
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+
     private ViewPager mViewPager;
     public static final String ARG_PAGE = "ARG_PAGE";
-
-//
-//    public static NursePatientDetailsActivity newInstance(int pageNumber) {
-//        Bundle args = new Bundle();
-//        args.putInt(ARG_PAGE, pageNumber);
-//        NursePatientDetailsActivity myFragment = new NursePatientDetailsActivity();
-//
-//        return myFragment;
-//    }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +61,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
 
+       // Log.d(patient);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 

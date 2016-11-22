@@ -38,7 +38,7 @@
             ],
             
             "allergies": ["Penicillin"],
-JSON            "labTests": [
+            "labTests": [
                 {
                     "date": "Nov 3, 2016, 9:10 AM",
                     "requestedByName":"Dr John Smith",
