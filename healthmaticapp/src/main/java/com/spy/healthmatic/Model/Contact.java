@@ -9,10 +9,17 @@ public class Contact {
     private String phone;
     private String email;
     private String emergencyContactName;
-    private String getEmergencyContactNumber;
+    private String emergencyContactNumber;
 
     public Contact() {
 
+    }
+
+    public Contact(String phone, String email, String emergencyContactName, String emergencyContactNumber) {
+        this.phone = phone;
+        this.email = email;
+        this.emergencyContactName = emergencyContactName;
+        this.emergencyContactNumber = emergencyContactNumber;
     }
 
     public String getPhone() {
@@ -39,11 +46,11 @@ public class Contact {
         this.emergencyContactName = emergencyContactName;
     }
 
-    public String getGetEmergencyContactNumber() {
-        return getEmergencyContactNumber;
+    public String getEmergencyContactNumber() {
+        return emergencyContactNumber;
     }
 
-    public void setGetEmergencyContactNumber(String getEmergencyContactNumber) {
-        this.getEmergencyContactNumber = getEmergencyContactNumber;
+    public void setEmergencyContactNumber(String emergencyContactNumber) {
+        this.emergencyContactNumber = emergencyContactNumber;
     }
 }
