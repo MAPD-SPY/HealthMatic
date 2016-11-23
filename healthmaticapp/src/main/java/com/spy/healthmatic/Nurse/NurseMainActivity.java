@@ -1,41 +1,24 @@
 package com.spy.healthmatic.Nurse;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 
-import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
-import com.spy.healthmatic.Admin.Fragments.PatientList;
-import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
-import com.spy.healthmatic.Global.GlobalFunctions;
-
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
@@ -47,6 +30,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class NurseMainActivity extends AppCompatActivity {
 
+    private Staff nurse;
     private ArrayList<Patient> patientList;
     private RecyclerView recyclerView;
     private NurseAdapter mAdapter;
@@ -57,15 +41,19 @@ public class NurseMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nurse_main);
 
-        String url = "http://shelalainechan.com/patients";
 
-        if (patientList == null) {
-            patientList = new ArrayList<>();
-        }
+//        if (patientList == null) {
+//            patientList = new ArrayList<>();
+//        }
 //       patientList=(ArrayList<Patient>) getData();
-        getData();
+        //getData();
 
-        mAdapter = new NurseAdapter(patientList,this);
+        if (nurse == null) {
+            Intent intent = getIntent();
+            nurse = (Staff) intent.getSerializableExtra("STAFF");
+        }
+
+        mAdapter = new NurseAdapter(nurse.getPatients(),this);
 //
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setAdapter(mAdapter);
@@ -75,15 +63,26 @@ public class NurseMainActivity extends AppCompatActivity {
 
 //    private ArrayList<Patient> getData() {
     private void getData() {
-        String url = "http://shelalainechan.com/staffs";
+        String url = "http://shelalainechan.com/staffs/5835d750bd8ed21ac83e2bc4";
 
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(url, new JsonHttpResponseHandler() {
 
             @Override
-           public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                patientList.addAll(Patient.fromJSONArray(response));
+           public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    nurse = new Staff(response);
+                    try {
+                        getPatients();
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+//                patientList.addAll(Patient.fromJSONArray(response));
 //                JSONArray patientJsonResults = null;
 //
 //                try {
@@ -125,6 +124,26 @@ public class NurseMainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getPatients() throws UnsupportedEncodingException {
+
+        String url = "http://shelalainechan.com/staffs/" + nurse.getId() + "/patients";
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
+                ArrayList<Patient> patients = new ArrayList<>();
+                patients.addAll(Patient.fromJSONArray(jsonArray));
+                nurse.setPatients(patients);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
     }
 
 }

@@ -19,6 +19,12 @@ import com.spy.healthmatic.Model.Patient;
 
 public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
 
+    private static final int TAB_MEDS = 0;
+    private static final int TAB_TESTS = 1;
+    private static final int TAB_VITALS = 2;
+    private static final int TAB_NOTES = 3;
+    private static final int TAB_BIO = 4;
+
     private int tabCount;
     private Patient patient;
 
@@ -34,30 +40,30 @@ public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         bundle.putSerializable("PATIENT_OBJ", patient);
 
-
         switch (position) {
-            case 0:
+            case TAB_MEDS:
                 MedsFragment meds = new MedsFragment();
                 meds.setArguments(bundle);
                 return meds;
 
-            case 1:
+            case TAB_TESTS:
                 TestsFragment tests = new TestsFragment();
                 tests.setArguments(bundle);
                 return tests;
 
-            case 2:
+            case TAB_VITALS:
                 VitalsFragment vitals = new VitalsFragment();
                 vitals.setArguments(bundle);
                 return vitals;
 
-            case 3:
+            case TAB_NOTES:
                 DrNotesFragment drNotes = new DrNotesFragment();
                 drNotes.setArguments(bundle);
                 return drNotes;
 
-            case 4:
+            case TAB_BIO:
                 BioFragment bioFragment = new BioFragment();
+                bioFragment.setArguments(bundle);
                 return bioFragment;
 
             default:

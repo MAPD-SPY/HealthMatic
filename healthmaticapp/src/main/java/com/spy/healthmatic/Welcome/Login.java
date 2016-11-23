@@ -16,6 +16,7 @@ import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.Doctor.MainDrActivity;
 import com.spy.healthmatic.LabAgent.LabAgentMainActivity;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 
@@ -23,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -37,7 +39,7 @@ import cz.msebera.android.httpclient.Header;
 public class Login extends AppCompatActivity {
 
     private static final String TAG = "ActivityLogin";
-    private static ArrayList<Patient> patients;
+    private static Staff staff;
 
     @Bind(R.id.buttonLogin) Button loginButton;
     @Bind(R.id.editTextEmail) EditText editTxtEmail;
@@ -49,7 +51,6 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        patients = new ArrayList<Patient>();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,8 +60,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void login() {
-        String url = "http://shelalainechan.com/patients";
-
         Log.d(TAG, "Login");
 
         if (!validate()) {
@@ -74,31 +73,38 @@ public class Login extends AppCompatActivity {
         String username = editTxtEmail.getText().toString();
         String password = editTxtPassword.getText().toString();
 
-
-        // Get list of patients for doctors if applicable
-        if (username.equals("d") ) {
+        // Get list of patients for staffs if applicable
+        String url ="";
+        if (username.equals("d")) {
             // Create an Asynchronous HTTP instance
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.get(url, new JsonHttpResponseHandler(){
+              url = "http://shelalainechan.com/staffs/5834b3449ed610499fbedcee";
+        }
+        else if (username.equals("n")) {
+              url = "http://shelalainechan.com/staffs/5835d750bd8ed21ac83e2bc4";
+        }
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new JsonHttpResponseHandler(){
 
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    JSONArray patientJsonResults = null;
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
 
+                    staff = new Staff(response);
                     try {
-                        patientJsonResults = response.getJSONArray("patients");
-                        patients.addAll(Patient.fromJSONArray(patientJsonResults));
-                    } catch (JSONException e) {
+                        getPatients();
+                    } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                    super.onFailure(statusCode, headers, throwable, errorResponse);
-                }
-            });
-        }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
 
         final ProgressDialog progressDialog = new ProgressDialog(Login.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
@@ -114,7 +120,8 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(Login.this, AdminMainActivity.class));
                         }else if("d".equals(editTxtEmail.getText().toString())){
                             Bundle bundle = new Bundle();
-                            bundle.putSerializable("PATIENTS_OBJ", patients);
+//                            bundle.putSerializable("PATIENTS_OBJ", patients);
+                            bundle.putSerializable("STAFF", staff);
 
                             Intent intent = new Intent(Login.this, MainDrActivity.class);
                             intent.putExtras(bundle);
@@ -124,7 +131,13 @@ public class Login extends AppCompatActivity {
                         }
                         if("n".equals(editTxtEmail.getText().toString())){
 
+                            Bundle bundle = new Bundle();
+//                            bundle.putSerializable("PATIENTS_OBJ", patients);
+                            bundle.putSerializable("STAFF", staff);
+
+
                             Intent intent=new Intent(Login.this,NurseMainActivity.class);
+                            intent.putExtras(bundle);
 
                             startActivity(intent);
                         }
@@ -161,5 +174,25 @@ public class Login extends AppCompatActivity {
     private void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
         loginButton.setEnabled(true);
+    }
+
+    private void getPatients() throws UnsupportedEncodingException {
+
+        String url = "http://shelalainechan.com/staffs/" + staff.getId() + "/patients";
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
+                ArrayList<Patient> patients = new ArrayList<>();
+                patients.addAll(Patient.fromJSONArray(jsonArray));
+                staff.setPatients(patients);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
     }
 }

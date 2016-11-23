@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.spy.healthmatic.Doctor.Utilities.TestHelpers;
+import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.R;
 
 import org.json.JSONException;
@@ -112,7 +112,7 @@ public class AddMedsActivity extends AppCompatActivity {
     private void setPrescription() throws JSONException, UnsupportedEncodingException {
 
         JSONObject jsonParams = new JSONObject();
-        jsonParams.put("date", TestHelpers.getCurrentDate());
+        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime());
         jsonParams.put("medicineName", medName.getText().toString());
         jsonParams.put("dosage", medDosage.getText().toString());
         jsonParams.put("frequency", medFreq.getText().toString());

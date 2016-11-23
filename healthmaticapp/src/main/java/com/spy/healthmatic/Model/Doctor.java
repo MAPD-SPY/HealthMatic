@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Doctor implements Serializable {
+    private String id;
     private String name;
     private String gender;
     private String speciality;
