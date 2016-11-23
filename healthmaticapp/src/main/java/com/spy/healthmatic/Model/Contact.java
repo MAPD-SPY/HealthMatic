@@ -1,11 +1,13 @@
 package com.spy.healthmatic.Model;
 
+import java.io.Serializable;
+
 /**
  * Team Name: Team SPY
  * Created by shelalainechan on 2016-10-25.
  */
 
-public class Contact {
+public class Contact implements Serializable{
     private String phone;
     private String email;
     private String emergencyContactName;

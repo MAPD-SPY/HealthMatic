@@ -1,6 +1,7 @@
 package com.spy.healthmatic.Admin.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.spy.healthmatic.API.PatientsListAPI;
 import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
+import com.spy.healthmatic.Admin.AdminAddPatient;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
@@ -101,17 +103,16 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
     }
 
     private void getPatientList(final boolean isRefresh) {
-        Call<PatientApiObject> call = patientsListAPICall.getPatientList();
-        call.enqueue(new Callback<PatientApiObject>() {
+        Call<ArrayList<Patient>> call = patientsListAPICall.getPatientList();
+        call.enqueue(new Callback<ArrayList<Patient>>() {
             @Override
-            public void onResponse(Call<PatientApiObject> call, Response<PatientApiObject> response) {
+            public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
                 if (!response.isSuccessful()) {
                     Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
                     Toast.makeText(getActivity(), "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                PatientApiObject patientApiObject = response.body();
-                patients = patientApiObject.getPatients();
+                patients = response.body();
                 loadRecyclerViewElements();
                 if (isRefresh) {
                     swipeRefreshLayout.setRefreshing(false);
@@ -119,7 +120,7 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
             }
 
             @Override
-            public void onFailure(Call<PatientApiObject> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Patient>> call, Throwable t) {
                 Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
                 Toast.makeText(getActivity(), "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
                 swipeRefreshLayout.setRefreshing(false);
@@ -151,30 +152,30 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
 
     @OnClick(R.id.fab)
     public void addPatient() {
-        Toast.makeText(getActivity(), "Add Patient clicked", Toast.LENGTH_SHORT).show();
-        Patient patient = GlobalFunctions.getPatientJSONArray(getActivity()).get(0);
-        String patientString = new Gson().toJson(patient);
-        Call<Patient> call = patientsListAPICall.createPatient(patient);
-        call.enqueue(new Callback<Patient>() {
-
-            @Override
-            public void onResponse(Call<Patient> call, Response<Patient> response) {
-                if(!response.isSuccessful()){
-                    Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + response.errorBody());
-                    Toast.makeText(getActivity(), "Was not able to ADD Patient. Please try again.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Patient patient = response.body();
-                Toast.makeText(getActivity(), " Patient Added", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onFailure(Call<Patient> call, Throwable t) {
-                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(getActivity(), "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
-            }
-        });
-//        startActivity(new Intent(getActivity(), AdminAddPatient.class));
+//        Toast.makeText(getActivity(), "Add Patient clicked", Toast.LENGTH_SHORT).show();
+//        Patient patient = GlobalFunctions.getPatientJSONArray(getActivity()).get(0);
+//        String patientString = new Gson().toJson(patient);
+//        Call<Patient> call = patientsListAPICall.createPatient(patient);
+//        call.enqueue(new Callback<Patient>() {
+//
+//            @Override
+//            public void onResponse(Call<Patient> call, Response<Patient> response) {
+//                if(!response.isSuccessful()){
+//                    Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + response.errorBody());
+//                    Toast.makeText(getActivity(), "Was not able to ADD Patient. Please try again.", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                Patient patient = response.body();
+//                Toast.makeText(getActivity(), " Patient Added", Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Patient> call, Throwable t) {
+//                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
+//                Toast.makeText(getActivity(), "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+//            }
+//        });
+        startActivity(new Intent(getActivity(), AdminAddPatient.class));
     }
 
     @Override

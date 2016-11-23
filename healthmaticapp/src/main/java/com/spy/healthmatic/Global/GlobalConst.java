@@ -6,4 +6,8 @@ package com.spy.healthmatic.Global;
 
 public interface GlobalConst {
     String BASE_URL = "http://shelalainechan.com";
+
+    String TABS = "tabs";
+    String PATIENT = "patient";
+    String CURRENTTABPOSITION = "CurrentTabPosition";
 }

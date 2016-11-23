@@ -3,14 +3,17 @@ package com.spy.healthmatic.Model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by yatin on 21/11/16.
  */
 
-public class Insurance {
+public class Insurance implements Serializable{
     private String name;
     private String expiryDate;
 
+    public Insurance(){}
     public Insurance(JSONObject jsonObject) {
         try {
             this.name = jsonObject.getString("name");

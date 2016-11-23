@@ -18,7 +18,7 @@ import retrofit2.http.POST;
 public interface PatientsListAPI {
 
     @GET("/patients")
-    Call<PatientApiObject> getPatientList();
+    Call<ArrayList<Patient>> getPatientList();
 
     @POST("/patients")
     @Headers("Content-Type: application/json")

@@ -16,6 +16,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by yatin on 28/10/16.
@@ -81,6 +83,11 @@ public class GlobalFunctions {
         }
 
         return json;
+    }
+
+    public static String getTodaysDateFormatted() {
+        java.text.SimpleDateFormat formattedDt = new java.text.SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        return formattedDt.format(new Date());
     }
 
 
