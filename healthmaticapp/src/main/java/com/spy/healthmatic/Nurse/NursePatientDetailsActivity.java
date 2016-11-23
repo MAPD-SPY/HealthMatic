@@ -58,8 +58,10 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.containerPatientNr);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        Intent intent = getIntent();
-        patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
+//        Intent intent = getIntent();
+//        patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
+
+
 
        // Log.d(patient);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
