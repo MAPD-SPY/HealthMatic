@@ -16,12 +16,15 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Vitals;
 import com.spy.healthmatic.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -41,13 +44,21 @@ public class PatientDrActivity extends AppCompatActivity {
     private static Patient patient;
     private int tabPos;
     private FloatingActionButton fab;
-    private TextView title, admissionDate, lastCheckup;
-    public static boolean isAgent = false;
+    private TextView admissionDate, lastCheckup;
+    private static boolean isAgent = false;
+    @Bind(R.id.tvRRVal) TextView textViewRRate;
+    @Bind(R.id.tvBPVal) TextView textViewBP;
+    @Bind(R.id.tvHRVal) TextView textViewHR;
+    @Bind(R.id.tvTempVal) TextView textViewTemp;
+    @Bind(R.id.tvAdmissionDateVal) TextView textViewAdmission;
+    @Bind(R.id.tvLastCheckVal) TextView textViewCheckup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_dr);
+
+        ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientDr);
         setSupportActionBar(toolbar);
@@ -58,11 +69,8 @@ public class PatientDrActivity extends AppCompatActivity {
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
         isAgent = intent.getBooleanExtra("isAgent", false);
 
-        //
-        admissionDate = (TextView)findViewById(R.id.tvAdmissionDateVal);
-        admissionDate.setText(patient.getAdmissionDate());
-        lastCheckup = (TextView) findViewById(R.id.tvLastCheckVal);
-
+        // Initialize fields in the Summary/Latest view
+        initLatestView();
 
         // Set the title to the name of the patient
         TextView title = new TextView(this);
@@ -255,4 +263,17 @@ public class PatientDrActivity extends AppCompatActivity {
         });
     }
 
+
+    private void initLatestView() {
+        // Display admission date
+        textViewAdmission.setText(patient.getAdmissionDate());
+
+        // Display latest vitals information
+        Vitals vitals = patient.getVitals().get(patient.getVitals().size() - 1);
+        textViewRRate.setText(Integer.toString(vitals.getRespirationRate()) + " breaths / min");
+        textViewBP.setText(Integer.toString(vitals.getSystolic()) + " / " +
+                Integer.toString(vitals.getDiastolic()) + " mmHg");
+        textViewHR.setText(Integer.toString(vitals.getHeartRate()) + " bpm");
+        textViewTemp.setText(Integer.toString(vitals.getTemperature()) + " C");
+    }
 }

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.PatientRef;
@@ -221,8 +222,8 @@ public class MainDrActivity extends AppCompatActivity {
         long numOfPatientsChecked = 0;
 
         // Get current date
-//        String dateNow = TimeHelpers.getCurrentDate();
-        String dateNow = "2016-11-20";
+        String dateNow = TimeHelpers.getCurrentDate();
+//        String dateNow = "2016-11-20";
 
         // Go through each patient
         for (PatientRef patientRef : patientRefs) {

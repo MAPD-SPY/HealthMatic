@@ -52,6 +52,8 @@ public class Patient extends Person implements Serializable {
         this.occupation = jsonObject.getString("occupation");
         this.condition = jsonObject.getString("condition");
         this.room = jsonObject.getInt("room");
+        this.admissionDate = jsonObject.getString("admissionDate");
+        this.dischargedDate = jsonObject.getString("dischargedDate");
 
         JSONArray patientJsonResults;
         try {
