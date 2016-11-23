@@ -1,7 +1,6 @@
 package com.spy.healthmatic.Doctor;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,27 +10,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.PatientRef;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import at.grabner.circleprogress.CircleProgressView;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Team Name: Team SPY
@@ -39,11 +39,11 @@ import at.grabner.circleprogress.CircleProgressView;
  */
 public class MainDrActivity extends AppCompatActivity {
 
-    private static ArrayList<Patient> patients;
+    private static Staff doctor;
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
-    private long numOfPatientsChecked = 2;
-    private static final int CIRCLE_PROGRESS_VIEW_DELAY = 2000;
+    private long numOfPatientsChecked;
+    private static final int CIRCLE_PROGRESS_VIEW_DELAY = 1000;
 
 
     @Override
@@ -62,12 +62,13 @@ public class MainDrActivity extends AppCompatActivity {
             }
         });
 
-        if (patients == null) {
-            // Get a reference of the patient object
+        // Get a reference to the staff object
+        if (doctor == null) {
             Intent intent = getIntent();
-            patients = (ArrayList<Patient>) intent.getSerializableExtra("PATIENTS_OBJ");
+            doctor = (Staff) intent.getSerializableExtra("STAFF");
         }
-        patientsAdapter = new PatientsAdapter(this, patients);
+        numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
+        patientsAdapter = new PatientsAdapter(this, doctor.getPatients());
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
         recyclerView.setAdapter(patientsAdapter);
@@ -92,7 +93,10 @@ public class MainDrActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle("My Patients");
+                    collapsingToolbarLayout.setTitle("Dr. " +
+                            doctor.getFirstName() + " " +
+                            doctor.getLastName()
+                    );
                     isShow = true;
                 } else if (isShow) {
                     collapsingToolbarLayout.setTitle(" ");
@@ -102,47 +106,59 @@ public class MainDrActivity extends AppCompatActivity {
         });
     }
 
-    public String loadJSONFromAsset() {
-        String json;
-        AssetManager assetManager = getAssets();
-        InputStream input;
+    @Override
+    protected void onResume() {
+        super.onResume();
         try {
-            input = assetManager.open("patients.json");
-            int size = input.available();
-            byte[] buffer = new byte[size];
-            input.read(buffer);
-            input.close();
-
-            json = new String(buffer, "UTF-8");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-
-        return json;
-    }
-
-    private void getPatientJSONArray() {
-        JSONObject response;
-        JSONArray patientJsonResults;
-
-        try {
-            // TODO: Remove if check is complete
-            // response = new JSONObject(loadJSONFromAsset());
-            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
-            patientJsonResults = response.getJSONArray("patients");
-            patients.addAll(Patient.fromJSONArray(patientJsonResults));
+            doctor.setPatients(getPatients(doctor));
+            numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
             patientsAdapter.notifyDataSetChanged();
-            Log.d("DEBUG", patients.toString());
-        } catch (JSONException e) {
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
 
+//    public String loadJSONFromAsset() {
+//        String json;
+//        AssetManager assetManager = getAssets();
+//        InputStream input;
+//        try {
+//            input = assetManager.open("patients.json");
+//            int size = input.available();
+//            byte[] buffer = new byte[size];
+//            input.read(buffer);
+//            input.close();
+//
+//            json = new String(buffer, "UTF-8");
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//
+//        return json;
+//    }
+//
+//    private void getPatientJSONArray() {
+//        JSONObject response;
+//        JSONArray patientJsonResults;
+//
+//        try {
+//            // TODO: Remove if check is complete
+//            // response = new JSONObject(loadJSONFromAsset());
+//            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
+//            patientJsonResults = response.getJSONArray("patients");
+//            patients.addAll(Patient.fromJSONArray(patientJsonResults));
+//            patientsAdapter.notifyDataSetChanged();
+//            Log.d("DEBUG", patients.toString());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     private void initCircleProgressView() {
 
-        int patientsSize = patients.size();
+        int patientsSize = doctor.getPatients().size();
 
         circleProgressView.setBlockCount(patientsSize);
         circleProgressView.setUnitScale((float)1.20);
@@ -180,4 +196,47 @@ public class MainDrActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private ArrayList<Patient> getPatients(Staff staff) throws UnsupportedEncodingException {
+
+        String url = "http://shelalainechan.com/staffs/" + staff.getId() + "/patients";
+        final ArrayList<Patient> patients = new ArrayList<>();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
+                patients.addAll(Patient.fromJSONArray(jsonArray));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
+
+        return patients;
+    }
+
+    private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
+        long numOfPatientsChecked = 0;
+
+        // Get current date
+//        String dateNow = TimeHelpers.getCurrentDate();
+        String dateNow = "2016-11-20";
+
+        // Go through each patient
+        for (PatientRef patientRef : patientRefs) {
+            // Check if one of the checkup dates matches the current date
+            for (String checkup: patientRef.getCheckupDates()) {
+                String[] dateChecked = checkup.split(" ");
+                if (dateChecked[0].equals(dateNow)) {
+                    // Increment number of patients checked counter
+                    numOfPatientsChecked++;
+                    break;
+                }
+            }
+        }
+
+        return numOfPatientsChecked;
+    }
 }

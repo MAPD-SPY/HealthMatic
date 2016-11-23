@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Model;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
@@ -12,6 +14,9 @@ public class Person implements Serializable{
     public static final boolean FEMALE = false;
     public static final boolean MALE = true;
 
+    public static final boolean SINGLE = true;
+    public static final boolean MARRIED = true;
+
     private String firstName;
     private String lastName;
     private String birthday;
@@ -19,19 +24,31 @@ public class Person implements Serializable{
     private static Address address;
     private static Contact contact;
     private boolean maritalStatus;
+    private String photo;
 
     public Person() {
 
     }
 
     public Person(String firstName, String lastName, boolean gender, String birthday,
-                  Address address, Contact contact, Boolean maritalStatus) {
+                  Address address, Contact contact, boolean maritalStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.gender = gender;
         this.address = address;
         this.contact = contact;
+        this.maritalStatus = maritalStatus;
+    }
+
+    public Person(String firstName, String lastName, boolean gender, String birthday,
+                  JSONObject address, JSONObject contact, boolean maritalStatus) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.address = newAddress(address);
+        this.contact = newContact(contact);
         this.maritalStatus = maritalStatus;
     }
 
@@ -89,5 +106,29 @@ public class Person implements Serializable{
 
     public void setMaritalStatus(Boolean maritalStatus) {
         this.maritalStatus = maritalStatus;
+    }
+
+    private Contact newContact(JSONObject jsonObject) {
+        try {
+            Contact contact = new Contact(jsonObject.getString("phone"),
+                    jsonObject.getString("email"),
+                    jsonObject.getString("emergencyContactName"),
+                    jsonObject.getString("emergencyContactNumber"));
+            return contact;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private Address newAddress(JSONObject jsonObject) {
+        try {
+            Address address = new Address(jsonObject.getString("street"),
+                    jsonObject.getString("city"),
+                    jsonObject.getString("province"),
+                    jsonObject.getString("zipCode"));
+            return address;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

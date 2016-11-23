@@ -8,11 +8,17 @@ import java.util.Calendar;
  * Created by shelalainechan on 2016-11-20.
  */
 
-public class TestHelpers {
+public class TimeHelpers {
+
+    public static String getCurrentDateAndTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat timeDateFormat = new SimpleDateFormat("yyyy-MM-dd, h:mm a");
+        return timeDateFormat.format(calendar.getTime());
+    }
 
     public static String getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat timeDateFormat = new SimpleDateFormat("yyyy-MM-dd, h:mm a");
+        SimpleDateFormat timeDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return timeDateFormat.format(calendar.getTime());
     }
 }

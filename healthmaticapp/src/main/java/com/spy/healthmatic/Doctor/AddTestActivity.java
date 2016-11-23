@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
-import com.spy.healthmatic.Doctor.Utilities.TestHelpers;
+import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.Doctor.adapters.LabTestTypeAdapter;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.models.LabTestType;
@@ -107,7 +107,7 @@ public class AddTestActivity extends AppCompatActivity {
         mTestsSelected = labTestTypeAdapter.getItemsSelected();
 
         JSONObject jsonParams = new JSONObject();
-        jsonParams.put("requestDate", TestHelpers.getCurrentDate());
+        jsonParams.put("requestDate", TimeHelpers.getCurrentDateAndTime());
         jsonParams.put("requestedByName", "Dr John Smith");
         jsonParams.put("testType", mTestsSelected.get(0));
         jsonParams.put("sampleTakenDate", "");

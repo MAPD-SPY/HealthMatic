@@ -40,14 +40,9 @@ public class Patient extends Person implements Serializable {
                 jsonObject.getString("lastName"),
                 jsonObject.getBoolean("gender"),
                 jsonObject.getString("birthday"),
-                null,
-                null,
+                jsonObject.getJSONObject("address"),
+                jsonObject.getJSONObject("contact"),
                 jsonObject.getBoolean("maritalStatus"));
-
-        // Set the address
-        this.setAddress(newAddress(jsonObject.getJSONObject("address")));
-        // Set the contact info
-        this.setContact(newContact(jsonObject.getJSONObject("contact")));
 
         this.id = jsonObject.getString("_id");
 
@@ -108,24 +103,6 @@ public class Patient extends Person implements Serializable {
         }
 
         return patients;
-    }
-
-    private Contact newContact(JSONObject jsonObject) throws JSONException {
-
-        Contact contact= new Contact(jsonObject.getString("phone"),
-                jsonObject.getString("email"),
-                jsonObject.getString("emergencyContactName"),
-                jsonObject.getString("emergencyContactNumber"));
-        return contact;
-    }
-
-    private Address newAddress(JSONObject jsonObject) throws JSONException {
-
-        Address address = new Address(jsonObject.getString("street"),
-                jsonObject.getString("city"),
-                jsonObject.getString("province"),
-                jsonObject.getString("zipCode"));
-        return address;
     }
 
     private static ArrayList<Prescription> fromPrescriptionJSONArray(JSONArray jsonArray) {
