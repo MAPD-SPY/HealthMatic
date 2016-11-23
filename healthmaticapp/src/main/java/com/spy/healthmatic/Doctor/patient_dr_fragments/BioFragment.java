@@ -46,8 +46,8 @@ public class BioFragment extends Fragment {
         String maritalStat = (patient.getMaritalStatus()) ? "Single" : "Married";
         personDetail.setText("Birthday: " + birthday + "\n" +
                             "Gender: " + gender + "\n" +
-                            "Weight: " + weight + "\n" +
-                            "Height: " + height + "\n" +
+                            "Weight: " + weight + " lbs \n" +
+                            "Height: " + height + " cm \n" +
                             "Blood Type: " + bloodType + "\n" +
                             "Marital Status: " + maritalStat);
 

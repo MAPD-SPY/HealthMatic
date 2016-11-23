@@ -41,6 +41,7 @@ import cz.msebera.android.httpclient.Header;
 public class MainDrActivity extends AppCompatActivity {
 
     private static Staff doctor;
+    private ArrayList<Patient> patients;
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
     private long numOfPatientsChecked;
@@ -69,7 +70,8 @@ public class MainDrActivity extends AppCompatActivity {
             doctor = (Staff) intent.getSerializableExtra("STAFF");
         }
         numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
-        patientsAdapter = new PatientsAdapter(this, doctor.getPatients());
+        patients = doctor.getPatients();
+        patientsAdapter = new PatientsAdapter(this, patients);
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
         recyclerView.setAdapter(patientsAdapter);
@@ -111,9 +113,7 @@ public class MainDrActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         try {
-            doctor.setPatients(getPatients(doctor));
-            numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
-            patientsAdapter.notifyDataSetChanged();
+            getPatients(doctor);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -197,16 +197,21 @@ public class MainDrActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private ArrayList<Patient> getPatients(Staff staff) throws UnsupportedEncodingException {
+    private void getPatients(Staff staff) throws UnsupportedEncodingException {
 
         String url = "http://shelalainechan.com/staffs/" + staff.getId() + "/patients";
-        final ArrayList<Patient> patients = new ArrayList<>();
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(url, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
+                patients.clear();
                 patients.addAll(Patient.fromJSONArray(jsonArray));
+                doctor.setPatients(patients);
+
+                numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
+                initCircleProgressView();
+                patientsAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -214,8 +219,6 @@ public class MainDrActivity extends AppCompatActivity {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
-
-        return patients;
     }
 
     private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
@@ -223,7 +226,6 @@ public class MainDrActivity extends AppCompatActivity {
 
         // Get current date
         String dateNow = TimeHelpers.getCurrentDate();
-//        String dateNow = "2016-11-20";
 
         // Go through each patient
         for (PatientRef patientRef : patientRefs) {
