@@ -29,4 +29,7 @@ public interface StaffAPI {
 
     @GET("/nurses")
     Call<ArrayList<Staff>> getAllNurses();
+
+    @GET("/staffs/{id}/patients")
+    Call<ArrayList<Patient>> getAllStaffPatinet(@Path("id") String _id);
 }

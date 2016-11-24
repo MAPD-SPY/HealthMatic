@@ -50,7 +50,7 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Patient patient = patientList.get(position);
-        //holder.mNameView.setText(patient.getName());
+        holder.mNameView.setText(patient.getFirstName() + " " + patient.getLastName());
         holder.mPateintConditionView.setText(patient.getCondition());
        // holder.mRoomNumberView.setText(patient.getRoomNumber());
         if("male".equals(patient.getGender())){
