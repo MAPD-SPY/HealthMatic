@@ -7,26 +7,18 @@ import java.io.Serializable;
  */
 
 public class Nurse implements Serializable{
-    private int id;
+    private String id;
     private String name;
     private String gender;
-    private int floor;
+    private String floor;
 
     public Nurse(){}
 
-    public Nurse(String name, String gender, int floor){
-        this.id = 1;
+    public Nurse(String id, String name, String gender, String floor){
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.floor = floor;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -45,11 +37,19 @@ public class Nurse implements Serializable{
         this.gender = gender;
     }
 
-    public int getFloor() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(String floor) {
         this.floor = floor;
     }
 }

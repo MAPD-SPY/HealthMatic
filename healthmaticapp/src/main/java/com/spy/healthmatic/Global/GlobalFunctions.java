@@ -4,10 +4,13 @@ package com.spy.healthmatic.Global;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
+import android.widget.Toast;
 
 
+import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
+import com.spy.healthmatic.Model.Staff;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,33 +22,37 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * Created by yatin on 28/10/16.
  */
 
-public class GlobalFunctions {
+public class GlobalFunctions implements GlobalConst{
 
     public static ArrayList<Doctor> getDummyDoctors(int maxCount){
         ArrayList<Doctor> doctors = new ArrayList<>();
-        for (int i=0; i<maxCount; i++){
-            if(i%2==0) {
-                doctors.add(new Doctor("Doctor "+i, "male", "Heart"));
-            }else{
-                doctors.add(new Doctor("Doctor "+i, "female", "Brain"));
-            }
-        }
+//        for (int i=0; i<maxCount; i++){
+//            if(i%2==0) {
+//                doctors.add(new Doctor("Doctor "+i, "male", "Heart"));
+//            }else{
+//                doctors.add(new Doctor("Doctor "+i, "female", "Brain"));
+//            }
+//        }
         return doctors;
     }
 
     public static ArrayList<Nurse> getDummyNurses(int maxCount){
         ArrayList<Nurse> nurses = new ArrayList<>();
-        for (int i=0; i<maxCount; i++){
-            if(i%2==0) {
-                nurses.add(new Nurse("Nurse "+i, "male", i));
-            }else{
-                nurses.add(new Nurse("Nurse "+i, "female", i));
-            }
-        }
+//        for (int i=0; i<maxCount; i++){
+//            if(i%2==0) {
+//                nurses.add(new Nurse("Nurse "+i, "male", i));
+//            }else{
+//                nurses.add(new Nurse("Nurse "+i, "female", i));
+//            }
+//        }
         return nurses;
     }
 
@@ -89,6 +96,5 @@ public class GlobalFunctions {
         java.text.SimpleDateFormat formattedDt = new java.text.SimpleDateFormat("dd-MM-yyyy", Locale.US);
         return formattedDt.format(new Date());
     }
-
 
 }

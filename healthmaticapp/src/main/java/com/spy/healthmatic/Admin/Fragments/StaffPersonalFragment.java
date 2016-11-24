@@ -1,26 +1,22 @@
 package com.spy.healthmatic.Admin.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.spy.healthmatic.Admin.AdminAddPatient;
+import com.spy.healthmatic.Admin.AdminAddStaff;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Address;
 import com.spy.healthmatic.Model.Contact;
-import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
@@ -34,8 +30,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PatientPersonalFragment extends Fragment implements GlobalConst {
-
+public class StaffPersonalFragment extends Fragment implements GlobalConst {
 
     @Bind(R.id.p_fname)
     TextInputEditText mPFNameView;
@@ -47,10 +42,6 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
     TextInputEditText mPContactView;
     @Bind(R.id.p_email)
     TextInputEditText mPEmailView;
-    @Bind(R.id.p_emergency_name)
-    TextInputEditText mPEmergencyNameView;
-    @Bind(R.id.p_emergency_contact)
-    TextInputEditText mPEmergencyContactView;
     @Bind(R.id.p_street)
     TextInputEditText mPStreetView;
     @Bind(R.id.p_city)
@@ -60,23 +51,20 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
     @Bind(R.id.p_zipcode)
     TextInputEditText mPZipcodeView;
 
-    @Bind(R.id.save_patient_personal)
-    FloatingActionButton mSavePatientPersonalButton;
-
-    private Patient patient;
+    Staff staff;
     ArrayList<Tab> tabs;
 
     ViewPager mViewPager;
 
-    public PatientPersonalFragment() {
+    public StaffPersonalFragment() {
         // Required empty public constructor
     }
 
-    public static PatientPersonalFragment newInstance(Patient patient, ArrayList<Tab> tabs) {
-        PatientPersonalFragment fragment = new PatientPersonalFragment();
+    public static StaffPersonalFragment newInstance(Staff staff, ArrayList<Tab> tabs) {
+        StaffPersonalFragment fragment = new StaffPersonalFragment();
         Bundle args = new Bundle();
         args.putSerializable(TABS, tabs);
-        args.putSerializable(PATIENT, patient);
+        args.putSerializable(STAFF, staff);
         fragment.setArguments(args);
         return fragment;
     }
@@ -86,55 +74,63 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             tabs = (ArrayList<Tab>) getArguments().getSerializable(TABS);
-            patient = (Patient) getArguments().getSerializable(PATIENT);
+            staff = (Staff) getArguments().getSerializable(STAFF);
         }
-        mViewPager = ((AdminAddPatient)getActivity()).getViewPagerObject();
+        mViewPager = ((AdminAddStaff)getActivity()).getViewPagerObject();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_patient_personal, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_staff_personal, container, false);
         ButterKnife.bind(this, rootView);
-        if(patient.getFirstName()!=null && !patient.getFirstName().equals("")) {
+        if(staff.getFirstName()!=null && !staff.getFirstName().equals("")) {
             setView();
         }
         return rootView;
     }
 
-    private void setView() {
+    private void setView(){
         Toast.makeText(getActivity(), "Click on button below to save any changes.", Toast.LENGTH_LONG).show();
+        mPFNameView.setText(staff.getFirstName());
+        mPLNameView.setText(staff.getLastName());
+        mPDOBView.setText(staff.getBirthday());
+        mPContactView.setText(staff.getContact().getPhone());
+        mPEmailView.setText(staff.getContact().getEmail());
+        mPStreetView.setText(staff.getAddress().getStreet());
+        mPCityView.setText(staff.getAddress().getCity());
+        mPProvianceView.setText(staff.getAddress().getProvince());
+        mPZipcodeView.setText(staff.getAddress().getZipCode());
     }
-
 
     @OnCheckedChanged(R.id.radio_male)
     public void radioGnder(boolean isChecked){
         if(isChecked) {
-            patient.setGender(isChecked);
+            staff.setGender(isChecked);
         }else{
-            patient.setGender(false);
+            staff.setGender(false);
         }
     }
 
     @OnCheckedChanged(R.id.radio_married)
     public void radiomartial(boolean isChecked){
         if(isChecked) {
-            patient.setMaritalStatus(isChecked);
+            staff.setMaritalStatus(isChecked);
         }else{
-            patient.setMaritalStatus(false);
+            staff.setMaritalStatus(false);
         }
     }
 
-    @OnClick(R.id.save_patient_personal)
-    public void savePatientPersonalInfo() {
+    @OnClick(R.id.save_staff_personal)
+    public void saveStaffPersonalInfo() {
         boolean isvalid = true;
         String fname = mPFNameView.getText().toString();
         if (TextUtils.isEmpty(fname)) {
             mPFNameView.setError("Required.");
             isvalid = false;
         } else {
-            patient.setFirstName(fname);
+            staff.setFirstName(fname);
             mPFNameView.setError(null);
         }
         String lName = mPLNameView.getText().toString();
@@ -142,15 +138,16 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
             mPLNameView.setError("Required.");
             isvalid = false;
         } else {
-            patient.setLastName(lName);
+            staff.setLastName(lName);
             mPLNameView.setError(null);
         }
+
         String dob = mPDOBView.getText().toString();
         if (TextUtils.isEmpty(dob)) {
             mPDOBView.setError("Required.");
             isvalid = false;
         } else {
-            patient.setBirthday(dob);
+            staff.setBirthday(dob);
             mPDOBView.setError(null);
         }
 
@@ -172,22 +169,7 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
             contact.setEmail(email);
             mPEmailView.setError(null);
         }
-        String emergencyName = mPEmergencyNameView.getText().toString();
-        if (TextUtils.isEmpty(emergencyName)) {
-            mPEmergencyNameView.setError("Required.");
-            isvalid = false;
-        } else {
-            contact.setEmergencyContactName(emergencyName);
-            mPEmergencyNameView.setError(null);
-        }
-        String emergencyContact = mPEmergencyContactView.getText().toString();
-        if (TextUtils.isEmpty(emergencyContact)) {
-            mPEmergencyContactView.setError("Required.");
-            isvalid = false;
-        } else {
-            contact.setEmergencyContactNumber(emergencyContact);
-            mPEmergencyContactView.setError(null);
-        }
+
         // Address Object
         Address address = new Address();
         String street = mPStreetView.getText().toString();
@@ -226,12 +208,11 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         if(!isvalid){
             return;
         }
-        patient.setContact(contact);
-        patient.setAddress(address);
-        patient.setAdmissionDate(GlobalFunctions.getTodaysDateFormatted());
+        staff.setContact(contact);
+        staff.setAddress(address);
 
         if(tabs.size()<2) {
-            Tab tab = new Tab("Health", 1);
+            Tab tab = new Tab("Account", 1);
             tabs.add(1, tab);
             mViewPager.getAdapter().notifyDataSetChanged();
         }

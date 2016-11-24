@@ -18,6 +18,7 @@ import com.spy.healthmatic.Admin.Fragments.NurseList;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.StaffList;
 import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
@@ -27,7 +28,7 @@ import com.spy.healthmatic.Welcome.SplashScreen;
 
 public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PatientList.OnPatientListFragmentInteractionListener,
-        DoctorList.OnDoctorListFragmentInteractionListener, NurseList.OnNurseListFragmentInteractionListener {
+        DoctorList.OnDoctorListFragmentInteractionListener, NurseList.OnNurseListFragmentInteractionListener, GlobalConst {
 
 
     FragmentTransaction fragmentTransaction;
@@ -146,11 +147,19 @@ public class AdminMainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Staff doctor, int position) {
+        Intent intent = new Intent(AdminMainActivity.this, AdminAddStaff.class);
+        intent.putExtra(ACTION, "update");
+        intent.putExtra(STAFF, doctor);
+        startActivity(intent);
         Toast.makeText(AdminMainActivity.this, "Doctor "+position + " clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNurseListFragmentInteraction(Staff nurse, int position) {
+        Intent intent = new Intent(AdminMainActivity.this, AdminAddStaff.class);
+        intent.putExtra(ACTION, "update");
+        intent.putExtra(STAFF, nurse);
+        startActivity(intent);
         Toast.makeText(AdminMainActivity.this, "Nurse "+position + " clicked", Toast.LENGTH_SHORT).show();
     }
 }

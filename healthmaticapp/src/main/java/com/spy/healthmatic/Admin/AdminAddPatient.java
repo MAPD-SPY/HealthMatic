@@ -21,13 +21,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.Admin.Fragments.PatientDoctorFragment;
 import com.spy.healthmatic.Admin.Fragments.PatientHealthFragment;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.PatientNurseFragment;
 import com.spy.healthmatic.Admin.Fragments.PatientPersonalFragment;
 import com.spy.healthmatic.Global.GlobalConst;
+import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
@@ -36,6 +40,9 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
 
@@ -43,6 +50,8 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
     private Patient patient;
 
     ArrayList<Tab> tabs;
+    public static ArrayList<Staff> doctors;
+    public static ArrayList<Staff> nurses;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -68,7 +77,6 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
             tabs.add(0, new Tab("Personal", 0));
             currentTabPosition = 0;
         }
-        Log.d("TAAB", "tabs object id >>>> "+tabs.toString());
 
         setSupportActionBar(toolbar);
 
@@ -82,10 +90,54 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
         mViewPager.setCurrentItem(currentTabPosition, true);
 
         tabLayout.setupWithViewPager(mViewPager);
+        downloadDoctorAndNurse();
     }
 
     public ViewPager getViewPagerObject(){
         return mViewPager;
+    }
+
+    private void downloadDoctorAndNurse(){
+        Call<ArrayList<Staff>> call = STAFF_API.getAllDoctors();
+        call.enqueue(new Callback<ArrayList<Staff>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Staff>> call, Response<ArrayList<Staff>> response) {
+                if (!response.isSuccessful()) {
+                    doctors = null;
+                    return;
+                }
+                doctors = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Staff>> call, Throwable t) {
+                doctors = null;
+            }
+        });
+        Call<ArrayList<Staff>> call1 = STAFF_API.getAllNurses();
+        call1.enqueue(new Callback<ArrayList<Staff>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Staff>> call, Response<ArrayList<Staff>> response) {
+                if (!response.isSuccessful()) {
+                    nurses = null;
+                    return;
+                }
+                nurses = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Staff>> call, Throwable t) {
+                nurses = null;
+            }
+        });
+    }
+
+    public ArrayList<Staff> getDoctors(){
+        return doctors;
+    }
+
+    public ArrayList<Staff> getNurses(){
+        return nurses;
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

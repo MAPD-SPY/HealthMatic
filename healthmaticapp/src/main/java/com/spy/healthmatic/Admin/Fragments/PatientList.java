@@ -42,14 +42,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLayout.OnRefreshListener {
 
-    public Retrofit retrofit;
     @Bind(R.id.recyler_list)
     RecyclerView mRecyclerView;
     @Bind(R.id.progress_dialog)
     ProgressBar mProgressDialog;
     @Bind(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
-    PatientsListAPI patientsListAPICall;
 
     ArrayList<Patient> patients;
     private OnPatientListFragmentInteractionListener mListener;
@@ -73,10 +71,6 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_list, container, false);
         ButterKnife.bind(this, view);
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.circlePVRim),
 
@@ -86,7 +80,6 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
 
                 getResources().getColor(R.color.yellow));
 
-        patientsListAPICall = retrofit.create(PatientsListAPI.class);
 //      Setting Recyclerview
         mRecyclerView.setHasFixedSize(false);
 //      Use a linear layout manager
@@ -175,7 +168,7 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
     }
 
     private void getPatientList(final boolean isRefresh) {
-        Call<ArrayList<Patient>> call = patientsListAPICall.getPatientList();
+        Call<ArrayList<Patient>> call = PATIENTS_LIST_API.getPatientList();
         call.enqueue(new Callback<ArrayList<Patient>>() {
             @Override
             public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
@@ -251,7 +244,7 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
     }
 
     private void deletePatient(final Patient patient, final int position){
-        Call<ResponseBody> call = patientsListAPICall.deletePatient(patient.get_id());
+        Call<ResponseBody> call = PATIENTS_LIST_API.deletePatient(patient.get_id());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

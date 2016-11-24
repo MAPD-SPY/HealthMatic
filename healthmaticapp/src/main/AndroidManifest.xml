@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Welcome.Login"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Welcome.Login"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Admin.AdminMainActivity"
             android:label="@string/title_activity_main2"
@@ -32,18 +33,13 @@
         <activity
             android:name=".Nurse.NursePatientDetailsActivity"
             android:label="@string/title_activity_nurse_patient_details"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Nurse.NurseMainActivity"
-            >
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Nurse.NurseMainActivity">
-
-
-            </meta-data>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Nurse.NurseMainActivity"></meta-data>
         </activity>
-
-
-         <activity
+        <activity
             android:name=".Doctor.MainDrActivity"
             android:label="@string/title_activity_main_dr"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -56,20 +52,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.spy.healthmatic.Doctor.MainDrActivity" />
         </activity>
-
         <activity
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
+            android:name=".Doctor.AddMedsActivity"
             android:label="@string/strMedication"
-            android:name=".Doctor.AddMedsActivity" />
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
+            android:name=".Doctor.AddTestActivity"
             android:label="@string/strLaboratoryTests"
-            android:name=".Doctor.AddTestActivity"></activity>
-         <activity android:name=".Admin.AdminAddPatient"
-             android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity
+            android:name=".Admin.AdminAddPatient"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
-        <activity android:name=".LabAgent.LabAgentMainActivity"></activity>
+        <activity android:name=".LabAgent.LabAgentMainActivity" />
+        <activity
+            android:name=".Admin.AdminAddStaff"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

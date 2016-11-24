@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
  */
 
 public class AddPatientNurseAdapter extends RecyclerView.Adapter<AddPatientNurseAdapter.ViewHolder> {
-    private ArrayList<Nurse> nurses;
+    private ArrayList<Staff> nurses;
 
-    public AddPatientNurseAdapter(ArrayList<Nurse> nurses) {
+    public AddPatientNurseAdapter(ArrayList<Staff> nurses) {
         this.nurses = nurses;
     }
 
@@ -33,10 +34,10 @@ public class AddPatientNurseAdapter extends RecyclerView.Adapter<AddPatientNurse
 
     @Override
     public void onBindViewHolder(AddPatientNurseAdapter.ViewHolder holder, int position) {
-        final Nurse nurse = nurses.get(position);
-        holder.mNameView.setText(nurse.getName());
-        holder.mPateintConditionView.setText(nurse.getFloor()+"");
-        holder.mRoomNumberView.setText(nurse.getFloor()+"");
+        final Staff nurse = nurses.get(position);
+        holder.mNameView.setText(nurse.getFirstName());
+        holder.mPateintConditionView.setText(nurse.getLastName());
+        holder.mRoomNumberView.setText(nurse.getUsername());
         if("male".equals(nurse.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {
