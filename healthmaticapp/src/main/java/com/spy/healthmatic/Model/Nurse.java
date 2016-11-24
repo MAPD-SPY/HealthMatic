@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Nurse implements Serializable{
+    private int id;
     private String name;
     private String gender;
     private int floor;
@@ -14,9 +15,18 @@ public class Nurse implements Serializable{
     public Nurse(){}
 
     public Nurse(String name, String gender, int floor){
+        this.id = 1;
         this.name = name;
         this.gender = gender;
         this.floor = floor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

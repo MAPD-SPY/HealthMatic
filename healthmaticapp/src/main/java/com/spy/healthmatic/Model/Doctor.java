@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class Doctor implements Serializable {
+    private int id;
     private String name;
     private String gender;
     private String speciality;
@@ -16,9 +17,18 @@ public class Doctor implements Serializable {
     }
 
     public Doctor(String name, String gender, String speciality){
+        this.id = 1;
         this.name = name;
         this.gender = gender;
         this.speciality = speciality;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

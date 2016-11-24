@@ -21,6 +21,7 @@ import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
@@ -144,12 +145,12 @@ public class AdminMainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(Doctor doctor, int position) {
+    public void onListFragmentInteraction(Staff doctor, int position) {
         Toast.makeText(AdminMainActivity.this, "Doctor "+position + " clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onListFragmentInteraction(Nurse nurse, int position) {
+    public void onNurseListFragmentInteraction(Staff nurse, int position) {
         Toast.makeText(AdminMainActivity.this, "Nurse "+position + " clicked", Toast.LENGTH_SHORT).show();
     }
 }

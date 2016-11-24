@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Patient extends Person implements Serializable {
 
-    private String id;
+    private String _id;
     private int weight;
     private int height;
     private String bloodType;
@@ -50,7 +50,7 @@ public class Patient extends Person implements Serializable {
 //        // Set the contact info
 //        this.setContact(newContact(jsonObject.getJSONObject("contact")));
 
-        this.id = jsonObject.getString("_id");
+        this._id = jsonObject.getString("_id");
 
         this.weight = jsonObject.getInt("weight");
         this.height = jsonObject.getInt("height");
@@ -192,6 +192,14 @@ public class Patient extends Person implements Serializable {
         return drNotes;
     }
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
     public int getWeight() {
         return weight;
     }
@@ -310,10 +318,6 @@ public class Patient extends Person implements Serializable {
 
     public void setDoctors(ArrayList<Doctor> doctors) {
         this.doctors = doctors;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Insurance getInsurance() {
