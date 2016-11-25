@@ -8,6 +8,23 @@
     android:fitsSystemWindows="true"
     tools:context="com.spy.healthmatic.Nurse.NursePatientDetailsActivity">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/containerPatientNr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_prescription_pill"
+        app:fabSize="normal"
+        app:layout_anchor="@id/containerPatientNr"
+        app:layout_anchorGravity="bottom|right|end" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbarPatientDr"
         android:layout_width="match_parent"
@@ -45,21 +62,4 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/containerPatientNr"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_prescription_pill"
-        app:fabSize="normal"
-        app:layout_anchor="@id/containerPatientNr"
-        app:layout_anchorGravity="bottom|right|end" />
 </android.support.design.widget.CoordinatorLayout>
