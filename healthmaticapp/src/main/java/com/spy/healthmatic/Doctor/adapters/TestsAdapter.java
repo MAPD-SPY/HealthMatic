@@ -61,7 +61,7 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
     public void onBindViewHolder(TestsAdapter.ViewHolder holder, int position) {
         LabTest labTest = mLabTests.get(position);
 
-        (holder.mtvTestName).setText(labTest.getType());
+        (holder.mtvTestName).setText(labTest.getTestType());
         (holder.mtvTestRequestedByName).setText(labTest.getRequestedByName());
         (holder.mtvTestRequestedDateVal).setText(labTest.getRequestDate());
         (holder.mtvTestStatusVal).setText(labTest.getStatus());

@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class LabTest implements Serializable {
     private String requestDate;
     private String requestedByName;
-    private String type;
+    private String testType;
     private String sampleTakenDate;
     private String sampleTakenByName;
     private String imageResult;
@@ -24,9 +24,9 @@ public class LabTest implements Serializable {
     }
 
     public LabTest(JSONObject jsonObject) throws JSONException {
-        this.requestDate = jsonObject.getString("date");
+        this.requestDate = jsonObject.getString("requestDate");
         this.requestedByName = jsonObject.getString("requestedByName");
-        this.type = jsonObject.getString("type");
+        this.testType = jsonObject.getString("testType");
         this.sampleTakenDate = jsonObject.getString("sampleTakenDate");
         this.sampleTakenByName = jsonObject.getString("sampleTakenByName");
         this.status = jsonObject.getString("status");
@@ -50,12 +50,12 @@ public class LabTest implements Serializable {
         this.requestedByName = requestedByName;
     }
 
-    public String getType() {
-        return type;
+    public String getTestType() {
+        return testType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTestType(String testType) {
+        this.testType = testType;
     }
 
     public String getSampleTakenDate() {

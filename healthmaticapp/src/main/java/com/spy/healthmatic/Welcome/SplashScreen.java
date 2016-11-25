@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,13 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.spy.healthmatic.Admin.AdminMainActivity;
+import com.spy.healthmatic.DB.StaffDB;
+import com.spy.healthmatic.Doctor.MainDrActivity;
+import com.spy.healthmatic.Global.GlobalFunctions;
+import com.spy.healthmatic.LabAgent.LabAgentMainActivity;
+import com.spy.healthmatic.Model.Staff;
+import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 
 /**
@@ -92,6 +100,8 @@ public class SplashScreen extends AppCompatActivity {
         }
     };
 
+    AnimatorSet animatorSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +110,6 @@ public class SplashScreen extends AppCompatActivity {
 
         mVisible = true;
         logo_image = findViewById(R.id.logo_image);
-
 
 //        logo_image.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -165,6 +174,7 @@ public class SplashScreen extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         animation1();
+
     }
 
     private void animation1() {
@@ -182,11 +192,11 @@ public class SplashScreen extends AppCompatActivity {
                 ObjectAnimator alphaAnimation = ObjectAnimator.ofFloat(logo_image, "alpha", 1.0F, 0.0F);
                 alphaAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
                 alphaAnimation.setDuration(1200);
-                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet = new AnimatorSet();
                 animatorSet.play(scaleXAnimation).with(scaleYAnimation).with(alphaAnimation);
                 animatorSet.setStartDelay(500);
                 animatorSet.start();
-                startIntent();
+                new CheckUserInDB().execute();
             }
         }, 1200);
     }
@@ -224,4 +234,48 @@ public class SplashScreen extends AppCompatActivity {
             }
         },1200);
     }
+
+    private class CheckUserInDB extends AsyncTask<Void, Void, Boolean> {
+
+        Staff staff;
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            boolean dbExist = GlobalFunctions.checkDataBase(SplashScreen.this);
+            if (!dbExist)
+                return false;
+            staff = new StaffDB(SplashScreen.this).getStaff();
+            return (staff != null && staff.isLoggedIn());
+        }
+
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+                if ("admin".equals(staff.getRole())) {
+                    Intent intent = new Intent(SplashScreen.this, AdminMainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else if ("doctor".equals(staff.getRole())) {
+                    Intent intent = new Intent(SplashScreen.this, MainDrActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else if ("nurse".equals(staff.getRole())) {
+                    startActivity(new Intent(SplashScreen.this, NurseMainActivity.class));
+                } else if ("lab".equals(staff.getRole())) {
+                    startActivity(new Intent(SplashScreen.this, LabAgentMainActivity.class));
+                }
+                (SplashScreen.this).finish();
+            }else{
+                startIntent();
+            }
+
+        }
+    }
+
+    protected void onPause(){
+        super.onPause();
+        if(animatorSet!=null && animatorSet.isRunning()){
+            animatorSet.end();
+        }
+    }
+
 }
