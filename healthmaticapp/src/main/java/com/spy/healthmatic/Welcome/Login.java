@@ -91,6 +91,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
 
             @Override
             public void onFailure(Call<Staff> call, Throwable t) {
+                progressDialog.dismiss();
                 Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
                 Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
             }

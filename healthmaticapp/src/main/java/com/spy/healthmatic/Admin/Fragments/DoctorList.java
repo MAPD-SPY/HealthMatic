@@ -126,7 +126,7 @@ public class DoctorList extends Fragment implements GlobalConst, SwipeRefreshLay
     private void loadRecyclerViewElements(){
         mProgressDialog.setVisibility(View.GONE);
 //        // use a linear layout manager
-        mAdapter = new DoctorListAdapter(doctors, mListener);
+        mAdapter = new DoctorListAdapter(doctors, mListener, getActivity());
         mRecyclerView.setAdapter(mAdapter);
     }
 

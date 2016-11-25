@@ -25,6 +25,10 @@ public interface GlobalConst {
     String ACTION = "action";
     String CURRENTTABPOSITION = "CurrentTabPosition";
 
+    int REQUEST_TAKE_PHOTO = 1991;
+    int MY_PERMISSIONS_REQUEST_CAMERA = 1992;
+    String FILE_STORAGE_PATH = "gs://ticketing-c6398.appspot.com";
+
     Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
+    android:clickable="true"
+    android:foreground="?selectableItemBackground"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="3dp"
-    card_view:contentPadding="4dp"
-    android:clickable="true"
-    android:foreground="?selectableItemBackground">
+    card_view:contentPadding="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="3dp" >
+        android:padding="3dp">
 
         <ImageView
             android:id="@+id/ivPatient"
@@ -23,48 +22,44 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
 
-            android:layout_marginRight="16dp"
-            />
+            android:layout_marginRight="16dp" />
 
         <TextView
             android:id="@+id/tvPatientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/ivPatient"
             android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/ivPatient"
             android:text="test"
-            android:textSize="25sp"
-            />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tvPatientCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/ivPatient"
             android:layout_below="@id/tvPatientName"
-            android:textSize="18sp"
-            />
+            android:layout_toEndOf="@id/ivPatient"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvRoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/ivPatient"
             android:layout_below="@id/tvPatientCondition"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/ivPatient"
             android:text="Room"
-            />
+            android:textSize="15sp" />
 
         <!--<ImageView-->
-            <!--android:id="@+id/tvMed"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_toEndOf="@id/tvRoom"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:text="trds"-->
-            <!--android:gravity="right"-->
-            <!--android:layout_gravity="bottom"-->
-            <!--/>-->
+        <!--android:id="@+id/tvMed"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toEndOf="@id/tvRoom"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="trds"-->
+        <!--android:gravity="right"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--/>-->
 
     </RelativeLayout>
 

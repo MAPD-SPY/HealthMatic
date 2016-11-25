@@ -42,7 +42,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             mView = itemView;
             mNameView = (TextView) itemView.findViewById(R.id.tvPatientName);
             mPateintConditionView = (TextView) itemView.findViewById(R.id.tvPatientCondition);
-            mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoomNum);
+            mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoom);
             mPatientGenderIdicator = (ImageView) itemView.findViewById(R.id.ivPatient);
         }
     }
@@ -59,7 +59,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         final Patient patient = patients.get(position);
         holder.mNameView.setText(patient.getFirstName());
         holder.mPateintConditionView.setText(patient.getCondition());
-        holder.mRoomNumberView.setText(patient.getBloodType());
+        holder.mRoomNumberView.setText(patient.getBloodType()+"");
         if("male".equals(patient.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {

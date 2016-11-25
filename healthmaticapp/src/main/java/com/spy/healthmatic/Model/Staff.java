@@ -20,6 +20,7 @@ public class Staff extends Person implements Serializable{
     private String password;
     private String fingerKey;
     private boolean isLoggedIn;
+    private String imageName;
     private String role;
     private String floor;
     private String[] specialty;
@@ -141,6 +142,14 @@ public class Staff extends Person implements Serializable{
 
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public ArrayList<Patient> getPatients() {
