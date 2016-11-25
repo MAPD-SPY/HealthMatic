@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.AdminAddPatient;
 import com.spy.healthmatic.Global.GlobalConst;
@@ -88,7 +89,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
     }
 
     private void setView(){
-        mSavePatientHelathButton.setVisibility(View.GONE);
+        Toast.makeText(getActivity(), "Click on button below to save any changes.", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.save_patient_health)
@@ -164,11 +165,12 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
             return;
         }
         patient.setInsurance(insurance);
-        Tab tab = new Tab("Doctos", 2);
-        tabs.add(2, tab);
-        mViewPager.getAdapter().notifyDataSetChanged();
+        if(tabs.size()<3) {
+            Tab tab = new Tab("Doctos", 2);
+            tabs.add(2, tab);
+            mViewPager.getAdapter().notifyDataSetChanged();
+        }
         mViewPager.setCurrentItem(2, true);
-        mSavePatientHelathButton.setVisibility(View.GONE);
     }
 
 }

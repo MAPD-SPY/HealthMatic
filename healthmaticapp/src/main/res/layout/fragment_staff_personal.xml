@@ -23,7 +23,7 @@
                 style="@style/FormTitle"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
-                android:text="Patient Personal Info"
+                android:text="Staff Personal Info"
                 android:textAlignment="center" />
 
             <LinearLayout
@@ -81,8 +81,8 @@
                         android:id="@+id/radio_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="M" />
+                        android:text="M"
+                        android:checked="true"/>
 
                     <RadioButton
                         android:id="@+id/radio_female"
@@ -91,7 +91,6 @@
                         android:text="F" />
                 </RadioGroup>
             </LinearLayout>
-
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -107,7 +106,7 @@
 
             <TextView
                 style="@style/DividerTextStyle"
-                android:text="Contact Information" />
+                android:text="Contact Information"/>
 
             <View
                 android:layout_width="match_parent"
@@ -143,43 +142,7 @@
 
             <TextView
                 style="@style/DividerTextStyle"
-                android:text="Emergency Information" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/blue" />
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_emergency_name"
-                    style="@style/InputStyle"
-                    android:hint="Emergency Contact Name"
-                    android:inputType="textPersonName" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_emergency_contact"
-                    style="@style/InputStyle"
-                    android:hint="Emergency Contact Number"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                style="@style/DividerTextStyle"
-                android:text="Address" />
+                android:text="Address"/>
 
             <View
                 android:layout_width="match_parent"
@@ -239,8 +202,7 @@
 
             <TextView
                 style="@style/DividerTextStyle"
-                android:text="Maritial Status" />
-
+                android:text="Maritial Status"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -273,8 +235,8 @@
                         android:id="@+id/radio_married"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="Married" />
+                        android:text="Married"
+                        android:checked="true"/>
 
                     <RadioButton
                         android:id="@+id/radio_un_married"
@@ -285,7 +247,7 @@
             </LinearLayout>
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/save_patient_personal"
+                android:id="@+id/save_staff_personal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"

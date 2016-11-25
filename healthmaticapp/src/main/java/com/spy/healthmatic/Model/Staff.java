@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Model;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +15,11 @@ import java.util.ArrayList;
  */
 
 public class Staff extends Person implements Serializable{
-    private String id;
+    private String _id;
+    private String username;
+    private String password;
+    private String fingerKey;
+    private boolean isLoggedIn;
     private String role;
     private String floor;
     private String[] specialty;
@@ -32,7 +38,7 @@ public class Staff extends Person implements Serializable{
                 jsonObject.getJSONObject("contact"),
                 jsonObject.getBoolean("maritalStatus"));
 
-        this.id = jsonObject.getString("_id");
+        this._id = jsonObject.getString("_id");
         this.role = jsonObject.getString("role");
 
         try {
@@ -97,12 +103,44 @@ public class Staff extends Person implements Serializable{
         this.patientRefs = patientRefs;
     }
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFingerKey() {
+        return fingerKey;
+    }
+
+    public void setFingerKey(String fingerKey) {
+        this.fingerKey = fingerKey;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 
     public ArrayList<Patient> getPatients() {
@@ -112,5 +150,6 @@ public class Staff extends Person implements Serializable{
     public void setPatients(ArrayList<Patient> patients) {
         this.patients = patients;
     }
+
 
 }

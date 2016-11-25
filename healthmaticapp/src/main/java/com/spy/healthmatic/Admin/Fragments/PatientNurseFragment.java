@@ -2,6 +2,8 @@ package com.spy.healthmatic.Admin.Fragments;
 
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -15,17 +17,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.spy.healthmatic.API.PatientsListAPI;
+import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.Admin.Adapters.AddPatientNurseAdapter;
 import com.spy.healthmatic.Admin.AdminAddPatient;
+import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.Global.GlobalConst;
+import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
@@ -51,14 +60,19 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
 
     ArrayList<Tab> tabs;
     ViewPager mViewPager;
-    ArrayList<Nurse> nurses;
+//    ArrayList<Nurse> nurses;
     @Bind(R.id.nurse_list)
     RecyclerView mNurseRecyclerView;
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
-    private Patient patient;
+    private Patient patient, updatedPatient;
     private LinearLayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+
+    ArrayList<Staff> selectedNurses;
+    ArrayAdapter<String> nurseAdapter;
+    ArrayList<String> nurseNames;
+    public ProgressDialog mProgressDialog;
 
     public PatientNurseFragment() {
         // Required empty public constructor
@@ -90,16 +104,41 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
         View rootView = inflater.inflate(R.layout.fragment_patient_nurse, container, false);
         ButterKnife.bind(this, rootView);
         mLayoutManager = new LinearLayoutManager(getActivity());
+        setupAdapter();
         if (patient.getNurses() != null && !patient.getNurses().isEmpty()) {
+            setupSelectedNurses();
+        }else if(selectedNurses!=null && !selectedNurses.isEmpty()){
             progressBar.setVisibility(View.GONE);
-            nurses = patient.getNurses();
             setView();
         }
         return rootView;
     }
 
+    private void setupAdapter(){
+        nurseNames = new ArrayList<>();
+        for(Staff staff : AdminAddPatient.nurses){
+            nurseNames.add(staff.getFirstName() +" "+staff.getLastName());
+        }
+        nurseAdapter =  new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, nurseNames);
+    }
+
+    private void setupSelectedNurses(){
+        for(Nurse nurse : patient.getNurses()){
+            for (Staff staff : AdminAddPatient.nurses){
+                if(staff.get_id().equals(nurse.getId())){
+                    selectedNurses.add(staff);
+                    nurseAdapter.remove(staff.getFirstName() + " " + staff.getLastName());
+                    break;
+                }
+            }
+        }
+        progressBar.setVisibility(View.GONE);
+        Toast.makeText(getActivity(), "Click on button below to save any changes.", Toast.LENGTH_LONG).show();
+        setView();
+    }
+
     private void setView() {
-        mAdapter = new AddPatientNurseAdapter(nurses);
+        mAdapter = new AddPatientNurseAdapter(selectedNurses);
         mNurseRecyclerView.setLayoutManager(mLayoutManager);
         mNurseRecyclerView.setAdapter(mAdapter);
     }
@@ -110,9 +149,17 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
         dialog.setContentView(R.layout.dialog_add_doctor);
         TextView dislogTitle = (TextView) dialog.findViewById(R.id.dialog_title);
         dislogTitle.setText("Select a Nurse");
-        final TextInputEditText nurseName = (TextInputEditText) dialog.findViewById(R.id.doctor);
+        final AutoCompleteTextView nurseName = (AutoCompleteTextView) dialog.findViewById(R.id.doctor);
+        nurseName.setAdapter(nurseAdapter);
         nurseName.setHint("Nurse");
         final AppCompatButton saveToolButton = (AppCompatButton) dialog.findViewById(R.id.add_doctor);
+        saveToolButton.setEnabled(false);
+        nurseName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                saveToolButton.setEnabled(true);
+            }
+        });
         saveToolButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,8 +169,9 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
                     nurseName.requestFocus();
                     return;
                 }
-                Nurse nurse1 = new Nurse(nurse, "Male", 1);
-                saveNurse(nurse1);
+                Staff staff = AdminAddPatient.nurses.get(nurseNames.indexOf(nurse));
+                nurseAdapter.remove(nurse);
+                saveNurse(staff);
                 dialog.dismiss();
             }
         });
@@ -131,30 +179,34 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
         strechDailog(dialog);
     }
 
-    private void saveNurse(Nurse nurse) {
-        if (nurses == null) {
-            nurses = new ArrayList<>();
+    private void saveNurse(Staff nurse) {
+        if (selectedNurses == null) {
+            selectedNurses = new ArrayList<>();
             setView();
             progressBar.setVisibility(View.GONE);
         }
-        nurses.add(nurse);
+        selectedNurses.add(nurse);
         mAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.fab_patient_save)
     public void savePatient() {
-        if (nurses == null || nurses.isEmpty()) {
+        if (selectedNurses == null || selectedNurses.isEmpty()) {
             return;
         }
+        ArrayList<Nurse> nurses = new ArrayList<>();
+        for(Staff staff: selectedNurses){
+            nurses.add(new Nurse(staff.get_id(), staff.getFirstName(), staff.getLastName(), ""));
+        }
         patient.setNurses(nurses);
-        //TODO SAVE PATIENT IN SERVER
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        PatientsListAPI patientsListAPICall = retrofit.create(PatientsListAPI.class);
 
-        Call<Patient> call = patientsListAPICall.createPatient(patient);
+        savePatientInServer();
+        //TODO SAVE PATIENT IN SERVER
+    }
+
+    private void savePatientInServer(){
+        showProgressDialog();
+        Call<Patient> call = PATIENTS_LIST_API.createPatient(patient);
         String patientString = new Gson().toJson(patient);
         call.enqueue(new Callback<Patient>() {
 
@@ -164,24 +216,104 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
                     try {
                         JSONObject jObjError = new JSONObject(response.errorBody().string());
                         Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE jObjError.getString(message) >>>>> " + jObjError.getString("message"));
-                        Toast.makeText(getContext(), jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                        showToast(jObjError.getString("message"));
                     } catch (Exception e) {
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
-                    Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + response.errorBody());
-                    Toast.makeText(getActivity(), "Was not able to ADD Patient. Please try again.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Patient patient = response.body();
-                Toast.makeText(getActivity(), " Patient Added", Toast.LENGTH_LONG).show();
+                updatedPatient = response.body();
+                String updatedPatientString = new Gson().toJson(updatedPatient);
+                updateDoctors();
             }
 
             @Override
             public void onFailure(Call<Patient> call, Throwable t) {
                 Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(getActivity(), "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                showToast("Was not able to connect with server. Please try again.");
             }
         });
+    }
+
+    private void updateDoctors(){
+        ArrayList<Staff> staffs = new ArrayList<>();
+        for(Doctor doctor : patient.getDoctors()){
+            for (Staff staff : AdminAddPatient.doctors){
+                if(staff.get_id().equals(doctor.getId())){
+                    staffs.add(staff);
+                    break;
+                }
+            }
+        }
+        if(staffs.get(0).getPatients()==null){
+            staffs.get(0).setPatients(new ArrayList<Patient>());
+        }
+        staffs.get(0).getPatients().add(updatedPatient);
+        Call<Staff> call = STAFF_API.updateStaff(staffs.get(0).get_id(), staffs.get(0));
+        String doctorString = new Gson().toJson(staffs.get(0));
+        call.enqueue(new Callback<Staff>() {
+
+            @Override
+            public void onResponse(Call<Staff> call, Response<Staff> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Log.d("RETROFIT", "UPDATE DOCTOR RETROFIT FAILURE jObjError.getString(message) >>>>> " + jObjError.getString("message"));
+                        showToast(jObjError.getString("message"));
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    return;
+                }
+                updateNurse();
+            }
+
+            @Override
+            public void onFailure(Call<Staff> call, Throwable t) {
+                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
+                showToast("Was not able to connect with server. Please try again.");
+            }
+        });
+    }
+
+    private void updateNurse(){
+        if(selectedNurses.get(0).getPatients()==null){
+            selectedNurses.get(0).setPatients(new ArrayList<Patient>());
+        }
+        selectedNurses.get(0).getPatients().add(updatedPatient);
+        Call<Staff> call = STAFF_API.updateStaff(selectedNurses.get(0).get_id(), selectedNurses.get(0));
+        String nurseString = new Gson().toJson(selectedNurses.get(0));
+        call.enqueue(new Callback<Staff>() {
+
+            @Override
+            public void onResponse(Call<Staff> call, Response<Staff> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Log.d("RETROFIT", "UPDATE DOCTOR RETROFIT FAILURE jObjError.getString(message) >>>>> " + jObjError.getString("message"));
+                        showToast(jObjError.getString("message"));
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    return;
+                }
+                showToast("Patient added");
+                Intent intent = new Intent(getActivity(), AdminMainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Staff> call, Throwable t) {
+                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
+                showToast("Was not able to connect with server. Please try again.");
+            }
+        });
+    }
+
+    private void showToast(String msg){
+        hideProgressDialog();
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
     }
 
     public void strechDailog(Dialog dialog) {
@@ -193,5 +325,21 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
         window.setAttributes(lp);
         lp = null;
         window = null;
+    }
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setMessage("Creating Patient…");
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 }

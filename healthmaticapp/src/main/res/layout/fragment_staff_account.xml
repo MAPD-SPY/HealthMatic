@@ -23,20 +23,9 @@
                 style="@style/FormTitle"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
-                android:text="Patient Health Info"
+                android:text="Setup Account Info"
                 android:textAlignment="center" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_wieght"
-                    style="@style/InputStyle"
-                    android:hint="Weight (kg)"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -44,34 +33,9 @@
                 android:layout_margin="15dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_height"
+                    android:id="@+id/s_username"
                     style="@style/InputStyle"
-                    android:hint="Height (cm)"
-                    android:inputType="number" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_blood"
-                    style="@style/InputStyle"
-                    android:hint="Blood Type"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_occupation"
-                    style="@style/InputStyle"
-                    android:hint="Occupation"
+                    android:hint="Username"
                     android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
@@ -81,27 +45,16 @@
                 android:layout_margin="15dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_condition"
+                    android:id="@+id/s_password"
                     style="@style/InputStyle"
-                    android:hint="Condition"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_room"
-                    style="@style/InputStyle"
-                    android:hint="Room #"
-                    android:inputType="number" />
+                    android:hint="Password"
+                    android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 style="@style/DividerTextStyle"
-                android:text="Insurance Information"/>
+                android:text="Additional Information" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -116,10 +69,10 @@
                 android:layout_margin="15dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_insurance_name"
+                    android:id="@+id/s_floor"
                     style="@style/InputStyle"
-                    android:hint="Insurance Name"
-                    android:inputType="text" />
+                    android:hint="Floor"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -128,19 +81,19 @@
                 android:layout_margin="15dp">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_insurance_expiry_date"
+                    android:id="@+id/s_speciality"
                     style="@style/InputStyle"
-                    android:hint="Insurance Expiry Date"
-                    android:inputType="number" />
+                    android:hint="Speciality"
+                    android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/save_patient_health"
+                android:id="@+id/save_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_margin="@dimen/fab_margin"
-                app:srcCompat="@drawable/ic_arrow_forward_white_24dp" />
+                app:srcCompat="@drawable/ic_save_white_24dp" />
 
         </LinearLayout>
 

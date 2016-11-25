@@ -33,7 +33,7 @@ import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
 import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
- import com.spy.healthmatic.R;
+import com.spy.healthmatic.R;
 
 public class NursePatientDetailsActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-      Patient patient;
+    Patient patient;
     public static boolean isAgent = false;
 
     private FloatingActionButton fab;
@@ -67,7 +67,6 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
 //    }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientNr);
         setSupportActionBar(toolbar);
 
-        if(getSupportActionBar()!=null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -87,12 +86,12 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
 //
 //        lp.height = 250;
 
-      //  appbar.setLayoutParams(lp);
+        //  appbar.setLayoutParams(lp);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-       // mPage = getArguments().getInt(ARG_PAGE);
+        // mPage = getArguments().getInt(ARG_PAGE);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.containerPatientNr);
@@ -110,6 +109,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
         toolbar.addView(title);
 
+
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsetoolbarPatientDr);
         collapsingToolbarLayout.setTitle("");
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
@@ -123,7 +123,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-                switch(tab.getPosition()) {
+                switch (tab.getPosition()) {
                     case 0:
                         fab.setImageResource(R.drawable.ic_prescription_pill);
                         fab.setVisibility(View.GONE);
@@ -153,7 +153,6 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             }
 
 
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
@@ -166,7 +165,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         });
 
         fab = (FloatingActionButton) findViewById(R.id.fabAdd);
-        if(isAgent){
+        if (isAgent) {
             fab.setVisibility(View.GONE);
         }
         fab.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +213,6 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
     }
 
 
-
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -225,7 +223,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-           // mPage=position;
+            // mPage=position;
             Bundle bundle = new Bundle();
             bundle.putSerializable("PATIENT_OBJ", patient);
 
@@ -271,11 +269,11 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
                 case 1:
                     return "TESTS";
                 case 2:
-                    return  "VITALS";
+                    return "VITALS";
                 case 3:
-                    return  "NOTES";
+                    return "NOTES";
                 case 4:
-                    return  "BIO";
+                    return "BIO";
 
             }
             return null;

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.DoctorList;
 import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -19,9 +20,9 @@ import java.util.ArrayList;
 
 public class AddPatientDoctorsAdapter extends RecyclerView.Adapter<AddPatientDoctorsAdapter.ViewHolder> {
 
-    private ArrayList<Doctor> doctors;
+    private ArrayList<Staff> doctors;
 
-    public AddPatientDoctorsAdapter(ArrayList<Doctor> doctors) {
+    public AddPatientDoctorsAdapter(ArrayList<Staff> doctors) {
         this.doctors = doctors;
     }
     @Override
@@ -33,10 +34,10 @@ public class AddPatientDoctorsAdapter extends RecyclerView.Adapter<AddPatientDoc
 
     @Override
     public void onBindViewHolder(AddPatientDoctorsAdapter.ViewHolder holder, int position) {
-        final Doctor doctor = doctors.get(position);
-        holder.mNameView.setText(doctor.getName());
-        holder.mPateintConditionView.setText(doctor.getSpeciality());
-        holder.mRoomNumberView.setText(doctor.getSpeciality());
+        final Staff doctor = doctors.get(position);
+        holder.mNameView.setText(doctor.getFirstName());
+        holder.mPateintConditionView.setText(doctor.getLastName());
+        holder.mRoomNumberView.setText(doctor.getUsername());
         if("male".equals(doctor.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {

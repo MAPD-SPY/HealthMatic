@@ -19,6 +19,7 @@ import com.spy.healthmatic.API.PatientsListAPI;
 import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.Admin.Adapters.DoctorListAdapter;
 import com.spy.healthmatic.Admin.AdminAddDoctor;
+import com.spy.healthmatic.Admin.AdminAddStaff;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Doctor;
@@ -52,9 +53,6 @@ public class DoctorList extends Fragment implements GlobalConst, SwipeRefreshLay
     private LinearLayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
 
-    public Retrofit retrofit;
-    public StaffAPI staffAPI;
-
     ArrayList<Staff> doctors;
 
     public DoctorList() {
@@ -72,10 +70,6 @@ public class DoctorList extends Fragment implements GlobalConst, SwipeRefreshLay
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_doctor_list, container, false);
         ButterKnife.bind(this, view);
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.circlePVRim),
 
@@ -85,7 +79,6 @@ public class DoctorList extends Fragment implements GlobalConst, SwipeRefreshLay
 
                 getResources().getColor(R.color.yellow));
 
-        staffAPI = retrofit.create(StaffAPI.class);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -105,7 +98,7 @@ public class DoctorList extends Fragment implements GlobalConst, SwipeRefreshLay
     }
 
     private void getDoctorList(final boolean isRefresh){
-        Call<ArrayList<Staff>> call = staffAPI.getAllDoctors();
+        Call<ArrayList<Staff>> call = STAFF_API.getAllDoctors();
         call.enqueue(new Callback<ArrayList<Staff>>() {
             @Override
             public void onResponse(Call<ArrayList<Staff>> call, Response<ArrayList<Staff>> response) {
@@ -151,7 +144,10 @@ public class DoctorList extends Fragment implements GlobalConst, SwipeRefreshLay
     @OnClick(R.id.fab)
     public void addDoctor(){
         Toast.makeText(getActivity(), "Add Doctor clicked", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getActivity(), AdminAddDoctor.class));
+        Intent intent = new Intent(getActivity(), AdminAddStaff.class);
+        intent.putExtra(ROLE, "doctor");
+        intent.putExtra(ACTION, "create");
+        startActivity(intent);
     }
 
     @Override
