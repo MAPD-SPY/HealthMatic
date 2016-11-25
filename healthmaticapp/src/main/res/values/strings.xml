@@ -106,5 +106,10 @@
     <string name="strInfo">Info</string>
     <string name="strAddress">Address</string>
     <string name="strContact">Contact</string>
+    <string name="strDateVal">--</string>
+    <string name="strTempVal">-- C</string>
+    <string name="strHRVal">--- bpm</string>
+    <string name="strBPVal">--- / --- mmHg</string>
+    <string name="strRespirationVal">-- breaths / min</string>
 
 </resources>

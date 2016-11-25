@@ -104,18 +104,23 @@ public class PatientDrActivity extends AppCompatActivity {
                 switch(tab.getPosition()) {
                     case TAB_MEDS:
                         fab.setImageResource(R.drawable.ic_prescription_pill);
+                        fab.show();
                         break;
                     case TAB_TESTS:
                         fab.setImageResource(R.drawable.ic_test);
+                        fab.show();
                         break;
                     case TAB_VITALS:
                         fab.setImageResource(R.drawable.ic_stethoscope);
+                        fab.show();
                         break;
                     case TAB_NOTES:
                         fab.setImageResource(R.drawable.ic_dr_note);
+                        fab.show();
                         break;
                     case TAB_BIO:
                         fab.setImageResource(R.drawable.ic_doctor);
+                        fab.hide();
                         break;
                 }
             }
@@ -269,11 +274,14 @@ public class PatientDrActivity extends AppCompatActivity {
         textViewAdmission.setText(patient.getAdmissionDate());
 
         // Display latest vitals information
-        Vitals vitals = patient.getVitals().get(patient.getVitals().size() - 1);
-        textViewRRate.setText(Integer.toString(vitals.getRespirationRate()) + " breaths / min");
-        textViewBP.setText(Integer.toString(vitals.getSystolic()) + " / " +
-                Integer.toString(vitals.getDiastolic()) + " mmHg");
-        textViewHR.setText(Integer.toString(vitals.getHeartRate()) + " bpm");
-        textViewTemp.setText(Integer.toString(vitals.getTemperature()) + " C");
+        if (patient.getVitals().size() > 0) {
+            Vitals vitals = patient.getVitals().get(patient.getVitals().size() - 1);
+            textViewRRate.setText(Integer.toString(vitals.getRespirationRate()) + " breaths / min");
+            textViewBP.setText(Integer.toString(vitals.getSystolic()) + " / " +
+                    Integer.toString(vitals.getDiastolic()) + " mmHg");
+            textViewHR.setText(Integer.toString(vitals.getHeartRate()) + " bpm");
+            textViewTemp.setText(Integer.toString(vitals.getTemperature()) + " C");
+            textViewCheckup.setText(vitals.getDate());
+        }
     }
 }
