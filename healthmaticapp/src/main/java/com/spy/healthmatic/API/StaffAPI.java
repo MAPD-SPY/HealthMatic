@@ -32,6 +32,9 @@ public interface StaffAPI {
     @GET("/nurses")
     Call<ArrayList<Staff>> getAllNurses();
 
+    @GET("/staffs/{id}/patients")
+    Call<ArrayList<Patient>> getAllStaffPatinet(@Path("id") String _id);
+
     @PUT("/staffs/{id}")
     @Headers("Content-Type: application/json")
     Call<Staff> updateStaff(@Path("id") String _id, @Body Staff staff);

@@ -26,6 +26,7 @@ import com.spy.healthmatic.Model.Patient;
 public class PatientDrActivity extends AppCompatActivity {
 
     private Patient patient;
+
     private int tabPos;
     private FloatingActionButton fab;
     public static boolean isAgent = false;
@@ -50,9 +51,10 @@ public class PatientDrActivity extends AppCompatActivity {
         title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
         toolbar.addView(title);
 
+
         // Setup the tabs to be shown
         String[] tabs = getResources().getStringArray(R.array.strArrayDetails);
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tlPatientsForDoc);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tlPatientsForDoc);
         for (String tabName : tabs) {
             tabLayout.addTab(tabLayout.newTab().setText(tabName));
         }
@@ -73,28 +75,7 @@ public class PatientDrActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-                switch(tab.getPosition()) {
-                    case 0:
-                        fab.setImageResource(R.drawable.ic_prescription_pill);
-                        // fab.show();
-                        break;
-                    case 1:
-                        fab.setImageResource(R.drawable.ic_test);
-                        // fab.show();
-                        break;
-                    case 2:
-                        fab.setImageResource(R.drawable.ic_stethoscope);
-                        // fab.hide();
-                        break;
-                    case 3:
-                        fab.setImageResource(R.drawable.ic_dr_note);
-                        // fab.show();
-                        break;
-                    case 4:
-                        fab.setImageResource(R.drawable.ic_doctor);
-                        // fab.show();
-                        break;
-                }
+
             }
 
             @Override
@@ -107,6 +88,7 @@ public class PatientDrActivity extends AppCompatActivity {
 
             }
         });
+
         fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         if(isAgent){
             fab.setVisibility(View.GONE);
@@ -149,7 +131,7 @@ public class PatientDrActivity extends AppCompatActivity {
                 */
             }
         });
-    }
+     }
 
 
 //    @Override

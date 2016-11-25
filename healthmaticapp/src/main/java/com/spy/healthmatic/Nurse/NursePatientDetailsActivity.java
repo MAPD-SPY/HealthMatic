@@ -2,6 +2,7 @@ package com.spy.healthmatic.Nurse;
 
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.spy.healthmatic.Doctor.AddMedsActivity;
+import com.spy.healthmatic.Doctor.AddTestActivity;
+import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.BioFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
@@ -29,7 +33,7 @@ import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
 import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
- import com.spy.healthmatic.R;
+import com.spy.healthmatic.R;
 
 public class NursePatientDetailsActivity extends AppCompatActivity {
 
@@ -42,7 +46,10 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-      Patient patient;
+    Patient patient;
+    public static boolean isAgent = false;
+
+    private FloatingActionButton fab;
     TextView txtName;
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -60,7 +67,6 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
 //    }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +74,24 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientNr);
         setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+//        android.support.design.widget.AppBarLayout appbar = (android.support.design.widget.AppBarLayout) findViewById(R.id.appbarPatientDr);
+//
+//        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
+//
+//        lp.height = 250;
+
+        //  appbar.setLayoutParams(lp);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-       // mPage = getArguments().getInt(ARG_PAGE);
+        // mPage = getArguments().getInt(ARG_PAGE);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.containerPatientNr);
@@ -89,10 +109,83 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
         toolbar.addView(title);
 
+
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsetoolbarPatientDr);
         collapsingToolbarLayout.setTitle("");
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.transparent));
+
+
+        fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        fab.setVisibility(View.GONE);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+                switch (tab.getPosition()) {
+                    case 0:
+                        fab.setImageResource(R.drawable.ic_prescription_pill);
+                        fab.setVisibility(View.GONE);
+                        // fab.show();
+                        break;
+                    case 1:
+                        fab.setVisibility(View.GONE);
+                        fab.setImageResource(R.drawable.ic_test);
+                        // fab.show();
+                        break;
+                    case 2:
+                        fab.setVisibility(View.VISIBLE);
+                        fab.setImageResource(R.drawable.ic_stethoscope);
+                        // fab.hide();
+                        break;
+                    case 3:
+                        fab.setVisibility(View.GONE);
+                        fab.setImageResource(R.drawable.ic_dr_note);
+                        // fab.show();
+                        break;
+                    case 4:
+                        fab.setVisibility(View.GONE);
+                        fab.setImageResource(R.drawable.ic_doctor);
+                        // fab.show();
+                        break;
+                }
+            }
+
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        if (isAgent) {
+            fab.setVisibility(View.GONE);
+        }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intentAddTest;
+                int i = mViewPager.getCurrentItem();
+
+                switch (i) {
+
+                    case 2:
+                        intentAddTest = new Intent(NursePatientDetailsActivity.this, AddTestActivity.class);
+                        startActivity(intentAddTest);
+                        break;
+
+                }
+
+            }
+        });
     }
 
 
@@ -119,64 +212,6 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    /**
-//     * A placeholder fragment containing a simple view.
-//     */
-//    public static class PlaceholderFragment extends Fragment {
-//        /**
-//         * The fragment argument representing the section number for this
-//         * fragment.
-//         */
-//        private static final String ARG_SECTION_NUMBER = "section_number";
-//        int mPage;
-//
-//        public PlaceholderFragment() {
-//        }
-//
-//        /**
-//         * Returns a new instance of this fragment for the given section
-//         * number.
-//         */
-//        public static PlaceholderFragment newInstance(int sectionNumber) {
-//            PlaceholderFragment fragment = new PlaceholderFragment();
-//            Bundle args = new Bundle();
-//            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-//            fragment.setArguments(args);
-//
-//            return fragment;
-//        }
-//
-//        @Override
-//        public void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//            mPage = getArguments().getInt(ARG_PAGE);
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                                 Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_nurse_patientdetails, container, false);
-////            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-////            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-//            if(mPage==1)
-//            {
-//               View view=inflater.inflate(R.layout.fragment_nurse_patientdetails,container,false);
-//
-//            }
-//            else
-//            {
-//                //TextView textView = (TextView) view;
-//               // textView.setText("Fragment #" + mPage);
-//            }
-//
-//            return rootView;
-//        }
-//    }
-
-/**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
- */
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -188,7 +223,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-           // mPage=position;
+            // mPage=position;
             Bundle bundle = new Bundle();
             bundle.putSerializable("PATIENT_OBJ", patient);
 
@@ -234,12 +269,11 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
                 case 1:
                     return "TESTS";
                 case 2:
-                    return  "VITALS";
-
+                    return "VITALS";
                 case 3:
-                    return  "NOTES";
+                    return "NOTES";
                 case 4:
-                    return  "BIO";
+                    return "BIO";
 
             }
             return null;

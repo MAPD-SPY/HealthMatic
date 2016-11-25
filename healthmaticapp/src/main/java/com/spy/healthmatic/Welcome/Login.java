@@ -59,13 +59,6 @@ public class Login extends AppCompatActivity implements GlobalConst {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-//        loginButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                login();
-//            }
-//        });
     }
 
     @OnClick(R.id.buttonLogin)
@@ -102,6 +95,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
                 Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
 

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="3dp"
+    card_view:contentPadding="4dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:foreground="?selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp" >
+
+        <TextView
+            android:id="@+id/tvDoctorNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/strNotedBy"
+            />
+
+        <TextView
+            android:id="@+id/tvNoteNameStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/tvDoctorNote"
+            android:textSize="16sp"
+            android:paddingLeft="5dp"
+            tools:text="@string/strMedsDrName"
+            />
+
+        <TextView
+            android:id="@+id/tvNoteDate"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDoctorNote"
+            android:layout_alignRight="@id/tvDoctorNote"
+            android:layout_alignLeft="@id/tvDoctorNote"
+            android:paddingTop="2dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/strDate"
+            />
+
+        <TextView
+            android:id="@+id/tvNoteDateVal"
+            android:paddingTop="2dp"
+            android:paddingLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNoteNameStr"
+            android:layout_toEndOf="@id/tvNoteDate"
+            android:textSize="16sp"
+            tools:text="@string/strRxDate"
+            />
+
+        <TextView
+            android:id="@+id/tvNoteNote"
+            android:layout_below="@id/tvNoteDate"
+            android:layout_width="match_parent"
+            android:paddingTop="10dp"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_height="wrap_content"
+            android:maxLines="5"
+            android:text="S: Pt c/o mild lower abd pain but says otherwise ‘doing well’. "/>
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
