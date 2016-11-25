@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/FormTitle"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:text="Patient Health Info"
+                android:textAlignment="center" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_wieght"
+                    style="@style/InputStyle"
+                    android:hint="Weight (kg)"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_height"
+                    style="@style/InputStyle"
+                    android:hint="Height (cm)"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_blood"
+                    style="@style/InputStyle"
+                    android:hint="Blood Type"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_occupation"
+                    style="@style/InputStyle"
+                    android:hint="Occupation"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_condition"
+                    style="@style/InputStyle"
+                    android:hint="Condition"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_room"
+                    style="@style/InputStyle"
+                    android:hint="Room #"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_insurance_name"
+                    style="@style/InputStyle"
+                    android:hint="Insurance Name"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/p_insurance_expiry_date"
+                    style="@style/InputStyle"
+                    android:hint="Insurance Expiry Date"
+                    android:inputType="number" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/save_patient_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@drawable/ic_arrow_forward_white_24dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.v4.widget.NestedScrollView>

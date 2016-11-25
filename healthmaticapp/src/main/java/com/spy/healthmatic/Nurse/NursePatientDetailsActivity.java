@@ -2,6 +2,7 @@ package com.spy.healthmatic.Nurse;
 
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -80,6 +81,13 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+//        android.support.design.widget.AppBarLayout appbar = (android.support.design.widget.AppBarLayout) findViewById(R.id.appbarPatientDr);
+//
+//        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
+//
+//        lp.height = 250;
+
+      //  appbar.setLayoutParams(lp);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
