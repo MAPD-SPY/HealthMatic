@@ -3,11 +3,18 @@ package com.spy.healthmatic.Global;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.util.Log;
+import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+import com.spy.healthmatic.API.StaffAPI;
+import com.spy.healthmatic.DB.StaffDB;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
+import com.spy.healthmatic.Model.Staff;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,34 +23,40 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by yatin on 28/10/16.
  */
 
-public class GlobalFunctions {
+public class GlobalFunctions implements GlobalConst{
 
     public static ArrayList<Doctor> getDummyDoctors(int maxCount){
         ArrayList<Doctor> doctors = new ArrayList<>();
-        for (int i=0; i<maxCount; i++){
-            if(i%2==0) {
-                doctors.add(new Doctor("Doctor "+i, "male", "Heart"));
-            }else{
-                doctors.add(new Doctor("Doctor "+i, "female", "Brain"));
-            }
-        }
+//        for (int i=0; i<maxCount; i++){
+//            if(i%2==0) {
+//                doctors.add(new Doctor("Doctor "+i, "male", "Heart"));
+//            }else{
+//                doctors.add(new Doctor("Doctor "+i, "female", "Brain"));
+//            }
+//        }
         return doctors;
     }
 
     public static ArrayList<Nurse> getDummyNurses(int maxCount){
         ArrayList<Nurse> nurses = new ArrayList<>();
-        for (int i=0; i<maxCount; i++){
-            if(i%2==0) {
-                nurses.add(new Nurse("Nurse "+i, "male", i));
-            }else{
-                nurses.add(new Nurse("Nurse "+i, "female", i));
-            }
-        }
+//        for (int i=0; i<maxCount; i++){
+//            if(i%2==0) {
+//                nurses.add(new Nurse("Nurse "+i, "male", i));
+//            }else{
+//                nurses.add(new Nurse("Nurse "+i, "female", i));
+//            }
+//        }
         return nurses;
     }
 
@@ -83,5 +96,42 @@ public class GlobalFunctions {
         return json;
     }
 
+    public static String getTodaysDateFormatted() {
+        java.text.SimpleDateFormat formattedDt = new java.text.SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        return formattedDt.format(new Date());
+    }
 
+    public static String getStaffJson(Staff staff) {
+        return new Gson().toJson(staff);
+    }
+
+    public static Staff getStaff(String json) {
+        if (json == null)
+            return null;
+        else {
+            return new Gson().fromJson(json, Staff.class);
+        }
+    }
+
+    public static boolean checkDataBase(Context context) {
+        SQLiteDatabase checkDB = null;
+        try {
+
+            checkDB = SQLiteDatabase.openDatabase(context.getDatabasePath(GlobalConst.DATABASE_NAME).toString(), null,
+                    SQLiteDatabase.OPEN_READONLY);
+            checkDB.close();
+        } catch (SQLiteException e) {
+            // database doesn't exist yet.
+        }
+        return checkDB != null;
+    }
+
+    public static void upgrade_tables(Context con, SQLiteDatabase db) {
+        new StaffDB(con).onUpgrade(db, 0, 0);
+        db.close();
+    }
+
+    public static Staff getStaff(Context context){
+        return new StaffDB(context).getStaff();
+    }
 }

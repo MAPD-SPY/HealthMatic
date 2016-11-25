@@ -4,7 +4,7 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_main2">Admin</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -42,7 +42,7 @@
     <string name="str_hint_EmailAddress">E-mail address</string>
     <string name="str_hint_Password">Password</string>
     <string name="str_btn_Login">Log in</string>
-     <string name="title_activity_nurse_patient_details">NursePatientDetailsActivity</string>
+    <string name="title_activity_nurse_patient_details">NursePatientDetailsActivity</string>
 
     <string name="title_activity_main_dr">My Patients</string>
     <string name="strRoom">Room #:</string>

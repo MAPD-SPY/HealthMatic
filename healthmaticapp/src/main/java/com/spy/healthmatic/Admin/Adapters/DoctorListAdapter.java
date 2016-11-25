@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.DoctorList;
 import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ import java.util.ArrayList;
 
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.ViewHolder> {
 
-    private ArrayList<Doctor> doctors;
+    private ArrayList<Staff> doctors;
     private final DoctorList.OnDoctorListFragmentInteractionListener mListener;
 
-    public DoctorListAdapter(ArrayList<Doctor> doctors, DoctorList.OnDoctorListFragmentInteractionListener listener) {
+    public DoctorListAdapter(ArrayList<Staff> doctors, DoctorList.OnDoctorListFragmentInteractionListener listener) {
         this.doctors = doctors;
         mListener = listener;
     }
@@ -53,11 +54,11 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
 
     @Override
     public void onBindViewHolder(DoctorListAdapter.ViewHolder holder, final int position) {
-        final Doctor doctor = doctors.get(position);
-        holder.mNameView.setText(doctor.getName());
-        holder.mPateintConditionView.setText(doctor.getSpeciality());
-        holder.mRoomNumberView.setText(doctor.getSpeciality());
-        if("male".equals(doctor.getGender())){
+        final Staff doctor = doctors.get(position);
+        holder.mNameView.setText(doctor.getFirstName());
+        holder.mPateintConditionView.setText(doctor.getLastName());
+        holder.mRoomNumberView.setText(doctor.getFloor()+"");
+        if("male".equals(doctor.getGender()+"")){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_female);

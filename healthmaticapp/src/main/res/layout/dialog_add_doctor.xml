@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        style="@style/FormTitle"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:text="Select a Doctor"
+        android:textAlignment="center" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/doctor"
+            style="@style/InputStyle"
+            android:hint="Doctor"
+            android:imeOptions="actionDone"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/add_doctor"
+        style="@style/ButtonStyle"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:text="Add" />
+</LinearLayout>
