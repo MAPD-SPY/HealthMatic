@@ -29,6 +29,7 @@ import cz.msebera.android.httpclient.protocol.HTTP;
  */
 public class AddVitalsActivity extends AppCompatActivity {
 
+    private String doctorName;
     private String patientID;
     private EditText bpSystolic, bpDiastolic, heartRate, temperature, respirationRate;
 
@@ -39,6 +40,7 @@ public class AddVitalsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
+        doctorName = intent.getStringExtra("DOCTOR_NAME");
 
         bpSystolic = (EditText) findViewById(R.id.etSystolic);
         bpDiastolic = (EditText) findViewById(R.id.etDiastolic);
@@ -80,7 +82,7 @@ public class AddVitalsActivity extends AppCompatActivity {
         jsonParams.put("temperature", temperature.getText().toString());
         jsonParams.put("systolic", bpSystolic.getText().toString());
         jsonParams.put("diastolic", bpDiastolic.getText().toString());
-        jsonParams.put("takenByName", "Dr John Smith");
+        jsonParams.put("takenByName", doctorName);
         addVitals(jsonParams);
     }
 

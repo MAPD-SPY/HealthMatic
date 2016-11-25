@@ -27,11 +27,13 @@ public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
     private Patient patient;
+    private String doctorName;
 
-    public PatientTabPagerAdapter(FragmentManager fm, int numberofTabs, Patient patient) {
+    public PatientTabPagerAdapter(FragmentManager fm, int numberofTabs, Patient patient, String doctorName) {
         super(fm);
         this.tabCount = numberofTabs;
         this.patient = patient;
+        this.doctorName = doctorName;
     }
 
     @Override
@@ -39,6 +41,7 @@ public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("PATIENT_OBJ", patient);
+        bundle.putString("DOCTOR_NAME", doctorName);
 
         switch (position) {
             case TAB_MEDS:

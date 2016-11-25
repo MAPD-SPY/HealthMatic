@@ -20,6 +20,8 @@ import java.util.List;
  * Created by shelalainechan on 2016-11-01.
  */
 public class TestsFragment extends Fragment {
+
+    private String doctorName;
     private TestsAdapter testsAdapter;
     private Patient patient;
     private static List<LabTest> labTests;
@@ -34,6 +36,7 @@ public class TestsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
+            doctorName = getArguments().getString("DOCTOR_NAME");
             labTests = patient.getLabTests();
             testsAdapter = new TestsAdapter(getActivity(), labTests);
         }

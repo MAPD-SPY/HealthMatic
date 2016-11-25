@@ -71,7 +71,7 @@ public class MainDrActivity extends AppCompatActivity {
         }
         numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
         patients = doctor.getPatients();
-        patientsAdapter = new PatientsAdapter(this, patients);
+        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
         recyclerView.setAdapter(patientsAdapter);

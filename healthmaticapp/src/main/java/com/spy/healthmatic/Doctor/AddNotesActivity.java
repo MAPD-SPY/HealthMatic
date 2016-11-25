@@ -25,6 +25,7 @@ import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class AddNotesActivity extends AppCompatActivity {
 
+    private String doctorName;
     private String patientID;
     private EditText drNotes;
 
@@ -35,6 +36,7 @@ public class AddNotesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
+        doctorName = intent.getStringExtra("DOCTOR_NAME");
 
         drNotes = (EditText) findViewById(R.id.etDrNotes);
         // Setup Cancel button handler
@@ -67,7 +69,7 @@ public class AddNotesActivity extends AppCompatActivity {
         JSONObject jsonParams = new JSONObject();
         jsonParams.put("date", TimeHelpers.getCurrentDateAndTime());
         jsonParams.put("notes", drNotes.getText().toString());
-        jsonParams.put("diagnosedByName", "Dr John Smith");
+        jsonParams.put("diagnosedByName", doctorName);
         addNotes(jsonParams);
     }
 

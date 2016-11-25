@@ -36,6 +36,7 @@ import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class AddTestActivity extends AppCompatActivity {
 
+    private String doctorName;
     private static ArrayList<LabTestType> labTestTypes;
     private ArrayList<String> mTestsSelected;
     private LabTestTypeAdapter labTestTypeAdapter;
@@ -55,6 +56,7 @@ public class AddTestActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
+        doctorName = intent.getStringExtra("DOCTOR_NAME");
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvLabTestType);
         recyclerView.setAdapter(labTestTypeAdapter);
@@ -108,7 +110,7 @@ public class AddTestActivity extends AppCompatActivity {
 
         JSONObject jsonParams = new JSONObject();
         jsonParams.put("requestDate", TimeHelpers.getCurrentDateAndTime());
-        jsonParams.put("requestedByName", "Dr John Smith");
+        jsonParams.put("requestedByName", doctorName);
         jsonParams.put("testType", mTestsSelected.get(0));
         jsonParams.put("sampleTakenDate", "");
         jsonParams.put("sampleTakenByName", "");

@@ -16,6 +16,7 @@ import com.spy.healthmatic.R;
  */
 public class BioFragment extends Fragment {
 
+    private String doctorName;
     private Patient patient;
 
     public BioFragment() {
@@ -27,6 +28,7 @@ public class BioFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
+            doctorName = getArguments().getString("DOCTOR_NAME");
         }
     }
 

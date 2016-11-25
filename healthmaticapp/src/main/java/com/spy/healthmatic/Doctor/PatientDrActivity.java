@@ -41,6 +41,7 @@ public class PatientDrActivity extends AppCompatActivity {
     private static final int TAB_BIO = 4;
 
     private ViewPager mViewPager;
+    private String doctorName;
     private static Patient patient;
     private int tabPos;
     private FloatingActionButton fab;
@@ -67,6 +68,7 @@ public class PatientDrActivity extends AppCompatActivity {
         // Get a reference of the patient object
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
+        doctorName = "Dr " + intent.getStringExtra("DOCTOR_NAME");
         isAgent = intent.getBooleanExtra("isAgent", false);
 
         // Initialize fields in the Summary/Latest view
@@ -89,7 +91,7 @@ public class PatientDrActivity extends AppCompatActivity {
         // primary sections of the activity.
         final PagerAdapter pagerAdapter = new PatientTabPagerAdapter(getSupportFragmentManager(),
                 tabLayout.getTabCount(),
-                patient);
+                patient, doctorName);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
@@ -150,21 +152,25 @@ public class PatientDrActivity extends AppCompatActivity {
                     case TAB_MEDS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddMedsActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_TESTS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddTestActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_VITALS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddVitalsActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_NOTES:
                         intentAddTest = new Intent(PatientDrActivity.this, AddNotesActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_BIO:

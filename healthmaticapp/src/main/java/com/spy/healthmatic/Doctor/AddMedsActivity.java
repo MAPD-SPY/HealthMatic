@@ -32,6 +32,7 @@ import cz.msebera.android.httpclient.protocol.HTTP;
 public class AddMedsActivity extends AppCompatActivity {
 
     private String patientID;
+    private String doctorName;
     private SeekBar sbDuration;
     private EditText medName, medFreq, medDosage, medDuration;
 
@@ -43,6 +44,7 @@ public class AddMedsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
+        doctorName = intent.getStringExtra("DOCTOR_NAME");
 
         medName = (EditText) findViewById(R.id.etMedsInName);
         medFreq = (EditText) findViewById(R.id.etMedsFrequency);
@@ -117,7 +119,7 @@ public class AddMedsActivity extends AppCompatActivity {
         jsonParams.put("dosage", medDosage.getText().toString());
         jsonParams.put("frequency", medFreq.getText().toString());
         jsonParams.put("duration", medDuration.getText().toString());
-        jsonParams.put("prescribedByName", "Dr John Smith");
+        jsonParams.put("prescribedByName", doctorName);
         addPrescription(jsonParams);
     }
 
