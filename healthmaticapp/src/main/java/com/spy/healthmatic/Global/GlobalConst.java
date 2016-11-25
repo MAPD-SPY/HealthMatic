@@ -13,6 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public interface GlobalConst {
     String BASE_URL = "http://shelalainechan.com";
 
+    int DATABASE_VERSION = 2;
+    String DATABASE_NAME = "HEALTHMATIC";
+
+    String TABLE_STAFF = "STAFF_TABLE";
+
     String TABS = "tabs";
     String PATIENT = "patient";
     String STAFF = "staff";

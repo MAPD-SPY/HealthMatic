@@ -5,22 +5,22 @@ package com.spy.healthmatic.Model;
  */
 
 public class LoginModel {
-    private String usrname;
+    private String username;
     private String password;
     private String fingerKey;
 
-    public LoginModel(String usrname, String password, String fingerKey) {
-        this.usrname = usrname;
+    public LoginModel(String username, String password, String fingerKey) {
+        this.username = username;
         this.password = password;
         this.fingerKey = fingerKey;
     }
 
     public String getUsrname() {
-        return usrname;
+        return username;
     }
 
     public void setUsrname(String usrname) {
-        this.usrname = usrname;
+        this.username = usrname;
     }
 
     public String getPassword() {

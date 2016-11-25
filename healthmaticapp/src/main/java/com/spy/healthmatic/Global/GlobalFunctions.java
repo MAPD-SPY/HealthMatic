@@ -3,11 +3,15 @@ package com.spy.healthmatic.Global;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.util.Log;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
 import com.spy.healthmatic.API.StaffAPI;
+import com.spy.healthmatic.DB.StaffDB;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Staff;
@@ -97,4 +101,37 @@ public class GlobalFunctions implements GlobalConst{
         return formattedDt.format(new Date());
     }
 
+    public static String getStaffJson(Staff staff) {
+        return new Gson().toJson(staff);
+    }
+
+    public static Staff getStaff(String json) {
+        if (json == null)
+            return null;
+        else {
+            return new Gson().fromJson(json, Staff.class);
+        }
+    }
+
+    public static boolean checkDataBase(Context context) {
+        SQLiteDatabase checkDB = null;
+        try {
+
+            checkDB = SQLiteDatabase.openDatabase(context.getDatabasePath(GlobalConst.DATABASE_NAME).toString(), null,
+                    SQLiteDatabase.OPEN_READONLY);
+            checkDB.close();
+        } catch (SQLiteException e) {
+            // database doesn't exist yet.
+        }
+        return checkDB != null;
+    }
+
+    public static void upgrade_tables(Context con, SQLiteDatabase db) {
+        new StaffDB(con).onUpgrade(db, 0, 0);
+        db.close();
+    }
+
+    public static Staff getStaff(Context context){
+        return new StaffDB(context).getStaff();
+    }
 }

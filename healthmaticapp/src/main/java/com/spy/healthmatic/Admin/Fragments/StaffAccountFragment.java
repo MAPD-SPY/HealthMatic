@@ -82,7 +82,7 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_staff_account, container, false);
         ButterKnife.bind(this, rootView);
-        if(staff.getFirstName()!=null && !staff.getFirstName().equals("")) {
+        if(staff.getUsername()!=null && !staff.getPassword().equals("")) {
             setView();
         }
         return rootView;

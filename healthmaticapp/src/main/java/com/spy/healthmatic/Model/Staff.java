@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Model;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +19,7 @@ public class Staff extends Person implements Serializable{
     private String username;
     private String password;
     private String fingerKey;
+    private boolean isLoggedIn;
     private String role;
     private String floor;
     private String[] specialty;
@@ -132,6 +135,14 @@ public class Staff extends Person implements Serializable{
         this.fingerKey = fingerKey;
     }
 
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
     public ArrayList<Patient> getPatients() {
         return patients;
     }
@@ -139,5 +150,6 @@ public class Staff extends Person implements Serializable{
     public void setPatients(ArrayList<Patient> patients) {
         this.patients = patients;
     }
+
 
 }

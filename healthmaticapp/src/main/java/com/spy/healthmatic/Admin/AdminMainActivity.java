@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.Fragments.DoctorList;
@@ -19,12 +21,17 @@ import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.StaffList;
 import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.Global.GlobalConst;
+import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.Welcome.Logout;
 import com.spy.healthmatic.Welcome.SplashScreen;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class AdminMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PatientList.OnPatientListFragmentInteractionListener,
@@ -38,6 +45,7 @@ public class AdminMainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -67,6 +75,12 @@ public class AdminMainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.content_main2,fragment);
         fragmentTransaction.commit();
 
+        Staff staff = GlobalFunctions.getStaff(this);
+        View headerLayout = navigationView.getHeaderView(0);
+        TextView mNameView = (TextView) headerLayout.findViewById(R.id.user_name);
+        TextView mEmailView = (TextView) headerLayout.findViewById(R.id.user_email);
+        mNameView.setText(staff.getFirstName());
+        mEmailView.setText(staff.getContact().getEmail());
     }
 
     @Override
@@ -123,8 +137,7 @@ public class AdminMainActivity extends AppCompatActivity
         } else if (id == R.id.nav_edit_profile) {
 
         } else if (id == R.id.nav_logout) {
-            Intent intent = new Intent(this, SplashScreen.class);
-            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            Intent intent = new Intent(this, Logout.class);
             startActivity(intent);
         }
 

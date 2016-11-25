@@ -37,7 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Nurse.NurseMainActivity"></meta-data>
+                android:value=".Nurse.NurseMainActivity" />
         </activity>
         <activity
             android:name=".Doctor.MainDrActivity"
@@ -68,7 +68,8 @@
         <activity android:name=".LabAgent.LabAgentMainActivity" />
         <activity
             android:name=".Admin.AdminAddStaff"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Welcome.Logout"></activity>
     </application>
 
 </manifest>
