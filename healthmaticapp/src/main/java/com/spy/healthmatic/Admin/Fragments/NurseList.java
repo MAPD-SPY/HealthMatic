@@ -148,7 +148,7 @@ public class NurseList extends Fragment implements GlobalConst, SwipeRefreshLayo
 
     @Override
     public void onRefresh() {
-
+        getNurseList(true);
     }
 
     public interface OnNurseListFragmentInteractionListener {

@@ -97,7 +97,7 @@ public class GlobalFunctions implements GlobalConst{
     }
 
     public static String getTodaysDateFormatted() {
-        java.text.SimpleDateFormat formattedDt = new java.text.SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        java.text.SimpleDateFormat formattedDt = new java.text.SimpleDateFormat("yyyy-MM-dd", Locale.US);
         return formattedDt.format(new Date());
     }
 

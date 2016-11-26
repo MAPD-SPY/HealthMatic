@@ -30,7 +30,9 @@ import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.TestsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
+import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
 import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
 import com.spy.healthmatic.R;
@@ -56,6 +58,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     public static final String ARG_PAGE = "ARG_PAGE";
+    private Staff staff;
 
 //
 //    public static NursePatientDetailsActivity newInstance(int pageNumber) {
@@ -88,6 +91,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
 
         //  appbar.setLayoutParams(lp);
 
+        staff = GlobalFunctions.getStaff(this);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -108,6 +112,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
         title.setText(patient.getFirstName() + " " + patient.getLastName());
         title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
         toolbar.addView(title);
+
 
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsetoolbarPatientDr);
@@ -226,6 +231,7 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
             // mPage=position;
             Bundle bundle = new Bundle();
             bundle.putSerializable("PATIENT_OBJ", patient);
+            bundle.putSerializable("DOCTOR_NAME", staff.getFirstName());
 
             switch (position) {
                 case 0:
@@ -240,14 +246,17 @@ public class NursePatientDetailsActivity extends AppCompatActivity {
 
                 case 2:
                     VitalsFragment vitals = new VitalsFragment();
+                    vitals.setArguments(bundle);
                     return vitals;
 
                 case 3:
                     DrNotesFragment drNotes = new DrNotesFragment();
+                    drNotes.setArguments(bundle);
                     return drNotes;
 
                 case 4:
                     BioFragment bioFragment = new BioFragment();
+                    bioFragment.setArguments(bundle);
                     return bioFragment;
 
                 default:

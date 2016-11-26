@@ -178,6 +178,10 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
                     return;
                 }
                 patients = response.body();
+                if(patients==null){
+                    Toast.makeText(getActivity(), "No Patients in System click on Add button to create one.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 loadRecyclerViewElements();
                 if (isRefresh) {
                     swipeRefreshLayout.setRefreshing(false);
