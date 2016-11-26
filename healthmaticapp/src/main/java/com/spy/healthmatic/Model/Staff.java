@@ -26,7 +26,6 @@ public class Staff extends Person implements Serializable{
     private String floor;
     private String[] specialty;
     private ArrayList<PatientRef> patientRefs;
-    private ArrayList<Patient> patients;
 
     public Staff() {
     }
@@ -144,13 +143,4 @@ public class Staff extends Person implements Serializable{
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
     }
-
-    public ArrayList<Patient> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(ArrayList<Patient> patients) {
-        this.patients = patients;
-    }
-
 }

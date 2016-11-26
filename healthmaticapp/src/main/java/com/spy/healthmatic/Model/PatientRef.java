@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 
 public class PatientRef implements Serializable{
-    private String id;
+    private String _id;
     private String patientId;
     private String[] checkupDates;
 
@@ -20,7 +20,7 @@ public class PatientRef implements Serializable{
     }
 
     public PatientRef(JSONObject jsonObject) throws JSONException {
-        this.id = jsonObject.getString("_id");
+        this._id = jsonObject.getString("_id");
         this.patientId = jsonObject.getString("patientId");
         this.checkupDates = setCheckupDates(jsonObject.getJSONArray("checkupDates"));
     }
@@ -32,6 +32,19 @@ public class PatientRef implements Serializable{
             checkups[i] = jsonArray.get(i).toString();
         }
         return checkups;
+    }
+
+    public PatientRef(String patientId, String[] checkupDates) {
+        this.patientId = patientId;
+        this.checkupDates = checkupDates;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getPatientId() {
