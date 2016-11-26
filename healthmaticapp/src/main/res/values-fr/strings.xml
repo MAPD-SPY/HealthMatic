@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">HealthMatic</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main2">Admin</string>
+
+    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
+
+    <string name="action_signout">Se déconnecter</string>
+    <string name="action_settings">Paramètres</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="strArrayDetails">
+        <item>@string/strMeds</item>
+        <item>@string/strTests</item>
+        <item>@string/strVitals</item>
+        <item>@string/strNotes</item>
+        <item>@string/strBio</item>
+    </string-array>
+
+    <string-array name="doctors_list">
+        <item>Docteur 1</item>
+        <item>Docteur 2</item>
+        <item>Docteur 3</item>
+        <item>Docteur 4</item>
+        <item>Docteur 5</item>
+    </string-array>
+
+    <string-array name="nurse_list">
+        <item>Docteur 1</item>
+        <item>Docteur 2</item>
+        <item>Docteur 3</item>
+        <item>Docteur 4</item>
+        <item>Docteur 5</item>
+    </string-array>
+
+    <string name="str_hint_EmailAddress">E-mail address</string>
+    <string name="str_hint_Password">Password</string>
+    <string name="str_btn_Login">Log in</string>
+    <string name="title_activity_nurse_patient_details">NursePatientDetailsActivity</string>
+
+    <string name="title_activity_main_dr">Mes Patients</string>
+    <string name="strRoom">Chambre #:</string>
+    <string name="strPatients">Les patients</string>
+    <string name="strDailyRound"> Patients à vérifier aujourd'hui.</string>
+    <string name="strCheckDone">Vérifications effectuées</string>
+
+    <string name="strVitals">Vitals</string>
+    <string name="strTests">Tests</string>
+    <string name="strMeds">Médicament</string>
+    <string name="strNotes">Remarque</string>
+    <string name="title_activity_patient_dr"></string>
+    <string name="section_format">Bonjour tout le monde de la section: %1$d</string>
+    <string name="txtTemperature">Température:</string>
+    <string name="strHeartRate">Rythme cardiaque:</string>
+    <string name="txtBloodPressure">Tension artérielle:</string>
+    <string name="txtRespirationRate">Taux de respiration:</string>
+    <string name="strLastCheckup">Dernier contrôle:</string>
+    <string name="strAdmissionDate">Date d'admission:</string>
+    <string name="strSummary">Résumé</string>
+    <string name="strBio">Personnel</string>
+    <string name="strShelalaine">Shelalaine Chan</string>
+    <string name="strCondition">Côtes cassées</string>
+    <string name="strRoomNumVal">500</string>
+    <string name="strFrequency">La fréquence: </string>
+    <string name="strMedsName">Amoxicillin</string>
+    <string name="strDosage">Dosage: </string>
+    <string name="strDuration">Durée: </string>
+    <string name="strPrescribedBy">Prescrit par: </string>
+    <string name="strPrescriptionDate">Date de prescription: </string>
+    <string name="strMedsDrName">Dr. John Smith</string>
+    <string name="strRxDate">Nov 3, 2016, 9:00 AM</string>
+    <string name="strMedsDosage">1 cuillerée à soupe</string>
+    <string name="strMedsFrequency">3x Tous les jours</string>
+    <string name="strMedsDurationVal">10 journées</string>
+    <string name="strCBC">CBC (Numération globulaire complète)</string>
+    <string name="strDateRequested">Date requise:</string>
+    <string name="strRequestedBy">Demandé par:</string>
+    <string name="strStatus">statut:</string>
+    <string name="strOngoing">En cours</string>
+    <string name="strSearchLabTestHint">Recherche tests de laboratoire</string>
+    <string name="strAdd">Ajouter</string>
+    <string name="strCancel">Annuler</string>
+    <string name="strTestTypeDescription">Détermine la santé générale et les écrans pour les troubles tels que l'anémie ou les infections, ainsi que l'état nutritionnel et l'exposition aux substances toxiques.</string>
+    <string name="strTestTypeCB">CBC (Complete Blood Count)</string>
+    <string name="strMedicine">Médicament</string>
+    <string name="strMedsForm">Forme</string>
+    <string name="strNotedBy">Noté par:</string>
+    <string name="strDate">Date:</string>
+    <string name="strMedication">Des médicaments</string>
+    <string name="strLaboratoryTests">Tests de Laboratoire</string>
+    <string name="strDateTaken">Date prise:</string>
+
+</resources>
