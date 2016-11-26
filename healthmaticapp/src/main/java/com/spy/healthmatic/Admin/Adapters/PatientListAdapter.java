@@ -42,7 +42,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             mView = itemView;
             mNameView = (TextView) itemView.findViewById(R.id.tvPatientName);
             mPateintConditionView = (TextView) itemView.findViewById(R.id.tvPatientCondition);
-            mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoomNum);
+            mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoom);
             mPatientGenderIdicator = (ImageView) itemView.findViewById(R.id.ivPatient);
         }
     }

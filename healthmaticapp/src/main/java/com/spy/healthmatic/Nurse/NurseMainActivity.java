@@ -35,6 +35,7 @@ import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
 
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
@@ -66,6 +67,7 @@ public class NurseMainActivity extends AppCompatActivity implements GlobalConst,
     //RecyclerView objects
     private LinearLayoutManager mLayoutManager;
     private NurseAdapter mAdapter;
+    private Staff nurse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class NurseMainActivity extends AppCompatActivity implements GlobalConst,
 
                 getResources().getColor(R.color.yellow));
 
+        nurse = GlobalFunctions.getStaff(this);
         staffAPI = retrofit.create(StaffAPI.class);
 //        Setting Recyclerview
         mRecyclerView.setHasFixedSize(false);
@@ -103,7 +106,7 @@ public class NurseMainActivity extends AppCompatActivity implements GlobalConst,
     }
 
     private void getPatientList(final boolean isRefresh) {
-        Call<ArrayList<Patient>> call = staffAPI.getAllStaffPatinet("5835d750bd8ed21ac83e2bc4");
+        Call<ArrayList<Patient>> call = staffAPI.getAllStaffPatinet(nurse.get_id());
         call.enqueue(new Callback<ArrayList<Patient>>() {
             @Override
             public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
