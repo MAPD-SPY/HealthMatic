@@ -42,7 +42,8 @@ public class PatientDrActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private String doctorName;
-    private static Patient patient;
+    private Patient patient;
+
     private int tabPos;
     private FloatingActionButton fab;
     private TextView admissionDate, lastCheckup;
@@ -80,9 +81,10 @@ public class PatientDrActivity extends AppCompatActivity {
         title.setTextAppearance(this, android.R.style.TextAppearance_Material_Widget_ActionBar_Title_Inverse);
         toolbar.addView(title);
 
+
         // Setup the tabs to be shown
         String[] tabs = getResources().getStringArray(R.array.strArrayDetails);
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tlPatientsForDoc);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tlPatientsForDoc);
         for (String tabName : tabs) {
             tabLayout.addTab(tabLayout.newTab().setText(tabName));
         }
@@ -137,6 +139,7 @@ public class PatientDrActivity extends AppCompatActivity {
 
             }
         });
+
         fab = (FloatingActionButton) findViewById(R.id.fabAdd);
         if(isAgent){
             fab.setVisibility(View.GONE);
@@ -151,25 +154,25 @@ public class PatientDrActivity extends AppCompatActivity {
                 switch (i) {
                     case TAB_MEDS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddMedsActivity.class);
-                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
                         intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_TESTS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddTestActivity.class);
-                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
                         intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_VITALS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddVitalsActivity.class);
-                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
                         intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
                     case TAB_NOTES:
                         intentAddTest = new Intent(PatientDrActivity.this, AddNotesActivity.class);
-                        intentAddTest.putExtra("PATIENT_ID", patient.getId());
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
                         intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
@@ -178,7 +181,7 @@ public class PatientDrActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+     }
 
 
 //    @Override
@@ -241,7 +244,7 @@ public class PatientDrActivity extends AppCompatActivity {
         super.onResume();
 
         // Create an Asynchronous HTTP instance
-        String url = "http://shelalainechan.com/patients/" + patient.getId();
+        String url = "http://shelalainechan.com/patients/" + patient.get_id();
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(url, new JsonHttpResponseHandler(){
 

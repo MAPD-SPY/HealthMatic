@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Patient extends Person implements Serializable {
 
-    private String id;
+    private String _id;
     private int weight;
     private int height;
     private String bloodType;
@@ -30,6 +30,7 @@ public class Patient extends Person implements Serializable {
     private ArrayList<DrNotes> drNotes;
     private ArrayList<Nurse> nurses;
     private ArrayList<Doctor> doctors;
+    private Insurance insurance;
 
     public Patient() {
     }
@@ -44,7 +45,12 @@ public class Patient extends Person implements Serializable {
                 jsonObject.getJSONObject("contact"),
                 jsonObject.getBoolean("maritalStatus"));
 
-        this.id = jsonObject.getString("_id");
+//        // Set the address
+//        this.setAddress(newAddress(jsonObject.getJSONObject("address")));
+//        // Set the contact info
+//        this.setContact(newContact(jsonObject.getJSONObject("contact")));
+
+        this._id = jsonObject.getString("_id");
 
         this.weight = jsonObject.getInt("weight");
         this.height = jsonObject.getInt("height");
@@ -91,6 +97,17 @@ public class Patient extends Person implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        try {
+            // Add all notes
+            patientJsonResults = jsonObject.getJSONArray("drNotes");
+            drNotes = new ArrayList<>();
+            this.drNotes.addAll(fromDrNotesJSONArray(patientJsonResults));
+            // Add insurance
+            insurance = new Insurance(jsonObject.getJSONObject("insurance"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<Patient> fromJSONArray(JSONArray jsonArray) {
@@ -105,6 +122,24 @@ public class Patient extends Person implements Serializable {
         }
 
         return patients;
+    }
+
+    private Contact newContact(JSONObject jsonObject) throws JSONException {
+
+        Contact contact= new Contact(jsonObject.getString("phone"),
+                jsonObject.getString("email"),
+                jsonObject.getString("emergencyContactName"),
+                jsonObject.getString("emergencyContactNumber"));
+        return contact;
+    }
+
+    private Address newAddress(JSONObject jsonObject) throws JSONException {
+
+        Address address = new Address(jsonObject.getString("street"),
+                jsonObject.getString("city"),
+                jsonObject.getString("province"),
+                jsonObject.getString("zipCode"));
+        return address;
     }
 
     private static ArrayList<Prescription> fromPrescriptionJSONArray(JSONArray jsonArray) {
@@ -161,6 +196,14 @@ public class Patient extends Person implements Serializable {
         }
 
         return drNotes;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public int getWeight() {
@@ -283,8 +326,11 @@ public class Patient extends Person implements Serializable {
         this.doctors = doctors;
     }
 
-    public String getId() {
-        return id;
+    public Insurance getInsurance() {
+        return insurance;
     }
 
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
 }

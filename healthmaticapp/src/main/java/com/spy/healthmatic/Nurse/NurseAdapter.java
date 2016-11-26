@@ -43,14 +43,13 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.listing_cardview, parent, false);
-
         return new MyViewHolder(itemView,context,patientList);
      }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Patient patient = patientList.get(position);
-        //holder.mNameView.setText(patient.getName());
+        holder.mNameView.setText(patient.getFirstName() + " " + patient.getLastName());
         holder.mPateintConditionView.setText(patient.getCondition());
        // holder.mRoomNumberView.setText(patient.getRoomNumber());
         if("male".equals(patient.getGender())){
@@ -103,7 +102,6 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
             mPateintConditionView = (TextView) itemView.findViewById(R.id.tvPatientCondition);
             mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoomNum);
             mPatientGenderIdicator = (ImageView) itemView.findViewById(R.id.ivPatient);
-
 
         }
 

@@ -67,11 +67,15 @@
         <activity android:name=".Doctor.AddNotesActivity"
             android:label="Notes"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Admin.AdminAddPatient" />
+        <activity android:name=".Admin.AdminAddPatient"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
         <activity android:name=".LabAgent.LabAgentMainActivity" />
-
+        <activity
+            android:name=".Admin.AdminAddStaff"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Welcome.Logout"></activity>
     </application>
 
 </manifest>

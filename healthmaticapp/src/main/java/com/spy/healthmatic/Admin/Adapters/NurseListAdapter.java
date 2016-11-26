@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.NurseList;
 import com.spy.healthmatic.Model.Nurse;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -19,10 +20,10 @@ import java.util.ArrayList;
 
 public class NurseListAdapter extends RecyclerView.Adapter<NurseListAdapter.ViewHolder>  {
 
-    private ArrayList<Nurse> nurses;
+    private ArrayList<Staff> nurses;
     private final NurseList.OnNurseListFragmentInteractionListener mListener;
 
-    public NurseListAdapter(ArrayList<Nurse> nurses, NurseList.OnNurseListFragmentInteractionListener listener) {
+    public NurseListAdapter(ArrayList<Staff> nurses, NurseList.OnNurseListFragmentInteractionListener listener) {
         this.nurses = nurses;
         mListener = listener;
     }
@@ -53,11 +54,11 @@ public class NurseListAdapter extends RecyclerView.Adapter<NurseListAdapter.View
 
     @Override
     public void onBindViewHolder(NurseListAdapter.ViewHolder holder, final int position) {
-        final Nurse nurse = nurses.get(position);
-        holder.mNameView.setText(nurse.getName());
-        holder.mPateintConditionView.setText(nurse.getFloor()+"");
+        final Staff nurse = nurses.get(position);
+        holder.mNameView.setText(nurse.getFirstName());
+        holder.mPateintConditionView.setText(nurse.getLastName());
         holder.mRoomNumberView.setText(nurse.getFloor()+"");
-        if("male".equals(nurse.getGender())){
+        if("male".equals(nurse.getGender()+"")){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_female);
@@ -68,7 +69,7 @@ public class NurseListAdapter extends RecyclerView.Adapter<NurseListAdapter.View
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(nurse, position);
+                    mListener.onNurseListFragmentInteraction(nurse, position);
                 }
             }
         });

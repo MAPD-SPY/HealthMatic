@@ -2,6 +2,9 @@ package com.spy.healthmatic.Model;
 
 import org.json.JSONObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
@@ -9,7 +12,7 @@ import java.io.Serializable;
  * Created by shelalainechan on 2016-10-25.
  */
 
-public class Person implements Serializable{
+public class Person implements Serializable {
 
     public static final boolean FEMALE = false;
     public static final boolean MALE = true;
@@ -17,14 +20,14 @@ public class Person implements Serializable{
     public static final boolean SINGLE = true;
     public static final boolean MARRIED = true;
 
+    private Address address;
+    private Contact contact;
     private String firstName;
     private String lastName;
     private String birthday;
     private boolean gender;
-    private static Address address;
-    private static Contact contact;
-    private boolean maritalStatus;
     private String photo;
+    private boolean maritalStatus;
 
     public Person() {
 

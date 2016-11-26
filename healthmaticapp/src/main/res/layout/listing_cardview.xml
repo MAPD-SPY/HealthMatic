@@ -55,14 +55,17 @@
             android:text="Room"
             />
 
-        <TextView
-            android:id="@+id/tvRoomNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/tvRoom"
-            android:layout_below="@id/tvPatientCondition"
-            android:textSize="15sp"
-            />
+        <!--<ImageView-->
+            <!--android:id="@+id/tvMed"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toEndOf="@id/tvRoom"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="trds"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--/>-->
+
     </RelativeLayout>
 
 
