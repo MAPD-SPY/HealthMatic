@@ -331,6 +331,7 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 showToast("Image Upload and Staff creation/update Succesfull");
+                successIntent();
 
             }
         });

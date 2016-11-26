@@ -48,31 +48,33 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        final Patient patient = patientList.get(position);
-        holder.mNameView.setText(patient.getFirstName() + " " + patient.getLastName());
-        holder.mPateintConditionView.setText(patient.getCondition());
-       // holder.mRoomNumberView.setText(patient.getRoomNumber());
-        if("male".equals(patient.getGender())){
-            holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
-        }else {
-            holder.mPatientGenderIdicator.setImageResource(R.drawable.user_female);
-        }
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    Intent intent=new Intent(holder.context,NursePatientDetailsActivity.class);
-                 //   intent.putExtra("PatientName",patient.getName());
-                 //   intent.putExtra("Department",patient.getDepartment());
-
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("PATIENT_OBJ", patientList.get(position));
-
-
-                 intent.putExtras(bundle);
-                 holder.context.startActivity(intent);
+            final Patient patient = patientList.get(position);
+        if(patient!=null) {
+            holder.mNameView.setText(patient.getFirstName() + " " + patient.getLastName());
+            holder.mPateintConditionView.setText(patient.getCondition());
+            // holder.mRoomNumberView.setText(patient.getRoomNumber());
+            if ("male".equals(patient.getGender())) {
+                holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
+            } else {
+                holder.mPatientGenderIdicator.setImageResource(R.drawable.user_female);
             }
-        });
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(holder.context, NursePatientDetailsActivity.class);
+                    //   intent.putExtra("PatientName",patient.getName());
+                    //   intent.putExtra("Department",patient.getDepartment());
+
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("PATIENT_OBJ", patientList.get(position));
+
+
+                    intent.putExtras(bundle);
+                    holder.context.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
