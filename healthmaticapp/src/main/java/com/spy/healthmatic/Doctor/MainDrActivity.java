@@ -262,30 +262,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         return super.onOptionsItemSelected(item);
     }
 
-    private void getPatients(Staff staff) throws UnsupportedEncodingException {
-
-        String url = "http://shelalainechan.com/staffs/" + staff.get_id() + "/patients";
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(url, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
-                patients.clear();
-                patients.addAll(Patient.fromJSONArray(jsonArray));
-                doctor.setPatients(patients);
-
-                numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
-                initCircleProgressView();
-                patientsAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-            }
-        });
-    }
-
     private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
         long numOfPatientsChecked = 0;
 

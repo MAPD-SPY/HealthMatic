@@ -75,7 +75,8 @@
         <activity
             android:name=".Admin.AdminAddStaff"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Welcome.Logout"></activity>
+        <activity android:name=".Welcome.Logout"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

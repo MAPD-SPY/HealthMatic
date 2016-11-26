@@ -37,6 +37,7 @@ import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.Welcome.Logout;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
 import butterknife.Bind;
@@ -155,8 +156,7 @@ public class NurseMainActivity extends AppCompatActivity implements GlobalConst,
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_signout) {
-            Intent intent = new Intent(this, SplashScreen.class);
-            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            Intent intent = new Intent(this, Logout.class);
             startActivity(intent);
             return true;
         }
