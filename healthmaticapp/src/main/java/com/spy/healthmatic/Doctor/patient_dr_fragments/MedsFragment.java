@@ -22,6 +22,7 @@ import java.util.List;
  */
 public class MedsFragment extends Fragment {
 
+    private String doctorName;
     private MedsAdapter medsAdapter;
     private Patient patient;
     private List<Prescription> prescriptions;
@@ -35,6 +36,7 @@ public class MedsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
+            doctorName = getArguments().getString("DOCTOR_NAME");
             prescriptions = patient.getPrescriptions();
             medsAdapter = new MedsAdapter(getActivity(), prescriptions);
         }

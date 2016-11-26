@@ -61,7 +61,13 @@
             android:label="@string/strLaboratoryTests"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
-            android:name=".Admin.AdminAddPatient"
+            android:name=".Doctor.AddVitalsActivity"
+            android:label="Vitals"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Doctor.AddNotesActivity"
+            android:label="Notes"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Admin.AdminAddPatient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />

@@ -23,6 +23,7 @@ import java.util.List;
 
 public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHolder> {
 
+    private String mDoctorName;
     private List<Patient> mPatients;
     private Context mContext;
 
@@ -47,6 +48,7 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                     int position = getAdapterPosition();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
+                    bundle.putString("DOCTOR_NAME", mDoctorName);
 
                     Intent intent = new Intent(mContext, PatientDrActivity.class);
                     intent.putExtras(bundle);
@@ -56,9 +58,10 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
         }
     }
 
-    public PatientsAdapter(Context context, List<Patient> patients) {
+    public PatientsAdapter(Context context, List<Patient> patients, String doctorName) {
         mPatients = patients;
         mContext = context;
+        mDoctorName = doctorName;
     }
 
     public Context getContext() {

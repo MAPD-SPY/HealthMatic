@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Model;
 
+import org.json.JSONObject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,12 +16,17 @@ public class Person implements Serializable {
 
     public static final boolean FEMALE = false;
     public static final boolean MALE = true;
+
+    public static final boolean SINGLE = true;
+    public static final boolean MARRIED = true;
+
     private Address address;
     private Contact contact;
     private String firstName;
     private String lastName;
     private String birthday;
     private boolean gender;
+    private String photo;
     private boolean maritalStatus;
 
     public Person() {
@@ -27,7 +34,7 @@ public class Person implements Serializable {
     }
 
     public Person(String firstName, String lastName, boolean gender, String birthday,
-                  Address address, Contact contact, Boolean maritalStatus) {
+                  Address address, Contact contact, boolean maritalStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -38,13 +45,13 @@ public class Person implements Serializable {
     }
 
     public Person(String firstName, String lastName, boolean gender, String birthday,
-                  JSONObject addressJson, JSONObject contactJson, Boolean maritalStatus) {
+                  JSONObject address, JSONObject contact, boolean maritalStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.gender = gender;
-        this.address = newAddress(addressJson);
-        this.contact = newContact(contactJson);
+        this.address = newAddress(address);
+        this.contact = newContact(contact);
         this.maritalStatus = maritalStatus;
     }
 

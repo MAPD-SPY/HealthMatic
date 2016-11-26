@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Model;
 
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -141,5 +143,4 @@ public class Staff extends Person implements Serializable{
     public void setLoggedIn(boolean loggedIn) {
         isLoggedIn = loggedIn;
     }
-
 }

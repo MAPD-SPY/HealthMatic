@@ -24,4 +24,6 @@
     <color name="titleBadgeText">#adafb1</color>
     <color name="cpb_grey">#ffdedede</color>
 
+    <color name="color_menu_card">#BBDEFB</color>
+
 </resources>
