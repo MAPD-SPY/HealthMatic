@@ -58,6 +58,8 @@ public class Patient extends Person implements Serializable {
         this.occupation = jsonObject.getString("occupation");
         this.condition = jsonObject.getString("condition");
         this.room = jsonObject.getInt("room");
+        this.admissionDate = jsonObject.getString("admissionDate");
+        this.dischargedDate = jsonObject.getString("dischargedDate");
 
         JSONArray patientJsonResults;
         try {
@@ -97,6 +99,10 @@ public class Patient extends Person implements Serializable {
         }
 
         try {
+            // Add all notes
+            patientJsonResults = jsonObject.getJSONArray("drNotes");
+            drNotes = new ArrayList<>();
+            this.drNotes.addAll(fromDrNotesJSONArray(patientJsonResults));
             // Add insurance
             insurance = new Insurance(jsonObject.getJSONObject("insurance"));
         } catch (JSONException e) {

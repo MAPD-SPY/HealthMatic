@@ -1,0 +1,191 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_personal"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+            app:contentPadding="4dp"
+            app:cardBackgroundColor="@color/color_menu_card"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight=".50"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:id="@+id/item_image_person"
+                        android:src="@drawable/ic_assignment_ind_white_36dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/item_person"
+                        android:text="@string/strInfo"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:id="@+id/txtViewPersonalDetail"
+                    android:padding="1dp"
+                    android:layout_toRightOf="@+id/item_image"
+                    android:layout_below="@+id/item_title" />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_address"
+            android:layout_below="@id/card_personal"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp"
+            app:contentPadding="4dp"
+            app:cardBackgroundColor="@color/color_menu_card"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight=".50"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:id="@+id/item_image_address"
+                        android:src="@drawable/ic_home_white_24dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txtViewAddress"
+                        android:text="@string/strAddress"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:id="@+id/tvAddressHeader"
+                    android:padding="1dp"
+                    android:layout_toRightOf="@+id/item_image"
+                    android:layout_below="@+id/item_title" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_contact"
+            android:layout_below="@id/card_address"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp"
+            app:contentPadding="4dp"
+            app:cardBackgroundColor="@color/color_menu_card"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight=".50"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:id="@+id/item_image_contact"
+                        android:src="@drawable/ic_phone_white_36dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="16dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txtViewContact"
+                        android:text="@string/strContact"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.25"
+                    android:id="@+id/tvContactHeader"
+                    android:padding="1dp" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

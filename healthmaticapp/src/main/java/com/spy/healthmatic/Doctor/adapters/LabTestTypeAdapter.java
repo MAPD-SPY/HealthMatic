@@ -39,6 +39,10 @@ public class LabTestTypeAdapter extends RecyclerView.Adapter<LabTestTypeAdapter.
     public LabTestTypeAdapter(Context context, List<LabTestType> labTests) {
         mLabTests = labTests;
         mContext = context;
+
+        if (mLabTestsSelected == null) {
+            mLabTestsSelected = new ArrayList<String>();
+        }
     }
 
     public Context getContext() {
@@ -69,9 +73,7 @@ public class LabTestTypeAdapter extends RecyclerView.Adapter<LabTestTypeAdapter.
         checkBox.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (mLabTestsSelected == null) {
-                    mLabTestsSelected = new ArrayList<String>();
-                }
+
                 if (checkBox.isChecked()) {
                     mLabTestsSelected.add(labTestType.getName());
                 } else {
@@ -88,8 +90,8 @@ public class LabTestTypeAdapter extends RecyclerView.Adapter<LabTestTypeAdapter.
         return mLabTests.size();
     }
 
-
     public ArrayList<String> getItemsSelected() {
         return mLabTestsSelected;
     }
+
 }

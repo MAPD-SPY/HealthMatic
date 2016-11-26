@@ -20,6 +20,8 @@ import java.util.List;
  * Created by shelalainechan on 2016-11-01.
  */
 public class VitalsFragment extends Fragment {
+
+    private String doctorName;
     private VitalsAdapter vitalsAdapter;
     private Patient patient;
     private List<Vitals> vitals;

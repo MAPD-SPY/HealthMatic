@@ -46,6 +46,7 @@
             android:layout_toEndOf="@id/ivTestResult"
             android:layout_below="@id/tvTestName"
             android:textSize="14sp"
+            android:textStyle="normal|bold"
             android:text="@string/strDateRequested"
             />
 
@@ -69,6 +70,7 @@
             android:layout_toEndOf="@id/ivTestResult"
             android:layout_below="@id/tvTestRequestedDate"
             android:textSize="14sp"
+            android:textStyle="normal|bold"
             android:text="@string/strRequestedBy"
             />
 
@@ -92,6 +94,7 @@
             android:layout_below="@id/tvTestRequestedBy"
             android:paddingTop="5dp"
             android:textSize="14sp"
+            android:textStyle="normal|bold"
             android:text="@string/strStatus"
             />
 

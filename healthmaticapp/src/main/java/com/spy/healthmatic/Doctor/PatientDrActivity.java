@@ -9,14 +9,23 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
-import com.spy.healthmatic.R;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Vitals;
+import com.spy.healthmatic.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Team Name: Team SPY
@@ -25,16 +34,33 @@ import com.spy.healthmatic.Model.Patient;
 
 public class PatientDrActivity extends AppCompatActivity {
 
+    private static final int TAB_MEDS = 0;
+    private static final int TAB_TESTS = 1;
+    private static final int TAB_VITALS = 2;
+    private static final int TAB_NOTES = 3;
+    private static final int TAB_BIO = 4;
+
+    private ViewPager mViewPager;
+    private String doctorName;
     private Patient patient;
 
     private int tabPos;
     private FloatingActionButton fab;
-    public static boolean isAgent = false;
+    private TextView admissionDate, lastCheckup;
+    private static boolean isAgent = false;
+    @Bind(R.id.tvRRVal) TextView textViewRRate;
+    @Bind(R.id.tvBPVal) TextView textViewBP;
+    @Bind(R.id.tvHRVal) TextView textViewHR;
+    @Bind(R.id.tvTempVal) TextView textViewTemp;
+    @Bind(R.id.tvAdmissionDateVal) TextView textViewAdmission;
+    @Bind(R.id.tvLastCheckVal) TextView textViewCheckup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_dr);
+
+        ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientDr);
         setSupportActionBar(toolbar);
@@ -43,7 +69,11 @@ public class PatientDrActivity extends AppCompatActivity {
         // Get a reference of the patient object
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
+        doctorName = "Dr " + intent.getStringExtra("DOCTOR_NAME");
         isAgent = intent.getBooleanExtra("isAgent", false);
+
+        // Initialize fields in the Summary/Latest view
+        initLatestView();
 
         // Set the title to the name of the patient
         TextView title = new TextView(this);
@@ -63,10 +93,10 @@ public class PatientDrActivity extends AppCompatActivity {
         // primary sections of the activity.
         final PagerAdapter pagerAdapter = new PatientTabPagerAdapter(getSupportFragmentManager(),
                 tabLayout.getTabCount(),
-                patient);
+                patient, doctorName);
 
         // Set up the ViewPager with the sections adapter.
-        final ViewPager mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
+        mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -75,7 +105,28 @@ public class PatientDrActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-
+                switch(tab.getPosition()) {
+                    case TAB_MEDS:
+                        fab.setImageResource(R.drawable.ic_prescription_pill);
+                        fab.show();
+                        break;
+                    case TAB_TESTS:
+                        fab.setImageResource(R.drawable.ic_test);
+                        fab.show();
+                        break;
+                    case TAB_VITALS:
+                        fab.setImageResource(R.drawable.ic_stethoscope);
+                        fab.show();
+                        break;
+                    case TAB_NOTES:
+                        fab.setImageResource(R.drawable.ic_dr_note);
+                        fab.show();
+                        break;
+                    case TAB_BIO:
+                        fab.setImageResource(R.drawable.ic_doctor);
+                        fab.hide();
+                        break;
+                }
             }
 
             @Override
@@ -101,34 +152,33 @@ public class PatientDrActivity extends AppCompatActivity {
                 int i = mViewPager.getCurrentItem();
 
                 switch (i) {
-                    case 0:
+                    case TAB_MEDS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddMedsActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
-                    case 1:
+                    case TAB_TESTS:
                         intentAddTest = new Intent(PatientDrActivity.this, AddTestActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
                         startActivity(intentAddTest);
                         break;
-
+                    case TAB_VITALS:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddVitalsActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
+                        startActivity(intentAddTest);
+                        break;
+                    case TAB_NOTES:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddNotesActivity.class);
+                        intentAddTest.putExtra("PATIENT_ID", patient.get_id());
+                        intentAddTest.putExtra("DOCTOR_NAME", doctorName);
+                        startActivity(intentAddTest);
+                        break;
+                    case TAB_BIO:
+                        break;
                 }
-/*
-                String[] testsArray = {"CBC", "Urinalysis", "Urine Culture"};
-                List<String> testsList = Arrays.asList(testsArray);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(PatientDrActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, testsList);
-
-                AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.atvLabTestTypes);
-                autoCompleteTextView.setAdapter(adapter);
-
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(PatientDrActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.activity_add_test,null);
-                builder.setView(dialogView);
-                final AlertDialog dialog = builder.create();
-                dialog.setTitle("Laboratory Test");
-                dialog.show();
-                */
             }
         });
      }
@@ -162,4 +212,85 @@ public class PatientDrActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        // Create an Asynchronous HTTP instance
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        String url = "http://shelalainechan.com/patients/" + patient.getId();
+//        client.get(url, new JsonHttpResponseHandler(){
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//
+//                try {
+//                    patient = new Patient(response);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                super.onFailure(statusCode, headers, throwable, errorResponse);
+//            }
+//        });
+//    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Create an Asynchronous HTTP instance
+        String url = "http://shelalainechan.com/patients/" + patient.get_id();
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new JsonHttpResponseHandler(){
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                JSONArray patientJsonResults = null;
+
+                try {
+                    // Update the patient's records
+                    final Patient patientNew = new Patient(response);
+                    patient.setLabTests(patientNew.getLabTests());
+                    patient.setDrNotes(patientNew.getDrNotes());
+                    patient.setPrescriptions(patientNew.getPrescriptions());
+                    patient.setVitals(patientNew.getVitals());
+                    patient.setDoctors(patientNew.getDoctors());
+                    patient.setNurses(patientNew.getNurses());
+
+                    // Notify adapter of this change
+                    mViewPager.getAdapter().notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
+    }
+
+
+    private void initLatestView() {
+        // Display admission date
+        textViewAdmission.setText(patient.getAdmissionDate());
+
+        // Display latest vitals information
+        if (patient.getVitals().size() > 0) {
+            Vitals vitals = patient.getVitals().get(patient.getVitals().size() - 1);
+            textViewRRate.setText(Integer.toString(vitals.getRespirationRate()) + " breaths / min");
+            textViewBP.setText(Integer.toString(vitals.getSystolic()) + " / " +
+                    Integer.toString(vitals.getDiastolic()) + " mmHg");
+            textViewHR.setText(Integer.toString(vitals.getHeartRate()) + " bpm");
+            textViewTemp.setText(Integer.toString(vitals.getTemperature()) + " C");
+            textViewCheckup.setText(vitals.getDate());
+        }
+    }
 }

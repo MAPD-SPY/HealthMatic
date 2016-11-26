@@ -95,5 +95,21 @@
     <string name="strMedication">Medication</string>
     <string name="strLaboratoryTests">Laboratory Tests</string>
     <string name="strDateTaken">Date Taken:</string>
+    <string name="strDays">days</string>
+    <string name="strRespirationRate">Respiration Rate:</string>
+    <string name="strBloodPressure">Blood Pressure:</string>
+    <string name="strTemperature">Temperature:</string>
+    <string name="strRRUnit">breaths/min</string>
+    <string name="strBpm">bpm</string>
+    <string name="strC">°C</string>
+    <string name="strmmHg">mmHg</string>
+    <string name="strInfo">Info</string>
+    <string name="strAddress">Address</string>
+    <string name="strContact">Contact</string>
+    <string name="strDateVal">--</string>
+    <string name="strTempVal">-- C</string>
+    <string name="strHRVal">--- bpm</string>
+    <string name="strBPVal">--- / --- mmHg</string>
+    <string name="strRespirationVal">-- breaths / min</string>
 
 </resources>

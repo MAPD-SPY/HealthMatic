@@ -12,6 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.spy.healthmatic.Admin.AdminMainActivity;
+import com.spy.healthmatic.Doctor.MainDrActivity;
+import com.spy.healthmatic.LabAgent.LabAgentMainActivity;
+import com.spy.healthmatic.Model.Patient;
 import com.google.gson.Gson;
 import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.Admin.AdminMainActivity;
@@ -25,10 +31,16 @@ import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +56,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Login extends AppCompatActivity implements GlobalConst {
 
     private static final String TAG = "ActivityLogin";
+    private static Staff staff;
 
     @Bind(R.id.buttonLogin)
     Button loginButton;
@@ -99,68 +112,133 @@ public class Login extends AppCompatActivity implements GlobalConst {
     }
 
 
-    private void login() {
-
-        Log.d(TAG, "LoginModel");
-
-        if (!validate()) {
-            onLoginFailed();
-            return;
-        }
-
-        loginButton.setEnabled(false);
-
-        showProgressDialog();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ;
-        StaffAPI staffAPI = retrofit.create(StaffAPI.class);
-        Call<Staff> call = staffAPI.login(new LoginModel(editTxtEmail.getText().toString(), editTxtPassword.getText().toString(), ""));
-        call.enqueue(new Callback<Staff>() {
-            @Override
-            public void onResponse(Call<Staff> call, Response<Staff> response) {
-                progressDialog.dismiss();
-                if (!response.isSuccessful()) {
-                    Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
-                    Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(response.body()!=null){
-                    Toast.makeText(Login.this, "Invalid Username/Password. Please try again.", Toast.LENGTH_LONG).show();
-                }
-                Staff staff = response.body();
-                //UPDATING USER LOGIN STATUS
-                staff.setLoggedIn(true);
-                new LoginUserInDB(staff).execute();
-
-            }
-
-            @Override
-            public void onFailure(Call<Staff> call, Throwable t) {
-                Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
-            }
-        });
-//        new android.os.Handler().postDelayed(
-//                new Runnable() {
-//                    public void run() {
-//                        onLoginSuccess();
-                        progressDialog.dismiss();
-//                        if ("a".equals(editTxtEmail.getText().toString())) {
+//    private void login() {
+//<<<<<<< HEAD
+//        Log.d(TAG, "Login");
+//=======
+//
+//        Log.d(TAG, "LoginModel");
+//>>>>>>> master
+//
+//        if (!validate()) {
+//            onLoginFailed();
+//            return;
+//        }
+//
+//        loginButton.setEnabled(false);
+//
+//<<<<<<< HEAD
+//        // Get the login details
+//        String username = editTxtEmail.getText().toString();
+//        String password = editTxtPassword.getText().toString();
+//
+//        // Get list of patients for staffs if applicable
+//        if (username.equals("d")) {
+//            // Create an Asynchronous HTTP instance
+//            String url = "http://shelalainechan.com/staffs/5834b3449ed610499fbedcee";
+//            AsyncHttpClient client = new AsyncHttpClient();
+//            client.get(url, new JsonHttpResponseHandler(){
+//
+//                @Override
+//                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                    try {
+//
+//                        staff = new Staff(response);
+//                        try {
+//                            getPatients();
+//                        } catch (UnsupportedEncodingException e) {
+//                            e.printStackTrace();
+//                        }
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                    super.onFailure(statusCode, headers, throwable, errorResponse);
+//                }
+//            });
+//        }
+//
+//        final ProgressDialog progressDialog = new ProgressDialog(Login.this, R.style.AppTheme_Dark_Dialog);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage("Authenticating...");
+//        progressDialog.show();
+//=======
+//        showProgressDialog();
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        ;
+//        StaffAPI staffAPI = retrofit.create(StaffAPI.class);
+//        Call<Staff> call = staffAPI.login(new LoginModel(editTxtEmail.getText().toString(), editTxtPassword.getText().toString(), ""));
+//        call.enqueue(new Callback<Staff>() {
+//            @Override
+//            public void onResponse(Call<Staff> call, Response<Staff> response) {
+//                progressDialog.dismiss();
+//                if (!response.isSuccessful()) {
+//                    Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
+//                    Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                if(response.body()!=null){
+//                    Toast.makeText(Login.this, "Invalid Username/Password. Please try again.", Toast.LENGTH_LONG).show();
+//                }
+//                Staff staff = response.body();
+//                //UPDATING USER LOGIN STATUS
+//                staff.setLoggedIn(true);
+//                new LoginUserInDB(staff).execute();
+//
+//            }
+//>>>>>>> master
+//
+//            @Override
+//            public void onFailure(Call<Staff> call, Throwable t) {
+//                Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
+//                Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+//            }
+//        });
+////        new android.os.Handler().postDelayed(
+////                new Runnable() {
+////                    public void run() {
+////                        onLoginSuccess();
+//                        progressDialog.dismiss();
+//<<<<<<< HEAD
+//                        if("a".equals(editTxtEmail.getText().toString())){
 //                            startActivity(new Intent(Login.this, AdminMainActivity.class));
-//                        } else if ("d".equals(editTxtEmail.getText().toString())) {
-//                            startActivity(new Intent(Login.this, MainDrActivity.class));
-//                        } else if ("l".equals(editTxtEmail.getText().toString())) {
+//                        }else if("d".equals(editTxtEmail.getText().toString())){
+//                            Bundle bundle = new Bundle();
+////                            bundle.putSerializable("PATIENTS_OBJ", patients);
+//                            bundle.putSerializable("STAFF", staff);
+//
+//                            Intent intent = new Intent(Login.this, MainDrActivity.class);
+//                            intent.putExtras(bundle);
+//                            startActivity(intent);
+//                        }else if("l".equals(editTxtEmail.getText().toString())){
 //                            startActivity(new Intent(Login.this, LabAgentMainActivity.class));
 //                        }
-//                        if ("n".equals(editTxtEmail.getText().toString())) {
+//                        if("n".equals(editTxtEmail.getText().toString())){
 //                            startActivity(new Intent(Login.this, NurseMainActivity.class));
 //                        }
 //                    }
 //                }, 3000);
-    }
+//=======
+////                        if ("a".equals(editTxtEmail.getText().toString())) {
+////                            startActivity(new Intent(Login.this, AdminMainActivity.class));
+////                        } else if ("d".equals(editTxtEmail.getText().toString())) {
+////                            startActivity(new Intent(Login.this, MainDrActivity.class));
+////                        } else if ("l".equals(editTxtEmail.getText().toString())) {
+////                            startActivity(new Intent(Login.this, LabAgentMainActivity.class));
+////                        }
+////                        if ("n".equals(editTxtEmail.getText().toString())) {
+////                            startActivity(new Intent(Login.this, NurseMainActivity.class));
+////                        }
+////                    }
+////                }, 3000);
+//>>>>>>> master
+//    }
 
     private boolean validate() {
         boolean valid = true;
@@ -182,11 +260,6 @@ public class Login extends AppCompatActivity implements GlobalConst {
         return valid;
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        moveTaskToBack(false);
-//    }
-
     private void onLoginSuccess() {
         loginButton.setEnabled(true);
         finish();
@@ -197,6 +270,27 @@ public class Login extends AppCompatActivity implements GlobalConst {
         loginButton.setEnabled(true);
     }
 
+//<<<<<<< HEAD
+//    private void getPatients() throws UnsupportedEncodingException {
+//
+//        String url = "http://shelalainechan.com/staffs/" + staff.getId() + "/patients";
+//
+//        AsyncHttpClient client = new AsyncHttpClient();
+//        client.get(url, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONArray jsonArray) {
+//                ArrayList<Patient> patients = new ArrayList<>();
+//                patients.addAll(Patient.fromJSONArray(jsonArray));
+//                staff.setPatients(patients);
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                super.onFailure(statusCode, headers, throwable, errorResponse);
+//            }
+//        });
+//    }
+//=======
     private class LoginUserInDB extends AsyncTask<Void, Void, Boolean> {
 
         private Staff staff;
@@ -216,13 +310,6 @@ public class Login extends AppCompatActivity implements GlobalConst {
             hideProgressDialog();
             String msg = "User - " + staff.getFirstName() + " Login successful.";
             if (result) {
-                if(staff.getRole().equals("doctor")){
-                    startActivity(new Intent(Login.this, MainDrActivity.class));
-                }else if(staff.getRole().equals("nurse")){
-                    startActivity(new Intent(Login.this, NurseMainActivity.class));
-                }else if(staff.getRole().equals("admin")){
-                    startActivity(new Intent(Login.this, NurseMainActivity.class));
-                }
                 if ("doctor".equals(staff.getRole())) {
                     Intent intent = new Intent(Login.this, MainDrActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -260,5 +347,4 @@ public class Login extends AppCompatActivity implements GlobalConst {
             progressDialog.dismiss();
         }
     }
-
 }

@@ -3,7 +3,7 @@ package com.spy.healthmatic.Doctor.adapters;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.spy.healthmatic.Doctor.patient_dr_fragments.BioFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
@@ -17,15 +17,23 @@ import com.spy.healthmatic.Model.Patient;
  * Created by shelalainechan on 2016-11-01.
  */
 
-public class PatientTabPagerAdapter extends FragmentPagerAdapter {
+public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
+
+    private static final int TAB_MEDS = 0;
+    private static final int TAB_TESTS = 1;
+    private static final int TAB_VITALS = 2;
+    private static final int TAB_NOTES = 3;
+    private static final int TAB_BIO = 4;
 
     private int tabCount;
     private Patient patient;
+    private String doctorName;
 
-    public PatientTabPagerAdapter(FragmentManager fm, int numberofTabs, Patient patient) {
+    public PatientTabPagerAdapter(FragmentManager fm, int numberofTabs, Patient patient, String doctorName) {
         super(fm);
         this.tabCount = numberofTabs;
         this.patient = patient;
+        this.doctorName = doctorName;
     }
 
     @Override
@@ -33,31 +41,32 @@ public class PatientTabPagerAdapter extends FragmentPagerAdapter {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("PATIENT_OBJ", patient);
-
+        bundle.putString("DOCTOR_NAME", doctorName);
 
         switch (position) {
-            case 0:
+            case TAB_MEDS:
                 MedsFragment meds = new MedsFragment();
                 meds.setArguments(bundle);
                 return meds;
 
-            case 1:
+            case TAB_TESTS:
                 TestsFragment tests = new TestsFragment();
                 tests.setArguments(bundle);
                 return tests;
 
-            case 2:
+            case TAB_VITALS:
                 VitalsFragment vitals = new VitalsFragment();
                 vitals.setArguments(bundle);
                 return vitals;
 
-            case 3:
+            case TAB_NOTES:
                 DrNotesFragment drNotes = new DrNotesFragment();
                 drNotes.setArguments(bundle);
                 return drNotes;
 
-            case 4:
+            case TAB_BIO:
                 BioFragment bioFragment = new BioFragment();
+                bioFragment.setArguments(bundle);
                 return bioFragment;
 
             default:
@@ -71,4 +80,8 @@ public class PatientTabPagerAdapter extends FragmentPagerAdapter {
         return tabCount;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }
