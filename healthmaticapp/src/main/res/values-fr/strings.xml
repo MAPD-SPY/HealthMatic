@@ -47,7 +47,7 @@
     <string name="title_activity_main_dr">Mes Patients</string>
     <string name="strRoom">Chambre #:</string>
     <string name="strPatients">Les patients</string>
-    <string name="strDailyRound"> Patients à vérifier aujourd'hui.</string>
+    <string name="strDailyRound">Patients \à v\érifier aujourd\'hui.</string>
     <string name="strCheckDone">Vérifications effectuées</string>
 
     <string name="strVitals">Vitals</string>
@@ -61,7 +61,7 @@
     <string name="txtBloodPressure">Tension artérielle:</string>
     <string name="txtRespirationRate">Taux de respiration:</string>
     <string name="strLastCheckup">Dernier contrôle:</string>
-    <string name="strAdmissionDate">Date d'admission:</string>
+    <string name="strAdmissionDate">Date d\'admission:</string>
     <string name="strSummary">Résumé</string>
     <string name="strBio">Personnel</string>
     <string name="strShelalaine">Shelalaine Chan</string>
@@ -86,7 +86,7 @@
     <string name="strSearchLabTestHint">Recherche tests de laboratoire</string>
     <string name="strAdd">Ajouter</string>
     <string name="strCancel">Annuler</string>
-    <string name="strTestTypeDescription">Détermine la santé générale et les écrans pour les troubles tels que l'anémie ou les infections, ainsi que l'état nutritionnel et l'exposition aux substances toxiques.</string>
+    <string name="strTestTypeDescription">Détermine la santé générale et les écrans pour les troubles tels que l\'anémie ou les infections, ainsi que l\'état nutritionnel et l\'exposition aux substances toxiques.</string>
     <string name="strTestTypeCB">CBC (Complete Blood Count)</string>
     <string name="strMedicine">Médicament</string>
     <string name="strMedsForm">Forme</string>
