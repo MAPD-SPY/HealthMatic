@@ -18,9 +18,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Global.GlobalConst;
@@ -28,21 +25,14 @@ import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.PatientRef;
 import com.spy.healthmatic.Model.Staff;
-import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.Logout;
-import com.spy.healthmatic.Welcome.SplashScreen;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import at.grabner.circleprogress.CircleProgressView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cz.msebera.android.httpclient.Header;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -137,6 +127,9 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
             }
         });
         getPatientList(false);
+
+        // Do not show the Add FAB
+        floatingActionButton.hide();
     }
 
     @Override
