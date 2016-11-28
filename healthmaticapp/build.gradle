@@ -19,6 +19,12 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+
 ext {
     supportLibVersion = '24.2.1'
 }
