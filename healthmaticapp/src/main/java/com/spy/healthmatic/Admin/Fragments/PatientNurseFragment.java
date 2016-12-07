@@ -34,6 +34,7 @@ import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.PatientRef;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
@@ -65,7 +66,8 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
     RecyclerView mNurseRecyclerView;
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
-    private Patient patient, updatedPatient;
+    private Patient patient, updatepatient;
+    private PatientRef updatePaientRef;
     private LinearLayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
 
@@ -222,8 +224,9 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
                     }
                     return;
                 }
-                updatedPatient = response.body();
-                String updatedPatientString = new Gson().toJson(updatedPatient);
+                updatepatient = response.body();
+                updatePaientRef = new PatientRef(updatepatient.get_id(), new String[]{});
+                String updatedPatientString = new Gson().toJson(patient);
                 updateDoctors();
             }
 
@@ -245,10 +248,10 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
                 }
             }
         }
-        if(staffs.get(0).getPatients()==null){
-            staffs.get(0).setPatients(new ArrayList<Patient>());
+        if(staffs.get(0).getPatientRefs()==null){
+            staffs.get(0).setPatientRefs(new ArrayList<PatientRef>());
         }
-        staffs.get(0).getPatients().add(updatedPatient);
+        staffs.get(0).getPatientRefs().add(updatePaientRef);
         Call<Staff> call = STAFF_API.updateStaff(staffs.get(0).get_id(), staffs.get(0));
         String doctorString = new Gson().toJson(staffs.get(0));
         call.enqueue(new Callback<Staff>() {
@@ -277,10 +280,10 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
     }
 
     private void updateNurse(){
-        if(selectedNurses.get(0).getPatients()==null){
-            selectedNurses.get(0).setPatients(new ArrayList<Patient>());
+        if(selectedNurses.get(0).getPatientRefs()==null){
+            selectedNurses.get(0).setPatientRefs(new ArrayList<PatientRef>());
         }
-        selectedNurses.get(0).getPatients().add(updatedPatient);
+        selectedNurses.get(0).getPatientRefs().add(updatePaientRef);
         Call<Staff> call = STAFF_API.updateStaff(selectedNurses.get(0).get_id(), selectedNurses.get(0));
         String nurseString = new Gson().toJson(selectedNurses.get(0));
         call.enqueue(new Callback<Staff>() {

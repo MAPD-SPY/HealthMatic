@@ -64,7 +64,13 @@
             android:label="@string/strLaboratoryTests"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
-            android:name=".Admin.AdminAddPatient"
+            android:name=".Doctor.AddVitalsActivity"
+            android:label="Vitals"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Doctor.AddNotesActivity"
+            android:label="Notes"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".Admin.AdminAddPatient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
@@ -72,8 +78,6 @@
         <activity
             android:name=".Admin.AdminAddStaff"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Welcome.Logout"></activity>
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.spy.healthmatic.fileprovider"
@@ -83,6 +87,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <activity android:name=".Welcome.Logout"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

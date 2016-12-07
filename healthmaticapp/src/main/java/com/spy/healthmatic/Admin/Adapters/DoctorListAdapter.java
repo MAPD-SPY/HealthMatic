@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.ViewHolder> implements GlobalConst {
 
     private final DoctorList.OnDoctorListFragmentInteractionListener mListener;
-    StorageReference storageRef = null;
     private ArrayList<Staff> doctors;
     Context context;
 
@@ -35,7 +34,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
     public DoctorListAdapter(ArrayList<Staff> doctors, DoctorList.OnDoctorListFragmentInteractionListener listener, Context context) {
         this.doctors = doctors;
         mListener = listener;
-        storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FILE_STORAGE_PATH);//.child("signatures/" + approvarData.getSignatureImage())
         this.context = context;
     }
 
@@ -90,7 +88,6 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         public final TextView mPateintConditionView;
         public final TextView mRoomNumberView;
         public final ImageView mPatientGenderIdicator;
-        public StorageReference photoRef;
 
         public ViewHolder(View itemView) {
             super(itemView);

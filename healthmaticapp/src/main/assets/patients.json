@@ -23,7 +23,31 @@
                     "_id": "582e44da6505cd0c03f0ca74"
                 }
             ],
+<<<<<<< HEAD
+            
+            "allergies": ["Penicillin"],
+JSON            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "", 
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+                    "sampleTakenDate": "",
+                    "sampleTakenByName": "",
+                    "status": "On-going",
+                    "imageResult": ""
+                },
+=======
             "doctors": [
+>>>>>>> master
                 {
                     "name": "Dr John Smith",
                     "gender": "male",
@@ -82,7 +106,13 @@
                     "_id": "583328ca8121fa29c7e79d28"
                 }
             ],
+<<<<<<< HEAD
+            
+            "allergies": ["Penicillin"],
+            "labtests": [
+=======
             "labTests": [
+>>>>>>> master
                 {
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
@@ -124,9 +154,80 @@
                     "_id": "5830c9ba8121fa29c7e79ce7"
                 },
                 {
+<<<<<<< HEAD
+                    "date": "Nov 2, 2016, 7:35 AM",
+                    "takenByName": "Grace Kelly",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 14,
+                    "heartRate": 85,
+                    "temperature": 38
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "101"
+        },      
+        {
+            "_id": 2,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:05 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urine Culture",
+=======
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
                     "testType": "Urine Culture",
+>>>>>>> master
                     "sampleTakenDate": "",
                     "sampleTakenByName": "Jane Doe",
                     "imageResult": "Jane Doe",
@@ -154,9 +255,80 @@
                     "_id": "5830d1568121fa29c7e79cea"
                 },
                 {
+<<<<<<< HEAD
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "102"
+        },
+        {
+            "_id": 3,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "Urinalysis",
+=======
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
                     "testType": "Urine Culture",
+>>>>>>> master
                     "sampleTakenDate": "",
                     "sampleTakenByName": "Jane Doe",
                     "imageResult": "Jane Doe",
@@ -204,6 +376,55 @@
                     "_id": "5830ecf78121fa29c7e79cef"
                 },
                 {
+<<<<<<< HEAD
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "103"
+        },
+        {
+            "_id": 4,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+=======
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
                     "testType": "Electrolytes (Electrolyte Panel)",
@@ -213,6 +434,7 @@
                     "status": "On-going",
                     "_id": "5830fe6b8121fa29c7e79cf0"
                 },
+>>>>>>> master
                 {
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
@@ -244,9 +466,90 @@
                     "_id": "583137028121fa29c7e79cf3"
                 },
                 {
+<<<<<<< HEAD
+                    "date": "Nov 3, 2016, 9:00 AM",
+                    "medicineName": "Zolpiden Tartrate (zolpidem) 10mg",
+                    "dosage": "1 tablet",
+                    "frequency": "daily",
+                    "duration": "30 days",
+                    "prescribedByName": "Dr. John Smith"
+                }
+            ],
+            "vitals":[
+                {
+                    "date": "Nov 1, 2016, 4:35 PM",
+                    "takenByName": "Jane Doe",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 100,
+                    "temperature": 39
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "104"
+        },      
+        {
+            "_id": 5,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+=======
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
                     "testType": "BMP (Basic Metabolic Panel)",
+>>>>>>> master
                     "sampleTakenDate": "",
                     "sampleTakenByName": "",
                     "imageResult": "",
@@ -294,9 +597,80 @@
                     "_id": "5831434e8121fa29c7e79cf8"
                 },
                 {
+<<<<<<< HEAD
+                    "date": "Nov 3, 2016, 8:00 AM",
+                    "takenByName": "Trinity Hall",
+                    "systolic": 120,
+                    "diastolic": 80,
+                    "respirationRate": 15,
+                    "heartRate": 80,
+                    "temperature": 37
+                }
+            ],
+            
+            "doctors": [
+                {
+                }
+            ],
+
+            "nurses": [
+                {
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "105"
+        },         
+        {
+            "_id": 6,
+            "firstName": "Shelalaine",
+            "lastName": "Chan",
+            
+            "birthday": "2000-01-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": false,
+            "weight": "112",
+            "height": "",
+            "bloodType": "A",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left wrist.",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+                {
+                    "date": "Nov 3, 2016, 9:10 AM",
+                    "requestedByName":"Dr John Smith",
+                    "type": "CBC (Complete Blood Count)",
+=======
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
                     "testType": "Amylase",
+>>>>>>> master
                     "sampleTakenDate": "",
                     "sampleTakenByName": "",
                     "imageResult": "",
@@ -364,6 +738,55 @@
                     "_id": "583162008121fa29c7e79cff"
                 },
                 {
+<<<<<<< HEAD
+
+                }
+            ],
+            
+            "admissionDate": "",
+            "dischargedDate": "",
+            "room": "108"
+        },      
+        {
+            "_id": 7,
+            "firstName": "Yatin",
+            "lastName": "Sharma",
+            
+            "birthday": "2000-05-01",
+            
+            "address": {
+                "street": "3878 Stardust Dr",
+                "city": "Mississauga",
+                "province": "ON", 
+                "zipCode": "L5M7Z8"
+            },
+            
+            "contact": {
+                "phone": "647-633-5967",
+                "email": "shelalainechan@gmail.com",
+                "emergencyContactName": "",
+                "emergencyContactNumber": ""
+            },
+            
+            "gender": true,
+            "weight": "112",
+            "height": "",
+            "bloodType": "O",
+            "occupation": "Student",
+            "maritalStatus": "Married",
+
+            "condition": "Fractured left arm",
+
+            "insurance": [
+                {
+                    "name": "",
+                    "expiryDate": ""
+                }
+            ],
+            
+            "allergies": ["Penicillin"],
+            "labTests": [
+=======
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
                     "testType": "Microalbumin",
@@ -373,6 +796,7 @@
                     "status": "On-going",
                     "_id": "583162838121fa29c7e79d00"
                 },
+>>>>>>> master
                 {
                     "requestDate": "2016-11-03, 9:10 AM",
                     "requestedByName": "Dr John Smith",
@@ -556,6 +980,11 @@
                     "_id": "5833131d8121fa29c7e79d24"
                 }
             ],
+<<<<<<< HEAD
+            
+            "allergies": ["Penicillin"],
+=======
+>>>>>>> master
             "labTests": [
                 {
                     "requestDate": "2016-11-03, 9:10 AM",
@@ -713,6 +1142,11 @@
                     "_id": "5831edc38121fa29c7e79d14"
                 }
             ],
+<<<<<<< HEAD
+            
+            "allergies": ["Penicillin"],
+=======
+>>>>>>> master
             "labTests": [
                 {
                     "requestDate": "2016-11-03, 9:10 AM",

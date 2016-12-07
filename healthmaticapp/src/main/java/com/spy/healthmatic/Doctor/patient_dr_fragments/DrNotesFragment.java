@@ -20,10 +20,11 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class DrNotesFragment extends Fragment {
+
+    private String doctorName;
     private DrNotesAdapter drNotesAdapter;
     private Patient patient;
     private List<DrNotes> drNotes;
-
 
     public DrNotesFragment() {
         // Required empty public constructor
@@ -35,6 +36,7 @@ public class DrNotesFragment extends Fragment {
         if (getArguments() != null) {
             patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
             drNotes = patient.getDrNotes();
+            doctorName = getArguments().getString("DOCTOR_NAME");
             drNotesAdapter = new DrNotesAdapter(getActivity(), drNotes);
         }
     }

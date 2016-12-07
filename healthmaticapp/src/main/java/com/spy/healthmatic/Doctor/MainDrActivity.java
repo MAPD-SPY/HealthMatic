@@ -1,12 +1,11 @@
 package com.spy.healthmatic.Doctor;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,65 +14,91 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
-import com.spy.healthmatic.R;
+import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
+import com.spy.healthmatic.Global.GlobalConst;
+import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
-import com.spy.healthmatic.Welcome.SplashScreen;
+import com.spy.healthmatic.Model.PatientRef;
+import com.spy.healthmatic.Model.Staff;
+import com.spy.healthmatic.R;
+import com.spy.healthmatic.Welcome.Logout;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import at.grabner.circleprogress.CircleProgressView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Team Name: Team SPY
  * Created by shelalainechan on 2016-10-26.
  */
-public class MainDrActivity extends AppCompatActivity {
+public class MainDrActivity extends AppCompatActivity implements GlobalConst, SwipeRefreshLayout.OnRefreshListener{
 
+    private static Staff doctor;
     private ArrayList<Patient> patients;
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
-    private long numOfPatientsChecked = 2;
-    private static final int CIRCLE_PROGRESS_VIEW_DELAY = 2000;
+    private long numOfPatientsChecked;
+    private static final int CIRCLE_PROGRESS_VIEW_DELAY = 1000;
+
+    @Bind(R.id.recyler_list)
+    RecyclerView mRecyclerView;
+    @Bind(R.id.progress_dialog)
+    ProgressBar mProgressDialog;
+    @Bind(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+    private LinearLayoutManager mLayoutManager;
+    @Bind(R.id.fab)
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dr);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        if (patients == null) {
-            patients = new ArrayList<>();
-            patientsAdapter = new PatientsAdapter(this, patients);
-            getPatientJSONArray();
+        // Get a reference to the staff object
+        if (doctor == null) {
+            doctor = GlobalFunctions.getStaff(this);
         }
+        numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
-        recyclerView.setAdapter(patientsAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        patients = doctor.getPatients();
+//        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
+
+//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
+//        recyclerView.setAdapter(patientsAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //      Setting Recyclerview
+        mRecyclerView.setHasFixedSize(false);
+//      Use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+//      Swipe to refresh
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.circlePVRim),
+
+                getResources().getColor(R.color.circlePVBar),
+
+                getResources().getColor(R.color.appBarScrim),
+
+                getResources().getColor(R.color.yellow));
 
         // Setup the circle progress view
         circleProgressView = (CircleProgressView) findViewById(R.id.cpvPatients);
-        initCircleProgressView();
+//        initCircleProgressView();
 
         // Show the title if the toolbar is collapsed
         // Otherwise if the toolbar is expanded, hide the title
@@ -90,7 +115,10 @@ public class MainDrActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle("My Patients");
+                    collapsingToolbarLayout.setTitle("Dr. " +
+                            doctor.getFirstName() + " " +
+                            doctor.getLastName()
+                    );
                     isShow = true;
                 } else if (isShow) {
                     collapsingToolbarLayout.setTitle(" ");
@@ -98,48 +126,98 @@ public class MainDrActivity extends AppCompatActivity {
                 }
             }
         });
+        getPatientList(false);
+
+        // Do not show the Add FAB
+        floatingActionButton.hide();
     }
 
-    public String loadJSONFromAsset() {
-        String json;
-        AssetManager assetManager = getAssets();
-        InputStream input;
-        try {
-            input = assetManager.open("patients.json");
-            int size = input.available();
-            byte[] buffer = new byte[size];
-            input.read(buffer);
-            input.close();
-
-            json = new String(buffer, "UTF-8");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-
-        return json;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getPatientList(false);
+//        try {
+//            getPatients(doctor);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    private void getPatientJSONArray() {
-        JSONObject response;
-        JSONArray patientJsonResults;
+//    public String loadJSONFromAsset() {
+//        String json;
+//        AssetManager assetManager = getAssets();
+//        InputStream input;
+//        try {
+//            input = assetManager.open("patients.json");
+//            int size = input.available();
+//            byte[] buffer = new byte[size];
+//            input.read(buffer);
+//            input.close();
+//
+//            json = new String(buffer, "UTF-8");
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//            return null;
+//        }
+//
+//        return json;
+//    }
+//
+//    private void getPatientJSONArray() {
+//        JSONObject response;
+//        JSONArray patientJsonResults;
+//
+//        try {
+//            // TODO: Remove if check is complete
+//            // response = new JSONObject(loadJSONFromAsset());
+//            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
+//            patientJsonResults = response.getJSONArray("patients");
+//            patients.addAll(Patient.fromJSONArray(patientJsonResults));
+//            patientsAdapter.notifyDataSetChanged();
+//            Log.d("DEBUG", patients.toString());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        try {
-            // TODO: Remove if check is complete
-            // response = new JSONObject(loadJSONFromAsset());
-            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
-            patientJsonResults = response.getJSONArray("patients");
-            patients.addAll(Patient.fromJSONArray(patientJsonResults));
-            patientsAdapter.notifyDataSetChanged();
-            Log.d("DEBUG", patients.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    private void getPatientList(final boolean isRefresh) {
+        Call<ArrayList<Patient>> call = STAFF_API.getAllStaffPatinet(doctor.get_id());
+        call.enqueue(new Callback<ArrayList<Patient>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
+                    Toast.makeText(MainDrActivity.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                patients = response.body();
+                loadRecyclerViewElements();
+                if (isRefresh) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Patient>> call, Throwable t) {
+                Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
+                Toast.makeText(MainDrActivity.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void loadRecyclerViewElements() {
+        initCircleProgressView();
+        mProgressDialog.setVisibility(View.GONE);
+        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
+        mRecyclerView.setAdapter(patientsAdapter);
     }
 
     private void initCircleProgressView() {
-
+        if(patients==null){
+            return;
+        }
         int patientsSize = patients.size();
 
         circleProgressView.setBlockCount(patientsSize);
@@ -169,12 +247,38 @@ public class MainDrActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_signout) {
-            Intent intent = new Intent(this, SplashScreen.class);
-            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            Intent intent = new Intent(this, Logout.class);
             startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
+        long numOfPatientsChecked = 0;
+
+        // Get current date
+        String dateNow = TimeHelpers.getCurrentDate();
+
+        // Go through each patient
+        for (PatientRef patientRef : patientRefs) {
+            // Check if one of the checkup dates matches the current date
+            for (String checkup: patientRef.getCheckupDates()) {
+                String[] dateChecked = checkup.split(" ");
+                if (dateChecked[0].equals(dateNow)) {
+                    // Increment number of patients checked counter
+                    numOfPatientsChecked++;
+                    break;
+                }
+            }
+        }
+
+        return numOfPatientsChecked;
+    }
+
+    @Override
+    public void onRefresh() {
+        getPatientList(true);
     }
 }
