@@ -60,26 +60,13 @@
         android:layout_marginTop="24dp"
         android:text="@string/str_btn_Login" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/signFingerLogin"
-            style="@style/ButtonStyle"
-            android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            android:text="Register" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/registerFingerLogin"
-            style="@style/ButtonStyle"
-            android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            android:text="Finger Sign in" />
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signFingerLogin"
+        style="@style/ButtonStyle"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Finger Sign in"
+        android:visibility="gone"/>
 
 </LinearLayout>

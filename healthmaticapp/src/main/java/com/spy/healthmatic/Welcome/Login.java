@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.KeyEvent;
@@ -80,6 +81,8 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
     EditText editTxtEmail;
     @Bind(R.id.editTextPassword)
     EditText editTxtPassword;
+    @Bind(R.id.signFingerLogin)
+    AppCompatButton mSamsunButton;
 
     ProgressDialog progressDialog;
 
@@ -243,7 +246,10 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
                 printlog(ise.getMessage());
             }
             if (eventStatus == SpassFingerprint.STATUS_AUTHENTIFICATION_SUCCESS) {
+                hideProgressDialog();
                 printlog("onFinished() : Identify authentification Success with FingerprintIndex : " + FingerprintIndex);
+                printlog("onFinished() : Identify authentification mSpassFingerprint.getRegisteredFingerprintUniqueID().toString() : " + mSpassFingerprint.getRegisteredFingerprintUniqueID().get(FingerprintIndex));
+                authenticateFingerWithServer(mSpassFingerprint.getRegisteredFingerprintUniqueID().get(FingerprintIndex).toString());
             } else if (eventStatus == SpassFingerprint.STATUS_AUTHENTIFICATION_PASSWORD_SUCCESS) {
                 printlog("onFinished() : Password authentification Success");
             } else if (eventStatus == SpassFingerprint.STATUS_USER_CANCELLED
@@ -280,6 +286,7 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
             printlog("the identify is completed");
         }
     };
+
     private SpassFingerprint.RegisterListener mRegisterListener = new SpassFingerprint.RegisterListener() {
         @Override
         public void onFinished() {
@@ -301,22 +308,28 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         try {
             mSpass.initialize(this);
         } catch (SsdkUnsupportedException e) {
+            mSpass = null;
             printlog("Exception: " + e);
         } catch (UnsupportedOperationException e) {
+            mSpass = null;
             printlog("Fingerprint Service is not supported in the device");
         }
-        isFeatureEnabled_fingerprint = mSpass.isFeatureEnabled(Spass.DEVICE_FINGERPRINT);
+        isFeatureEnabled_fingerprint = false;
+        if(mSpass!=null) {
+            mSamsunButton.setVisibility(View.VISIBLE);
+            isFeatureEnabled_fingerprint = mSpass.isFeatureEnabled(Spass.DEVICE_FINGERPRINT);
 
-        if (isFeatureEnabled_fingerprint) {
-            mSpassFingerprint = new SpassFingerprint(this);
-            printlog("Fingerprint Service is supported in the device.");
-            printlog("SDK version : " + mSpass.getVersionName());
-        } else {
-            printlog("Fingerprint Service is not supported in the device.");
-            return;
+            if (isFeatureEnabled_fingerprint) {
+                mSpassFingerprint = new SpassFingerprint(this);
+                printlog("Fingerprint Service is supported in the device.");
+                printlog("SDK version : " + mSpass.getVersionName());
+            } else {
+                printlog("Fingerprint Service is not supported in the device.");
+                return;
+            }
+
+            registerBroadcastReceiver();
         }
-
-        registerBroadcastReceiver();
 
     }
 
@@ -544,6 +557,7 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
     private void resetIdentifyIndex() {
         designatedFingers = null;
     }
+
     private void setIdentifyIndexDialog() {
         if (isFeatureEnabled_index) {
             if (mSpassFingerprint != null && designatedFingersDialog != null) {
@@ -646,14 +660,9 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
                 staff.setLoggedIn(true);
                 if(isFeatureEnabled_fingerprint && (staff.getFingerKey()==null || "".equals(staff.getFingerKey()))){
                     askRegisterFingerPrint();
+                }else{
+                    new LoginUserInDB(staff).execute();
                 }
-//                cancelIdentify();
-//                startIdentify();
-//                startIdentifyDialog(true);
-
-//                registerFingerprint();
-//                new LoginUserInDB(staff).execute();
-
             }
 
             @Override
@@ -663,6 +672,11 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
             }
         });
 
+    }
+
+    @OnClick(R.id.signFingerLogin)
+    public void samsungLoginClick(){
+        startIdentifyDialog(true);
     }
 
     private void askRegisterFingerPrint(){
@@ -676,7 +690,8 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
                     registerFingerprint();
                     return;
                 }
-                getFingerprintUniqueID();
+                dialogInterface.dismiss();
+                registerFingerprintOnServer(getFirstFingerprintUniqueID());
             }
         });
         builder.setNegativeButton("Not now", new DialogInterface.OnClickListener() {
@@ -688,6 +703,73 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void registerFingerprintOnServer(String fingerUniqueId){
+        staff.setFingerKey(fingerUniqueId);
+        showProgressDialog();
+        Call<Staff> call = STAFF_API.updateStaff(staff.get_id(), staff);
+        call.enqueue(new Callback<Staff>() {
+
+            @Override
+            public void onResponse(Call<Staff> call, Response<Staff> response) {
+                hideProgressDialog();
+                if (!response.isSuccessful()) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Log.d("RETROFIT", "UPDATE DOCTOR RETROFIT FAILURE jObjError.getString(message) >>>>> " + jObjError.getString("message"));
+                        showToast(jObjError.getString("message"));
+                    } catch (Exception e) {
+                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    return;
+                }
+                new LoginUserInDB(staff).execute();
+            }
+
+            @Override
+            public void onFailure(Call<Staff> call, Throwable t) {
+                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
+                hideProgressDialog();
+                showToast("Was not able to connect with server. Please try again.");
+            }
+        });
+    }
+
+    private void authenticateFingerWithServer(String fingerUniqueId){
+        showProgressDialog();
+        Call<Staff> call = STAFF_API.loginSamsung(new LoginModel("", "", fingerUniqueId));
+        call.enqueue(new Callback<Staff>() {
+            @Override
+            public void onResponse(Call<Staff> call, Response<Staff> response) {
+                hideProgressDialog();
+                if (!response.isSuccessful()) {
+                    Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
+                    Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                staff = response.body();
+                if(staff == null){
+                    Toast.makeText(Login.this, "Invalid Username/Password. Please try again.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                //UPDATING USER LOGIN STATUS
+                staff.setLoggedIn(true);
+                new LoginUserInDB(staff).execute();
+            }
+
+            @Override
+            public void onFailure(Call<Staff> call, Throwable t) {
+                Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
+                hideProgressDialog();
+                Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void showToast(String msg){
+        hideProgressDialog();
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     private boolean validate() {
@@ -769,5 +851,11 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
 
     private void printlog(String txt){
         log.d("SAMSUNG", txt);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterBroadcastReceiver();
     }
 }
