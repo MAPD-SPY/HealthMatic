@@ -11,6 +11,7 @@ import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.TestsFragment;
 import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 
 /**
  * Team Name: Team SPY
@@ -27,13 +28,13 @@ public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
     private Patient patient;
-    private String doctorName;
+    private Staff doctor;
 
-    public PatientTabPagerAdapter(FragmentManager fm, int numberofTabs, Patient patient, String doctorName) {
+    public PatientTabPagerAdapter(FragmentManager fm, int numberofTabs, Patient patient, Staff doctor) {
         super(fm);
         this.tabCount = numberofTabs;
         this.patient = patient;
-        this.doctorName = doctorName;
+        this.doctor = doctor;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class PatientTabPagerAdapter extends FragmentStatePagerAdapter {
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("PATIENT_OBJ", patient);
-        bundle.putString("DOCTOR_NAME", doctorName);
+        bundle.putSerializable("STAFF_OBJ", doctor);
 
         switch (position) {
             case TAB_MEDS:

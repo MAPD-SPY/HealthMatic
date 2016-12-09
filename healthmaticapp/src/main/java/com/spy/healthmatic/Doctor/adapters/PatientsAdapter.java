@@ -11,8 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Doctor.PatientDrActivity;
-import com.spy.healthmatic.R;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
+import com.spy.healthmatic.R;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHolder> {
 
-    private String mDoctorName;
+    private Staff mDoctor;
     private List<Patient> mPatients;
     private Context mContext;
 
@@ -48,7 +49,7 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                     int position = getAdapterPosition();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
-                    bundle.putString("DOCTOR_NAME", mDoctorName);
+                    bundle.putSerializable("STAFF_OBJ", mDoctor);
 
                     Intent intent = new Intent(mContext, PatientDrActivity.class);
                     intent.putExtras(bundle);
@@ -58,10 +59,10 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
         }
     }
 
-    public PatientsAdapter(Context context, List<Patient> patients, String doctorName) {
+    public PatientsAdapter(Context context, List<Patient> patients, Staff doctor) {
         mPatients = patients;
         mContext = context;
-        mDoctorName = doctorName;
+        mDoctor = doctor;
     }
 
     public Context getContext() {

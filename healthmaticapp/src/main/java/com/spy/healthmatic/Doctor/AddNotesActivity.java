@@ -26,6 +26,7 @@ import cz.msebera.android.httpclient.protocol.HTTP;
 public class AddNotesActivity extends AppCompatActivity {
 
     private String doctorName;
+    private String doctorId;
     private String patientID;
     private EditText drNotes;
 
@@ -37,6 +38,7 @@ public class AddNotesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
         doctorName = intent.getStringExtra("DOCTOR_NAME");
+        doctorId = intent.getStringExtra("DOCTOR_ID");
 
         drNotes = (EditText) findViewById(R.id.etDrNotes);
         // Setup Cancel button handler
@@ -66,10 +68,12 @@ public class AddNotesActivity extends AppCompatActivity {
 
     private void setNotes() throws JSONException, UnsupportedEncodingException {
 
+        // Setup the fields to be written to the dr notes
         JSONObject jsonParams = new JSONObject();
         jsonParams.put("date", TimeHelpers.getCurrentDateAndTime());
         jsonParams.put("notes", drNotes.getText().toString());
         jsonParams.put("diagnosedByName", doctorName);
+        jsonParams.put("drId", doctorId);
         addNotes(jsonParams);
     }
 

@@ -15,6 +15,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Vitals;
 import com.spy.healthmatic.R;
 
@@ -42,6 +43,7 @@ public class PatientDrActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private String doctorName;
     private Patient patient;
+    private Staff doctor;
 
     private int tabPos;
     private FloatingActionButton fab;
@@ -68,7 +70,8 @@ public class PatientDrActivity extends AppCompatActivity {
         // Get a reference of the patient object
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
-        doctorName = "Dr " + intent.getStringExtra("DOCTOR_NAME");
+        doctor = (Staff) intent.getSerializableExtra("STAFF_OBJ");
+        doctorName = "Dr " + doctor.getFirstName() + " " + doctor.getLastName();
         isAgent = intent.getBooleanExtra("isAgent", false);
 
         // Initialize fields in the Summary/Latest view
@@ -92,7 +95,7 @@ public class PatientDrActivity extends AppCompatActivity {
         // primary sections of the activity.
         final PagerAdapter pagerAdapter = new PatientTabPagerAdapter(getSupportFragmentManager(),
                 tabLayout.getTabCount(),
-                patient, doctorName);
+                patient, doctor);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
@@ -173,6 +176,7 @@ public class PatientDrActivity extends AppCompatActivity {
                         intentAddTest = new Intent(PatientDrActivity.this, AddNotesActivity.class);
                         intentAddTest.putExtra("PATIENT_ID", patient.get_id());
                         intentAddTest.putExtra("DOCTOR_NAME", doctorName);
+                        intentAddTest.putExtra("DOCTOR_ID", doctor.get_id());
                         startActivity(intentAddTest);
                         break;
                     case TAB_BIO:
