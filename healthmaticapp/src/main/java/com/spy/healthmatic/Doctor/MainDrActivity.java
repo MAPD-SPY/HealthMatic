@@ -74,19 +74,12 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         }
         numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
 
-//        patients = doctor.getPatients();
-//        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
-
-//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
-//        recyclerView.setAdapter(patientsAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //      Setting Recyclerview
+        // Setting Recyclerview
         mRecyclerView.setHasFixedSize(false);
-//      Use a linear layout manager
+        // Use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-//      Swipe to refresh
+        // Swipe to refresh
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.circlePVRim),
 
@@ -98,7 +91,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
 
         // Setup the circle progress view
         circleProgressView = (CircleProgressView) findViewById(R.id.cpvPatients);
-//        initCircleProgressView();
 
         // Show the title if the toolbar is collapsed
         // Otherwise if the toolbar is expanded, hide the title
@@ -136,51 +128,37 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
     protected void onResume() {
         super.onResume();
         getPatientList(false);
-//        try {
-//            getPatients(doctor);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
     }
 
-//    public String loadJSONFromAsset() {
-//        String json;
-//        AssetManager assetManager = getAssets();
-//        InputStream input;
-//        try {
-//            input = assetManager.open("patients.json");
-//            int size = input.available();
-//            byte[] buffer = new byte[size];
-//            input.read(buffer);
-//            input.close();
-//
-//            json = new String(buffer, "UTF-8");
-//
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            return null;
-//        }
-//
-//        return json;
-//    }
-//
-//    private void getPatientJSONArray() {
-//        JSONObject response;
-//        JSONArray patientJsonResults;
-//
-//        try {
-//            // TODO: Remove if check is complete
-//            // response = new JSONObject(loadJSONFromAsset());
-//            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
-//            patientJsonResults = response.getJSONArray("patients");
-//            patients.addAll(Patient.fromJSONArray(patientJsonResults));
-//            patientsAdapter.notifyDataSetChanged();
-//            Log.d("DEBUG", patients.toString());
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_activity2, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_signout) {
+            Intent intent = new Intent(this, Logout.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRefresh() {
+        getPatientList(true);
+    }
+    
     private void getPatientList(final boolean isRefresh) {
         Call<ArrayList<Patient>> call = STAFF_API.getAllStaffPatinet(doctor.get_id());
         call.enqueue(new Callback<ArrayList<Patient>>() {
@@ -230,31 +208,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         textViewPatientNum.setText(Integer.toString(patientsSize) + " ");
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_activity2, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_signout) {
-            Intent intent = new Intent(this, Logout.class);
-            startActivity(intent);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
         long numOfPatientsChecked = 0;
 
@@ -275,10 +228,5 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         }
 
         return numOfPatientsChecked;
-    }
-
-    @Override
-    public void onRefresh() {
-        getPatientList(true);
     }
 }
