@@ -73,7 +73,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         if (doctor == null) {
             doctor = GlobalFunctions.getStaff(this);
         }
-        numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
 
         // Setting Recyclerview
         mRecyclerView.setHasFixedSize(false);
@@ -187,6 +186,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
     }
 
     private void loadRecyclerViewElements() {
+        numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
         initCircleProgressView();
         mProgressDialog.setVisibility(View.GONE);
         patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
@@ -217,18 +217,20 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
 
         // Go through every patient who are still in the hospital
         for (Patient patient : patients) {
-            if (!patient.getDischargedDate().equals(" ")) {
+            if (patient.getDischargedDate() != null) {
+                if (!patient.getDischargedDate().equals(" ")) {
 
-                // Check dr notes
-                // The dr notes contains dates when a doctor checks on the patient
-                for (DrNotes drNote : patient.getDrNotes()) {
+                    // Check dr notes
+                    // The dr notes contains dates when a doctor checks on the patient
+                    for (DrNotes drNote : patient.getDrNotes()) {
 
-                    // Check if one of the checkup dates matches the current date
-                    String[] dateChecked = drNote.getDate().split(" ");
-                    if (dateChecked[0].equals(dateNow)) {
-                        // Increment number of patients checked counter
-                        numOfPatientsChecked++;
-                        break;
+                        // Check if one of the checkup dates matches the current date
+                        String[] dateChecked = drNote.getDate().split(", ");
+                        if (dateChecked[0].equals(dateNow)) {
+                            // Increment number of patients checked counter
+                            numOfPatientsChecked++;
+                            break;
+                        }
                     }
                 }
             }
