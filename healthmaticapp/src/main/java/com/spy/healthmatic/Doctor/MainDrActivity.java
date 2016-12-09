@@ -22,6 +22,7 @@ import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
+import com.spy.healthmatic.Model.DrNotes;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.PatientRef;
 import com.spy.healthmatic.Model.Staff;
@@ -158,7 +159,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
     public void onRefresh() {
         getPatientList(true);
     }
-    
+
     private void getPatientList(final boolean isRefresh) {
         Call<ArrayList<Patient>> call = STAFF_API.getAllStaffPatinet(doctor.get_id());
         call.enqueue(new Callback<ArrayList<Patient>>() {
@@ -214,15 +215,21 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         // Get current date
         String dateNow = TimeHelpers.getCurrentDate();
 
-        // Go through each patient
-        for (PatientRef patientRef : patientRefs) {
-            // Check if one of the checkup dates matches the current date
-            for (String checkup: patientRef.getCheckupDates()) {
-                String[] dateChecked = checkup.split(" ");
-                if (dateChecked[0].equals(dateNow)) {
-                    // Increment number of patients checked counter
-                    numOfPatientsChecked++;
-                    break;
+        // Go through every patient who are still in the hospital
+        for (Patient patient : patients) {
+            if (!patient.getDischargedDate().equals(" ")) {
+
+                // Check dr notes
+                // The dr notes contains dates when a doctor checks on the patient
+                for (DrNotes drNote : patient.getDrNotes()) {
+
+                    // Check if one of the checkup dates matches the current date
+                    String[] dateChecked = drNote.getDate().split(" ");
+                    if (dateChecked[0].equals(dateNow)) {
+                        // Increment number of patients checked counter
+                        numOfPatientsChecked++;
+                        break;
+                    }
                 }
             }
         }
