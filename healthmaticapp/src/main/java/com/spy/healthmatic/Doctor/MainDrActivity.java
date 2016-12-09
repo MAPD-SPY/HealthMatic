@@ -44,7 +44,7 @@ import retrofit2.Response;
  */
 public class MainDrActivity extends AppCompatActivity implements GlobalConst, SwipeRefreshLayout.OnRefreshListener{
 
-    private static Staff doctor;
+    private Staff doctor;
     private ArrayList<Patient> patients;
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
@@ -189,7 +189,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
         initCircleProgressView();
         mProgressDialog.setVisibility(View.GONE);
-        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
+        patientsAdapter = new PatientsAdapter(this, patients, doctor);
         mRecyclerView.setAdapter(patientsAdapter);
     }
 
@@ -224,12 +224,16 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
                     // The dr notes contains dates when a doctor checks on the patient
                     for (DrNotes drNote : patient.getDrNotes()) {
 
-                        // Check if one of the checkup dates matches the current date
-                        String[] dateChecked = drNote.getDate().split(", ");
-                        if (dateChecked[0].equals(dateNow)) {
-                            // Increment number of patients checked counter
-                            numOfPatientsChecked++;
-                            break;
+                        // Check if the note is given by the logged in doctor
+                        if (drNote.getDrId().equals(doctor.get_id())) {
+
+                            // Check if one of the checkup dates matches the current date
+                            String[] dateChecked = drNote.getDate().split(", ");
+                            if (dateChecked[0].equals(dateNow)) {
+                                // Increment number of patients checked counter
+                                numOfPatientsChecked++;
+                                break;
+                            }
                         }
                     }
                 }
