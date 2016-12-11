@@ -101,7 +101,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle("Dr. " +
+                    collapsingToolbarLayout.setTitle(getResources().getString(R.string.strDr) + " " +
                             doctor.getFirstName() + " " +
                             doctor.getLastName()
                     );
@@ -161,7 +161,9 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
             public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
                 if (!response.isSuccessful()) {
                     Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
-                    Toast.makeText(MainDrActivity.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainDrActivity.this,
+                            getResources().getString(R.string.strRetroFitFailureMsg),
+                            Toast.LENGTH_LONG).show();
                     return;
                 }
                 patients = response.body();
@@ -174,7 +176,9 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
             @Override
             public void onFailure(Call<ArrayList<Patient>> call, Throwable t) {
                 Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(MainDrActivity.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainDrActivity.this,
+                        getResources().getString(R.string.strRetroFitFailureMsg),
+                        Toast.LENGTH_LONG).show();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });

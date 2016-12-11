@@ -234,11 +234,11 @@ public class PatientDrActivity extends AppCompatActivity {
         // Display latest vitals information
         if (patient.getVitals().size() > 0) {
             Vitals vitals = patient.getVitals().get(patient.getVitals().size() - 1);
-            textViewRRate.setText(Integer.toString(vitals.getRespirationRate()) + " breaths / min");
+            textViewRRate.setText(Integer.toString(vitals.getRespirationRate()) + " " + getResources().getString(R.string.strUnitRR));
             textViewBP.setText(Integer.toString(vitals.getSystolic()) + " / " +
-                    Integer.toString(vitals.getDiastolic()) + " mmHg");
-            textViewHR.setText(Integer.toString(vitals.getHeartRate()) + " bpm");
-            textViewTemp.setText(Integer.toString(vitals.getTemperature()) + " C");
+                    Integer.toString(vitals.getDiastolic()) + " " + getResources().getString(R.string.strUnitmmHg));
+            textViewHR.setText(Integer.toString(vitals.getHeartRate()) + " " + getResources().getString(R.string.strUnitBpm));
+            textViewTemp.setText(Integer.toString(vitals.getTemperature()) + " " + getResources().getString(R.string.strUnitC));
             textViewCheckup.setText(vitals.getDate());
         }
     }

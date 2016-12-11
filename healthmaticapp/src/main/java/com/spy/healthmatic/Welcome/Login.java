@@ -67,12 +67,12 @@ public class Login extends AppCompatActivity implements GlobalConst {
                 progressDialog.dismiss();
                 if (!response.isSuccessful()) {
                     Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
-                    Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, getResources().getString(R.string.strRetroFitFailureMsg), Toast.LENGTH_LONG).show();
                     return;
                 }
                 Staff staff = response.body();
                 if(staff == null){
-                    Toast.makeText(Login.this, "Invalid Username/Password. Please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, getResources().getString(R.string.strInvalidLogin), Toast.LENGTH_LONG).show();
                     return;
                 }
                 //UPDATING USER LOGIN STATUS
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
             @Override
             public void onFailure(Call<Staff> call, Throwable t) {
                 Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, getResources().getString(R.string.strRetroFitFailureMsg), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -97,13 +97,13 @@ public class Login extends AppCompatActivity implements GlobalConst {
         String password = editTxtPassword.getText().toString();
 
         if (email.isEmpty()) {//|| !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-            editTxtEmail.setError("Enter a valid email");
+            editTxtEmail.setError(getResources().getString(R.string.strEnterValidEmail));
             valid = false;
         } else {
             editTxtEmail.setError(null);
         }
         if (password.isEmpty()) {
-            editTxtPassword.setError("Enter password");
+            editTxtPassword.setError(getResources().getString(R.string.strEnterPassword));
             editTxtEmail.setError(null);
         }
 
@@ -137,7 +137,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
 
         protected void onPostExecute(Boolean result) {
             hideProgressDialog();
-            String msg = "User - " + staff.getFirstName() + " Login successful.";
+            String msg = staff.getFirstName() + " " + getResources().getString(R.string.strUserLoginSuccessful);
             if (result) {
                 if ("doctor".equals(staff.getRole())) {
                     Intent intent = new Intent(Login.this, MainDrActivity.class);
@@ -158,7 +158,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
                 }
                 Login.this.finish();
             } else {
-                msg = "User - " + staff.getFirstName() + " Login un-successful.";
+                msg = staff.getFirstName() + " " + getResources().getString(R.string.strUserLoginUnsuccessful);
             }
             Toast.makeText(Login.this, msg, Toast.LENGTH_LONG).show();
         }
@@ -170,7 +170,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
     private void showProgressDialog(){
         progressDialog = new ProgressDialog(Login.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage(getResources().getString(R.string.strAuthenticating));
         progressDialog.show();
     }
 

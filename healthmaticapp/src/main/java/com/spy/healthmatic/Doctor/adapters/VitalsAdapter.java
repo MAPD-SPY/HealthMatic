@@ -64,11 +64,15 @@ public class VitalsAdapter extends RecyclerView.Adapter<VitalsAdapter.ViewHolder
     public void onBindViewHolder(VitalsAdapter.ViewHolder holder, int position) {
         Vitals vitals = mVitals.get(position);
 
-        (holder.mtvRespirationRate).setText(Integer.toString(vitals.getRespirationRate()) + " breaths / min");
+        (holder.mtvRespirationRate).setText(Integer.toString(vitals.getRespirationRate()) + " " +
+                mContext.getResources().getString(R.string.strUnitRR));
         (holder.mtvBloodPressure).setText(Integer.toString(vitals.getSystolic()) + " / " +
-                Integer.toString(vitals.getDiastolic()) + " mmHg");
-        (holder.mtvHeartRate).setText(Integer.toString(vitals.getHeartRate()) + " bpm");
-        (holder.mtvTemperature).setText(Integer.toString(vitals.getTemperature()) + " C");
+                Integer.toString(vitals.getDiastolic()) + " " +
+                mContext.getResources().getString(R.string.strUnitmmHg));
+        (holder.mtvHeartRate).setText(Integer.toString(vitals.getHeartRate()) + " " +
+                mContext.getResources().getString(R.string.strUnitBpm));
+        (holder.mtvTemperature).setText(Integer.toString(vitals.getTemperature()) + " " +
+                mContext.getResources().getString(R.string.strUnitC));
 
         (holder.mtvDateTaken).setText(vitals.getDate());
     }

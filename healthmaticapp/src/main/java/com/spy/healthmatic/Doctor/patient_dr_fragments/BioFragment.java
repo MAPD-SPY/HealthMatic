@@ -40,18 +40,24 @@ public class BioFragment extends Fragment {
 
         // Show Patient's info
         TextView personDetail = (TextView) view.findViewById(R.id.txtViewPersonalDetail);
-        String gender = (patient.getGender()) ? "Male" : "Female";
+        String gender = (patient.getGender()) ?
+                getResources().getString(R.string.strMale) :
+                getResources().getString(R.string.strFemale);
         String birthday = patient.getBirthday();
         String weight = Integer.toString(patient.getWeight());
         String height = Integer.toString(patient.getHeight());
         String bloodType = patient.getBloodType();
-        String maritalStat = (patient.getMaritalStatus()) ? "Single" : "Married";
-        personDetail.setText("Birthday: " + birthday + "\n" +
-                            "Gender: " + gender + "\n" +
-                            "Weight: " + weight + " lbs \n" +
-                            "Height: " + height + " cm \n" +
-                            "Blood Type: " + bloodType + "\n" +
-                            "Marital Status: " + maritalStat);
+        String maritalStat = (patient.getMaritalStatus()) ?
+                getResources().getString(R.string.strSingle) :
+                getResources().getString(R.string.strMarried);
+        personDetail.setText(getResources().getString(R.string.strBirthday) + " " + birthday + "\n" +
+                            getResources().getString(R.string.strGender) + " "  + gender + "\n" +
+                            getResources().getString(R.string.strWeight) + " "  + weight + " " +
+                                getResources().getString(R.string.strUnitWeight) + "\n" +
+                            getResources().getString(R.string.strHeight) + " " + height + " " +
+                                getResources().getString(R.string.strUnitHeight) + "\n" +
+                            getResources().getString(R.string.strBloodType) + " " + bloodType + "\n" +
+                            getResources().getString(R.string.strMaritalStatus) + " " + maritalStat);
 
         // Show patient's address
         TextView address = (TextView) view.findViewById(R.id.tvAddressHeader);
@@ -62,10 +68,14 @@ public class BioFragment extends Fragment {
 
         // Show patient's contact info
         TextView contact = (TextView) view.findViewById(R.id.tvContactHeader);
-        contact.setText("Phone: " + patient.getContact().getPhone() + "\n" +
-                "Email: " + patient.getContact().getEmail() + "\n" +
-                "Emergency name: " + patient.getContact().getEmergencyContactName() + "\n" +
-                "Emergency phone: " + patient.getContact().getEmergencyContactNumber());
+        contact.setText(getResources().getString(R.string.strPhone) + " " +
+                    patient.getContact().getPhone() + "\n" +
+                getResources().getString(R.string.strEmail) + " " +
+                    patient.getContact().getEmail() + "\n" +
+                getResources().getString(R.string.strEmergencyName) + " " +
+                    patient.getContact().getEmergencyContactName() + "\n" +
+                getResources().getString(R.string.strEmergencyPhone) + " " +
+                    patient.getContact().getEmergencyContactNumber());
         return view;
     }
 }
