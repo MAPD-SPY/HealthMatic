@@ -114,7 +114,7 @@ public class AddMedsActivity extends AppCompatActivity {
     private void setPrescription() throws JSONException, UnsupportedEncodingException {
 
         JSONObject jsonParams = new JSONObject();
-        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime());
+        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A));
         jsonParams.put("medicineName", medName.getText().toString());
         jsonParams.put("dosage", medDosage.getText().toString());
         jsonParams.put("frequency", medFreq.getText().toString());

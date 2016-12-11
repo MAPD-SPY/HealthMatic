@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,17 +48,12 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
     private long numOfPatientsChecked;
+    private LinearLayoutManager mLayoutManager;
     private static final int CIRCLE_PROGRESS_VIEW_DELAY = 1000;
 
-    @Bind(R.id.recyler_list)
-    RecyclerView mRecyclerView;
-    @Bind(R.id.progress_dialog)
-    ProgressBar mProgressDialog;
-    @Bind(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
-    private LinearLayoutManager mLayoutManager;
-    @Bind(R.id.fab)
-    FloatingActionButton floatingActionButton;
+    @Bind(R.id.recyler_list) RecyclerView mRecyclerView;
+    @Bind(R.id.progress_dialog) ProgressBar mProgressDialog;
+    @Bind(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,10 +113,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
             }
         });
         getPatientList(false);
-
-        // Do not show the Add FAB
-        floatingActionButton.hide();
-    }
+   }
 
     @Override
     protected void onResume() {
@@ -159,6 +150,10 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         getPatientList(true);
     }
 
+    /**
+     * Get the list of patients from the web server
+     * @param isRefresh true -
+     */
     private void getPatientList(final boolean isRefresh) {
         Call<ArrayList<Patient>> call = STAFF_API.getAllStaffPatinet(doctor.get_id());
         call.enqueue(new Callback<ArrayList<Patient>>() {
@@ -193,12 +188,20 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         mRecyclerView.setAdapter(patientsAdapter);
     }
 
+    /**
+     * Initialize the Circle Progress View
+     */
     private void initCircleProgressView() {
-        if(patients==null){
+
+        // Exit if there are no patients to check
+        if(patients == null){
             return;
         }
+
+        // Get the number of patients assigned to this staff
         int patientsSize = patients.size();
 
+        // Setup the number of blocks in the circle based on the number of patients
         circleProgressView.setBlockCount(patientsSize);
         circleProgressView.setUnitScale((float)1.20);
         circleProgressView.setMaxValue(patientsSize);
@@ -209,11 +212,16 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         textViewPatientNum.setText(Integer.toString(patientsSize) + " ");
     }
 
+    /**
+     * Get the number of patients checked relative to the date today
+     * @param patientRefs List of patient references
+     * @return the number of patients already checked
+     */
     private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
         long numOfPatientsChecked = 0;
 
         // Get current date
-        String dateNow = TimeHelpers.getCurrentDate();
+        String dateNow = TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD);
 
         // Go through every patient who are still in the hospital
         for (Patient patient : patients) {
@@ -240,6 +248,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
             }
         }
 
+        // Returns the number of patients already checked
         return numOfPatientsChecked;
     }
 }

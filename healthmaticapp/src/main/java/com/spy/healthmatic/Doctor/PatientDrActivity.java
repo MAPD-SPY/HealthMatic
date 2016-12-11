@@ -224,7 +224,9 @@ public class PatientDrActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Initialize the vitals information shown in Summary / Latest view
+     */
     private void initLatestView() {
         // Display admission date
         textViewAdmission.setText(patient.getAdmissionDate());

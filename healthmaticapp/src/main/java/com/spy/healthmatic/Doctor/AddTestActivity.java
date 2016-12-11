@@ -112,7 +112,7 @@ public class AddTestActivity extends AppCompatActivity {
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
         // Get time and date
-        String timeDateStamp = TimeHelpers.getCurrentDateAndTime();
+        String timeDateStamp = TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A);
 
         // Setup the list of tests selected
         for (String mTestSelected : mTestsSelected) {

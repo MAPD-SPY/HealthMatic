@@ -70,7 +70,7 @@ public class AddNotesActivity extends AppCompatActivity {
 
         // Setup the fields to be written to the dr notes
         JSONObject jsonParams = new JSONObject();
-        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime());
+        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A));
         jsonParams.put("notes", drNotes.getText().toString());
         jsonParams.put("diagnosedByName", doctorName);
         jsonParams.put("drId", doctorId);
