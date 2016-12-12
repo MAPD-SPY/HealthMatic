@@ -108,14 +108,38 @@ public class AddTestActivity extends AppCompatActivity {
 
         mTestsSelected = labTestTypeAdapter.getItemsSelected();
 
+        // Create an array JSON Object
+        ArrayList<JSONObject> jsonObjects = new ArrayList<>();
+
+        // Get time and date
+        String timeDateStamp = TimeHelpers.getCurrentDateAndTime();
+
+        // Setup the list of tests selected
+        for (String mTestSelected : mTestsSelected) {
+            // Create a JSON Object
+            JSONObject jsonObject = new JSONObject();
+
+            // Setup the elements of this object
+            jsonObject.put("requestDate", timeDateStamp);
+            jsonObject.put("requestedByName", doctorName);
+            jsonObject.put("testType", mTestSelected);
+            jsonObject.put("sampleTakenDate", "");
+            jsonObject.put("sampleTakenByName", "");
+            jsonObject.put("imageResult", "");
+            jsonObject.put("status", "On-going");
+
+            // Add this into the jsonObject array
+            jsonObjects.add(jsonObject);
+         }
+
+        // Convert the Array of jsonObjects into a jsonArray format
+        JSONArray jsonArray = new JSONArray(jsonObjects);
+
+        // Format this into the proper labTest jsonObject
         JSONObject jsonParams = new JSONObject();
-        jsonParams.put("requestDate", TimeHelpers.getCurrentDateAndTime());
-        jsonParams.put("requestedByName", doctorName);
-        jsonParams.put("testType", mTestsSelected.get(0));
-        jsonParams.put("sampleTakenDate", "");
-        jsonParams.put("sampleTakenByName", "");
-        jsonParams.put("imageResult", "");
-        jsonParams.put("status", "On-going");
+        jsonParams.put("labTests", jsonArray);
+
+        // Send these tests to the server
         addLabTest(jsonParams);
     }
 
