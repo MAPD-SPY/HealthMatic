@@ -52,9 +52,7 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
         View view = layoutInflater.inflate(R.layout.item_test, parent, false);
-        TestsAdapter.ViewHolder viewHolder = new TestsAdapter.ViewHolder(view);
-
-        return viewHolder;
+        return new TestsAdapter.ViewHolder(view);
     }
 
     @Override

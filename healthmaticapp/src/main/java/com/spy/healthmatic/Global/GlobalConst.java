@@ -25,6 +25,10 @@ public interface GlobalConst {
     String ACTION = "action";
     String CURRENTTABPOSITION = "CurrentTabPosition";
 
+    int REQUEST_TAKE_PHOTO = 1991;
+    int REQUEST_SELECT_PICTURE = 1992;
+    int MY_PERMISSIONS_REQUEST_CAMERA = 1993;
+
     Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

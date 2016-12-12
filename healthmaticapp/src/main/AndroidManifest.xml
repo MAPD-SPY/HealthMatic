@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -64,10 +69,12 @@
             android:name=".Doctor.AddVitalsActivity"
             android:label="Vitals"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Doctor.AddNotesActivity"
+        <activity
+            android:name=".Doctor.AddNotesActivity"
             android:label="Notes"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Admin.AdminAddPatient"
+        <activity
+            android:name=".Admin.AdminAddPatient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
@@ -75,8 +82,10 @@
         <activity
             android:name=".Admin.AdminAddStaff"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Welcome.Logout"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Welcome.Logout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LabAgent.PatientTestList"></activity>
     </application>
 
 </manifest>

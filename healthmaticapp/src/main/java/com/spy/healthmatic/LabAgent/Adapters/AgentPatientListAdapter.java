@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Global.GlobalConst;
+import com.spy.healthmatic.LabAgent.PatientTestList;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
 
@@ -22,7 +24,7 @@ import java.util.ArrayList;
  * Created by yatin on 04/11/16.
  */
 
-public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientListAdapter.ViewHolder> {
+public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientListAdapter.ViewHolder> implements GlobalConst {
 
     private ArrayList<Patient> patients;
     private Context mContext;
@@ -46,7 +48,7 @@ public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientLi
             mView = itemView;
             mNameView = (TextView) itemView.findViewById(R.id.tvPatientName);
             mPateintConditionView = (TextView) itemView.findViewById(R.id.tvPatientCondition);
-            mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoomNum);
+            mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoom);
             mPatientGenderIdicator = (ImageView) itemView.findViewById(R.id.ivPatient);
 
             // Setup a listener to the current view
@@ -56,10 +58,9 @@ public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientLi
 
                     int position = getAdapterPosition();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("PATIENT_OBJ", patients.get(position));
-                    bundle.putBoolean("isAgent",true);
+                    bundle.putSerializable(PATIENT, patients.get(position));
 
-                    Intent intent = new Intent(mContext, PatientDrActivity.class);
+                    Intent intent = new Intent(mContext, PatientTestList.class);
                     intent.putExtras(bundle);
                     mContext.startActivity(intent);
                 }
@@ -80,7 +81,7 @@ public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientLi
         final Patient patient = patients.get(position);
         holder.mNameView.setText(patient.getFirstName());
         holder.mPateintConditionView.setText(patient.getCondition());
-        holder.mRoomNumberView.setText(patient.getBloodType());
+        holder.mRoomNumberView.setText(patient.getRoom()+"");
         if("male".equals(patient.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {
