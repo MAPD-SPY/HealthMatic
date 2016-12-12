@@ -56,6 +56,12 @@ public class AddNotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    if (drNotes.getText().toString().equals("")) {
+                        drNotes.setError("Please add notes for this patient.");
+                        drNotes.requestFocus();
+                        return;
+                    }
+
                     setNotes();
                 } catch (JSONException e) {
                     e.printStackTrace();
