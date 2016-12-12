@@ -137,6 +137,10 @@
     <string name="strAuthenticating">Authenticating...</string>
     <string name="strUserLoginSuccessful">user login successful.</string>
     <string name="strUserLoginUnsuccessful">user login unsuccessful.</string>
+    <string name="strErrorDrInput">Please provide doctor\'s name.</string>
+    <string name="strHintNameofDoctor">Enter name of doctor</string>
+    <string name="strSpecialization">Specialization</string>
+    <string name="strContactNum">Contact #:</string>
 
 
 </resources>
