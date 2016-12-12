@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.spy.healthmatic.Doctor.adapters.PatientTabPagerAdapter;
+import com.spy.healthmatic.Doctor.Adapters.PatientTabPagerAdapter;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Vitals;
@@ -126,7 +126,7 @@ public class PatientDrActivity extends AppCompatActivity {
                         break;
                     case TAB_BIO:
                         fab.setImageResource(R.drawable.ic_doctor);
-                        fab.hide();
+                        fab.show();
                         break;
                 }
             }
@@ -180,6 +180,11 @@ public class PatientDrActivity extends AppCompatActivity {
                         startActivity(intentAddTest);
                         break;
                     case TAB_BIO:
+                        intentAddTest = new Intent(PatientDrActivity.this, AddDrActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("PATIENT_OBJ", patient);
+                        intentAddTest.putExtras(bundle);
+                        startActivity(intentAddTest);
                         break;
                 }
             }

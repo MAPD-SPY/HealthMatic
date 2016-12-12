@@ -8,11 +8,20 @@ import java.util.ArrayList;
  */
 
 public class Hospital {
+    private String _id;
     private String name;
     private ArrayList<Room> rooms;
     private ArrayList<Laboratory> laboratories;
 
     public Hospital() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {

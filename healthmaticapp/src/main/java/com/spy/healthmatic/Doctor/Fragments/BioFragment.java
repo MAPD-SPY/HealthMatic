@@ -1,4 +1,4 @@
-package com.spy.healthmatic.Doctor.patient_dr_fragments;
+package com.spy.healthmatic.Doctor.Fragments;
 
 
 import android.os.Bundle;
@@ -6,10 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +22,9 @@ public class BioFragment extends Fragment {
 
     private String doctorName;
     private Patient patient;
+    private ArrayAdapter<String> doctorsAdapter;
+    private ArrayList<String> doctorNames;
+    private ArrayList<Staff> selectedDoctors;
 
     public BioFragment() {
         // Required empty public constructor
@@ -78,4 +85,5 @@ public class BioFragment extends Fragment {
                     patient.getContact().getEmergencyContactNumber());
         return view;
     }
+
 }

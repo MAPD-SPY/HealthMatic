@@ -13,7 +13,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
-import com.spy.healthmatic.Doctor.adapters.LabTestTypeAdapter;
+import com.spy.healthmatic.Doctor.Adapters.LabTestTypeAdapter;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.models.LabTestType;
 

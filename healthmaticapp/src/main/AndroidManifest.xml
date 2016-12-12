@@ -62,12 +62,17 @@
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".Doctor.AddVitalsActivity"
-            android:label="Vitals"
+            android:label="Add Vitals"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Doctor.AddNotesActivity"
-            android:label="Notes"
+        <activity
+            android:name=".Doctor.AddNotesActivity"
+            android:label="Add Notes"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Admin.AdminAddPatient"
+        <activity android:name=".Doctor.AddDrActivity"
+            android:label="Add Doctor"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
+        <activity
+            android:name=".Admin.AdminAddPatient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
@@ -75,8 +80,9 @@
         <activity
             android:name=".Admin.AdminAddStaff"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Welcome.Logout"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Welcome.Logout"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

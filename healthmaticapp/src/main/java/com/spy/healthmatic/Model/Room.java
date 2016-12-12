@@ -10,10 +10,19 @@ public class Room {
     public final boolean AVAILABLE = false;
     public final boolean OCCUPIED = true;
 
+    private String _id;
     private long room;
     private boolean availability;
 
     public Room() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public long getRoom() {

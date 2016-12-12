@@ -6,10 +6,19 @@ package com.spy.healthmatic.Model;
  */
 
 public class Laboratory {
+    private String _id;
     private String name;
     private String description;
 
     public Laboratory() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getDescription() {
