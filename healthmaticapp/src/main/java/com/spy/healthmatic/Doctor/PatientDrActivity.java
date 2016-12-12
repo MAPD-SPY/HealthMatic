@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -32,7 +33,7 @@ import cz.msebera.android.httpclient.Header;
  * Created by shelalainechan on 2016-10-26.
  */
 
-public class PatientDrActivity extends AppCompatActivity {
+public class PatientDrActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final int TAB_MEDS = 0;
     private static final int TAB_TESTS = 1;
@@ -55,6 +56,7 @@ public class PatientDrActivity extends AppCompatActivity {
     @Bind(R.id.tvTempVal) TextView textViewTemp;
     @Bind(R.id.tvAdmissionDateVal) TextView textViewAdmission;
     @Bind(R.id.tvLastCheckVal) TextView textViewCheckup;
+    @Bind(R.id.swipe_refresh_patient) SwipeRefreshLayout swipeRefreshPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,9 @@ public class PatientDrActivity extends AppCompatActivity {
         setContentView(R.layout.activity_patient_dr);
 
         ButterKnife.bind(this);
+
+        // Setup listener to swipe to refresh
+        swipeRefreshPatient.setOnRefreshListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientDr);
         setSupportActionBar(toolbar);
@@ -194,11 +199,22 @@ public class PatientDrActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Fetch patient data from server
+        getPatientFromServer();
 
+    }
+
+    @Override
+    public void onRefresh() {
+        // Fetch patient data from server
+        getPatientFromServer();
+    }
+
+    private void getPatientFromServer() {
         // Create an Asynchronous HTTP instance
         String url = "http://shelalainechan.com/patients/" + patient.get_id();
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(url, new JsonHttpResponseHandler(){
+        client.get(url, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -216,15 +232,16 @@ public class PatientDrActivity extends AppCompatActivity {
 
                     // Notify adapter of this change
                     mViewPager.getAdapter().notifyDataSetChanged();
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                swipeRefreshPatient.setRefreshing(false);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                swipeRefreshPatient.setRefreshing(false);
             }
         });
     }
