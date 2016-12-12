@@ -134,4 +134,9 @@ public class GlobalFunctions implements GlobalConst{
     public static Staff getStaff(Context context){
         return new StaffDB(context).getStaff();
     }
+
+    public static String getCurrentDateInMilliseconds(){
+        return new Date().getTime()+"";
+    }
+
 }

@@ -59,7 +59,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         final Patient patient = patients.get(position);
         holder.mNameView.setText(patient.getFirstName());
         holder.mPateintConditionView.setText(patient.getCondition());
-        holder.mRoomNumberView.setText(patient.getBloodType());
+        holder.mRoomNumberView.setText(patient.getBloodType()+"");
         if("male".equals(patient.getGender())){
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
         }else {

@@ -1,5 +1,6 @@
 package com.spy.healthmatic.API;
 
+import com.spy.healthmatic.Model.LabTest;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.PatientApiObject;
 
@@ -30,4 +31,8 @@ public interface PatientsListAPI {
 
     @DELETE("/patients/{id}")
     Call<ResponseBody> deletePatient(@Path("id") String _id);
+
+    @POST("/patients/{id}/labTest")
+    @Headers("Content-Type: application/json")
+    Call<Patient> updatePatientLabTest(@Path("id") String _id, @Body LabTest labTest);
 }

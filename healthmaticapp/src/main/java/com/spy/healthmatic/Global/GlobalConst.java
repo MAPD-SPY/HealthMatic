@@ -28,6 +28,7 @@ public interface GlobalConst {
     int REQUEST_TAKE_PHOTO = 1991;
     int REQUEST_SELECT_PICTURE = 1992;
     int MY_PERMISSIONS_REQUEST_CAMERA = 1993;
+    String FILE_STORAGE_PATH = "gs://ticketing-c6398.appspot.com";
 
     Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl(BASE_URL)
