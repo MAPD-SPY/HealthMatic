@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
-import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
+import com.spy.healthmatic.Doctor.Adapters.PatientsAdapter;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.DrNotes;
@@ -54,14 +55,20 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
     @Bind(R.id.recyler_list) RecyclerView mRecyclerView;
     @Bind(R.id.progress_dialog) ProgressBar mProgressDialog;
     @Bind(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.fab) FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dr);
+
+        // Bind this view
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Hide the floating action button here
+        floatingActionButton.hide();
 
         // Get a reference to the staff object
         if (doctor == null) {
