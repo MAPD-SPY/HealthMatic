@@ -34,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import com.spy.healthmatic.R;
+import com.spy.healthmatic.Welcome.Logout;
 import com.spy.healthmatic.Welcome.SplashScreen;
 
 public class LabAgentMainActivity extends AppCompatActivity implements GlobalConst, SwipeRefreshLayout.OnRefreshListener {
@@ -138,8 +139,7 @@ public class LabAgentMainActivity extends AppCompatActivity implements GlobalCon
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_signout) {
-            Intent intent = new Intent(this, SplashScreen.class);
-            intent.addFlags((Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            Intent intent = new Intent(this, Logout.class);
             startActivity(intent);
             return true;
         }
