@@ -30,7 +30,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_weight=".50"
+                    android:layout_weight=".25"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
@@ -43,23 +43,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginRight="16dp"
                         />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:id="@+id/item_person"
-                        android:text="@string/strInfo"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1.75"
                     android:id="@+id/txtViewPersonalDetail"
                     android:padding="1dp"
                     android:layout_toRightOf="@+id/item_image"
@@ -90,7 +79,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_weight=".50"
+                    android:layout_weight=".25"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
@@ -103,23 +92,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginRight="16dp"
                         />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:id="@+id/txtViewAddress"
-                        android:text="@string/strAddress"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1.75"
                     android:id="@+id/tvAddressHeader"
                     android:padding="1dp"
                     android:layout_toRightOf="@+id/item_image"
@@ -148,7 +126,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_weight=".50"
+                    android:layout_weight=".25"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content">
 
@@ -161,23 +139,12 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginRight="16dp"
                         />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:id="@+id/txtViewContact"
-                        android:text="@string/strContact"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.25"
+                    android:layout_weight="1.75"
                     android:id="@+id/tvContactHeader"
                     android:padding="1dp" />
 
