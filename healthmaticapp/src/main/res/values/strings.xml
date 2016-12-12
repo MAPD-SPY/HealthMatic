@@ -141,6 +141,8 @@
     <string name="strHintNameofDoctor">Enter name of doctor</string>
     <string name="strSpecialization">Specialization</string>
     <string name="strContactNum">Contact #:</string>
+    <string name="strDoctors">Doctors:</string>
+    <string name="strNurses">Nurses:</string>
 
 
 </resources>
