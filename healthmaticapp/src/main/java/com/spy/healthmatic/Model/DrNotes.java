@@ -16,6 +16,7 @@ public class DrNotes implements Serializable{
     private String date;
     private String notes;
     private String diagnosedByName;
+    private String drId;
 
     public DrNotes() {}
 
@@ -60,5 +61,13 @@ public class DrNotes implements Serializable{
 
     public void setDiagnosedByName(String diagnosedByName) {
         this.diagnosedByName = diagnosedByName;
+    }
+
+    public String getDrId() {
+        return drId;
+    }
+
+    public void setDrId(String drId) {
+        this.drId = drId;
     }
 }

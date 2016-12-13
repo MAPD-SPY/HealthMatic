@@ -2,10 +2,8 @@ package com.spy.healthmatic.Nurse;
 
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -14,27 +12,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import com.spy.healthmatic.Doctor.AddMedsActivity;
 import com.spy.healthmatic.Doctor.AddTestActivity;
-import com.spy.healthmatic.Doctor.PatientDrActivity;
-import com.spy.healthmatic.Doctor.patient_dr_fragments.BioFragment;
-import com.spy.healthmatic.Doctor.patient_dr_fragments.DrNotesFragment;
-import com.spy.healthmatic.Doctor.patient_dr_fragments.MedsFragment;
-import com.spy.healthmatic.Doctor.patient_dr_fragments.TestsFragment;
-import com.spy.healthmatic.Doctor.patient_dr_fragments.VitalsFragment;
+import com.spy.healthmatic.Doctor.Fragments.BioFragment;
+import com.spy.healthmatic.Doctor.Fragments.DrNotesFragment;
+import com.spy.healthmatic.Doctor.Fragments.MedsFragment;
+import com.spy.healthmatic.Doctor.Fragments.TestsFragment;
+import com.spy.healthmatic.Doctor.Fragments.VitalsFragment;
 import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
-import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
-import com.spy.healthmatic.Nurse.Fragments.TestResultFragment;
 import com.spy.healthmatic.R;
 
 public class NursePatientDetailsActivity extends AppCompatActivity {

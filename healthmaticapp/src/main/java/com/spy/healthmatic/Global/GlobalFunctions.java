@@ -6,11 +6,8 @@ import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
-import android.widget.Toast;
-
 
 import com.google.gson.Gson;
-import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.DB.StaffDB;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
@@ -26,11 +23,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 /**
+ * Team Name: Team SPY
  * Created by yatin on 28/10/16.
  */
 
