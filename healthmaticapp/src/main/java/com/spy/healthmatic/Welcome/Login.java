@@ -151,62 +151,6 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         }
     }
 
-    private SpassFingerprint.IdentifyListener mIdentifyListener = new SpassFingerprint.IdentifyListener() {
-        @Override
-        public void onFinished(int eventStatus) {
-            printlog("identify finished : reason =" + getEventStatusName(eventStatus));
-            int FingerprintIndex = 0;
-            String FingerprintGuideText = null;
-            try {
-                FingerprintIndex = mSpassFingerprint.getIdentifiedFingerprintIndex();
-            } catch (IllegalStateException ise) {
-                printlog(ise.getMessage());
-            }
-            if (eventStatus == SpassFingerprint.STATUS_AUTHENTIFICATION_SUCCESS) {
-                printlog("onFinished() : Identify authentification Success with FingerprintIndex : " + FingerprintIndex);
-            } else if (eventStatus == SpassFingerprint.STATUS_AUTHENTIFICATION_PASSWORD_SUCCESS) {
-                printlog("onFinished() : Password authentification Success");
-            } else if (eventStatus == SpassFingerprint.STATUS_OPERATION_DENIED) {
-                printlog("onFinished() : Authentification is blocked because of fingerprint service internally.");
-            } else if (eventStatus == SpassFingerprint.STATUS_USER_CANCELLED) {
-                printlog("onFinished() : User cancel this identify.");
-            } else if (eventStatus == SpassFingerprint.STATUS_TIMEOUT_FAILED) {
-                printlog("onFinished() : The time for identify is finished.");
-            } else if (eventStatus == SpassFingerprint.STATUS_QUALITY_FAILED) {
-                printlog("onFinished() : Authentification Fail for identify.");
-                needRetryIdentify = true;
-                FingerprintGuideText = mSpassFingerprint.getGuideForPoorQuality();
-                Toast.makeText(mContext, FingerprintGuideText, Toast.LENGTH_SHORT).show();
-            } else {
-                printlog("onFinished() : Authentification Fail for identify");
-                needRetryIdentify = true;
-            }
-            if (!needRetryIdentify) {
-                resetIdentifyIndex();
-            }
-        }
-
-        @Override
-        public void onReady() {
-            printlog("identify state is ready");
-        }
-
-        @Override
-        public void onStarted() {
-            printlog("User touched fingerprint sensor");
-        }
-
-        @Override
-        public void onCompleted() {
-            printlog("the identify is completed");
-            onReadyIdentify = false;
-            if (needRetryIdentify) {
-                needRetryIdentify = false;
-                mHandler.sendEmptyMessageDelayed(MSG_AUTH, 100);
-            }
-        }
-    };
-
     private static String getEventStatusName(int eventStatus) {
         switch (eventStatus) {
             case SpassFingerprint.STATUS_AUTHENTIFICATION_SUCCESS:
@@ -336,83 +280,12 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
     @Override
     public boolean handleMessage(Message msg) {
         switch (msg.what) {
-            case MSG_AUTH:
-                startIdentify();
-                break;
+
             case MSG_AUTH_UI_WITH_PW:
                 startIdentifyDialog(true);
                 break;
-            case MSG_AUTH_UI_WITHOUT_PW:
-                startIdentifyDialog(false);
-                break;
-            case MSG_CANCEL:
-                cancelIdentify();
-                break;
-            case MSG_REGISTER:
-                registerFingerprint();
-                break;
-            case MSG_GET_NAME:
-                getFingerprintName();
-                break;
-            case MSG_GET_UNIQUEID:
-                getFingerprintUniqueID();
-                break;
-            case MSG_AUTH_INDEX:
-                makeIdentifyIndex(1);
-                startIdentify();
-                break;
-            case MSG_AUTH_UI_INDEX:
-                makeIdentifyIndexDialog(2);
-                makeIdentifyIndexDialog(3);
-                startIdentifyDialog(false);
-                break;
-            case MSG_AUTH_UI_CUSTOM_LOGO:
-                setDialogTitleAndLogo();
-                startIdentifyDialog(false);
-                break;
-            case MSG_AUTH_UI_CUSTOM_TRANSPARENCY:
-                setDialogTitleAndTransparency();
-                startIdentifyDialog(false);
-                break;
-            case MSG_AUTH_UI_CUSTOM_DISMISS:
-                setDialogTitleAndDismiss();
-                startIdentifyDialog(false);
-                break;
-            case MSG_AUTH_UI_CUSTOM_BUTTON_STANDBY:
-                setDialogButtonAndStandbyText();
-                startIdentifyDialog(false);
-                break;
         }
         return true;
-    }
-
-    private void startIdentify() {
-        if (onReadyIdentify == false) {
-            try {
-                onReadyIdentify = true;
-                if (mSpassFingerprint != null) {
-                    setIdentifyIndex();
-                    mSpassFingerprint.startIdentify(mIdentifyListener);
-                }
-                if (designatedFingers != null) {
-                    printlog("Please identify finger to verify you with " + designatedFingers.toString() + " finger");
-                } else {
-                    printlog("Please identify finger to verify you");
-                }
-            } catch (SpassInvalidStateException ise) {
-                onReadyIdentify = false;
-                resetIdentifyIndex();
-                if (ise.getType() == SpassInvalidStateException.STATUS_OPERATION_DENIED) {
-                    printlog("Exception: " + ise.getMessage());
-                }
-            } catch (IllegalStateException e) {
-                onReadyIdentify = false;
-                resetIdentifyIndex();
-                printlog("Exception: " + e);
-            }
-        } else {
-            printlog("The previous request is remained. Please finished or cancel first");
-        }
     }
 
     private void startIdentifyDialog(boolean backup) {
@@ -471,23 +344,6 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         }
     }
 
-    private void getFingerprintName() {
-        SparseArray<String> mList = null;
-        printlog("=Fingerprint Name=");
-        if (mSpassFingerprint != null) {
-            mList = mSpassFingerprint.getRegisteredFingerprintName();
-        }
-        if (mList == null) {
-            printlog("Registered fingerprint is not existed.");
-        } else {
-            for (int i = 0; i < mList.size(); i++) {
-                int index = mList.keyAt(i);
-                String name = mList.get(index);
-                printlog("index " + index + ", Name is " + name);
-            }
-        }
-    }
-
     private void getFingerprintUniqueID() {
         SparseArray<String> mList = null;
         try {
@@ -534,30 +390,6 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         return null;
     }
 
-    private void setIdentifyIndex() {
-        if (isFeatureEnabled_index) {
-            if (mSpassFingerprint != null && designatedFingers != null) {
-                mSpassFingerprint.setIntendedFingerprintIndex(designatedFingers);
-            }
-        }
-    }
-
-    private void makeIdentifyIndex(int i) {
-        if (designatedFingers == null) {
-            designatedFingers = new ArrayList<Integer>();
-        }
-        for(int j = 0; j< designatedFingers.size(); j++){
-            if(i == designatedFingers.get(j)){
-                return;
-            }
-        }
-        designatedFingers.add(i);
-    }
-
-    private void resetIdentifyIndex() {
-        designatedFingers = null;
-    }
-
     private void setIdentifyIndexDialog() {
         if (isFeatureEnabled_index) {
             if (mSpassFingerprint != null && designatedFingersDialog != null) {
@@ -566,67 +398,16 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         }
     }
 
-    private void makeIdentifyIndexDialog(int i) {
-        if (designatedFingersDialog == null) {
-            designatedFingersDialog = new ArrayList<Integer>();
-        }
-        for(int j = 0; j< designatedFingersDialog.size(); j++){
-            if(i == designatedFingersDialog.get(j)){
-                return;
-            }
-        }
-        designatedFingersDialog.add(i);
-    }
-
     private void resetIdentifyIndexDialog() {
         designatedFingersDialog = null;
-    }
-
-    private void setDialogTitleAndLogo() {
-        if (isFeatureEnabled_custom) {
-            try {
-                if (mSpassFingerprint != null) {
-                    mSpassFingerprint.setDialogTitle("Customized Dialog With Logo", 0x000000);
-                    mSpassFingerprint.setDialogIcon("logo_image");
-                }
-            } catch (IllegalStateException ise) {
-                printlog(ise.getMessage());
-            }
-        }
-    }
-
-    private void setDialogTitleAndTransparency() {
-        if (isFeatureEnabled_custom) {
-            try {
-                if (mSpassFingerprint != null) {
-                    mSpassFingerprint.setDialogTitle("Customized Dialog With Transparency", 0x000000);
-                    mSpassFingerprint.setDialogBgTransparency(0);
-                }
-            } catch (IllegalStateException ise) {
-                printlog(ise.getMessage());
-            }
-        }
     }
 
     private void setDialogTitleAndDismiss() {
         if (isFeatureEnabled_custom) {
             try {
                 if (mSpassFingerprint != null) {
-                    mSpassFingerprint.setDialogTitle("Customized Dialog With Setting Dialog dismiss", 0x000000);
+                    mSpassFingerprint.setDialogTitle("HealthMatic App Authentication", 0x000000);
                     mSpassFingerprint.setCanceledOnTouchOutside(true);
-                }
-            } catch (IllegalStateException ise) {
-                printlog(ise.getMessage());
-            }
-        }
-    }
-
-    private void setDialogButtonAndStandbyText() {
-        if (!isFeatureEnabled_backupPw) {
-            try {
-                if (mSpassFingerprint != null) {
-                    mSpassFingerprint.setDialogButton("OWN BUTTON");
-                    mSpassFingerprint.changeStandbyString("Touch your fingerprint or press the button for launching own menu");
                 }
             } catch (IllegalStateException ise) {
                 printlog(ise.getMessage());
@@ -676,7 +457,8 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
 
     @OnClick(R.id.signFingerLogin)
     public void samsungLoginClick(){
-        startIdentifyDialog(true);
+        setDialogTitleAndDismiss();
+        startIdentifyDialog(false);
     }
 
     private void askRegisterFingerPrint(){
