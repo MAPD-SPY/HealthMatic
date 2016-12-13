@@ -91,31 +91,15 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
     private SpassFingerprint mSpassFingerprint;
     private Spass mSpass;
 
-    private ArrayList<Integer> designatedFingers = null;
     private ArrayList<Integer> designatedFingersDialog = null;
 
     private boolean isFeatureEnabled_index = false;
-    private boolean isFeatureEnabled_uniqueId = false;
     private boolean isFeatureEnabled_custom = false;
-    private boolean isFeatureEnabled_backupPw = false;
 
     boolean onReadyEnroll = false, onReadyIdentify = false, isFeatureEnabled_fingerprint, needRetryIdentify;
 
     private Handler mHandler;
-    private static final int MSG_AUTH = 1000;
     private static final int MSG_AUTH_UI_WITH_PW = 1001;
-    private static final int MSG_AUTH_UI_WITHOUT_PW = 1002;
-    private static final int MSG_CANCEL = 1003;
-    private static final int MSG_REGISTER = 1004;
-    private static final int MSG_GET_NAME = 1005;
-    private static final int MSG_GET_UNIQUEID = 1006;
-    private static final int MSG_AUTH_INDEX = 1007;
-    private static final int MSG_AUTH_UI_INDEX = 1008;
-    private static final int MSG_AUTH_UI_CUSTOM_LOGO = 1009;
-    private static final int MSG_AUTH_UI_CUSTOM_TRANSPARENCY = 1010;
-    private static final int MSG_AUTH_UI_CUSTOM_DISMISS = 1011;
-    private static final int MSG_AUTH_UI_CUSTOM_BUTTON_STANDBY = 1012;
-
 
     private BroadcastReceiver mPassReceiver = new BroadcastReceiver() {
         @Override
