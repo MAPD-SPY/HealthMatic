@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
+import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Doctor.PatientActivity;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
@@ -22,13 +23,12 @@ import java.util.ArrayList;
  * Created by prashantn.pol on 2016-10-31.
  */
 
-public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder>  {
-
-    private   PatientList.OnPatientListFragmentInteractionListener mListener;
+public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder> {
 
     private Staff nurse;
     ArrayList<Patient> patientList;
     Context context;
+    private PatientList.OnPatientListFragmentInteractionListener mListener;
 
     public  NurseAdapter(ArrayList<Patient> patientList,Context context, Staff nurse)
     {
@@ -43,18 +43,18 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.listing_cardview, parent, false);
 
-        return new MyViewHolder(itemView,context,patientList);
-     }
+        return new MyViewHolder(itemView, context, patientList);
+    }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Patient patient = patientList.get(position);
         holder.mNameView.setText(patient.getFirstName());
         holder.mPateintConditionView.setText(patient.getCondition());
-        holder.mRoomNumberView.setText(patient.getRoom()+"");
-        if("male".equals(patient.getGender())){
+        holder.mRoomNumberView.setText(patient.getRoom() + "");
+        if ("male".equals(patient.getGender())) {
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
-        }else {
+        } else {
             holder.mPatientGenderIdicator.setImageResource(R.drawable.user_female);
         }
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -80,22 +80,22 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
         return patientList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, year, genre;
-        public   View mView;
-        public   TextView mNameView;
-        public   TextView mPateintConditionView;
-        public   TextView mRoomNumberView;
-        public   ImageView mPatientGenderIdicator;
+        public View mView;
+        public TextView mNameView;
+        public TextView mPateintConditionView;
+        public TextView mRoomNumberView;
+        public ImageView mPatientGenderIdicator;
         public Patient patient;
-        ArrayList<Patient>  patients=new ArrayList<Patient>();
+        ArrayList<Patient> patients = new ArrayList<Patient>();
         Context context;
 
         public MyViewHolder(View view, Context context, ArrayList<Patient> patients) {
             super(view);
-            this.patients=patients;
-            this.context=context;
-          //  view.setOnClickListener(this);
+            this.patients = patients;
+            this.context = context;
+            //  view.setOnClickListener(this);
 
             mView = itemView;
             mNameView = (TextView) itemView.findViewById(R.id.tvPatientName);
@@ -106,8 +106,6 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
 
         }
 
-
     }
-
 
 }

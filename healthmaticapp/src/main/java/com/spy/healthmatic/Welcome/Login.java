@@ -78,11 +78,11 @@ public class Login extends AppCompatActivity implements GlobalConst {
                 //UPDATING USER LOGIN STATUS
                 staff.setLoggedIn(true);
                 new LoginUserInDB(staff).execute();
-
             }
 
             @Override
             public void onFailure(Call<Staff> call, Throwable t) {
+                progressDialog.dismiss();
                 Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
                 Toast.makeText(Login.this, getResources().getString(R.string.strRetroFitFailureMsg), Toast.LENGTH_LONG).show();
             }
@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity implements GlobalConst {
                     Intent intent = new Intent(Login.this, AdminMainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                } else if ("lab".equals(staff.getRole())) {
+                } else if ("tech".equals(staff.getRole())) {
                     Intent intent = new Intent(Login.this, LabAgentMainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

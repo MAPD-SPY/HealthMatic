@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "964742058624",
+    "firebase_url": "https://healthmactic.firebaseio.com",
+    "project_id": "healthmactic",
+    "storage_bucket": "healthmactic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964742058624:android:549250ad79c2c657",
+        "android_client_info": {
+          "package_name": "com.spy.healthmatic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964742058624-c27dj601cq21gcvo32oci3ebuc74dbou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spy.healthmatic",
+            "certificate_hash": "AD51682658E34CCBF679D68B12B1F71825F899C7"
+          }
+        },
+        {
+          "client_id": "964742058624-gin6c5pnrlvmcfmuisae81mj78hf5q9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIiGIFwK_w-eiTWQlJVDNl3H3TGjHQWPs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964742058624-gin6c5pnrlvmcfmuisae81mj78hf5q9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

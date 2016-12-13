@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.spy.healthmatic.API.PatientsListAPI;
+import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.DB.StaffDB;
 import com.spy.healthmatic.Model.Doctor;
 import com.spy.healthmatic.Model.Nurse;
@@ -23,14 +25,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Team Name: Team SPY
  * Created by yatin on 28/10/16.
  */
 
-public class GlobalFunctions implements GlobalConst{
+public class GlobalFunctions implements GlobalConst {
 
-    public static ArrayList<Doctor> getDummyDoctors(int maxCount){
+    public static ArrayList<Doctor> getDummyDoctors(int maxCount) {
         ArrayList<Doctor> doctors = new ArrayList<>();
 //        for (int i=0; i<maxCount; i++){
 //            if(i%2==0) {
@@ -42,7 +51,7 @@ public class GlobalFunctions implements GlobalConst{
         return doctors;
     }
 
-    public static ArrayList<Nurse> getDummyNurses(int maxCount){
+    public static ArrayList<Nurse> getDummyNurses(int maxCount) {
         ArrayList<Nurse> nurses = new ArrayList<>();
 //        for (int i=0; i<maxCount; i++){
 //            if(i%2==0) {
@@ -125,7 +134,12 @@ public class GlobalFunctions implements GlobalConst{
         db.close();
     }
 
-    public static Staff getStaff(Context context){
+    public static Staff getStaff(Context context) {
         return new StaffDB(context).getStaff();
     }
+
+    public static String getCurrentDateInMilliseconds() {
+        return new Date().getTime() + "";
+    }
+
 }
