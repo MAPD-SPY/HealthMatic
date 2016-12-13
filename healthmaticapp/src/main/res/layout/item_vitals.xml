@@ -9,7 +9,6 @@
     card_view:cardElevation="3dp"
     card_view:contentPadding="4dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:clickable="true"
     android:foreground="?selectableItemBackground">
 
     <RelativeLayout

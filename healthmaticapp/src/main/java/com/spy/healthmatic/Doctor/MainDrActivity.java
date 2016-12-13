@@ -19,9 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
-import com.spy.healthmatic.Doctor.adapters.PatientsAdapter;
+import com.spy.healthmatic.Doctor.Adapters.PatientsAdapter;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
+import com.spy.healthmatic.Model.DrNotes;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.PatientRef;
 import com.spy.healthmatic.Model.Staff;
@@ -43,50 +44,43 @@ import retrofit2.Response;
  */
 public class MainDrActivity extends AppCompatActivity implements GlobalConst, SwipeRefreshLayout.OnRefreshListener{
 
-    private static Staff doctor;
+    private Staff doctor;
     private ArrayList<Patient> patients;
     private PatientsAdapter patientsAdapter;
     private CircleProgressView circleProgressView;
     private long numOfPatientsChecked;
+    private LinearLayoutManager mLayoutManager;
     private static final int CIRCLE_PROGRESS_VIEW_DELAY = 1000;
 
-    @Bind(R.id.recyler_list)
-    RecyclerView mRecyclerView;
-    @Bind(R.id.progress_dialog)
-    ProgressBar mProgressDialog;
-    @Bind(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
-    private LinearLayoutManager mLayoutManager;
-    @Bind(R.id.fab)
-    FloatingActionButton floatingActionButton;
+    @Bind(R.id.recyler_list) RecyclerView mRecyclerView;
+    @Bind(R.id.progress_dialog) ProgressBar mProgressDialog;
+    @Bind(R.id.swipe_refresh_layout) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.fab) FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dr);
+
+        // Bind this view
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Hide the floating action button here
+        floatingActionButton.hide();
 
         // Get a reference to the staff object
         if (doctor == null) {
             doctor = GlobalFunctions.getStaff(this);
         }
-        numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
 
-//        patients = doctor.getPatients();
-//        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
-
-//        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvPatients);
-//        recyclerView.setAdapter(patientsAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //      Setting Recyclerview
+        // Setting Recyclerview
         mRecyclerView.setHasFixedSize(false);
-//      Use a linear layout manager
+        // Use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-//      Swipe to refresh
+        // Swipe to refresh
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.circlePVRim),
 
@@ -98,7 +92,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
 
         // Setup the circle progress view
         circleProgressView = (CircleProgressView) findViewById(R.id.cpvPatients);
-//        initCircleProgressView();
 
         // Show the title if the toolbar is collapsed
         // Otherwise if the toolbar is expanded, hide the title
@@ -115,7 +108,7 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle("Dr. " +
+                    collapsingToolbarLayout.setTitle(getResources().getString(R.string.strDr) + " " +
                             doctor.getFirstName() + " " +
                             doctor.getLastName()
                     );
@@ -127,109 +120,13 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
             }
         });
         getPatientList(false);
-
-        // Do not show the Add FAB
-        floatingActionButton.hide();
-    }
+   }
 
     @Override
     protected void onResume() {
         super.onResume();
         getPatientList(false);
-//        try {
-//            getPatients(doctor);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
     }
-
-//    public String loadJSONFromAsset() {
-//        String json;
-//        AssetManager assetManager = getAssets();
-//        InputStream input;
-//        try {
-//            input = assetManager.open("patients.json");
-//            int size = input.available();
-//            byte[] buffer = new byte[size];
-//            input.read(buffer);
-//            input.close();
-//
-//            json = new String(buffer, "UTF-8");
-//
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//            return null;
-//        }
-//
-//        return json;
-//    }
-//
-//    private void getPatientJSONArray() {
-//        JSONObject response;
-//        JSONArray patientJsonResults;
-//
-//        try {
-//            // TODO: Remove if check is complete
-//            // response = new JSONObject(loadJSONFromAsset());
-//            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "patients.json"));
-//            patientJsonResults = response.getJSONArray("patients");
-//            patients.addAll(Patient.fromJSONArray(patientJsonResults));
-//            patientsAdapter.notifyDataSetChanged();
-//            Log.d("DEBUG", patients.toString());
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    private void getPatientList(final boolean isRefresh) {
-        Call<ArrayList<Patient>> call = STAFF_API.getAllStaffPatinet(doctor.get_id());
-        call.enqueue(new Callback<ArrayList<Patient>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
-                if (!response.isSuccessful()) {
-                    Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
-                    Toast.makeText(MainDrActivity.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                patients = response.body();
-                loadRecyclerViewElements();
-                if (isRefresh) {
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Patient>> call, Throwable t) {
-                Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(MainDrActivity.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-    }
-
-    private void loadRecyclerViewElements() {
-        initCircleProgressView();
-        mProgressDialog.setVisibility(View.GONE);
-        patientsAdapter = new PatientsAdapter(this, patients, doctor.getFirstName() + " " + doctor.getLastName());
-        mRecyclerView.setAdapter(patientsAdapter);
-    }
-
-    private void initCircleProgressView() {
-        if(patients==null){
-            return;
-        }
-        int patientsSize = patients.size();
-
-        circleProgressView.setBlockCount(patientsSize);
-        circleProgressView.setUnitScale((float)1.20);
-        circleProgressView.setMaxValue(patientsSize);
-        circleProgressView.setText(Long.toString(numOfPatientsChecked));
-        circleProgressView.setValueAnimated(numOfPatientsChecked, CIRCLE_PROGRESS_VIEW_DELAY);
-
-        TextView textViewPatientNum = (TextView) findViewById(R.id.tvPatientNum);
-        textViewPatientNum.setText(Integer.toString(patientsSize) + " ");
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -255,30 +152,117 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onRefresh() {
+        getPatientList(true);
+    }
+
+    /**
+     * Get the list of patients from the web server
+     * @param isRefresh true -
+     */
+    private void getPatientList(final boolean isRefresh) {
+        Call<ArrayList<Patient>> call = STAFF_API.getAllStaffPatinet(doctor.get_id());
+        call.enqueue(new Callback<ArrayList<Patient>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Patient>> call, Response<ArrayList<Patient>> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
+                    Toast.makeText(MainDrActivity.this,
+                            getResources().getString(R.string.strRetroFitFailureMsg),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                patients = response.body();
+                loadRecyclerViewElements();
+                if (isRefresh) {
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Patient>> call, Throwable t) {
+                Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
+                Toast.makeText(MainDrActivity.this,
+                        getResources().getString(R.string.strRetroFitFailureMsg),
+                        Toast.LENGTH_LONG).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    /**
+     * Refresh the data that are dynamically dependent on the web server responses
+     */
+    private void loadRecyclerViewElements() {
+        numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
+        initCircleProgressView();
+        mProgressDialog.setVisibility(View.GONE);
+        patientsAdapter = new PatientsAdapter(this, patients, doctor);
+        mRecyclerView.setAdapter(patientsAdapter);
+    }
+
+    /**
+     * Initialize the Circle Progress View
+     */
+    private void initCircleProgressView() {
+
+        // Exit if there are no patients to check
+        if(patients == null){
+            return;
+        }
+
+        // Get the number of patients assigned to this staff
+        int patientsSize = patients.size();
+
+        // Setup the number of blocks in the circle based on the number of patients
+        circleProgressView.setBlockCount(patientsSize);
+        circleProgressView.setUnitScale((float)1.20);
+        circleProgressView.setMaxValue(patientsSize);
+        circleProgressView.setText(Long.toString(numOfPatientsChecked));
+        circleProgressView.setValueAnimated(numOfPatientsChecked, CIRCLE_PROGRESS_VIEW_DELAY);
+
+        TextView textViewPatientNum = (TextView) findViewById(R.id.tvPatientNum);
+        textViewPatientNum.setText(Integer.toString(patientsSize) + " ");
+    }
+
+    /**
+     * Get the number of patients checked relative to the date today
+     * @param patientRefs List of patient references
+     * @return the number of patients already checked
+     */
     private long getPatientsCheckedToday(ArrayList<PatientRef> patientRefs) {
         long numOfPatientsChecked = 0;
 
         // Get current date
-        String dateNow = TimeHelpers.getCurrentDate();
+        String dateNow = TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD);
 
-        // Go through each patient
-        for (PatientRef patientRef : patientRefs) {
-            // Check if one of the checkup dates matches the current date
-            for (String checkup: patientRef.getCheckupDates()) {
-                String[] dateChecked = checkup.split(" ");
-                if (dateChecked[0].equals(dateNow)) {
-                    // Increment number of patients checked counter
-                    numOfPatientsChecked++;
-                    break;
+        // Go through every patient who are still in the hospital
+        for (Patient patient : patients) {
+            if (patient.getDischargedDate() != null) {
+                if (!patient.getDischargedDate().equals(" ")) {
+
+                    // Check dr notes
+                    // The dr notes contains dates when a doctor checks on the patient
+                    for (DrNotes drNote : patient.getDrNotes()) {
+
+                        // Check if the note is given by the logged in doctor
+                        if (drNote.getDrId().equals(doctor.get_id())) {
+
+                            // Check if one of the checkup dates matches the current date
+                            String[] dateChecked = drNote.getDate().split(", ");
+                            if (dateChecked[0].equals(dateNow)) {
+                                // Increment number of patients checked counter
+                                numOfPatientsChecked++;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
 
+        // Returns the number of patients already checked
         return numOfPatientsChecked;
-    }
-
-    @Override
-    public void onRefresh() {
-        getPatientList(true);
     }
 }

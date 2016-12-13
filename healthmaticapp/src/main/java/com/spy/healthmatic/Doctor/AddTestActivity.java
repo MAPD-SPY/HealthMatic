@@ -13,7 +13,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
-import com.spy.healthmatic.Doctor.adapters.LabTestTypeAdapter;
+import com.spy.healthmatic.Doctor.Adapters.LabTestTypeAdapter;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.models.LabTestType;
 
@@ -112,7 +112,7 @@ public class AddTestActivity extends AppCompatActivity {
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
         // Get time and date
-        String timeDateStamp = TimeHelpers.getCurrentDateAndTime();
+        String timeDateStamp = TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A);
 
         // Setup the list of tests selected
         for (String mTestSelected : mTestsSelected) {

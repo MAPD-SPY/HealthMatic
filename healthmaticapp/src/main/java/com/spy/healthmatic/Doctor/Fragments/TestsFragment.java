@@ -1,4 +1,4 @@
-package com.spy.healthmatic.Doctor.patient_dr_fragments;
+package com.spy.healthmatic.Doctor.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spy.healthmatic.Doctor.adapters.TestsAdapter;
-import com.spy.healthmatic.R;
+import com.spy.healthmatic.Doctor.Adapters.TestsAdapter;
 import com.spy.healthmatic.Model.LabTest;
-import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +23,6 @@ public class TestsFragment extends Fragment {
 
     private String doctorName;
     private TestsAdapter testsAdapter;
-    private Patient patient;
     private static List<LabTest> labTests;
 
     public TestsFragment() {
@@ -35,9 +34,8 @@ public class TestsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
+            labTests = (ArrayList<LabTest>) getArguments().getSerializable("PATIENT_TESTS_OBJ");
             doctorName = getArguments().getString("DOCTOR_NAME");
-            labTests = patient.getLabTests();
             testsAdapter = new TestsAdapter(getActivity(), labTests);
         }
     }

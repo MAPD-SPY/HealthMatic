@@ -3,9 +3,11 @@
     package="com.spy.healthmatic">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -47,7 +49,7 @@
             android:label="@string/title_activity_main_dr"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Doctor.PatientDrActivity"
+            android:name=".Doctor.PatientActivity"
             android:label="@string/title_activity_patient_dr"
             android:parentActivityName=".Doctor.MainDrActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -57,20 +59,25 @@
         </activity>
         <activity
             android:name=".Doctor.AddMedsActivity"
-            android:label="@string/strMedication"
+            android:label="@string/strAddMedication"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".Doctor.AddTestActivity"
-            android:label="@string/strLaboratoryTests"
+            android:label="@string/strAddLaboratoryTests"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".Doctor.AddVitalsActivity"
-            android:label="Vitals"
+            android:label="@string/strAddVitals"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Doctor.AddNotesActivity"
-            android:label="Notes"
+        <activity
+            android:name=".Doctor.AddNotesActivity"
+            android:label="@string/strAddNotes"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-        <activity android:name=".Admin.AdminAddPatient"
+        <activity android:name=".Doctor.AddDrActivity"
+            android:label="@string/strAddDoctor"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
+        <activity
+            android:name=".Admin.AdminAddPatient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin.AdminAddDoctor" />
         <activity android:name=".Admin.AdminAddNurse" />
@@ -78,6 +85,11 @@
         <activity
             android:name=".Admin.AdminAddStaff"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Welcome.Logout"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LabAgent.PatientTestList"
+            android:parentActivityName=".LabAgent.LabAgentMainActivity"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.spy.healthmatic.fileprovider"
@@ -87,8 +99,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".Welcome.Logout"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

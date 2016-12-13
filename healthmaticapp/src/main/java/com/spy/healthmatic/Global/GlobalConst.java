@@ -7,6 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * Team Name: Team SPY
  * Created by yatin on 21/11/16.
  */
 
@@ -26,8 +27,9 @@ public interface GlobalConst {
     String CURRENTTABPOSITION = "CurrentTabPosition";
 
     int REQUEST_TAKE_PHOTO = 1991;
-    int MY_PERMISSIONS_REQUEST_CAMERA = 1992;
-    String FILE_STORAGE_PATH = "gs://ticketing-c6398.appspot.com";
+    int REQUEST_SELECT_PICTURE = 1992;
+    int MY_PERMISSIONS_REQUEST_CAMERA = 1993;
+    String FILE_STORAGE_PATH = "gs://healthmactic.appspot.com";
 
     Retrofit RETROFIT = new Retrofit.Builder()
             .baseUrl(BASE_URL)
