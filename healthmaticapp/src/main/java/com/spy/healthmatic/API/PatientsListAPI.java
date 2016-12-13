@@ -14,6 +14,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -32,7 +33,7 @@ public interface PatientsListAPI {
     @DELETE("/patients/{id}")
     Call<ResponseBody> deletePatient(@Path("id") String _id);
 
-    @POST("/patients/{id}/labTest")
+    @PUT("/patients/{id}/labTest")
     @Headers("Content-Type: application/json")
     Call<Patient> updatePatientLabTest(@Path("id") String _id, @Body LabTest labTest);
 }

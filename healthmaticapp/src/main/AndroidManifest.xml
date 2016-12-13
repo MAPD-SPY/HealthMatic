@@ -85,7 +85,8 @@
         <activity
             android:name=".Welcome.Logout"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LabAgent.PatientTestList"></activity>
+        <activity android:name=".LabAgent.PatientTestList"
+            android:parentActivityName=".LabAgent.LabAgentMainActivity"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.spy.healthmatic.fileprovider"

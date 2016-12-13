@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Model.LabTest;
 
@@ -27,6 +29,7 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
         private TextView mtvTestRequestedByName;
         private TextView mtvTestRequestedDateVal;
         private TextView mtvTestStatusVal;
+        private ImageView mtvTestImage;
 
         public ViewHolder(View view) {
             super(view);
@@ -34,6 +37,7 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
             mtvTestRequestedByName = (TextView) view.findViewById(R.id.tvTestRequestedByName);
             mtvTestRequestedDateVal = (TextView) view.findViewById(R.id.tvTestRequestedDateVal);
             mtvTestStatusVal = (TextView) view.findViewById(R.id.tvTestStatusVal);
+            mtvTestImage = (ImageView) view.findViewById(R.id.ivTestResult);
         }
     }
 
@@ -63,6 +67,9 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
         (holder.mtvTestRequestedByName).setText(labTest.getRequestedByName());
         (holder.mtvTestRequestedDateVal).setText(labTest.getRequestDate());
         (holder.mtvTestStatusVal).setText(labTest.getStatus());
+        if(labTest.getImageResult()!=null && !"".equals(labTest.getImageResult().trim())){
+            Glide.with(mContext).load(labTest.getImageResult()).error(R.drawable.ic_menu_camera).into(holder.mtvTestImage);
+        }
     }
 
     @Override
