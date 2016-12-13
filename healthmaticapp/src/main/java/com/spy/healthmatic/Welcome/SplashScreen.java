@@ -260,7 +260,7 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(intent);
                 } else if ("nurse".equals(staff.getRole())) {
                     startActivity(new Intent(SplashScreen.this, NurseMainActivity.class));
-                } else if ("lab".equals(staff.getRole())) {
+                } else if ("tech".equals(staff.getRole())) {
                     startActivity(new Intent(SplashScreen.this, LabAgentMainActivity.class));
                 }
                 (SplashScreen.this).finish();

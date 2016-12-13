@@ -30,7 +30,7 @@
             android:drawableLeft="@drawable/ic_person_outline_black_24dp"
             android:hint="@string/str_hint_EmailAddress"
             android:inputType="textEmailAddress"
-            android:text="superadmin" />
+            android:text="" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -48,7 +48,7 @@
             android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
             android:hint="@string/str_hint_Password"
             android:inputType="textPassword"
-            android:text="admin" />
+            android:text="" />
 
     </android.support.design.widget.TextInputLayout>
 

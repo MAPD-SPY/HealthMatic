@@ -84,7 +84,7 @@
     <string name="strStatus">statut:</string>
     <string name="strOngoing">En cours</string>
     <string name="strSearchLabTestHint">Recherche tests de laboratoire</string>
-    <string name="strAdd">Ajouter</string>
+    <string name="strSave">Ajouter</string>
     <string name="strCancel">Annuler</string>
     <string name="strTestTypeDescription">Détermine la santé générale et les écrans pour les troubles tels que l\'anémie ou les infections, ainsi que l\'état nutritionnel et l\'exposition aux substances toxiques.</string>
     <string name="strTestTypeCB">CBC (Complete Blood Count)</string>
@@ -92,8 +92,8 @@
     <string name="strMedsForm">Forme</string>
     <string name="strNotedBy">Noté par:</string>
     <string name="strDate">Date:</string>
-    <string name="strMedication">Des médicaments</string>
-    <string name="strLaboratoryTests">Tests de Laboratoire</string>
+    <string name="strAddMedication">Des médicaments</string>
+    <string name="strAddLaboratoryTests">Tests de Laboratoire</string>
     <string name="strDateTaken">Date prise:</string>
 
 </resources>

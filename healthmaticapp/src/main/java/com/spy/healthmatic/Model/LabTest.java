@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 
 public class LabTest implements Serializable {
+    private String _id;
     private String requestDate;
     private String requestedByName;
     private String testType;
@@ -31,7 +32,14 @@ public class LabTest implements Serializable {
         this.sampleTakenByName = jsonObject.getString("sampleTakenByName");
         this.status = jsonObject.getString("status");
         this.imageResult = jsonObject.getString("imageResult");
+    }
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getRequestDate() {

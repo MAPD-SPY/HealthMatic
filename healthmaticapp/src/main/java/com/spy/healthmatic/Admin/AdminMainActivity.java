@@ -19,18 +19,14 @@ import com.spy.healthmatic.Admin.Fragments.DoctorList;
 import com.spy.healthmatic.Admin.Fragments.NurseList;
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Admin.Fragments.StaffList;
-import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Doctor.PatientActivity;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
-import com.spy.healthmatic.Model.Doctor;
-import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.Logout;
-import com.spy.healthmatic.Welcome.SplashScreen;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class AdminMainActivity extends AppCompatActivity
@@ -153,7 +149,7 @@ public class AdminMainActivity extends AppCompatActivity
         Bundle bundle = new Bundle();
         bundle.putSerializable("PATIENT_OBJ", patient);
 
-        Intent intent = new Intent(this, PatientDrActivity.class);
+        Intent intent = new Intent(this, PatientActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }

@@ -76,7 +76,7 @@ public class AddVitalsActivity extends AppCompatActivity {
     private void setVitals() throws JSONException, UnsupportedEncodingException {
 
         JSONObject jsonParams = new JSONObject();
-        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime());
+        jsonParams.put("date", TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A));
         jsonParams.put("respirationRate", respirationRate.getText().toString());
         jsonParams.put("heartRate", heartRate.getText().toString());
         jsonParams.put("temperature", temperature.getText().toString());

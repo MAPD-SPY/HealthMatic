@@ -23,8 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
+
 import com.samsung.android.sdk.SsdkUnsupportedException;
 import com.samsung.android.sdk.pass.Spass;
 import com.samsung.android.sdk.pass.SpassFingerprint;
@@ -34,7 +33,6 @@ import com.spy.healthmatic.Doctor.MainDrActivity;
 import com.spy.healthmatic.LabAgent.LabAgentMainActivity;
 import com.spy.healthmatic.Model.Patient;
 import com.google.gson.Gson;
-import com.spy.healthmatic.API.StaffAPI;
 import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.DB.StaffDB;
 import com.spy.healthmatic.Doctor.MainDrActivity;
@@ -46,22 +44,16 @@ import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cz.msebera.android.httpclient.Header;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.loopj.android.http.AsyncHttpClient.log;
 
@@ -83,6 +75,7 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
     EditText editTxtPassword;
     @Bind(R.id.signFingerLogin)
     AppCompatButton mSamsunButton;
+
 
     ProgressDialog progressDialog;
 
@@ -413,12 +406,12 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
                 progressDialog.dismiss();
                 if (!response.isSuccessful()) {
                     Log.d("RETROFIT", "RETROFIT FAILURE - RESPONSE FAIL >>>>> " + response.errorBody());
-                    Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, getResources().getString(R.string.strRetroFitFailureMsg), Toast.LENGTH_LONG).show();
                     return;
                 }
                 staff = response.body();
                 if(staff == null){
-                    Toast.makeText(Login.this, "Invalid Username/Password. Please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, getResources().getString(R.string.strInvalidLogin), Toast.LENGTH_LONG).show();
                     return;
                 }
                 //UPDATING USER LOGIN STATUS
@@ -432,8 +425,9 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
 
             @Override
             public void onFailure(Call<Staff> call, Throwable t) {
+                progressDialog.dismiss();
                 Log.d("RETROFIT", "RETROFIT FAILURE >>>>> " + t.toString());
-                Toast.makeText(Login.this, "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, getResources().getString(R.string.strRetroFitFailureMsg), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -545,17 +539,27 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         String password = editTxtPassword.getText().toString();
 
         if (email.isEmpty()) {//|| !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-            editTxtEmail.setError("Enter a valid email");
+            editTxtEmail.setError(getResources().getString(R.string.strEnterValidEmail));
             valid = false;
         } else {
             editTxtEmail.setError(null);
         }
         if (password.isEmpty()) {
-            editTxtPassword.setError("Enter password");
+            editTxtPassword.setError(getResources().getString(R.string.strEnterPassword));
             editTxtEmail.setError(null);
         }
 
         return valid;
+    }
+
+    private void onLoginSuccess() {
+        loginButton.setEnabled(true);
+        finish();
+    }
+
+    private void onLoginFailed() {
+        Toast.makeText(getBaseContext(), "LoginModel failed", Toast.LENGTH_LONG).show();
+        loginButton.setEnabled(true);
     }
 
     private class LoginUserInDB extends AsyncTask<Void, Void, Boolean> {
@@ -575,7 +579,7 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
 
         protected void onPostExecute(Boolean result) {
             hideProgressDialog();
-            String msg = "User - " + staff.getFirstName() + " Login successful.";
+            String msg = staff.getFirstName() + " " + getResources().getString(R.string.strUserLoginSuccessful);
             if (result) {
                 if ("doctor".equals(staff.getRole())) {
                     Intent intent = new Intent(Login.this, MainDrActivity.class);
@@ -589,26 +593,32 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
                     Intent intent = new Intent(Login.this, AdminMainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                } else if ("lab".equals(staff.getRole())) {
+                } else if ("tech".equals(staff.getRole())) {
                     Intent intent = new Intent(Login.this, LabAgentMainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 Login.this.finish();
             } else {
-                msg = "User - " + staff.getFirstName() + " Login un-successful.";
+                msg = staff.getFirstName() + " " + getResources().getString(R.string.strUserLoginUnsuccessful);
             }
             Toast.makeText(Login.this, msg, Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Show progress dialog while fetching data from the web server
+     */
     private void showProgressDialog(){
         progressDialog = new ProgressDialog(Login.this, R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage(getResources().getString(R.string.strAuthenticating));
         progressDialog.show();
     }
 
+    /**
+     * Hide progress dialog when no longer needed
+     */
     private void hideProgressDialog(){
         if(progressDialog!=null && progressDialog.isShowing()) {
             progressDialog.dismiss();
