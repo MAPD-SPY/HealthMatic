@@ -240,17 +240,48 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
         if (!isvalid) {
             return;
         }
-        String action = ((AdminAddStaff) getActivity()).getAction();
-        staff.setImageName(GlobalFunctions.getCurrentDateInMilliseconds());
-        if ("create".equals(action)) {
-            saveStaffInServer();
-        } else if ("update".equals(action)) {
-            updateSatffInserver();
+        uploadPhoto();
+    }
+
+    private void uploadPhoto() {
+        showProgressDialog();
+        final String action = ((AdminAddStaff) getActivity()).getAction();
+        if (mCurrentPhotoPath == null || "".equals(mCurrentPhotoPath)) {
+            if ("create".equals(action)) {
+                saveStaffInServer();
+            } else if ("update".equals(action)) {
+                updateSatffInserver();
+            }
+            return;
         }
+        InputStream stream = null;
+        try {
+            stream = new FileInputStream(new File(mCurrentPhotoPath));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        photoRef = storageRef.child("healthmatic/" + GlobalFunctions.getCurrentDateInMilliseconds() + ".jpg");
+        UploadTask uploadTask = photoRef.putStream(stream);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                showToast("Unable to upload image. Please try again.");
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                staff.setImageName(taskSnapshot.getDownloadUrl().toString());
+                if ("create".equals(action)) {
+                    saveStaffInServer();
+                } else if ("update".equals(action)) {
+                    updateSatffInserver();
+                }
+            }
+        });
     }
 
     private void saveStaffInServer() {
-        showProgressDialog();
         Call<Staff> call = STAFF_API.createStaff(staff);
         String staffString = new Gson().toJson(staff);
         call.enqueue(new Callback<Staff>() {
@@ -267,7 +298,8 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
                     }
                     return;
                 }
-                uploadPhoto();
+                showToast("Staff created");
+                successIntent();
             }
 
             @Override
@@ -279,7 +311,6 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
     }
 
     private void updateSatffInserver() {
-        showProgressDialog();
         Call<Staff> call = STAFF_API.updateStaff(staff.get_id(), staff);
         String staffString = new Gson().toJson(staff);
         call.enqueue(new Callback<Staff>() {
@@ -296,43 +327,14 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
                     }
                     return;
                 }
-                uploadPhoto();
+                showToast("Staff updated");
+                successIntent();
             }
 
             @Override
             public void onFailure(Call<Staff> call, Throwable t) {
                 Log.d("RETROFIT", "ADD STAFF RETROFIT FAILURE >>>>> " + t.toString());
                 showToast("Was not able to connect with server. Please try again.");
-            }
-        });
-    }
-
-    private void uploadPhoto() {
-        if (mCurrentPhotoPath == null || "".equals(mCurrentPhotoPath)) {
-            showToast("Staff created/updated");
-            successIntent();
-            return;
-        }
-        InputStream stream = null;
-        try {
-            stream = new FileInputStream(new File(mCurrentPhotoPath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        photoRef = storageRef.child("healthmatic/" + staff.getImageName() + ".jpg");
-        UploadTask uploadTask = photoRef.putStream(stream);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                showToast("Unable to upload image. Please try again.");
-                // Handle unsuccessful uploads
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                showToast("Image Upload and Staff creation/update Succesfull");
-                successIntent();
-
             }
         });
     }

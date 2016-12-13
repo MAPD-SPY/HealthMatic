@@ -51,13 +51,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
         holder.mPateintConditionView.setText(doctor.getLastName());
         holder.mRoomNumberView.setText(doctor.getFloor() + "");
         if (doctor.getImageName() != null && !"".equals(doctor.getImageName())) {
-//            holder.photoRef = storageRef.child("healthmatic/" + doctor.getImageName());
-//            storageRef.getDownloadUrl().addOnSuccessListener(context, new OnSuccessListener<Uri>() {
-//                @Override
-//                public void onSuccess(Uri uri) {
-//                    Glide.with(context).load(uri).into(holder.mPatientGenderIdicator);
-//                }
-//            });
+            Glide.with(context).load(doctor.getImageName()).error(R.drawable.ic_menu_camera).into(holder.mPatientGenderIdicator);
         } else {
             if ("male".equals(doctor.getGender() + "")) {
                 holder.mPatientGenderIdicator.setImageResource(R.drawable.user_male);
