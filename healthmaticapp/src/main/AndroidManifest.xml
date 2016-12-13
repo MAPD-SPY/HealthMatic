@@ -44,7 +44,7 @@
             android:label="@string/title_activity_main_dr"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Doctor.PatientDrActivity"
+            android:name=".Doctor.PatientActivity"
             android:label="@string/title_activity_patient_dr"
             android:parentActivityName=".Doctor.MainDrActivity"
             android:theme="@style/AppTheme.NoActionBar">

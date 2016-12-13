@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
-import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Doctor.PatientActivity;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
@@ -64,7 +64,7 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
                  //   intent.putExtra("PatientName",patient.getName());
                  //   intent.putExtra("Department",patient.getDepartment());
 
-                Intent intent=new Intent(holder.context, PatientDrActivity.class);
+                Intent intent=new Intent(holder.context, PatientActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("PATIENT_OBJ", patientList.get(position));
                 bundle.putSerializable("STAFF_OBJ", nurse);

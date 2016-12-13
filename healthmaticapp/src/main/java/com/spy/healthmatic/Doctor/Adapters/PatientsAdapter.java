@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Doctor.PatientActivity;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
@@ -51,7 +51,7 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                     bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
                     bundle.putSerializable("STAFF_OBJ", mDoctor);
 
-                    Intent intent = new Intent(mContext, PatientDrActivity.class);
+                    Intent intent = new Intent(mContext, PatientActivity.class);
                     intent.putExtras(bundle);
                     mContext.startActivity(intent);
                 }

@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
-import com.spy.healthmatic.Admin.Fragments.PatientList;
-import com.spy.healthmatic.Doctor.PatientDrActivity;
+import com.spy.healthmatic.Doctor.PatientActivity;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
 
@@ -59,7 +57,7 @@ public class AgentPatientListAdapter extends RecyclerView.Adapter<AgentPatientLi
                     bundle.putSerializable("PATIENT_OBJ", patients.get(position));
                     bundle.putBoolean("isAgent",true);
 
-                    Intent intent = new Intent(mContext, PatientDrActivity.class);
+                    Intent intent = new Intent(mContext, PatientActivity.class);
                     intent.putExtras(bundle);
                     mContext.startActivity(intent);
                 }
