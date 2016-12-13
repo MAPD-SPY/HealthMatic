@@ -88,12 +88,12 @@
     <string name="strCancel">Cancel</string>
     <string name="strTestTypeDescription">Determines general health and screens for disorders such as anemia or infections, as well as nutritional status and toxic substance exposure.</string>
     <string name="strTestTypeCB">CBC (Complete Blood Count)</string>
-    <string name="strMedicine">Medicine</string>
+    <string name="strMedicine">Medicine:</string>
     <string name="strMedsForm">Form</string>
     <string name="strNotedBy">Noted By:</string>
     <string name="strDate">Date:</string>
-    <string name="strMedication">Medication</string>
-    <string name="strLaboratoryTests">Laboratory Tests</string>
+    <string name="strAddMedication">Add Medication</string>
+    <string name="strAddLaboratoryTests">Add Laboratory Tests</string>
     <string name="strDateTaken">Date Taken:</string>
     <string name="strDays">days</string>
     <string name="strRespirationRate">Respiration Rate:</string>
@@ -143,6 +143,10 @@
     <string name="strContactNum">Contact #:</string>
     <string name="strDoctors">Doctors:</string>
     <string name="strNurses">Nurses:</string>
+    <string name="strHintNameOfMeds">Enter name</string>
+    <string name="strAddVitals">Add Vitals</string>
+    <string name="strAddNotes">Add Notes</string>
+    <string name="strAddDoctor">Add Doctor</string>
 
 
 </resources>

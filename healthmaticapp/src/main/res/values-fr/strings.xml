@@ -92,8 +92,8 @@
     <string name="strMedsForm">Forme</string>
     <string name="strNotedBy">Noté par:</string>
     <string name="strDate">Date:</string>
-    <string name="strMedication">Des médicaments</string>
-    <string name="strLaboratoryTests">Tests de Laboratoire</string>
+    <string name="strAddMedication">Des médicaments</string>
+    <string name="strAddLaboratoryTests">Tests de Laboratoire</string>
     <string name="strDateTaken">Date prise:</string>
 
 </resources>

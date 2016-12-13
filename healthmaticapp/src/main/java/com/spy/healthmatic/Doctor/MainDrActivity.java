@@ -191,6 +191,9 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         });
     }
 
+    /**
+     * Refresh the data that are dynamically dependent on the web server responses
+     */
     private void loadRecyclerViewElements() {
         numOfPatientsChecked = getPatientsCheckedToday(doctor.getPatientRefs());
         initCircleProgressView();

@@ -54,22 +54,22 @@
         </activity>
         <activity
             android:name=".Doctor.AddMedsActivity"
-            android:label="@string/strMedication"
+            android:label="@string/strAddMedication"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".Doctor.AddTestActivity"
-            android:label="@string/strLaboratoryTests"
+            android:label="@string/strAddLaboratoryTests"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".Doctor.AddVitalsActivity"
-            android:label="Add Vitals"
+            android:label="@string/strAddVitals"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".Doctor.AddNotesActivity"
-            android:label="Add Notes"
+            android:label="@string/strAddNotes"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity android:name=".Doctor.AddDrActivity"
-            android:label="Add Doctor"
+            android:label="@string/strAddDoctor"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
         <activity
             android:name=".Admin.AdminAddPatient"

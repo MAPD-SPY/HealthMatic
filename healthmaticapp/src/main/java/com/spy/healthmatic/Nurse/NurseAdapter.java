@@ -9,16 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Doctor.PatientDrActivity;
 import com.spy.healthmatic.Model.Patient;
-import com.spy.healthmatic.Nurse.Fragments.PatientDetailsFragment;
- import com.spy.healthmatic.R;
+import com.spy.healthmatic.Model.Staff;
+import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by prashantn.pol on 2016-10-31.
@@ -28,14 +26,15 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
 
     private   PatientList.OnPatientListFragmentInteractionListener mListener;
 
+    private Staff nurse;
     ArrayList<Patient> patientList;
     Context context;
 
-    public  NurseAdapter(ArrayList<Patient> patientList,Context context)
+    public  NurseAdapter(ArrayList<Patient> patientList,Context context, Staff nurse)
     {
             this.context=context;
             this.patientList=patientList;
-
+            this.nurse = nurse;
     }
 
     @Override
@@ -61,14 +60,14 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent=new Intent(holder.context,NursePatientDetailsActivity.class);
+//                Intent intent=new Intent(holder.context,NursePatientDetailsActivity.class);
                  //   intent.putExtra("PatientName",patient.getName());
                  //   intent.putExtra("Department",patient.getDepartment());
 
-
+                Intent intent=new Intent(holder.context, PatientDrActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("PATIENT_OBJ", patientList.get(position));
-
+                bundle.putSerializable("STAFF_OBJ", nurse);
 
                  intent.putExtras(bundle);
                  holder.context.startActivity(intent);
