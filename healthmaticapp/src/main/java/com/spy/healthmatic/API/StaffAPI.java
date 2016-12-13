@@ -43,6 +43,10 @@ public interface StaffAPI {
     @Headers("Content-Type: application/json")
     Call<Staff> login(@Body LoginModel loginModel);
 
+    @POST("/loginsamsung")
+    @Headers("Content-Type: application/json")
+    Call<Staff> loginSamsung(@Body LoginModel loginModel);
+
     @POST("/staffs")
     @Headers("Content-Type: application/json")
     Call<Staff> createStaff(@Body Staff staff);

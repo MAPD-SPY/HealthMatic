@@ -1,36 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- TODO paddings need to be converted to string -->
+<?xml version="1.0" encoding="utf-8"?><!-- TODO paddings need to be converted to string -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_gradient"
     android:orientation="vertical"
-    android:paddingTop="56dp"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    android:background="@drawable/shape_gradient"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingTop="56dp">
 
     <!-- TODO: Add HealthMatic image -->
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp" />
 
     <!-- Email address input -->
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
 
         <EditText
             android:id="@+id/editTextEmail"
-            android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/ic_person_outline_black_24dp"
-            android:hint="@string/str_hint_EmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_person_outline_black_24dp"
+            android:hint="@string/str_hint_EmailAddress"
+            android:inputType="textEmailAddress"
             android:text="" />
 
     </android.support.design.widget.TextInputLayout>
@@ -39,26 +38,35 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
 
         <EditText
             android:id="@+id/editTextPassword"
-            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
             android:hint="@string/str_hint_Password"
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:inputType="textPassword"
+            android:text="" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/buttonLogin"
         style="@style/ButtonStyle"
-        android:layout_marginTop="24dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="24dp"
-        android:text="@string/str_btn_Login"
-        android:layout_gravity="center"/>
+        android:layout_marginTop="24dp"
+        android:text="@string/str_btn_Login" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/signFingerLogin"
+        style="@style/ButtonStyle"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Finger Sign in"
+        android:visibility="gone"/>
 
 </LinearLayout>

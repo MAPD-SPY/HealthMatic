@@ -117,7 +117,7 @@ public class NurseList extends Fragment implements GlobalConst, SwipeRefreshLayo
 
     private void loadRecyclerViewElements(){
         mProgressDialog.setVisibility(View.GONE);
-        mAdapter = new NurseListAdapter(nurses, mListener);
+        mAdapter = new NurseListAdapter(nurses, mListener, getActivity());
         mRecyclerView.setAdapter(mAdapter);
     }
 

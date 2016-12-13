@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.Adapters.PatientTabPagerAdapter;
+import com.spy.healthmatic.Global.GlobalFunctions;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Vitals;
@@ -75,7 +76,7 @@ public class PatientActivity extends AppCompatActivity implements SwipeRefreshLa
         // Get a reference of the patient object
         Intent intent = getIntent();
         patient = (Patient) intent.getSerializableExtra("PATIENT_OBJ");
-        staff = (Staff) intent.getSerializableExtra("STAFF_OBJ");
+        staff = GlobalFunctions.getStaff(this);
         isAgent = intent.getBooleanExtra("isAgent", false);
 
         // Save the staff name
