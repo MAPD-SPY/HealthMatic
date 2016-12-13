@@ -1,5 +1,4 @@
-package com.spy.healthmatic.Doctor.patient_dr_fragments;
-
+package com.spy.healthmatic.Doctor.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,36 +8,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.spy.healthmatic.Doctor.adapters.MedsAdapter;
-import com.spy.healthmatic.R;
+import com.spy.healthmatic.Doctor.Adapters.VitalsAdapter;
 import com.spy.healthmatic.Model.Patient;
-import com.spy.healthmatic.Model.Prescription;
+import com.spy.healthmatic.Model.Vitals;
+import com.spy.healthmatic.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Team Name: Team SPY
  * Created by shelalainechan on 2016-11-01.
  */
-public class MedsFragment extends Fragment {
+public class VitalsFragment extends Fragment {
 
     private String doctorName;
-    private MedsAdapter medsAdapter;
+    private VitalsAdapter vitalsAdapter;
     private Patient patient;
-    private List<Prescription> prescriptions;
+    private List<Vitals> vitals;
 
-    public MedsFragment() {
+    public VitalsFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            patient = (Patient) getArguments().getSerializable("PATIENT_OBJ");
-            doctorName = getArguments().getString("DOCTOR_NAME");
-            prescriptions = patient.getPrescriptions();
-            medsAdapter = new MedsAdapter(getActivity(), prescriptions);
+            vitals = (ArrayList<Vitals>) getArguments().getSerializable("PATIENT_VITALS_OBJ");
+            vitalsAdapter = new VitalsAdapter(getActivity(), vitals);
         }
     }
 
@@ -46,10 +45,10 @@ public class MedsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_meds, container, false);
+        View view = inflater.inflate(R.layout.fragment_vitals, container, false);
 
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvMeds);
-        recyclerView.setAdapter(medsAdapter);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rvVitals);
+        recyclerView.setAdapter(vitalsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }

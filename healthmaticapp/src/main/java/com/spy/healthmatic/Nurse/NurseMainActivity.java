@@ -1,44 +1,29 @@
 package com.spy.healthmatic.Nurse;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Handler;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.spy.healthmatic.API.PatientsListAPI;
 import com.spy.healthmatic.API.StaffAPI;
-import com.spy.healthmatic.Admin.Adapters.PatientListAdapter;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Global.GlobalFunctions;
-
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.Welcome.Logout;
-import com.spy.healthmatic.Welcome.SplashScreen;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -134,7 +119,7 @@ public class NurseMainActivity extends AppCompatActivity implements GlobalConst,
 
     private void loadRecyclerViewElements(){
         mProgressDialog.setVisibility(View.GONE);
-        mAdapter = new NurseAdapter(patients,this);
+        mAdapter = new NurseAdapter(patients,this, nurse);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
     }

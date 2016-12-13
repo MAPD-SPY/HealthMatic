@@ -1,4 +1,4 @@
-package com.spy.healthmatic.Doctor.adapters;
+package com.spy.healthmatic.Doctor.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

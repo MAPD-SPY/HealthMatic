@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Admin.Fragments.PatientList;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Doctor.PatientActivity;
+import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
@@ -22,14 +25,16 @@ import java.util.ArrayList;
 
 public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder> {
 
+    private Staff nurse;
     ArrayList<Patient> patientList;
     Context context;
     private PatientList.OnPatientListFragmentInteractionListener mListener;
 
-    public NurseAdapter(ArrayList<Patient> patientList, Context context) {
-        this.context = context;
-        this.patientList = patientList;
-
+    public  NurseAdapter(ArrayList<Patient> patientList,Context context, Staff nurse)
+    {
+            this.context=context;
+            this.patientList=patientList;
+            this.nurse = nurse;
     }
 
     @Override
@@ -55,13 +60,17 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.context, NursePatientDetailsActivity.class);
-                //   intent.putExtra("PatientName",patient.getName());
-                //   intent.putExtra("Department",patient.getDepartment());
+//                Intent intent=new Intent(holder.context,NursePatientDetailsActivity.class);
+                 //   intent.putExtra("PatientName",patient.getName());
+                 //   intent.putExtra("Department",patient.getDepartment());
+
+                Intent intent=new Intent(holder.context, PatientActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("PATIENT_OBJ", patientList.get(position));
-                intent.putExtras(bundle);
-                holder.context.startActivity(intent);
+                bundle.putSerializable("STAFF_OBJ", nurse);
+
+                 intent.putExtras(bundle);
+                 holder.context.startActivity(intent);
             }
         });
     }
@@ -96,7 +105,6 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
 
 
         }
-
 
     }
 
