@@ -47,7 +47,7 @@
     <string name="title_activity_main_dr">Mes Patients</string>
     <string name="strRoom">Chambre #:</string>
     <string name="strPatients">Les patients</string>
-    <string name="strDailyRound">Patients \à v\érifier aujourd\'hui.</string>
+    <string name="strToday">Patients \à v\érifier aujourd\'hui.</string>
     <string name="strCheckDone">Vérifications effectuées</string>
 
     <string name="strVitals">Vitals</string>

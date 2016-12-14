@@ -219,11 +219,17 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
         circleProgressView.setBlockCount(patientsSize);
         circleProgressView.setUnitScale((float)1.20);
         circleProgressView.setMaxValue(patientsSize);
-        circleProgressView.setText(Long.toString(numOfPatientsChecked));
+        circleProgressView.setText(Long.toString(patientsSize));
         circleProgressView.setValueAnimated(numOfPatientsChecked, CIRCLE_PROGRESS_VIEW_DELAY);
 
-        TextView textViewPatientNum = (TextView) findViewById(R.id.tvPatientNum);
-        textViewPatientNum.setText(Integer.toString(patientsSize) + " ");
+        TextView textViewPatientNum = (TextView) findViewById(R.id.tvChecksDone);
+        TextView textViewPatientNumRem = (TextView) findViewById(R.id.tvChecksNotDone);
+        textViewPatientNum.setText(numOfPatientsChecked + " " +
+                (numOfPatientsChecked <= 1 ? getResources().getString(R.string.strCheckupDone) :
+                                             getResources().getString(R.string.strCheckupsDone)));
+        textViewPatientNumRem.setText(patientsSize - numOfPatientsChecked + " " +
+                ((patientsSize - numOfPatientsChecked) <= 1 ? getResources().getString(R.string.strPatientForCheckup) :
+                                             getResources().getString(R.string.strPatientsForCheckup)));
     }
 
     /**

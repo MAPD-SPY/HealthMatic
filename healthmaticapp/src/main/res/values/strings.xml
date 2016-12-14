@@ -47,8 +47,7 @@
     <string name="title_activity_main_dr">My Patients</string>
     <string name="strRoom">Room #:</string>
     <string name="strPatients">Patients</string>
-    <string name="strDailyRound"> patients to be checked today.</string>
-    <string name="strCheckDone">Checks done</string>
+    <string name="strToday">Today</string>
 
     <string name="strVitals">Vitals</string>
     <string name="strTests">Tests</string>
@@ -147,6 +146,10 @@
     <string name="strAddVitals">Add Vitals</string>
     <string name="strAddNotes">Add Notes</string>
     <string name="strAddDoctor">Add Doctor</string>
+    <string name="strPatientsForCheckup">patients for checkup</string>
+    <string name="strPatientForCheckup">patient for checkup</string>
+    <string name="strCheckupsDone">checkups done</string>
+    <string name="strCheckupDone">checkup done</string>
 
 
 </resources>
