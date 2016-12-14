@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -96,6 +98,14 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
         textViewRoom.setText(Integer.toString(patient.getRoom()));
         TextView textViewCondition = holder.mtvPatientCondition;
         textViewCondition.setText(patient.getCondition());
+
+        int lastPosition = - 1;
+        Animation animation = AnimationUtils.loadAnimation(mContext,
+                (position > lastPosition) ? R.anim.up_from_bottom
+                        : R.anim.down_from_top);
+        holder.itemView.startAnimation(animation);
+        lastPosition = position;
+
     }
 
     @Override
@@ -103,5 +113,9 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
         return mPatients.size();
     }
 
-
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.itemView.clearAnimation();
+    }
 }

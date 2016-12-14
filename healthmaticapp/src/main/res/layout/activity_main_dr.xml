@@ -68,16 +68,16 @@
                     android:textStyle="normal|bold" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:background="@color/circlePVBar"
                     android:id="@+id/imageView2"
                     android:layout_below="@+id/tvDailyRounds"
                     android:layout_toEndOf="@+id/tvPatientNum" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:background="@color/circlePVRim"
                     android:layout_marginTop="4dp"
                     android:id="@+id/imageView3"
@@ -91,12 +91,12 @@
                     android:id="@+id/tvChecksNotDone"
                     android:paddingLeft="2dp"
                     android:layout_alignTop="@+id/imageView3"
-                    android:layout_toEndOf="@+id/imageView2" />
+                    android:layout_toEndOf="@+id/imageView2"
+                    android:textStyle="normal|italic" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black_overlay"
                     android:id="@+id/tvChecksDone"
                     android:paddingLeft="2dp"
                     android:layout_below="@+id/tvDailyRounds"
@@ -113,6 +113,8 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main_dr" />
+    <include
+        android:id="@+id/ilListView"
+        layout="@layout/content_main_dr" />
 
 </android.support.design.widget.CoordinatorLayout>
