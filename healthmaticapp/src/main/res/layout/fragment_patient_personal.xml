@@ -23,7 +23,7 @@
                 style="@style/FormTitle"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
-                android:text="Patient Personal Info"
+                android:text="Patient Personal Info(1/4)"
                 android:textAlignment="center" />
 
             <LinearLayout
@@ -41,6 +41,7 @@
                         android:id="@+id/p_fname"
                         style="@style/InputStyle"
                         android:hint="First Name"
+                        android:imeOptions="actionNext"
                         android:inputType="text" />
                 </android.support.design.widget.TextInputLayout>
 
@@ -93,17 +94,24 @@
             </LinearLayout>
 
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp">
+            <EditText
+                android:id="@+id/p_dob"
+                style="@style/InputStyle"
+                android:layout_margin="15dp"
+                android:hint="DOB"
+                android:textIsSelectable="true" />
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/p_dob_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="15dp">-->
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/p_dob"
-                    style="@style/InputStyle"
-                    android:hint="DOB"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
+            <!--<android.support.design.widget.TextInputEditText-->
+            <!--android:id="@+id/p_dob"-->
+            <!--style="@style/InputStyle"-->
+            <!--android:hint="DOB"-->
+            <!--android:inputType="text" />-->
+            <!--</android.support.design.widget.TextInputLayout>-->
 
             <TextView
                 style="@style/DividerTextStyle"
@@ -213,17 +221,27 @@
                     android:inputType="textPostalAddress" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp">
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
-                <android.support.design.widget.TextInputEditText
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Please select a Proviance"
+                    android:textColor="@color/titleBadgeTitle"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_margin="5dp"/>
+
+                <Spinner
                     android:id="@+id/p_proviance"
-                    style="@style/InputStyle"
-                    android:hint="Proviance"
-                    android:inputType="textPostalAddress" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/proviance_list"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

@@ -130,8 +130,6 @@ public class AdminMainActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content_main2,fragment);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_edit_profile) {
-
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(this, Logout.class);
             startActivity(intent);

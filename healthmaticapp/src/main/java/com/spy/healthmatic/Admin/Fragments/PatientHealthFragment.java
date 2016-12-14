@@ -1,6 +1,7 @@
 package com.spy.healthmatic.Admin.Fragments;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -10,6 +11,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.AdminAddPatient;
@@ -19,7 +22,10 @@ import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,13 +51,16 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
     @Bind(R.id.p_insurance_name)
     TextInputEditText mInsuranceNameView;
     @Bind(R.id.p_insurance_expiry_date)
-    TextInputEditText mInsuranceExpiryView;
+    EditText mInsuranceExpiryView;
     @Bind(R.id.save_patient_health)
     FloatingActionButton mSavePatientHelathButton;
 
     private Patient patient;
     ArrayList<Tab> tabs;
     ViewPager mViewPager;
+
+    Calendar myCalendar;
+    DatePickerDialog.OnDateSetListener date;
 
     public PatientHealthFragment() {
         // Required empty public constructor
@@ -85,11 +94,44 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if(patient.getBloodType()!=null && !patient.getBloodType().equals("")) {
             setView();
         }
+        myCalendar = Calendar.getInstance();
+        date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+        mInsuranceExpiryView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean focus) {
+                if(focus){
+                    showDatePicker();
+                }
+            }
+        });
         return rootView;
     }
 
     private void setView(){
         Toast.makeText(getActivity(), "Click on button below to save any changes.", Toast.LENGTH_LONG).show();
+    }
+
+    public void showDatePicker(){
+        new DatePickerDialog(getActivity(), date, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void updateLabel() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        mInsuranceExpiryView.setText(sdf.format(myCalendar.getTime()));
     }
 
     @OnClick(R.id.save_patient_health)

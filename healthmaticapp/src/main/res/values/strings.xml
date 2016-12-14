@@ -39,6 +39,13 @@
         <item>Doctor 5</item>
     </string-array>
 
+    <string-array name="proviance_list">
+        <item>Ontario</item>
+        <item>Alberta</item>
+        <item>British Columbia</item>
+        <item>Quebec</item>
+    </string-array>
+
     <string name="str_hint_EmailAddress">E-mail address</string>
     <string name="str_hint_Password">Password</string>
     <string name="str_btn_Login">Log in</string>
