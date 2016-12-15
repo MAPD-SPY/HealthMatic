@@ -3,7 +3,6 @@ package com.spy.healthmatic.Doctor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,20 +97,20 @@ public class AddMedsActivity extends AppCompatActivity {
         });
 
         medDuration.setText(Integer.toString(sbDuration.getProgress()));
-        medDuration.setOnKeyListener(new View.OnKeyListener() {
+        medDuration.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    int newProgress;
 
-                int newProgress;
-
-                if (medDuration.getText().toString().equals("")) {
-                    newProgress = 0;
-                } else {
-                    newProgress = Integer.parseInt(medDuration.getText().toString());
+                    if (medDuration.getText().toString().equals("")) {
+                        newProgress = 0;
+                    } else {
+                        newProgress = Integer.parseInt(medDuration.getText().toString());
+                    }
+                    newProgress = (newProgress > 100) ? 100 : newProgress;
+                    sbDuration.setProgress(newProgress);
                 }
-                newProgress = (newProgress > 100) ? 100 : newProgress;
-                sbDuration.setProgress(newProgress);
-                return false;
             }
         });
     }

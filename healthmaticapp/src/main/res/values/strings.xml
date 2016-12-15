@@ -151,6 +151,8 @@
     <string name="strCheckupsDone">checkups done</string>
     <string name="strCheckupDone">checkup done</string>
     <string name="strThisIsRequired">This is required.</string>
+    <string name="strErrorMsgVitals">Input at least one vital.</string>
+    <string name="strErrorMsgTests">There is nothing to save.</string>
 
 
 </resources>
