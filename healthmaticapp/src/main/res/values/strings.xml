@@ -150,6 +150,7 @@
     <string name="strPatientForCheckup">patient for checkup</string>
     <string name="strCheckupsDone">checkups done</string>
     <string name="strCheckupDone">checkup done</string>
+    <string name="strThisIsRequired">This is required.</string>
 
 
 </resources>
