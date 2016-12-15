@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Global;
 
+import com.spy.healthmatic.API.HospitalAPI;
 import com.spy.healthmatic.API.PatientsListAPI;
 import com.spy.healthmatic.API.StaffAPI;
 
@@ -37,4 +38,5 @@ public interface GlobalConst {
             .build();
     PatientsListAPI PATIENTS_LIST_API = RETROFIT.create(PatientsListAPI.class);
     StaffAPI STAFF_API = RETROFIT.create(StaffAPI.class);
+    HospitalAPI HOSPITAL_API = RETROFIT.create(HospitalAPI.class);
 }

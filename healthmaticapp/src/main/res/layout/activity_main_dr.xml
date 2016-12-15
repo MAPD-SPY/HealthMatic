@@ -32,7 +32,7 @@
                     app:cpv_rimColor="@color/circlePVRim"
                     app:cpv_barColor="@color/circlePVBar"
                     app:cpv_autoTextSize="true"
-                    app:cpv_unit="@string/strCheckDone"
+                    app:cpv_unit="@string/strPatients"
                     app:cpv_showUnit="true"
                     app:cpv_unitPosition="bottom"
                     app:cpv_textMode="Text"
@@ -54,15 +54,54 @@
                     android:id="@+id/tvPatientNum" />
 
                 <TextView
-                    android:text="@string/strDailyRound"
-                    android:textSize="20sp"
+                    android:text="@string/strToday"
+                    android:textSize="30sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@id/tvPatientNum"
                     android:textColor="@color/black_overlay"
-                    android:layout_marginTop="60dp"
-                    android:id="@+id/tvDailyRounds" />
+                    android:layout_marginTop="35dp"
+                    android:id="@+id/tvDailyRounds"
+                    android:fontFamily="sans-serif"
+                    android:typeface="monospace"
+                    android:textStyle="normal|bold" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@color/circlePVBar"
+                    android:id="@+id/imageView2"
+                    android:layout_below="@+id/tvDailyRounds"
+                    android:layout_toEndOf="@+id/tvPatientNum" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@color/circlePVRim"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/imageView3"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_toEndOf="@+id/tvPatientNum" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_overlay"
+                    android:id="@+id/tvChecksNotDone"
+                    android:paddingLeft="2dp"
+                    android:layout_alignTop="@+id/imageView3"
+                    android:layout_toEndOf="@+id/imageView2"
+                    android:textStyle="normal|italic" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvChecksDone"
+                    android:paddingLeft="2dp"
+                    android:textColor="@color/black_overlay"
+                    android:layout_below="@+id/tvDailyRounds"
+                    android:layout_toEndOf="@+id/imageView3" />
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
@@ -75,6 +114,8 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main_dr" />
+    <include
+        android:id="@+id/ilListView"
+        layout="@layout/content_main_dr" />
 
 </android.support.design.widget.CoordinatorLayout>

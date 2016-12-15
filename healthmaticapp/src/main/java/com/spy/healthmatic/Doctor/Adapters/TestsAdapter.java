@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.spy.healthmatic.R;
 import com.spy.healthmatic.Model.LabTest;
+import com.spy.healthmatic.R;
 
 import java.util.List;
 
@@ -60,13 +60,15 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(TestsAdapter.ViewHolder holder, int position) {
-        LabTest labTest = mLabTests.get(position);
+    public void onBindViewHolder(final TestsAdapter.ViewHolder holder, int position) {
+        final LabTest labTest = mLabTests.get(position);
 
         (holder.mtvTestName).setText(labTest.getTestType());
         (holder.mtvTestRequestedByName).setText(labTest.getRequestedByName());
         (holder.mtvTestRequestedDateVal).setText(labTest.getRequestDate());
         (holder.mtvTestStatusVal).setText(labTest.getStatus());
+
+        // Show the image of the lab test result if available
         if(labTest.getImageResult()!=null && !"".equals(labTest.getImageResult().trim())){
             Glide.with(mContext).load(labTest.getImageResult()).error(R.drawable.ic_menu_camera).into(holder.mtvTestImage);
         }

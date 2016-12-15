@@ -29,8 +29,10 @@ import com.spy.healthmatic.Admin.Fragments.PatientNurseFragment;
 import com.spy.healthmatic.Admin.Fragments.PatientPersonalFragment;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Hospital;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Room;
 import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
@@ -52,6 +54,9 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
     ArrayList<Tab> tabs;
     public static ArrayList<Staff> doctors;
     public static ArrayList<Staff> nurses;
+    public static ArrayList<Room> rooms;
+    public static Room selectedRoom;
+    public static String hospitalId;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -130,6 +135,27 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
                 nurses = null;
             }
         });
+        Call<ArrayList<Hospital>> call2 = HOSPITAL_API.getHospitalList();
+        call2.enqueue(new Callback<ArrayList<Hospital>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Hospital>> call, Response<ArrayList<Hospital>> response) {
+                if(!response.isSuccessful()){
+                    rooms=null;
+                    return;
+                }
+                ArrayList<Hospital> hospitals = response.body();
+                for(Hospital hospital: hospitals){
+                    hospitalId = hospital.get_id();
+                    rooms = hospital.getRooms();
+                    break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Hospital>> call, Throwable t) {
+                rooms=null;
+            }
+        });
     }
 
     public ArrayList<Staff> getDoctors(){
@@ -138,6 +164,10 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
 
     public ArrayList<Staff> getNurses(){
         return nurses;
+    }
+
+    public ArrayList<Room> getRooms(){
+        return rooms;
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
