@@ -11,10 +11,11 @@
 
     <!-- TODO: Add HealthMatic image -->
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/logo_big" />
 
     <!-- Email address input -->
     <android.support.design.widget.TextInputLayout
