@@ -29,9 +29,11 @@ import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -176,7 +178,7 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
     public void savePatientPersonalInfo() {
         boolean isvalid = true;
         String fname = mPFNameView.getText().toString();
-        if (TextUtils.isEmpty(fname)) {
+        if (isInvalidName(fname)) {
             mPFNameView.setError("Required.");
             isvalid = false;
         } else {
@@ -192,7 +194,7 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
             mPLNameView.setError(null);
         }
         String dob = mPDOBView.getText().toString();
-        if (TextUtils.isEmpty(dob)) {
+        if (isInvalidDate(dob)) {
             mPDOBView.setError("Required.");
             isvalid = false;
         } else {
@@ -203,7 +205,7 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         // Contact Object
         Contact contact = new Contact();
         String contact1 = mPContactView.getText().toString();
-        if (TextUtils.isEmpty(contact1)) {
+        if (isInvalidContact(contact1)) {
             mPContactView.setError("Required.");
             isvalid = false;
         } else {
@@ -227,7 +229,7 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
             mPEmergencyNameView.setError(null);
         }
         String emergencyContact = mPEmergencyContactView.getText().toString();
-        if (TextUtils.isEmpty(emergencyContact)) {
+        if (isInvalidContact(emergencyContact)) {
             mPEmergencyContactView.setError("Required.");
             isvalid = false;
         } else {
@@ -282,4 +284,36 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         mViewPager.setCurrentItem(1, true);
     }
 
+    public static boolean isInvalidName(String name){
+        if(name==null || "".equals(name.trim())){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isInvalidContact(String contact){
+        String regexStr = "^[0-9]*$";
+        if(contact==null || "".equals(contact.trim()) || !contact.matches(regexStr)){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isInvalidDate(String date){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        Date todaysDate = null, userDate = null;
+        try {
+            todaysDate = sdf.parse(sdf.format(Calendar.getInstance().getTime()));
+            userDate = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(todaysDate==null || userDate==null){
+            return true;
+        }
+        if(date==null || "".equals(date.trim()) || userDate.after(todaysDate)){
+            return true;
+        }
+        return false;
+    }
 }

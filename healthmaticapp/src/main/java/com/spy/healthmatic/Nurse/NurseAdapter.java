@@ -60,9 +60,6 @@ public class NurseAdapter extends RecyclerView.Adapter<NurseAdapter.MyViewHolder
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent=new Intent(holder.context,NursePatientDetailsActivity.class);
-                 //   intent.putExtra("PatientName",patient.getName());
-                 //   intent.putExtra("Department",patient.getDepartment());
 
                 Intent intent=new Intent(holder.context, PatientActivity.class);
                 Bundle bundle = new Bundle();
