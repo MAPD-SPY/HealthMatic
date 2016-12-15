@@ -160,23 +160,30 @@ public class AddMedsActivity extends AppCompatActivity {
         boolean isValid = true;
 
         // Show the corresponding error message if the medicine field is empty
-        if (medName.getText().toString().isEmpty()) {
+        if (isInvalidString(medName.getText().toString())) {
             medName.setError(getResources().getString(R.string.strThisIsRequired));
             isValid = false;
         }
 
         // Show the corresponding error message if the dosage field is empty
-        if (medDosage.getText().toString().isEmpty()) {
+        if (isInvalidString(medDosage.getText().toString())) {
             medDosage.setError(getResources().getString(R.string.strThisIsRequired));
             isValid = false;
         }
 
         // Show the corresponding error message if the frequency field is empty
-        if (medFreq.getText().toString().isEmpty()) {
+        if (isInvalidString(medFreq.getText().toString())) {
             medFreq.setError(getResources().getString(R.string.strThisIsRequired));
             isValid = false;
         }
 
         return isValid;
+    }
+
+    public static boolean isInvalidString(String string){
+        if(string==null || string.isEmpty()){
+            return true;
+        }
+        return false;
     }
 }
