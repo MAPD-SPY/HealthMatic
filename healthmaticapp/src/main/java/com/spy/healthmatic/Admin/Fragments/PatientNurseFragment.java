@@ -32,6 +32,7 @@ import com.spy.healthmatic.Admin.AdminAddPatient;
 import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Model.Doctor;
+import com.spy.healthmatic.Model.Hospital;
 import com.spy.healthmatic.Model.Nurse;
 import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.Model.PatientRef;
@@ -268,11 +269,38 @@ public class PatientNurseFragment extends Fragment implements GlobalConst {
                     }
                     return;
                 }
-                updateNurse();
+                updateRoom();
             }
 
             @Override
             public void onFailure(Call<Staff> call, Throwable t) {
+                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
+                showToast("Was not able to connect with server. Please try again.");
+            }
+        });
+    }
+
+    private void updateRoom(){
+        AdminAddPatient.selectedRoom.setAvailability(false);
+        Call<Hospital> call = HOSPITAL_API.updateHospitalRoom(AdminAddPatient.hospitalId, AdminAddPatient.selectedRoom);
+        call.enqueue(new Callback<Hospital>() {
+            @Override
+            public void onResponse(Call<Hospital> call, Response<Hospital> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Log.d("RETROFIT", "UPDATE DOCTOR RETROFIT FAILURE jObjError.getString(message) >>>>> " + jObjError.getString("message"));
+                        showToast(jObjError.getString("message"));
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    return;
+                }
+                updateNurse();
+            }
+
+            @Override
+            public void onFailure(Call<Hospital> call, Throwable t) {
                 Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
                 showToast("Was not able to connect with server. Please try again.");
             }
