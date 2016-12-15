@@ -23,10 +23,6 @@
     <item android:title="Settings">
         <menu>
             <item
-                android:id="@+id/nav_edit_profile"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Edit Profile" />
-            <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Logout" />
