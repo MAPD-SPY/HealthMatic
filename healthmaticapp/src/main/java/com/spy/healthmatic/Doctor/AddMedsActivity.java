@@ -3,7 +3,6 @@ package com.spy.healthmatic.Doctor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +19,8 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
@@ -34,7 +35,10 @@ public class AddMedsActivity extends AppCompatActivity {
     private String patientID;
     private String doctorName;
     private SeekBar sbDuration;
-    private EditText medName, medFreq, medDosage, medDuration;
+    @Bind(R.id.etMedsInName) EditText medName;
+    @Bind(R.id.etMedsFrequency) EditText medFreq;
+    @Bind(R.id.etMedsInDosage) EditText medDosage;
+    @Bind(R.id.etDurationVal) EditText medDuration;
 
 
     @Override
@@ -42,21 +46,21 @@ public class AddMedsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meds);
 
+        ButterKnife.bind(this);
+
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
         doctorName = intent.getStringExtra("DOCTOR_NAME");
-
-        medName = (EditText) findViewById(R.id.etMedsInName);
-        medFreq = (EditText) findViewById(R.id.etMedsFrequency);
-        medDosage = (EditText) findViewById(R.id.etMedsInDosage);
-        medDuration = (EditText) findViewById(R.id.etDurationVal);
 
         Button bAdd = (Button) findViewById(R.id.bTestAdd);
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    setPrescription();
+                    // Save the prescription if all fields have been populated
+                    if (validate()) {
+                        setPrescription();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (UnsupportedEncodingException e) {
@@ -93,20 +97,20 @@ public class AddMedsActivity extends AppCompatActivity {
         });
 
         medDuration.setText(Integer.toString(sbDuration.getProgress()));
-        medDuration.setOnKeyListener(new View.OnKeyListener() {
+        medDuration.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    int newProgress;
 
-                int newProgress;
-
-                if (medDuration.getText().toString().equals("")) {
-                    newProgress = 0;
-                } else {
-                    newProgress = Integer.parseInt(medDuration.getText().toString());
+                    if (medDuration.getText().toString().equals("")) {
+                        newProgress = 0;
+                    } else {
+                        newProgress = Integer.parseInt(medDuration.getText().toString());
+                    }
+                    newProgress = (newProgress > 100) ? 100 : newProgress;
+                    sbDuration.setProgress(newProgress);
                 }
-                newProgress = (newProgress > 100) ? 100 : newProgress;
-                sbDuration.setProgress(newProgress);
-                return false;
             }
         });
     }
@@ -143,5 +147,36 @@ public class AddMedsActivity extends AppCompatActivity {
                         finish();
                     }
                 });
+    }
+
+
+
+    /**
+     * Input format validation to check whether all input fields have been populated
+     * @return  true - all fields have been populated
+     *          false - not all fields have been populated
+     */
+    private boolean validate() {
+        boolean isValid = true;
+
+        // Show the corresponding error message if the medicine field is empty
+        if (medName.getText().toString().isEmpty()) {
+            medName.setError(getResources().getString(R.string.strThisIsRequired));
+            isValid = false;
+        }
+
+        // Show the corresponding error message if the dosage field is empty
+        if (medDosage.getText().toString().isEmpty()) {
+            medDosage.setError(getResources().getString(R.string.strThisIsRequired));
+            isValid = false;
+        }
+
+        // Show the corresponding error message if the frequency field is empty
+        if (medFreq.getText().toString().isEmpty()) {
+            medFreq.setError(getResources().getString(R.string.strThisIsRequired));
+            isValid = false;
+        }
+
+        return isValid;
     }
 }

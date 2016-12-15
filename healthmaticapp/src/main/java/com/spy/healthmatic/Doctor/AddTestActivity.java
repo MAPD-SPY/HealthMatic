@@ -108,39 +108,46 @@ public class AddTestActivity extends AppCompatActivity {
 
         mTestsSelected = labTestTypeAdapter.getItemsSelected();
 
-        // Create an array JSON Object
-        ArrayList<JSONObject> jsonObjects = new ArrayList<>();
+        // Check if none is selected
+        if (mTestsSelected.size() == 0) {
+            // Show a Toast message that there is nothing to save
+            Toast.makeText(this, getResources().getString(R.string.strErrorMsgTests), Toast.LENGTH_LONG).show();
+        }
+        else {
+            // Create an array JSON Object
+            ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
-        // Get time and date
-        String timeDateStamp = TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A);
+            // Get time and date
+            String timeDateStamp = TimeHelpers.getCurrentDateAndTime(TimeHelpers.FORMAT_YYYMMDD_HMM_A);
 
-        // Setup the list of tests selected
-        for (String mTestSelected : mTestsSelected) {
-            // Create a JSON Object
-            JSONObject jsonObject = new JSONObject();
+            // Setup the list of tests selected
+            for (String mTestSelected : mTestsSelected) {
+                // Create a JSON Object
+                JSONObject jsonObject = new JSONObject();
 
-            // Setup the elements of this object
-            jsonObject.put("requestDate", timeDateStamp);
-            jsonObject.put("requestedByName", doctorName);
-            jsonObject.put("testType", mTestSelected);
-            jsonObject.put("sampleTakenDate", "");
-            jsonObject.put("sampleTakenByName", "");
-            jsonObject.put("imageResult", "");
-            jsonObject.put("status", "On-going");
+                // Setup the elements of this object
+                jsonObject.put("requestDate", timeDateStamp);
+                jsonObject.put("requestedByName", doctorName);
+                jsonObject.put("testType", mTestSelected);
+                jsonObject.put("sampleTakenDate", "");
+                jsonObject.put("sampleTakenByName", "");
+                jsonObject.put("imageResult", "");
+                jsonObject.put("status", "On-going");
 
-            // Add this into the jsonObject array
-            jsonObjects.add(jsonObject);
-         }
+                // Add this into the jsonObject array
+                jsonObjects.add(jsonObject);
+            }
 
-        // Convert the Array of jsonObjects into a jsonArray format
-        JSONArray jsonArray = new JSONArray(jsonObjects);
+            // Convert the Array of jsonObjects into a jsonArray format
+            JSONArray jsonArray = new JSONArray(jsonObjects);
 
-        // Format this into the proper labTest jsonObject
-        JSONObject jsonParams = new JSONObject();
-        jsonParams.put("labTests", jsonArray);
+            // Format this into the proper labTest jsonObject
+            JSONObject jsonParams = new JSONObject();
+            jsonParams.put("labTests", jsonArray);
 
-        // Send these tests to the server
-        addLabTest(jsonParams);
+            // Send these tests to the server
+            addLabTest(jsonParams);
+        }
     }
 
     private void addLabTest(JSONObject jsonObject) throws UnsupportedEncodingException {
