@@ -11,14 +11,19 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.spy.healthmatic.Admin.AdminAddPatient;
+import com.spy.healthmatic.Admin.AdminMainActivity;
 import com.spy.healthmatic.Global.GlobalConst;
 import com.spy.healthmatic.Model.Insurance;
 import com.spy.healthmatic.Model.Patient;
+import com.spy.healthmatic.Model.Room;
+import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
@@ -47,7 +52,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
     @Bind(R.id.p_condition)
     TextInputEditText mConditionView;
     @Bind(R.id.p_room)
-    TextInputEditText mRoomView;
+    AutoCompleteTextView mRoomView;
     @Bind(R.id.p_insurance_name)
     TextInputEditText mInsuranceNameView;
     @Bind(R.id.p_insurance_expiry_date)
@@ -61,6 +66,9 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
 
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
+    ArrayAdapter<String> roomsAdapter;
+    ArrayList<String> roomsNumbers;
+
 
     public PatientHealthFragment() {
         // Required empty public constructor
@@ -116,7 +124,17 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
                 }
             }
         });
+        setupAdapter();
         return rootView;
+    }
+
+    private void setupAdapter() {
+        roomsNumbers = new ArrayList<>();
+        for (Room room : AdminAddPatient.rooms) {
+            roomsNumbers.add(room.getRoom() + " (" + room.isAvailability()+" )");
+        }
+        roomsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, roomsNumbers);
+        mRoomView.setAdapter(roomsAdapter);
     }
 
     private void setView(){
@@ -140,6 +158,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         String weight = mWeightView.getText().toString();
         if (TextUtils.isEmpty(weight)) {
             mWeightView.setError("Required.");
+            mWeightView.requestFocus();
             isvalid = false;
         } else {
             patient.setWeight(Integer.parseInt(weight));
@@ -148,6 +167,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         String height = mHeightView.getText().toString();
         if (TextUtils.isEmpty(height)) {
             mHeightView.setError("Required.");
+            mHeightView.requestFocus();
             isvalid = false;
         } else {
             patient.setHeight(Integer.parseInt(height));
@@ -156,6 +176,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         String blood = mBloodView.getText().toString();
         if (TextUtils.isEmpty(blood)) {
             mBloodView.setError("Required.");
+            mBloodView.requestFocus();
             isvalid = false;
         } else {
             patient.setBloodType(blood);
@@ -164,6 +185,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         String occupation = mOccupationView.getText().toString();
         if (TextUtils.isEmpty(occupation)) {
             mOccupationView.setError("Required.");
+            mOccupationView.requestFocus();
             isvalid = false;
         } else {
             patient.setOccupation(occupation);
@@ -173,23 +195,26 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         String condition = mConditionView.getText().toString();
         if (TextUtils.isEmpty(condition)) {
             mConditionView.setError("Required.");
+            mConditionView.requestFocus();
             isvalid = false;
         } else {
             patient.setCondition(condition);
             mConditionView.setError(null);
         }
         String room = mRoomView.getText().toString();
-        if (TextUtils.isEmpty(room)) {
-            mRoomView.setError("Required.");
+        if (checkIfValidRoom(room)) {
+            mRoomView.setError("Invalid.");
+            mRoomView.requestFocus();
             isvalid = false;
         } else {
-            patient.setRoom(Integer.parseInt(room));
+            patient.setRoom(setRoomNumber(room));
             mRoomView.setError(null);
         }
         Insurance insurance = new Insurance();
         String insuranceName = mInsuranceNameView.getText().toString();
         if (TextUtils.isEmpty(insuranceName)) {
             mInsuranceNameView.setError("Required.");
+            mInsuranceNameView.requestFocus();
             isvalid = false;
         } else {
             insurance.setName(insuranceName);
@@ -198,6 +223,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         String insuranceExpiryDate = mInsuranceExpiryView.getText().toString();
         if (TextUtils.isEmpty(insuranceExpiryDate)) {
             mInsuranceExpiryView.setError("Required.");
+            mInsuranceExpiryView.requestFocus();
             isvalid = false;
         } else {
             insurance.setExpiryDate(insuranceExpiryDate);
@@ -213,6 +239,39 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
             mViewPager.getAdapter().notifyDataSetChanged();
         }
         mViewPager.setCurrentItem(2, true);
+    }
+
+    private boolean checkIfValidRoom(String room){
+        if(room==null || "".equals(room)){
+            return true;
+        }
+        try{
+            String roomString = room.split(" ")[0];
+            long roomNumber = Long.parseLong(roomString);
+            for(Room room1 : AdminAddPatient.rooms){
+                if(roomNumber == room1.getRoom()){
+                    if(room1.isAvailability()){
+                        AdminAddPatient.selectedRoom = room1;
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    private int setRoomNumber(String room){
+        try{
+            String roomString = room.split(" ")[0];
+            return Integer.parseInt(roomString);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 }
