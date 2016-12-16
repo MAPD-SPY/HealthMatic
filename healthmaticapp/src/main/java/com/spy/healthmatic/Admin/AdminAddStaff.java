@@ -1,5 +1,8 @@
 package com.spy.healthmatic.Admin;
 
+//Team Name: Team SPY
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.spy.healthmatic.Admin.Fragments.StaffAccountFragment;
 import com.spy.healthmatic.Admin.Fragments.StaffPersonalFragment;
@@ -56,6 +60,11 @@ public class AdminAddStaff extends AppCompatActivity implements GlobalConst {
         }
 
         setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Staff Profile (1/2)");
+        }
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -88,7 +97,13 @@ public class AdminAddStaff extends AppCompatActivity implements GlobalConst {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 0) {
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle("Staff Profile (1/2)");
+                }
                 return StaffPersonalFragment.newInstance(staff, tabs);
+            }
+            if(getSupportActionBar()!=null){
+                getSupportActionBar().setTitle("Staff Profile (2/2)");
             }
             return StaffAccountFragment.newInstance(staff, tabs);
         }
@@ -102,6 +117,18 @@ public class AdminAddStaff extends AppCompatActivity implements GlobalConst {
         public CharSequence getPageTitle(int position) {
             return tabs.get(position).getName();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, AdminMainActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                homeIntent.putExtra("CurrentFragment", 1);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
 
 }

@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Admin;
 
+//Team Name: Team SPY
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -73,6 +75,9 @@ public class AdminMainActivity extends AppCompatActivity
 
         Staff staff = GlobalFunctions.getStaff(this);
         View headerLayout = navigationView.getHeaderView(0);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setTitle("Patient List");
+        }
         TextView mNameView = (TextView) headerLayout.findViewById(R.id.user_name);
         TextView mEmailView = (TextView) headerLayout.findViewById(R.id.user_email);
         mNameView.setText(staff.getFirstName());
@@ -89,28 +94,6 @@ public class AdminMainActivity extends AppCompatActivity
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main_activity2, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -119,12 +102,16 @@ public class AdminMainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_patient_list) {
+            if(getSupportActionBar()!=null){
+                getSupportActionBar().setTitle("Patient List");
+            }
             Toast.makeText(getApplicationContext(),"PatientList Selected",Toast.LENGTH_SHORT).show();
             PatientList fragment = new PatientList();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content_main2,fragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_staff_list) {
+            getSupportActionBar().setTitle("Staff List");
             Toast.makeText(getApplicationContext(),"StaffList Selected",Toast.LENGTH_SHORT).show();
             StaffList fragment = new StaffList();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

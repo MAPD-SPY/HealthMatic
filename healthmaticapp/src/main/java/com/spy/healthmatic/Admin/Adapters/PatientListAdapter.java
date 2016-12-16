@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Admin.Adapters;
 
+//Team Name: Team SPY
+
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +15,8 @@ import com.spy.healthmatic.Model.Patient;
 import com.spy.healthmatic.R;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by yatin on 28/10/16.
@@ -34,7 +38,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         public final TextView mNameView;
         public final TextView mPateintConditionView;
         public final TextView mRoomNumberView;
-        public final ImageView mPatientGenderIdicator;
+        public final CircleImageView mPatientGenderIdicator;
         public Patient patient;
 
         public ViewHolder(View itemView) {
@@ -43,7 +47,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             mNameView = (TextView) itemView.findViewById(R.id.tvPatientName);
             mPateintConditionView = (TextView) itemView.findViewById(R.id.tvPatientCondition);
             mRoomNumberView = (TextView) itemView.findViewById(R.id.tvRoom);
-            mPatientGenderIdicator = (ImageView) itemView.findViewById(R.id.ivPatient);
+            mPatientGenderIdicator = (CircleImageView) itemView.findViewById(R.id.ivPatient);
         }
     }
 

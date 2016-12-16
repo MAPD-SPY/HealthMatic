@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Admin.Fragments;
 
+//Team Name: Team SPY
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -154,6 +155,11 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         }
     }
 
+    @OnClick(R.id.p_dob)
+    public void dateViewClicked(){
+        showDatePicker();
+    }
+
     @OnCheckedChanged(R.id.radio_married)
     public void radiomartial(boolean isChecked){
         if(isChecked) {
@@ -176,11 +182,11 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
 
     @OnClick(R.id.save_patient_personal)
     public void savePatientPersonalInfo() {
-        boolean isvalid = true;
         String fname = mPFNameView.getText().toString();
         if (isInvalidName(fname)) {
             mPFNameView.setError("Required.");
-            isvalid = false;
+            mPFNameView.requestFocus();
+            return;
         } else {
             patient.setFirstName(fname);
             mPFNameView.setError(null);
@@ -188,15 +194,17 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String lName = mPLNameView.getText().toString();
         if (TextUtils.isEmpty(lName)) {
             mPLNameView.setError("Required.");
-            isvalid = false;
+            mPLNameView.requestFocus();
+            return;
         } else {
             patient.setLastName(lName);
             mPLNameView.setError(null);
         }
         String dob = mPDOBView.getText().toString();
         if (isInvalidDate(dob)) {
-            mPDOBView.setError("Required.");
-            isvalid = false;
+            mPDOBView.setError("Invalid.");
+            mPDOBView.requestFocus();
+            return;
         } else {
             patient.setBirthday(dob);
             mPDOBView.setError(null);
@@ -207,7 +215,8 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String contact1 = mPContactView.getText().toString();
         if (isInvalidContact(contact1)) {
             mPContactView.setError("Required.");
-            isvalid = false;
+            mPContactView.requestFocus();
+            return;
         } else {
             contact.setPhone(contact1);
             mPContactView.setError(null);
@@ -215,7 +224,8 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String email = mPEmailView.getText().toString();
         if (TextUtils.isEmpty(email)) {
             mPEmailView.setError("Required.");
-            isvalid = false;
+            mPEmailView.requestFocus();
+            return;
         } else {
             contact.setEmail(email);
             mPEmailView.setError(null);
@@ -223,7 +233,8 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String emergencyName = mPEmergencyNameView.getText().toString();
         if (TextUtils.isEmpty(emergencyName)) {
             mPEmergencyNameView.setError("Required.");
-            isvalid = false;
+            mPEmergencyNameView.requestFocus();
+            return;
         } else {
             contact.setEmergencyContactName(emergencyName);
             mPEmergencyNameView.setError(null);
@@ -231,7 +242,8 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String emergencyContact = mPEmergencyContactView.getText().toString();
         if (isInvalidContact(emergencyContact)) {
             mPEmergencyContactView.setError("Required.");
-            isvalid = false;
+            mPEmergencyContactView.requestFocus();
+            return;
         } else {
             contact.setEmergencyContactNumber(emergencyContact);
             mPEmergencyContactView.setError(null);
@@ -241,7 +253,8 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String street = mPStreetView.getText().toString();
         if (TextUtils.isEmpty(street)) {
             mPStreetView.setError("Required.");
-            isvalid = false;
+            mPStreetView.requestFocus();
+            return;
         } else {
             address.setStreet(street);
             mPStreetView.setError(null);
@@ -249,29 +262,28 @@ public class PatientPersonalFragment extends Fragment implements GlobalConst {
         String city = mPCityView.getText().toString();
         if (TextUtils.isEmpty(city)) {
             mPCityView.setError("Required.");
-            isvalid = false;
+            mPCityView.requestFocus();
+            return;
         } else {
             address.setCity(city);
             mPCityView.setError(null);
         }
         String proviance = mPProvianceView.getSelectedItem().toString();
         if (TextUtils.isEmpty(proviance)) {
-            isvalid = false;
+            return;
         } else {
             address.setProvince(proviance);
         }
         String zipcode = mPZipcodeView.getText().toString();
         if (TextUtils.isEmpty(zipcode)) {
             mPZipcodeView.setError("Required.");
-            isvalid = false;
+            mPZipcodeView.requestFocus();
+            return;
         } else {
             address.setZipCode(zipcode);
             mPZipcodeView.setError(null);
         }
 
-        if(!isvalid){
-            return;
-        }
         patient.setContact(contact);
         patient.setAddress(address);
         patient.setAdmissionDate(GlobalFunctions.getTodaysDateFormatted());

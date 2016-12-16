@@ -96,7 +96,8 @@
                     android:id="@+id/p_room"
                     style="@style/InputStyle"
                     android:hint="Room #"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:imeOptions="actionNext"/>
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -128,7 +129,8 @@
                 style="@style/InputStyle"
                 android:hint="Insurance Expiry Date"
                 android:inputType="number"
-                android:layout_margin="15dp" />
+                android:layout_margin="15dp"
+                android:imeOptions="actionDone"/>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/save_patient_health"

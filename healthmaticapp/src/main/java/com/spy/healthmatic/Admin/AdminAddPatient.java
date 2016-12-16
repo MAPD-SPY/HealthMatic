@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Admin;
 
+//Team Name: Team SPY
+
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TextInputEditText;
@@ -70,12 +72,6 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_patient);
         ButterKnife.bind(this);
-        Bundle bundle = getIntent().getExtras();
-//        if (bundle != null) {
-//            currentTabPosition = bundle.getInt(CURRENTTABPOSITION);
-//            patient = (Patient) bundle.getSerializable(PATIENT);
-//            tabs = (ArrayList<Tab>) bundle.getSerializable(TABS);
-//        }
         if(patient==null){
             patient = new Patient();
             tabs = new ArrayList<>(4);
@@ -84,6 +80,11 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
         }
 
         setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Patient Profile (1/4)");
+        }
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -181,13 +182,25 @@ public class AdminAddPatient extends AppCompatActivity implements GlobalConst {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 0) {
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle("Patient Profile (1/4)");
+                }
                 return PatientPersonalFragment.newInstance(patient, tabs);
             }
             else if (position == 1) {
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle("Patient Profile (2/4)");
+                }
                 return PatientHealthFragment.newInstance(patient, tabs);
             }
             else if (position == 2) {
+                if(getSupportActionBar()!=null){
+                    getSupportActionBar().setTitle("Patient Profile (3/4)");
+                }
                 return PatientDoctorFragment.newInstance(patient, tabs);
+            }
+            if(getSupportActionBar()!=null){
+                getSupportActionBar().setTitle("Patient Profile (4/4)");
             }
             return PatientNurseFragment.newInstance(patient, tabs);
         }

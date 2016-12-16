@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Welcome;
 
+//Team Name: Team SPY
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -27,10 +29,6 @@ import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Nurse.NurseMainActivity;
 import com.spy.healthmatic.R;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 public class SplashScreen extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after

@@ -1,5 +1,7 @@
 package com.spy.healthmatic.Admin.Fragments;
 
+//Team Name: Team SPY
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -221,29 +223,6 @@ public class PatientList extends Fragment implements GlobalConst, SwipeRefreshLa
 
     @OnClick(R.id.fab)
     public void addPatient() {
-//        Toast.makeText(getActivity(), "Add Patient clicked", Toast.LENGTH_SHORT).show();
-//        Patient patient = GlobalFunctions.getPatientJSONArray(getActivity()).get(0);
-//        String patientString = new Gson().toJson(patient);
-//        Call<Patient> call = patientsListAPICall.createPatient(patient);
-//        call.enqueue(new Callback<Patient>() {
-//
-//            @Override
-//            public void onResponse(Call<Patient> call, Response<Patient> response) {
-//                if(!response.isSuccessful()){
-//                    Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + response.errorBody());
-//                    Toast.makeText(getActivity(), "Was not able to ADD Patient. Please try again.", Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//                Patient patient = response.body();
-//                Toast.makeText(getActivity(), " Patient Added", Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Patient> call, Throwable t) {
-//                Log.d("RETROFIT", "ADD PATIENT RETROFIT FAILURE >>>>> " + t.toString());
-//                Toast.makeText(getActivity(), "Was not able to fetch data. Please try again.", Toast.LENGTH_LONG).show();
-//            }
-//        });
         startActivity(new Intent(getActivity(), AdminAddPatient.class));
     }
 

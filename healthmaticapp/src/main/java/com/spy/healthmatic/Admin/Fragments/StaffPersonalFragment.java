@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Admin.Fragments;
 
+//Team Name: Team SPY
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -24,9 +25,11 @@ import com.spy.healthmatic.Model.Staff;
 import com.spy.healthmatic.Model.Tab;
 import com.spy.healthmatic.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -144,6 +147,11 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
         }
     }
 
+    @OnClick(R.id.p_dob)
+    public void dateViewClicked(){
+        showDatePicker();
+    }
+
     @OnCheckedChanged(R.id.radio_married)
     public void radiomartial(boolean isChecked){
         if(isChecked) {
@@ -167,11 +175,11 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
 
     @OnClick(R.id.save_staff_personal)
     public void saveStaffPersonalInfo() {
-        boolean isvalid = true;
         String fname = mPFNameView.getText().toString();
         if (TextUtils.isEmpty(fname)) {
             mPFNameView.setError("Required.");
-            isvalid = false;
+            mPFNameView.requestFocus();
+            return;
         } else {
             staff.setFirstName(fname);
             mPFNameView.setError(null);
@@ -179,16 +187,18 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
         String lName = mPLNameView.getText().toString();
         if (TextUtils.isEmpty(lName)) {
             mPLNameView.setError("Required.");
-            isvalid = false;
+            mPLNameView.requestFocus();
+            return;
         } else {
             staff.setLastName(lName);
             mPLNameView.setError(null);
         }
 
         String dob = mPDOBView.getText().toString();
-        if (TextUtils.isEmpty(dob)) {
-            mPDOBView.setError("Required.");
-            isvalid = false;
+        if (isInvalidDate(dob)) {
+            mPDOBView.setError("Invalid.");
+            mPDOBView.requestFocus();
+            return;
         } else {
             staff.setBirthday(dob);
             mPDOBView.setError(null);
@@ -199,7 +209,8 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
         String contact1 = mPContactView.getText().toString();
         if (TextUtils.isEmpty(contact1)) {
             mPContactView.setError("Required.");
-            isvalid = false;
+            mPContactView.requestFocus();
+            return;
         } else {
             contact.setPhone(contact1);
             mPContactView.setError(null);
@@ -207,7 +218,8 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
         String email = mPEmailView.getText().toString();
         if (TextUtils.isEmpty(email)) {
             mPEmailView.setError("Required.");
-            isvalid = false;
+            mPEmailView.requestFocus();
+            return;
         } else {
             contact.setEmail(email);
             mPEmailView.setError(null);
@@ -218,7 +230,8 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
         String street = mPStreetView.getText().toString();
         if (TextUtils.isEmpty(street)) {
             mPStreetView.setError("Required.");
-            isvalid = false;
+            mPStreetView.requestFocus();
+            return;
         } else {
             address.setStreet(street);
             mPStreetView.setError(null);
@@ -226,28 +239,26 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
         String city = mPCityView.getText().toString();
         if (TextUtils.isEmpty(city)) {
             mPCityView.setError("Required.");
-            isvalid = false;
+            mPCityView.requestFocus();
+            return;
         } else {
             address.setCity(city);
             mPCityView.setError(null);
         }
         String proviance = mPProvianceView.getSelectedItem().toString();
         if (TextUtils.isEmpty(proviance)) {
-            isvalid = false;
+            return;
         } else {
             address.setProvince(proviance);
         }
         String zipcode = mPZipcodeView.getText().toString();
         if (TextUtils.isEmpty(zipcode)) {
             mPZipcodeView.setError("Required.");
-            isvalid = false;
+            mPZipcodeView.requestFocus();
+            return;
         } else {
             address.setZipCode(zipcode);
             mPZipcodeView.setError(null);
-        }
-
-        if(!isvalid){
-            return;
         }
         staff.setContact(contact);
         staff.setAddress(address);
@@ -258,6 +269,24 @@ public class StaffPersonalFragment extends Fragment implements GlobalConst {
             mViewPager.getAdapter().notifyDataSetChanged();
         }
         mViewPager.setCurrentItem(1, true);
+    }
+
+    public static boolean isInvalidDate(String date){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        Date todaysDate = null, userDate = null;
+        try {
+            todaysDate = sdf.parse(sdf.format(Calendar.getInstance().getTime()));
+            userDate = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(todaysDate==null || userDate==null){
+            return true;
+        }
+        if(date==null || "".equals(date.trim()) || userDate.after(todaysDate)){
+            return true;
+        }
+        return false;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Admin.Fragments;
 
+//Team Name: Team SPY
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -152,14 +153,18 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         mInsuranceExpiryView.setText(sdf.format(myCalendar.getTime()));
     }
 
+    @OnClick(R.id.p_insurance_expiry_date)
+    public void dateViewClicked(){
+        showDatePicker();
+    }
+
     @OnClick(R.id.save_patient_health)
     public void savePatientHealthObject(){
-        boolean isvalid = true;
         String weight = mWeightView.getText().toString();
         if (TextUtils.isEmpty(weight)) {
             mWeightView.setError("Required.");
             mWeightView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             patient.setWeight(Integer.parseInt(weight));
             mWeightView.setError(null);
@@ -168,7 +173,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if (TextUtils.isEmpty(height)) {
             mHeightView.setError("Required.");
             mHeightView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             patient.setHeight(Integer.parseInt(height));
             mHeightView.setError(null);
@@ -177,7 +182,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if (TextUtils.isEmpty(blood)) {
             mBloodView.setError("Required.");
             mBloodView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             patient.setBloodType(blood);
             mBloodView.setError(null);
@@ -186,7 +191,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if (TextUtils.isEmpty(occupation)) {
             mOccupationView.setError("Required.");
             mOccupationView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             patient.setOccupation(occupation);
             mOccupationView.setError(null);
@@ -196,7 +201,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if (TextUtils.isEmpty(condition)) {
             mConditionView.setError("Required.");
             mConditionView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             patient.setCondition(condition);
             mConditionView.setError(null);
@@ -205,7 +210,7 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if (checkIfValidRoom(room)) {
             mRoomView.setError("Invalid.");
             mRoomView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             patient.setRoom(setRoomNumber(room));
             mRoomView.setError(null);
@@ -215,22 +220,19 @@ public class PatientHealthFragment extends Fragment implements GlobalConst {
         if (TextUtils.isEmpty(insuranceName)) {
             mInsuranceNameView.setError("Required.");
             mInsuranceNameView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             insurance.setName(insuranceName);
             mInsuranceNameView.setError(null);
         }
         String insuranceExpiryDate = mInsuranceExpiryView.getText().toString();
         if (TextUtils.isEmpty(insuranceExpiryDate)) {
-            mInsuranceExpiryView.setError("Required.");
+            mInsuranceExpiryView.setError("Invalid.");
             mInsuranceExpiryView.requestFocus();
-            isvalid = false;
+            return;
         } else {
             insurance.setExpiryDate(insuranceExpiryDate);
             mInsuranceExpiryView.setError(null);
-        }
-        if(!isvalid){
-            return;
         }
         patient.setInsurance(insurance);
         if(tabs.size()<3) {

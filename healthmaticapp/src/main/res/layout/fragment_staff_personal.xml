@@ -98,7 +98,8 @@
                 style="@style/InputStyle"
                 android:hint="DOB"
                 android:inputType="text"
-                android:layout_margin="15dp" />
+                android:layout_margin="15dp"
+                android:imeOptions="actionNext" />
 
             <TextView
                 style="@style/DividerTextStyle"

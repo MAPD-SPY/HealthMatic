@@ -1,5 +1,6 @@
 package com.spy.healthmatic.Admin.Fragments;
 
+//Team Name: Team SPY
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -200,12 +201,12 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
 
     @OnClick(R.id.save_staff)
     public void saveStaff() {
-        boolean isvalid = true;
 
         String username = mUsernameView.getText().toString();
         if (TextUtils.isEmpty(username)) {
             mUsernameView.setError("Required.");
-            isvalid = false;
+            mUsernameView.requestFocus();
+            return;
         } else {
             staff.setUsername(username);
             mUsernameView.setError(null);
@@ -214,7 +215,8 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
         String passoword = mPasswordView.getText().toString();
         if (TextUtils.isEmpty(passoword)) {
             mPasswordView.setError("Required.");
-            isvalid = false;
+            mPasswordView.requestFocus();
+            return;
         } else {
             staff.setPassword(passoword);
             mPasswordView.setError(null);
@@ -223,7 +225,8 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
         String floor = mFloorView.getText().toString();
         if (TextUtils.isEmpty(floor)) {
             mFloorView.setError("Required.");
-            isvalid = false;
+            mFloorView.requestFocus();
+            return;
         } else {
             staff.setFloor(floor);
             mFloorView.setError(null);
@@ -231,15 +234,14 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
 
         String speciality = mSpecialityView.getText().toString();
         if (TextUtils.isEmpty(speciality)) {
-            mPasswordView.setError("Required.");
-            isvalid = false;
+            mSpecialityView.setError("Required.");
+            mSpecialityView.requestFocus();
+            return;
         } else {
             staff.setSpecialty(new String[]{speciality});
             mPasswordView.setError(null);
         }
-        if (!isvalid) {
-            return;
-        }
+
         uploadPhoto();
     }
 
@@ -341,6 +343,7 @@ public class StaffAccountFragment extends Fragment implements GlobalConst {
 
     private void successIntent() {
         Intent intent = new Intent(getActivity(), AdminMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("CurrentFragment", 1);
         startActivity(intent);
     }

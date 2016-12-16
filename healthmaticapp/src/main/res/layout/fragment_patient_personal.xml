@@ -23,7 +23,7 @@
                 style="@style/FormTitle"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
-                android:text="Patient Personal Info(1/4)"
+                android:text="Patient Personal Info"
                 android:textAlignment="center" />
 
             <LinearLayout
@@ -99,7 +99,8 @@
                 style="@style/InputStyle"
                 android:layout_margin="15dp"
                 android:hint="DOB"
-                android:textIsSelectable="true" />
+                android:textIsSelectable="true"
+                android:imeOptions="actionNext"/>
             <!--<android.support.design.widget.TextInputLayout-->
             <!--android:id="@+id/p_dob_layout"-->
             <!--android:layout_width="match_parent"-->
