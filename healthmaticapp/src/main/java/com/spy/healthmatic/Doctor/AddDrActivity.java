@@ -89,6 +89,13 @@ public class AddDrActivity extends AppCompatActivity implements GlobalConst {
                     if(doctors.get(selection).getImageName()!=null && !"".equals(doctors.get(selection).getImageName().trim())){
                         Glide.with(AddDrActivity.this).load(doctors.get(selection).getImageName()).error(R.drawable.ic_menu_camera).into(ivDoctorImage);
                     }
+                    else {
+                        if (doctors.get(selection).getGender() == Staff.FEMALE) {
+                            ivDoctorImage.setBackgroundResource(R.mipmap.user_female);
+                        } else {
+                            ivDoctorImage.setBackgroundResource(R.mipmap.user_male);
+                        }
+                    }
                     tvSpecialties.setText(Arrays.toString(doctors.get(selection).getSpecialty()));
                     tvContactNum.setText(String.valueOf(doctors.get(selection).getContact().getPhone()));
                     llCardView.setVisibility(View.VISIBLE);
