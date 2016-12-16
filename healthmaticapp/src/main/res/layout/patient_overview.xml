@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:paddingTop="40dp"
-    android:paddingLeft="32dp"
+    android:paddingLeft="16dp"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -42,7 +42,8 @@
                 android:paddingLeft="10dp"
                 android:layout_toEndOf="@id/tvRR"
                 style="@style/patient_overview_text"
-                android:id="@+id/tvRRVal" />
+                android:id="@+id/tvRRVal"
+                android:textStyle="normal|bold" />
 
             <TextView
                 android:text="@string/txtBloodPressure"
@@ -64,7 +65,8 @@
                 android:layout_below="@id/tvRRVal"
                 android:layout_toEndOf="@id/tvBP"
                 style="@style/patient_overview_text"
-                android:id="@+id/tvBPVal" />
+                android:id="@+id/tvBPVal"
+                android:textStyle="normal|bold" />
 
             <TextView
                 android:text="@string/strHeartRate"
@@ -86,7 +88,8 @@
                 android:layout_below="@id/tvBPVal"
                 android:layout_toEndOf="@id/tvHR"
                 style="@style/patient_overview_text"
-                android:id="@+id/tvHRVal" />
+                android:id="@+id/tvHRVal"
+                android:textStyle="normal|bold" />
 
             <TextView
                 android:text="@string/txtTemperature"
@@ -108,7 +111,8 @@
                 android:layout_toEndOf="@id/tvTemp"
                 android:layout_below="@id/tvHRVal"
                 style="@style/patient_overview_text"
-                android:id="@+id/tvTempVal" />
+                android:id="@+id/tvTempVal"
+                android:textStyle="normal|bold" />
 
             <TextView
                 android:text="@string/strDateTaken"
