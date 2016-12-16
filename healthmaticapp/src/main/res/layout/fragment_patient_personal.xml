@@ -257,7 +257,7 @@
 
             <TextView
                 style="@style/DividerTextStyle"
-                android:text="Maritial Status" />
+                android:text="Marital Status" />
 
             <View
                 android:layout_width="match_parent"

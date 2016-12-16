@@ -260,7 +260,7 @@ public class PatientTestList extends AppCompatActivity implements GlobalConst {
                     }
                     return;
                 }
-                showToast("Test update Succesfull");
+                showToast("Test Update Successful");
                 patient = response.body();
                 labTests = patient.getLabTests();
                 mAdapter.notifyDataSetChanged();

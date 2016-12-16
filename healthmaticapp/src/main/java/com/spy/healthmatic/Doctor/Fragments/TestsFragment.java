@@ -1,10 +1,12 @@
 package com.spy.healthmatic.Doctor.Fragments;
 
 import android.app.Dialog;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,11 +38,12 @@ public class TestsFragment extends Fragment {
     private String doctorName;
     private TestsAdapter testsAdapter;
     private static List<LabTest> labTests;
+    Dialog dialog;
+    int testPosition;
 
     public TestsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,9 @@ public class TestsFragment extends Fragment {
 
             }
         }));
+        if(savedInstanceState != null && savedInstanceState.getBoolean("alertShown", false)) {
+            zoomImage(savedInstanceState.getInt("testPosition", -1));
+        }
         return view;
     }
 
@@ -81,13 +87,16 @@ public class TestsFragment extends Fragment {
      * @param position index of the image selected
      */
     private void zoomImage(int position) {
+        if(position==-1) {
+            return;
+        }
         // Get the LabTest object
         final LabTest labTest = labTests.get(position);
 
         // Show the image only if something is saved
-        if (labTest.getImageResult() != null && !"".equals(labTest.getImageResult().trim())) {
-
-            final Dialog dialog = new Dialog(getActivity());
+        if (labTest.getImageResult() != null && !"".equals(labTest.getImageResult().trim()) ) {
+            testPosition = position;
+            dialog = new Dialog(getActivity());
             dialog.setContentView(R.layout.lab_image);
             final ImageView imageViewTest = (ImageView) dialog.findViewById(large_image);
             final ProgressBar  progressBar = (ProgressBar) dialog.findViewById(R.id.lab_progress_dialog);
@@ -112,6 +121,23 @@ public class TestsFragment extends Fragment {
         }
     }
 
+    public void onPause(){
+        super.onPause();
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if(dialog!=null && dialog.isShowing()){
+            dialog.dismiss();
+            dialog.cancel();
+            outState.putBoolean("alertShown", true);
+            outState.putInt("testPosition", testPosition);
+        }
+    }
+
     /**
      * Stretch the window based to closely match the parent's width and height
      * @param dialog - dialog display
@@ -126,7 +152,6 @@ public class TestsFragment extends Fragment {
         lp = null;
         window = null;
     }
-
 
     public void reloadFragment() {
         testsAdapter.notifyDataSetChanged();
