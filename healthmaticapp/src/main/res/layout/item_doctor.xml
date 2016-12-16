@@ -23,8 +23,8 @@
             tools:src="@mipmap/user_female"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="16dp"
-            />
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"/>
 
         <TextView
             android:id="@+id/tvStaffName"

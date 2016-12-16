@@ -2,11 +2,9 @@ package com.spy.healthmatic.API;
 
 import com.spy.healthmatic.Model.LabTest;
 import com.spy.healthmatic.Model.Patient;
-import com.spy.healthmatic.Model.PatientApiObject;
 
 import java.util.ArrayList;
 
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -29,6 +27,10 @@ public interface PatientsListAPI {
     @POST("/patients")
     @Headers("Content-Type: application/json")
     Call<Patient> createPatient(@Body Patient patient);
+
+    @PUT("/patients/{id}")
+    @Headers("Content-Type: application/json")
+    Call<Patient> updatePatient(@Path("id") String _id, @Body Patient patient);
 
     @DELETE("/patients/{id}")
     Call<ResponseBody> deletePatient(@Path("id") String _id);

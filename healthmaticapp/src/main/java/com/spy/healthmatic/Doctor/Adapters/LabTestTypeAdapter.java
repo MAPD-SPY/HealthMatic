@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.spy.healthmatic.Model.Laboratory;
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.LabTestType;
 
 import java.util.ArrayList;
 import java.util.List;

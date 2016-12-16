@@ -532,24 +532,37 @@ public class Login extends AppCompatActivity implements GlobalConst, Handler.Cal
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
-    private boolean validate() {
+    public boolean validate() {
         boolean valid = true;
 
         String email = editTxtEmail.getText().toString();
         String password = editTxtPassword.getText().toString();
 
-        if (email.isEmpty()) {//|| !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        if (isInvalidValidUserName(email)) {//|| !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
             editTxtEmail.setError(getResources().getString(R.string.strEnterValidEmail));
             valid = false;
         } else {
             editTxtEmail.setError(null);
         }
-        if (password.isEmpty()) {
+        if (isInValidPassword(password)) {
             editTxtPassword.setError(getResources().getString(R.string.strEnterPassword));
             editTxtEmail.setError(null);
         }
-
         return valid;
+    }
+
+    public static boolean isInvalidValidUserName(String username){
+        if(username==null || "".equals(username.trim())){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isInValidPassword(String password){
+        if(password==null || "".equals(password.trim()) || password.length()>15){
+            return true;
+        }
+        return false;
     }
 
     private void onLoginSuccess() {

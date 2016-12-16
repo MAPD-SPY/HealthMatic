@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -60,6 +59,9 @@ public class PatientActivity extends AppCompatActivity {
     @Bind(R.id.tvAdmissionDateVal) TextView textViewAdmission;
     @Bind(R.id.tvLastCheckVal) TextView textViewCheckup;
     @Bind(R.id.fabAdd) FloatingActionButton fab;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,7 +224,7 @@ public class PatientActivity extends AppCompatActivity {
                 }
             }
         });
-     }
+    }
 
     @Override
     protected void onResume() {
