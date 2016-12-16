@@ -46,12 +46,9 @@
         <item>Quebec</item>
     </string-array>
 
-    <!--<string name="str_hint_EmailAddress">E-mail address</string>-->
-    <!--<string name="str_hint_Password">Password</string>-->
-    <!--<string name="str_btn_Login">Log in</string>-->
-    <!--<string name="str_hint_EmailAddress">Nom dutilisateur</string>-->
-    <!--<string name="str_hint_Password">Mot de passe</string>-->
-    <!--<string name="str_btn_Login">Sidentifier</string>-->
+    <string name="str_hint_EmailAddress">Nom dutilisateur</string>
+    <string name="str_hint_Password">Mot de passe</string>
+    <string name="str_btn_Login">Sidentifier</string>
     <string name="title_activity_nurse_patient_details">NursePatientDetailsActivity</string>
 
     <string name="title_activity_main_dr">Mes Patients</string>
@@ -166,6 +163,10 @@
     <string name="strThisIsRequired">This is required.</string>
     <string name="strErrorMsgVitals">Input at least one vital.</string>
     <string name="strErrorMsgTests">There is nothing to save.</string>
+
+    <string name="strYes">Yes</string>
+    <string name="strNo">No</string>
+
 
 
 </resources>

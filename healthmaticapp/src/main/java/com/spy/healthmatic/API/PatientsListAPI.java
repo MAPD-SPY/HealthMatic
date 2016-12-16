@@ -39,7 +39,4 @@ public interface PatientsListAPI {
     @Headers("Content-Type: application/json")
     Call<Patient> updatePatientLabTest(@Path("id") String _id, @Body LabTest labTest);
 
-    @PUT("/patients/{id}")
-    @Headers("Content-Type: application/json")
-    Call<Patient> updatePatient(@Path("id") String _id, @Body Patient patient);
 }

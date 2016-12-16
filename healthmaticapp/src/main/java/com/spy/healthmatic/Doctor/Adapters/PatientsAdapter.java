@@ -86,7 +86,6 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
                         : R.anim.down_from_top);
         holder.itemView.startAnimation(animation);
         lastPosition = position;
-
     }
 
     @Override

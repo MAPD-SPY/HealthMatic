@@ -69,7 +69,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
     @Bind(R.id.fab)
     FloatingActionButton floatingActionButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,26 +89,6 @@ public class MainDrActivity extends AppCompatActivity implements GlobalConst, Sw
 
         // Setting Recyclerview
         mRecyclerView.setHasFixedSize(false);
-        // Add a listener to the RecylerView
-        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, mRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            //
-            @Override
-            public void onItemClick(View view, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("PATIENT_OBJ", patients.get(position));
-                bundle.putSerializable("STAFF_OBJ", doctor);
-
-                Intent intent = new Intent(MainDrActivity.this, PatientActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onLongItemClick(View view, int position) {
-                showDischarge(position);
-            }
-        }));
-
 
         // Use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
