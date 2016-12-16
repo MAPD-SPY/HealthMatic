@@ -39,6 +39,13 @@
         <item>Docteur 5</item>
     </string-array>
 
+    <string-array name="proviance_list">
+        <item>Ontario</item>
+        <item>Alberta</item>
+        <item>British Columbia</item>
+        <item>Quebec</item>
+    </string-array>
+
     <string name="str_hint_EmailAddress">E-mail address</string>
     <string name="str_hint_Password">Password</string>
     <string name="str_btn_Login">Log in</string>
@@ -95,5 +102,66 @@
     <string name="strAddMedication">Des médicaments</string>
     <string name="strAddLaboratoryTests">Tests de Laboratoire</string>
     <string name="strDateTaken">Date prise:</string>
+
+    <string name="strDays">days</string>
+    <string name="strRespirationRate">Respiration Rate:</string>
+    <string name="strBloodPressure">Blood Pressure:</string>
+    <string name="strTemperature">Temperature:</string>
+    <string name="strUnitRR">breaths/min</string>
+    <string name="strUnitBpm">bpm</string>
+    <string name="strUnitC">°C</string>
+    <string name="strUnitmmHg">mmHg</string>
+    <string name="strInfo">Info</string>
+    <string name="strAddress">Address</string>
+    <string name="strContact">Contact</string>
+    <string name="strDateVal">--</string>
+    <string name="strTempVal">-- C</string>
+    <string name="strHRVal">--- bpm</string>
+    <string name="strBPVal">--- / --- mmHg</string>
+    <string name="strRespirationVal">-- breaths / min</string>
+
+
+    <string name="strRetroFitFailureMsg">Data was not successfully fetch from server. Please try again.</string>
+    <string name="strDr">Dr.</string>
+    <string name="strSingle">Single</string>
+    <string name="strMarried">Married</string>
+    <string name="strMale">Male</string>
+    <string name="strFemale">Female</string>
+    <string name="strBirthday">Birthday:</string>
+    <string name="strGender">Gender:</string>
+    <string name="strWeight">Weight:</string>
+    <string name="strHeight">Height:</string>
+    <string name="strBloodType">Blood Type:</string>
+    <string name="strMaritalStatus">Marital Status:</string>
+    <string name="strUnitWeight">lbs</string>
+    <string name="strUnitHeight">cm</string>
+    <string name="strEmergencyName">Emergency Name:</string>
+    <string name="strEmergencyPhone">EmergencyPhone:</string>
+    <string name="strEmail">Email:</string>
+    <string name="strPhone">Phone:</string>
+    <string name="strInvalidLogin">Invalid Username/Password. Please try again.</string>
+    <string name="strEnterValidEmail">Enter a valid email address</string>
+    <string name="strEnterPassword">Enter password</string>
+    <string name="strAuthenticating">Authenticating...</string>
+    <string name="strUserLoginSuccessful">user login successful.</string>
+    <string name="strUserLoginUnsuccessful">user login unsuccessful.</string>
+    <string name="strErrorDrInput">Please provide doctor\'s name.</string>
+    <string name="strHintNameofDoctor">Enter name of doctor</string>
+    <string name="strSpecialization">Specialization</string>
+    <string name="strContactNum">Contact #:</string>
+    <string name="strDoctors">Doctors:</string>
+    <string name="strNurses">Nurses:</string>
+    <string name="strHintNameOfMeds">Enter name</string>
+    <string name="strAddVitals">Add Vitals</string>
+    <string name="strAddNotes">Add Notes</string>
+    <string name="strAddDoctor">Add Doctor</string>
+    <string name="strPatientsForCheckup">patients for checkup</string>
+    <string name="strPatientForCheckup">patient for checkup</string>
+    <string name="strCheckupsDone">checkups done</string>
+    <string name="strCheckupDone">checkup done</string>
+    <string name="strThisIsRequired">This is required.</string>
+    <string name="strErrorMsgVitals">Input at least one vital.</string>
+    <string name="strErrorMsgTests">There is nothing to save.</string>
+
 
 </resources>

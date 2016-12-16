@@ -161,5 +161,6 @@
     <string name="strErrorMsgVitals">Input at least one vital.</string>
     <string name="strErrorMsgTests">There is nothing to save.</string>
 
+    <string name="strCheckDone">Checks performed</string>
 
 </resources>
