@@ -13,13 +13,10 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.Adapters.LabTestTypeAdapter;
-import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
-import com.spy.healthmatic.Doctor.Adapters.LabTestTypeAdapter;
 import com.spy.healthmatic.Model.Hospital;
 import com.spy.healthmatic.Model.Laboratory;
 import com.spy.healthmatic.R;
-import com.spy.healthmatic.models.LabTestType;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +44,7 @@ import static com.spy.healthmatic.Global.GlobalConst.HOSPITAL_API;
 public class AddTestActivity extends AppCompatActivity {
 
     private String doctorName;
-    private static ArrayList<LabTestType> labTestTypes;
+//    private static ArrayList<LabTestType> labTestTypes;
     private ArrayList<String> mTestsSelected;
     private LabTestTypeAdapter labTestTypeAdapter;
     private String patientID;
@@ -64,10 +61,10 @@ public class AddTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_test);
 
         // Initialize the types of laboratory tests
-        if (labTestTypes == null) {
-            labTestTypes = new ArrayList<>();
-            getLabTestTypesJSONArray();
-        }
+//        if (labTestTypes == null) {
+//            labTestTypes = new ArrayList<>();
+//            getLabTestTypesJSONArray();
+//        }
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
@@ -133,18 +130,18 @@ public class AddTestActivity extends AppCompatActivity {
         recyclerView.setAdapter(labTestTypeAdapter);
     }
 
-    private void getLabTestTypesJSONArray() {
-        JSONObject response;
-        JSONArray labTestTypesJsonResults;
-
-        try {
-            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "labTests.json"));
-            labTestTypesJsonResults = response.getJSONArray("labTests");
-            labTestTypes.addAll(LabTestType.fromJSONArray(labTestTypesJsonResults));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void getLabTestTypesJSONArray() {
+//        JSONObject response;
+//        JSONArray labTestTypesJsonResults;
+//
+//        try {
+//            response = new JSONObject(JsonGlobalHelpers.loadJSONFromAsset(this, "labTests.json"));
+//            labTestTypesJsonResults = response.getJSONArray("labTests");
+//            labTestTypes.addAll(LabTestType.fromJSONArray(labTestTypesJsonResults));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void finish() {
