@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Global.GlobalConst;
@@ -83,11 +84,11 @@ public class AddDrActivity extends AppCompatActivity implements GlobalConst {
                 String doctor = acvDoctorName.getText().toString();
                 if (!doctor.equals("")) {
                     tvDoctorName.setText(doctor);
-
-                    // TODO: Download the image ?
-
                     // Show the details of the doctor selected in the card
                     selection = doctorNames.indexOf(doctor);
+                    if(doctors.get(selection).getImageName()!=null && !"".equals(doctors.get(selection).getImageName().trim())){
+                        Glide.with(AddDrActivity.this).load(doctors.get(selection).getImageName()).error(R.drawable.ic_menu_camera).into(ivDoctorImage);
+                    }
                     tvSpecialties.setText(Arrays.toString(doctors.get(selection).getSpecialty()));
                     tvContactNum.setText(String.valueOf(doctors.get(selection).getContact().getPhone()));
                     llCardView.setVisibility(View.VISIBLE);

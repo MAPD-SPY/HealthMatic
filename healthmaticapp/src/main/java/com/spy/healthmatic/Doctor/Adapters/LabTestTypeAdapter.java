@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.spy.healthmatic.Model.Laboratory;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.models.LabTestType;
 
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class LabTestTypeAdapter extends RecyclerView.Adapter<LabTestTypeAdapter.ViewHolder> {
 
-    private List<LabTestType> mLabTests;
+    private List<Laboratory> mLabTests;
     private ArrayList<String> mLabTestsSelected;
     private Context mContext;
 
@@ -36,7 +37,7 @@ public class LabTestTypeAdapter extends RecyclerView.Adapter<LabTestTypeAdapter.
         }
     }
 
-    public LabTestTypeAdapter(Context context, List<LabTestType> labTests) {
+    public LabTestTypeAdapter(Context context, List<Laboratory> labTests) {
         mLabTests = labTests;
         mContext = context;
 
@@ -62,7 +63,7 @@ public class LabTestTypeAdapter extends RecyclerView.Adapter<LabTestTypeAdapter.
 
     @Override
     public void onBindViewHolder(LabTestTypeAdapter.ViewHolder holder, final int position) {
-        final LabTestType labTestType = mLabTests.get(position);
+        final Laboratory labTestType = mLabTests.get(position);
 
         final CheckBox checkBox = holder.cbLabTestType;
         TextView textView = holder.tvLabTestDescription;

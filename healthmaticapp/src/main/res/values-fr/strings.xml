@@ -55,6 +55,7 @@
     <string name="strRoom">Chambre #:</string>
     <string name="strPatients">Les patients</string>
     <string name="strToday">Patients \à v\érifier aujourd\'hui.</string>
+    <string name="strDischarge">Discharge</string>
     <string name="strCheckDone">Vérifications effectuées</string>
 
     <string name="strVitals">Vitals</string>

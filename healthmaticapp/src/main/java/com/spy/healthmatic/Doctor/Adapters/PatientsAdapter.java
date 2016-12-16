@@ -42,22 +42,6 @@ public class PatientsAdapter extends RecyclerView.Adapter<PatientsAdapter.ViewHo
             mtvPatientName = (TextView) view.findViewById(R.id.tvPatientName);
             mtvRoomNum = (TextView) view.findViewById(R.id.tvRoomNum);
             mtvPatientCondition = (TextView) view.findViewById(R.id.tvPatientCondition);
-
-            // Setup a listener to the current view
-            view.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-
-                    int position = getAdapterPosition();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("PATIENT_OBJ", mPatients.get(position));
-                    bundle.putSerializable("STAFF_OBJ", mDoctor);
-
-                    Intent intent = new Intent(mContext, PatientActivity.class);
-                    intent.putExtras(bundle);
-                    mContext.startActivity(intent);
-                }
-            });
         }
     }
 

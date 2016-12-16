@@ -10,6 +10,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -34,7 +35,7 @@ import cz.msebera.android.httpclient.Header;
  * Created by shelalainechan on 2016-10-26.
  */
 
-public class PatientActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class PatientActivity extends AppCompatActivity {
 
     private static final int TAB_MEDS = 0;
     private static final int TAB_TESTS = 1;
@@ -50,13 +51,14 @@ public class PatientActivity extends AppCompatActivity implements SwipeRefreshLa
     private int tabPos;
     private TextView admissionDate, lastCheckup;
     private static boolean isAgent = false;
+    @Bind(R.id.ivPic)
+    ImageView mPatinetImage;
     @Bind(R.id.tvRRVal) TextView textViewRRate;
     @Bind(R.id.tvBPVal) TextView textViewBP;
     @Bind(R.id.tvHRVal) TextView textViewHR;
     @Bind(R.id.tvTempVal) TextView textViewTemp;
     @Bind(R.id.tvAdmissionDateVal) TextView textViewAdmission;
     @Bind(R.id.tvLastCheckVal) TextView textViewCheckup;
-    @Bind(R.id.swipe_refresh_patient) SwipeRefreshLayout swipeRefreshPatient;
     @Bind(R.id.fabAdd) FloatingActionButton fab;
 
     @Override
@@ -65,9 +67,6 @@ public class PatientActivity extends AppCompatActivity implements SwipeRefreshLa
         setContentView(R.layout.activity_patient_dr);
 
         ButterKnife.bind(this);
-
-        // Setup listener to swipe to refresh
-        swipeRefreshPatient.setOnRefreshListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tbPatientDr);
         setSupportActionBar(toolbar);
@@ -112,6 +111,10 @@ public class PatientActivity extends AppCompatActivity implements SwipeRefreshLa
         mViewPager = (ViewPager) findViewById(R.id.containerPatientDr);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        if(patient.getGender()){
+            mPatinetImage.setImageResource(R.drawable.user_male);
+        }
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -229,12 +232,6 @@ public class PatientActivity extends AppCompatActivity implements SwipeRefreshLa
 
     }
 
-    @Override
-    public void onRefresh() {
-        // Fetch patient data from server
-        getPatientFromServer();
-    }
-
     private void getPatientFromServer() {
         // Create an Asynchronous HTTP instance
         String url = "http://shelalainechan.com/patients/" + patient.get_id();
@@ -264,13 +261,11 @@ public class PatientActivity extends AppCompatActivity implements SwipeRefreshLa
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                swipeRefreshPatient.setRefreshing(false);
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                swipeRefreshPatient.setRefreshing(false);
             }
         });
     }

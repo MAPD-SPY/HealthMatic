@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -14,6 +15,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.spy.healthmatic.Doctor.Utilities.JsonGlobalHelpers;
 import com.spy.healthmatic.Doctor.Utilities.TimeHelpers;
 import com.spy.healthmatic.Doctor.Adapters.LabTestTypeAdapter;
+import com.spy.healthmatic.Model.Hospital;
+import com.spy.healthmatic.Model.Laboratory;
 import com.spy.healthmatic.R;
 import com.spy.healthmatic.models.LabTestType;
 
@@ -28,6 +31,12 @@ import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.spy.healthmatic.Admin.AdminAddPatient.rooms;
+import static com.spy.healthmatic.Global.GlobalConst.HOSPITAL_API;
 
 /**
  * Team Name: Team SPY
@@ -42,6 +51,12 @@ public class AddTestActivity extends AppCompatActivity {
     private LabTestTypeAdapter labTestTypeAdapter;
     private String patientID;
 
+    public ArrayList<Laboratory> laboratories;
+    public ArrayList<Laboratory> selectedLabes;
+    public String hospitalId;
+    ProgressBar mProgressBar;
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +67,13 @@ public class AddTestActivity extends AppCompatActivity {
             labTestTypes = new ArrayList<>();
             getLabTestTypesJSONArray();
         }
-        labTestTypeAdapter = new LabTestTypeAdapter(this, labTestTypes);
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("PATIENT_ID");
         doctorName = intent.getStringExtra("DOCTOR_NAME");
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rvLabTestType);
-        recyclerView.setAdapter(labTestTypeAdapter);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_dialog);
+        recyclerView = (RecyclerView)findViewById(R.id.rvLabTestType);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -84,6 +98,38 @@ public class AddTestActivity extends AppCompatActivity {
                 }
             }
         });
+        downloadHospital();
+    }
+
+    private void downloadHospital(){
+        Call<ArrayList<Hospital>> call2 = HOSPITAL_API.getHospitalList();
+        call2.enqueue(new Callback<ArrayList<Hospital>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Hospital>> call, Response<ArrayList<Hospital>> response) {
+                if(!response.isSuccessful()){
+                    laboratories=null;
+                    return;
+                }
+                ArrayList<Hospital> hospitals = response.body();
+                for(Hospital hospital: hospitals){
+                    hospitalId = hospital.get_id();
+                    laboratories = hospital.getLaboratories();
+                    mProgressBar.setVisibility(View.GONE);
+                    loadLabTest();
+                    break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Hospital>> call, Throwable t) {
+                rooms=null;
+            }
+        });
+    }
+
+    private void loadLabTest(){
+        labTestTypeAdapter = new LabTestTypeAdapter(this, laboratories);
+        recyclerView.setAdapter(labTestTypeAdapter);
     }
 
     private void getLabTestTypesJSONArray() {
